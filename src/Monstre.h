@@ -14,28 +14,28 @@ struct pos
 class Monstre
 {
     private:
-    
+        pos position; /*! \brief structure contenant la position en coordonnées x,y*/
         vector<float> direction;
         float vitesse; 
         float taille;
         int TypeM;
-        int resistance;
+        
     
     public:
+        int resistance;
         Monstre(); /*! \brief */
         ~Monstre(); /*! \brief */
         pos getPos() const; /*! \brief renvoie la position du monstre en x et y*/
         void setPos(pos p); /*! \brief */
         int getTypeM(); /*! \brief */
-        void setgetTypeM(); /*! \brief */
+        void setTypeM(); /*! \brief */
         vector<float> getDirM() const; /*! \brief */
-        void setDir(vector<float> d); /*! \brief */
-        float getVit() const; /*! \brief */
-        float setVit(float v); /*! \brief */
+        float getVitM() const; /*! \brief */
+        void setVitM(float v); /*! \brief */
         float getTailleM() const;  /*! \brief */
-        float setTailleM(float t); /*! \brief */
+        void setTailleM(float t); /*! \brief */
         int getResistance(); /*! \brief */
-        void setResistance(); /*! \brief */
+        void setResistance(int r); /*! \brief */
         
 
 };
