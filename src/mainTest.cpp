@@ -5,8 +5,7 @@ using namespace std;
 
 int main(void){
     Personnage p;
-    p.deplacerD();
-    p.deplacerD();
+    p.testRegression();
 }
 
 
