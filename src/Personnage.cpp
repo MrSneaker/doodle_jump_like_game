@@ -7,7 +7,7 @@ using namespace std;
 Personnage::Personnage(){
     position.x=0;
     position.y=0;
-    projectile={};
+    proj=NULL;
     direction={0,0};
     vitesse=1;
     nom="p0";
@@ -15,8 +15,8 @@ Personnage::Personnage(){
 }
 
 Personnage::~Personnage(){
-    if(projectile.size()!=0){
-        projectile.clear();
+    if(proj!=NULL){
+        proj=NULL;
     }
     position.x=0;
     position.y=0;

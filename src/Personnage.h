@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "projectile.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ class Personnage
 {
     private:
         pos position; /*! \brief structure contenant la position en coordonnées x,y*/
-        vector<vector<float>> projectile; /*! \brief vector de vector de projectile du personnage */
+        projectile * proj; /*! \brief vector de vector de projectile du personnage */
         vector<float> direction; /*! \brief le vecteur de direction du personnage*/
         float vitesse;/*! \brief la vitesse du personnage*/
         string nom;/*! \brief le nom du personnage*/
