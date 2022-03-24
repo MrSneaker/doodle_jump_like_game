@@ -75,12 +75,12 @@ void Personnage::setNom(const string nomP){
 }
 
 void Personnage::creerProj(){
-    vector<float> a;
+    vector<float> a = {} ;
     projectile.push_back(a);
 }
 
 void Personnage::detruitProj(){
-    projectile.erase(projectile.end());
+    projectile.erase(projectile.end()-1);
 }
 
 vector<float> Personnage::getProjectile(int n) const{
