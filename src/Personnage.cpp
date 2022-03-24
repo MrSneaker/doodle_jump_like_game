@@ -7,7 +7,7 @@ using namespace std;
 Personnage::Personnage(){
     position.x=0;
     position.y=0;
-    proj=NULL;
+    proj={};
     direction={0,0};
     vitesse=1;
     nom="p0";
@@ -15,8 +15,8 @@ Personnage::Personnage(){
 }
 
 Personnage::~Personnage(){
-    if(proj!=NULL){
-        proj=NULL;
+    if(proj.size()!=0){
+        proj.clear();
     }
     position.x=0;
     position.y=0;
@@ -25,7 +25,7 @@ Personnage::~Personnage(){
     nom="p0";
 }
 
-pos Personnage::getPos() const{
+Vec2 Personnage::getPos() const{
     return position;
 }
 
@@ -34,7 +34,7 @@ void Personnage::setPos(float x, float y){
     position.y=y;
 }
 
-vector<float> Personnage::getDir() const{
+Vec2 Personnage::getDir() const{
     return direction;
 }
 
@@ -47,23 +47,23 @@ void Personnage::setVit(float v){
 }
 
 void Personnage::deplacerD(){
-    direction.at(0)=1*vitesse;
-    position.x=position.x+direction.at(0);
+    direction.x=1*vitesse;
+    position.x=position.x+direction.x;
 }
 
 void Personnage::deplacerG(){
-    direction.at(0)=-1*vitesse;
-    position.x=position.x+direction.at(0);
+    direction.x=-1*vitesse;
+    position.x=position.x+direction.x;
 }
 
 void Personnage::saut(){
-    direction.at(1)=1*vitesse;
-    position.y=position.y+direction.at(1);
+    direction.y=1*vitesse;
+    position.y=position.y+direction.y;
 }
 
 void Personnage::tombe(){
-    direction.at(1)=-1*vitesse;
-    position.y=position.y+direction.at(1);
+    direction.y=-1*vitesse;
+    position.y=position.y+direction.y;
 }
 
 const string& Personnage::getNom() const{
@@ -75,25 +75,27 @@ void Personnage::setNom(const string nomP){
 }
 
 void Personnage::creerProj(){
-    vector<float> a = {} ;
-    projectile.push_back(a);
+    projectile a(position.x,position.y,0,10);
+    proj.emplace(proj.end(),a);
+    proj.back().Update();
 }
 
-void Personnage::detruitProj(){
-    projectile.erase(projectile.end()-1);
+void Personnage::detruitProj(int i){
+    proj.at(i).Suppr();
+    proj.erase(proj.begin()+i);
 }
 
-vector<float> Personnage::getProjectile(int n) const{
-    return projectile.at(n);
+projectile Personnage::getProjectile(int n) const{
+    return proj.at(n);
 }
 
 void Personnage::testRegression(){
     Personnage p1;
     assert(p1.position.x==0);
     assert(p1.position.y==0);
-    assert(p1.projectile.size()==0);
-    assert(p1.direction.at(0)==0);
-    assert(p1.direction.at(1)==0);
+    assert(p1.proj.size()==0);
+    assert(p1.direction.x==0);
+    assert(p1.direction.y==0);
     assert(p1.vitesse==1);
     assert(p1.nom=="p0");
     assert(p1.enVie==true);
@@ -115,28 +117,29 @@ void Personnage::testRegression(){
     assert(p1.vitesse==2);
     assert(p1.position.x==11);
     assert(p1.position.y==12);
-    assert(p1.direction.at(0)==-2);
-    assert(p1.direction.at(1)==-2);
-    cout<<"direction en x: "<<p1.getDir().at(0)<<endl;
-    cout<<"direction en y: "<<p1.getDir().at(1)<<endl;
+    assert(p1.direction.x==-2);
+    assert(p1.direction.y==-2);
+    cout<<"direction en x: "<<p1.getDir().x<<endl;
+    cout<<"direction en y: "<<p1.getDir().y<<endl;
     cout<<"pos x : "<<p1.getPos().x<<endl;
     cout<<"pos y : "<<p1.getPos().y<<endl;
     cout<<"vitesse : "<<p1.getVit()<<endl;
+    p1.creerProj();
+    p1.creerProj();
+    p1.creerProj();
+    assert(p1.proj.size()==3);
     for(int i=0;i<3;i++){
-        p1.creerProj();
-        assert(p1.projectile.size()==i+1);
+        assert(p1.proj.at(i).getdir().x==0);
+        assert(p1.proj.at(i).getdir().y==10);
+        cout<<"projectile direction "<<i<<" en x: "<<p1.getProjectile(i).getdir().x<<endl;
+        cout<<"projectile direction "<<i<<" en y: "<<p1.getProjectile(i).getdir().y<<endl;
+        cout<<"projectile "<<i<<" en x: "<<p1.getProjectile(i).getpos().x<<endl;
+        cout<<"projectile "<<i<<" en y: "<<p1.getProjectile(i).getpos().y<<endl;
     }
-    for(int i=0;i<3;i++){
-        p1.projectile.at(i)={0+float(i),10};
-        assert(p1.projectile.at(i).at(0)==0+float(i));
-        assert(p1.projectile.at(i).at(1)==10);
-        cout<<"projectile "<<i<<" en x: "<<p1.getProjectile(i).at(0)<<endl;
-        cout<<"projectile "<<i<<" en y: "<<p1.getProjectile(i).at(1)<<endl;
+    for(int i=3;i>0;i--){
+        p1.detruitProj(i-1);
     }
-    for(int i=0;i<3;i++){
-        p1.detruitProj();
-        assert(p1.projectile.size()==3-(i+1));
-    }
+    assert(p1.proj.size()==0);
     
 
 
