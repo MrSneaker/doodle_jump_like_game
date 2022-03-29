@@ -40,25 +40,11 @@ void Plateforme::setRes(int n){
     res=n;
 }
 
-void Plateforme::deplacerD(){
-    dir.x=1;
-    pos.x+=dir.x;
+void Plateforme::Update(){
+        pos.x+=dir.x;
+        pos.y+=dir.y;
 }
 
-void Plateforme::deplacerG(){
-    dir.x=-1;
-    pos.x+=dir.x;
-}
-
-void Plateforme::monter(){
-    dir.y=1;
-    pos.y+=dir.y;
-}
-
-void Plateforme::descendre(){
-    dir.y=-1;
-    pos.y+=dir.y;
-}
 
 bool Plateforme::estAfficheable(){
     if(res!=-1){

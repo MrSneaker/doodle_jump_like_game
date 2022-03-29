@@ -22,10 +22,7 @@ public:
     void setTaille(float x); /*! \brief modifie la taille de la plateforme à partir d'un float \param n en paramètre*/
     int getRes() const; /*! \brief renvoie la resistance d'une plateforme*/
     void setRes(int n); /*! \brief modifie la resistance de la plateforme à partir d'un float \param n en paramètre*/
-    void deplacerD(); /*! \brief déplace une palteforme à droite et modifie sa position en x de +1*/
-    void deplacerG(); /*! \brief déplace une palteforme à gauche et modifie sa position en x de -1*/
-    void monter(); /*! \brief déplace une palteforme vers le haut et modifie sa position en y de +1*/
-    void descendre();/*! \brief déplace une palteforme vers le bas et modifie sa position en y de -1*/
+    void Update();/*! \brief gère tous les déplacements*/
     bool estAfficheable();/*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
     void descRes();/*! \brief décremente la resistance de 1*/
 };
