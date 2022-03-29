@@ -34,6 +34,7 @@ class Monstre
         float getTailleM() const;  /*! \brief renvoie la taille du pixel du monstre*/
         void setTailleM(float t); /*! \brief met a jour la taille du pixel du monstre*/
         int getResistance(); /*! \brief renvoie la resistance du monstree*/
+        void bougeAuto(); /*! \brief permet aux monstres de se déplacer tout seul*/
         void setResistance(int r); /*! \brief  met a jour la resistance du monstre(s'il s'est pris un projectile par exemple*/
         void testRegression(); /*! \brief test toutes les fonctions de la classe Personnage*/
 

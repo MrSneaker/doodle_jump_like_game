@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../../Documents/LIFAP5-TP2/TP2"
+		},
+		{
+			"path": "../../../../../Documents/LIFAP5-TP2/LIFAP5-TP2-correction/TP2"
+		},
+		{
+			"path": "../../../../../Documents/LIFAP5/LIFAP5-TP3-fichiers"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ostream": "cpp"
+		}
+	}
+}
