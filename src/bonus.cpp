@@ -34,7 +34,7 @@ void bonus::setVitB(float v){
     vitesse=v;
 }
 
-const string& bonus::getNomB() const{
+string bonus::getNomB() const{
     return nomBonus;
 }
 

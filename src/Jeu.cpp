@@ -6,7 +6,7 @@
 using namespace std;
 
 Jeu::Jeu(){
-
+	
 
 }
 
@@ -22,8 +22,8 @@ const Personnage& Jeu::getConstPersonnage() const {
 	return perso;
 }
 
-const Monstre& Jeu::getConstMonstre() const{
-	return monstr[4];
+const Monstre & Jeu::getConstMonstre(int i) const{
+	return monstr[i];
 }
 
 
@@ -31,6 +31,9 @@ vector<Plateforme> Jeu::getPlateforme() const{
 	return p;
 }
 
+const bonus & Jeu::getConstBonus(int i) const{
+	return bonu[i];
+}
 
 bool Jeu::actionClavier (const char touche) {
 	switch(touche) {
@@ -48,8 +51,11 @@ bool Jeu::actionClavier (const char touche) {
 }
 
 void Jeu::actionsAutomatiques () {
-	monstr[4].bougeAuto();
-	 if(actionClavier==false)
+	for(int i=0;i<4;i++){
+		monstr[i].bougeAuto();
+	}
+	
+	 if(actionClavier()==false)
 	{
 		pasfleche;
 		vitesse.x -=0,01;

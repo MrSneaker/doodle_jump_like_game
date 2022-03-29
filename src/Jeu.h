@@ -15,12 +15,12 @@ class Jeu
 {
     private:
         Personnage perso;
-        bonus bonu;
-        Monstre monstr;
-        vector<Plateforme>  p;
+        bonus bonu[4];//pareil que monstre, dans l'idée
+        Monstre monstr[4];// fais une fonction initMonstre qui créée les différent types de monstre
+        vector<Plateforme> p;
 
 
-
+        
 
 
 
@@ -28,9 +28,10 @@ class Jeu
         Jeu();
         
         const Personnage &getConstPersonnage() const;
-        const Monstre &getConstMonstre() const; 
+        const Monstre & getConstMonstre(int i) const; 
+        const bonus & getConstBonus(int i) const;
         ~Jeu();
-        vector<Plateforme> getPlateforme();
+        vector<Plateforme> getPlateforme() const;
         void actionsAutomatiques();
         bool actionClavier(const char touche);
         void RecommencerJeu();

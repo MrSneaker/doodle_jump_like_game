@@ -31,15 +31,24 @@ void updatePlateau(Jeu &jeu){
             if((jeu.getConstPersonnage().getPos().x==i)&&(jeu.getConstPersonnage().getPos().y==j)){
                 cadre[i][j]='O';
             }
-            else if((jeu.getConstMonstre().getPos().x==i)&&(jeu.getConstMonstre().getPos().y==j)){
-                if(jeu.getConstMonstre().getTailleM()==1) cadre[i][j]='M';
-                else cadre[i][j]='MM';
+            for(int m=0;m<4;m++){
+                if((jeu.getConstMonstre(m).getPos().x==i)&&(jeu.getConstMonstre(m).getPos().y==j)){
+                    if(jeu.getConstMonstre(m).getTailleM()==1) cadre[i][j]='M';
+                    else cadre[i][j]='MM';
+                }
             }
-            if(/*plateforme*/){
-
+            for(int p=0;p<jeu.getPlateforme().size();p++){
+                if((jeu.getPlateforme().at(p).getPos().x==i)&&(jeu.getPlateforme().at(p).getPos().y==j)){
+                    cadre[i][j]='***';
+                }
             }
-            if(/*Bonus*/){
-
+            for(int b=0;b<4;b++){
+                if((jeu.getConstBonus(b).getPosBonus().x==i)&&(jeu.getConstBonus(b).getPosBonus().y==j)){
+                    if(jeu.getConstBonus(b).getNomB()=="jetpack") cadre[i][j]='J';
+                    if(jeu.getConstBonus(b).getNomB()=="hélice") cadre[i][j]='H';
+                    if(jeu.getConstBonus(b).getNomB()=="ressort") cadre[i][j]='R';
+                    if(jeu.getConstBonus(b).getNomB()=="boing") cadre[i][j]='B';
+                }
             }
 
         }
@@ -47,16 +56,16 @@ void updatePlateau(Jeu &jeu){
 
 }
 
-void JeuModeTXT::affichageTXT(Jeu &jeu){
-
-
-    
+void JeuModeTXT::affichageTXT(Jeu &jeu){    
     for(int i=0;i<15;i++){
         for(int j=0;j<21;j++){
             cout<<cadre[i][j];
         }
          cout<<endl;
     }
-
-
 }   
+
+void JeuModeTXT::boucleAffTXT(Jeu &jeu){
+    updatePlateau(jeu);
+    affichageTXT(jeu);
+}
