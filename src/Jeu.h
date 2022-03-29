@@ -16,7 +16,7 @@ class Jeu
     private:
         Personnage perso;
         bonus bonu;
-        Monstre monstr;
+        Monstre monstr[4];
         vector<Plateforme>  p;
 
 
@@ -30,7 +30,7 @@ class Jeu
         const Personnage &getConstPersonnage() const;
         const Monstre &getConstMonstre() const; 
         ~Jeu();
-        vector<Plateforme> getPlateforme();
+        vector<Plateforme> getPlateforme() const;
         void actionsAutomatiques();
         bool actionClavier(const char touche);
         void RecommencerJeu();
