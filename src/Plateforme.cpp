@@ -16,12 +16,18 @@ Vec2 Plateforme::getPos() const {
     return pos;
 }
 
-void Plateforme::setPos(Vec2 p){
-    pos=p;
+void Plateforme::setPos(float x,float y){
+    pos.x=x;
+    pos.y=y;
 }
 
 Vec2 Plateforme::getDir() const{
     return dir;
+}
+
+void Plateforme::setDir(float x,float y){
+    dir.x=x;
+    dir.y=y;
 }
 
 float Plateforme::getTaille() const{
