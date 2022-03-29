@@ -1,10 +1,12 @@
 #include "Plateforme.h"
 
-Plateforme::Plateforme(){
-    pos.x=pos.y=0;
-    dir.x=dir.y=0;
-    taille=0;
-    res=-1;
+Plateforme::Plateforme(float posx,float posy,float dirx,float diry,float t,int resist){
+    pos.x=posx;
+    pos.y=posy;
+    dir.x=dirx;
+    dir.y=diry;
+    taille=t;
+    res=resist;
 }
 
 Plateforme::~Plateforme(){
@@ -56,4 +58,18 @@ void Plateforme::monter(){
 void Plateforme::descendre(){
     dir.y=-1;
     pos.y+=dir.y;
+}
+
+bool Plateforme::estAfficheable(){
+    if(res!=-1){
+        if(res==0){
+            return false;
+        }
+        else return true;
+    }
+    else return true;
+}
+
+void Plateforme::descRes(){
+    res--;
 }

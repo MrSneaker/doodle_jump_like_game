@@ -13,7 +13,7 @@ private:
     float taille;
     int res;
 public:
-    Plateforme();/*! \brief pos à 0, dir à 0, taille à 0, res à NULL*/
+    Plateforme(float posx,float posy,float dirx,float diry,float t,int resist);/*! \brief tout est défini à partir des paramètres */
     ~Plateforme();
     Vec2 getPos() const; /*! \brief renvoie la position de la plateforme*/
     void setPos(Vec2 p); /*! \brief modifie la position d'une plateforme à partir d'un vec2 \param p en paramètre*/
@@ -26,7 +26,8 @@ public:
     void deplacerG(); /*! \brief déplace une palteforme à gauche et modifie sa position en x de -1*/
     void monter(); /*! \brief déplace une palteforme vers le haut et modifie sa position en y de +1*/
     void descendre();/*! \brief déplace une palteforme vers le bas et modifie sa position en y de -1*/
-
+    bool estAfficheable();/*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
+    void descRes();/*! \brief décremente la resistance de 1*/
 };
 
 

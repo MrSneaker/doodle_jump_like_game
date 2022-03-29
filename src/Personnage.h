@@ -33,7 +33,7 @@ class Personnage
         void tombe();/*! \brief fait tomber le personnage, le déplace vers le haut en modifiant sa position y de -1*/
         const string& getNom() const;/*! \brief renvoie le nom du personnage (permet de définir plusieurs apparences)*/
         void setNom(const string nomP);/*! \brief met à jour le nom du personnage selon un string \param nom en paramètre*/
-        void creerProj();/*! \brief fait tirer le personnage en créant un veteur*/
+        void creerProj();/*! \brief fait tirer le personnage en créant un veteur projectile*/
         void detruitProj(int i);/*! \brief supprime un projectile*/
         void testRegression(); /*! \brief test toutes les fonctions de la classe Personnage*/
         
