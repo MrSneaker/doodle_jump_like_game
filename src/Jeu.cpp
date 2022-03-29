@@ -16,21 +16,20 @@ Jeu::~Jeu(){
 }
 
 
-Personnage& Jeu::getPersonnage () {
-    return perso; 
-}
 
 
 const Personnage& Jeu::getConstPersonnage() const {
-return perso;
+	return perso;
 }
 
 const Monstre& Jeu::getConstMonstre() const{
-return monstr;
+	return monstr[4];
 }
 
 
-
+vector<Plateforme> Jeu::getPlateforme() const{
+	return p;
+}
 
 
 bool Jeu::actionClavier (const char touche) {
@@ -49,8 +48,25 @@ bool Jeu::actionClavier (const char touche) {
 }
 
 void Jeu::actionsAutomatiques () {
-    monstr.bougeAuto();
+	monstr[4].bougeAuto();
+	 if(actionClavier==false)
+	{
+		pasfleche;
+		vitesse.x -=0,01;
+		
+	}
+	
+
 }
+
+void Jeu::RecommencerJeu(){
+
+}
+
+void Jeu::update(){
+
+}
+
 
 
 
