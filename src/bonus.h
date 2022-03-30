@@ -26,7 +26,8 @@ public:
     string getNomB() const;/*! \brief renvoie le nom du bonus (permet de définir plusieurs apparences)*/
     void setNomB(const string nomBonus);/*! \brief met à jour le nom du bonus selon un string \param nom en paramètre*/
     float getDuree() const; /*! \brief renvoie la duree du bonus */
-    void setDuree(float v); /*! \brief met à jour la duree du bonus selon un parametre \param d*/
+    void setDuree(float d); /*! \brief met à jour la duree du bonus selon un parametre \param d*/
+    void testRegression();/*! \brief test de regression de la classe bonus*/
 
 };
 

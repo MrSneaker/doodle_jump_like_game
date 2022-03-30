@@ -103,7 +103,7 @@ void Personnage::testRegression(){
     assert(p1.nom=="test");
     cout<<"nom : "<<p1.getNom()<<endl;
     p1.setPos(10,10);
-    assert(p1.position.x=10);
+    assert(p1.position.x==10);
     assert(p1.position.y==10);
     cout<<"pos x : "<<p1.getPos().x<<endl;
     cout<<"pos y : "<<p1.getPos().y<<endl;
