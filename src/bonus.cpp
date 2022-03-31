@@ -1,5 +1,6 @@
 #include "bonus.h"
-
+#include <assert.h>
+#include <iostream>
 
 bonus::bonus(/* args */)
 {
@@ -7,14 +8,11 @@ bonus::bonus(/* args */)
     p.y=0;
     duree=0;
     vitesse=0;
+    nomBonus="b0";
 }
 
 bonus::~bonus()
 {
-    p.x=0;
-    p.y=0;
-    duree=0;
-    vitesse=0;
 }
 
 Vec2 bonus::getPosBonus() const{
@@ -48,4 +46,31 @@ float bonus::getDuree() const{
 
 void bonus::setDuree(float d){
     duree=d;
+}
+
+void bonus::testRegression(){
+    bonus p1;
+    assert(p1.p.x==0);
+    assert(p1.p.y==0);
+    assert(p1.vitesse==0);
+    assert(duree==0);
+    assert(p1.nomBonus=="b0");
+    p1.setNomB("testBonus");
+    assert(p1.nomBonus=="testBonus");
+    cout<<"nom bonus: "<<p1.getNomB()<<endl;
+    p1.setPosBonus(10,10);
+    assert(p1.p.x==10);
+    assert(p1.p.y==10);
+    cout<<"pos x : "<<p1.getPosBonus().x<<endl;
+    cout<<"pos y : "<<p1.getPosBonus().y<<endl;
+    p1.setVitB(2);
+    assert(p1.vitesse==2);
+    cout<<"vitesse : "<<p1.getVitB()<<endl;
+    p1.setDuree(4.34);
+    assert(p1.duree==float(4.34));
+    cout<<"duree bonus : "<<p1.getDuree()<<endl;
+
+    
+
+
 }

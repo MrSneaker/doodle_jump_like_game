@@ -13,6 +13,7 @@ private:
     float taille;
     int res;
 public:
+    Plateforme();
     Plateforme(float posx,float posy,float dirx,float diry,float t,int resist);/*! \brief tout est défini à partir des paramètres */
     ~Plateforme();
     Vec2 getPos() const; /*! \brief renvoie la position de la plateforme*/
@@ -26,6 +27,7 @@ public:
     void Update();/*! \brief gère tous les déplacements*/
     bool estAfficheable();/*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
     void descRes();/*! \brief décremente la resistance de 1*/
+    void testRegression();/*! \brief test de régression de la classe plateforme*/
 };
 
 
