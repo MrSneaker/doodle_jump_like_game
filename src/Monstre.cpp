@@ -67,8 +67,47 @@ void Monstre::setResistance(int r){
     resistance=r;
 }
 
-void Monstre::bougeAuto () {
-    //if()
+
+void Monstre::deplacerD(){
+    direction.x=1*vitesse;
+    position.x=position.x+direction.x;
+}
+
+void Monstre::deplacerG(){
+    direction.x=-1*vitesse;
+    position.x=position.x+direction.x;
+}
+
+
+void Monstre::bougeAuto(){
+    if(enVie==true)
+        {
+            if(direction.x==1) //se déplace vers la droite
+                {
+                    if(position.x==13) //si le monstre touche le rebord droit
+                    {
+                        direction.x=-1;
+                        deplacerG();
+                    }
+                    else
+                    {
+                        deplacerD();
+                    }
+            
+                }
+            else
+                {
+                    if(position.x==2) //si le monstre touche le rebord gauche
+                    {   
+                        direction.x=1;
+                        deplacerD();
+                    }
+                    else
+                    {
+                        deplacerG();
+                    }
+                }
+        }
 }
 
 void Monstre::descRes(){
