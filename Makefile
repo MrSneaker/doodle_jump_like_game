@@ -1,7 +1,7 @@
 CCOPTIONS	= -Wall -ggdb
 CC = g++ $(CCOPTIONS)
 
-all: bin/test
+all: bin/test bin/affichageTXT
 
 obj/Monstre.o: src/Monstre.cpp src/Monstre.h
 	$(CC) -c -o obj/Monstre.o src/Monstre.cpp
@@ -18,11 +18,23 @@ obj/projectile.o: src/projectile.cpp src/projectile.h
 obj/Personnage.o: src/Personnage.cpp src/Personnage.h src/projectile.h
 	$(CC) -c -o obj/Personnage.o src/Personnage.cpp 
 
+obj/Jeu.o: src/Jeu.cpp src/Jeu.h src/Personnage.h src/Monstre.h src/bonus.h src/Plateforme.h
+	$(CC) -c -o obj/Jeu.o src/Jeu.cpp 
+
+obj/JeuModeTXT.o: src/JeuModeTXT.cpp src/JeuModeTXT.h src/Jeu.h
+	$(CC) -c -o obj/JeuModeTXT.o src/JeuModeTXT.cpp
+
 obj/mainTest.o: src/mainTest.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h
 	$(CC) -c -o obj/mainTest.o src/mainTest.cpp
 
+obj/mainAffichageTXT.o: src/mainAffichageTXT.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h src/Jeu.h src/JeuModeTXT.h
+	$(CC) -c -o obj/mainAffichageTXT.o src/mainAffichageTXT.cpp
+
 bin/test: obj/Personnage.o obj/projectile.o obj/mainTest.o obj/Monstre.o obj/bonus.o obj/Plateforme.o
 	$(CC) -o bin/test obj/mainTest.o obj/Personnage.o obj/projectile.o obj/Monstre.o obj/bonus.o obj/Plateforme.o
+
+bin/affichageTXT: obj/mainAffichageTXT.o obj/Personnage.o obj/projectile.o obj/mainTest.o obj/Monstre.o obj/bonus.o obj/Plateforme.o obj/Jeu.o obj/JeuModeTXT.o
+	$(CC) -o bin/affichageTXT obj/mainAffichageTXT.o obj/Personnage.o obj/projectile.o obj/Monstre.o obj/bonus.o obj/Plateforme.o obj/Jeu.o obj/JeuModeTXT.o
 
 clean: 
 	rm obj/*.o

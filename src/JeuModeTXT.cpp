@@ -1,4 +1,12 @@
 #include "JeuModeTXT.h"
+#include <unistd.h>
+#include <termios.h>
+#include <unistd.h>
+#include <cassert>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <iostream>
+#include <stdio.h>
 
 JeuModeTXT::JeuModeTXT(){
 
@@ -25,7 +33,59 @@ char cadre[15][21] = {
         "####################"
     };
 
-void updatePlateau(Jeu &jeu){
+
+char cadreClear[15][21] = {
+        "####################",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "#                  #",
+        "####################"
+    };
+
+void termClear()  // efface le terminal
+{
+    system("clear");
+}
+
+void termInit()      // configure la saisie : ne pas afficher les caracteres tapes
+{
+
+    struct termios ttystate;
+    bool state = true;
+
+    //get the terminal state
+    tcgetattr(STDIN_FILENO, &ttystate);
+
+    if (state) {
+        //turn off canonical mode
+        ttystate.c_lflag &= ~ICANON;
+        //minimum of number input read.
+        ttystate.c_cc[VMIN] = 1;
+    }
+    else {
+        //turn on canonical mode
+        ttystate.c_lflag |= ICANON;
+    }
+    //set the terminal attributes.
+    tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
+
+    struct termios t;
+    tcgetattr(STDIN_FILENO, &t);
+    t.c_lflag |= ~ECHO;
+    tcsetattr(STDIN_FILENO, TCSANOW, &t);
+}
+
+bool JeuModeTXT::updatePlateau(Jeu &jeu){
     for(int i=0;i<15;i++){
         for(int j=0;j<21;j++){
             if((jeu.getConstPersonnage().getPos().x==i)&&(jeu.getConstPersonnage().getPos().y==j)&&(jeu.getConstPersonnage().enVie==true)){
@@ -50,14 +110,20 @@ void updatePlateau(Jeu &jeu){
                     if(jeu.getConstBonus(b).getNomB()=="boing") cadre[i][j]='B';
                 }
             }
-
         }
     }
-    char c=jeu.getCh();
-    
+
+
+}
+
+void clear () {
+    for(int i=0;i<15;++i)
+        for(int j=0;j<21;++j)
+            cadre[i][j]=cadreClear[i][j];
 }
 
 void JeuModeTXT::affichageTXT(Jeu &jeu){    
+    termClear();
     for(int i=0;i<15;i++){
         for(int j=0;j<21;j++){
             cout<<cadre[i][j];
@@ -66,7 +132,31 @@ void JeuModeTXT::affichageTXT(Jeu &jeu){
     }
 }   
 
-void JeuModeTXT::boucleAffTXT(Jeu &jeu){
+
+
+
+bool JeuModeTXT::boucleAffTXT(Jeu &jeu){
+    bool ok=true;
     updatePlateau(jeu);
     affichageTXT(jeu);
+    usleep(100000);
+    int c=jeu.getCh();
+    switch(c){
+        case 'g':
+            jeu.actionClavier('g');
+            break;
+        case 'd':
+            jeu.actionClavier('d');
+            break;
+        case 'r':
+            jeu.actionClavier('r');
+            break;
+        case 'q':
+            bool ok = jeu.actionClavier('q');
+            return ok;
+            break;
+    }
+    clear();
+    cout<<ok;
+    return ok;
 }

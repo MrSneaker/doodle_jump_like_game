@@ -68,16 +68,6 @@ void Monstre::setResistance(int r){
 }
 
 
-void Monstre::deplacerD(){
-    direction.x=1*vitesse;
-    position.x=position.x+direction.x;
-}
-
-void Monstre::deplacerG(){
-    direction.x=-1*vitesse;
-    position.x=position.x+direction.x;
-}
-
 
 void Monstre::bougeAuto(){
     if(enVie==true)

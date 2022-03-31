@@ -42,38 +42,9 @@ const bonus & Jeu::getConstBonus(int i) const{
 	return bonu[i];
 }
 
-void termClear()  // efface le terminal
-{
-    system("clear");
-}
 
-void termInit()      // configure la saisie : ne pas afficher les caracteres tapes
-{
 
-    struct termios ttystate;
-    bool state = true;
 
-    //get the terminal state
-    tcgetattr(STDIN_FILENO, &ttystate);
-
-    if (state) {
-        //turn off canonical mode
-        ttystate.c_lflag &= ~ICANON;
-        //minimum of number input read.
-        ttystate.c_cc[VMIN] = 1;
-    }
-    else {
-        //turn on canonical mode
-        ttystate.c_lflag |= ICANON;
-    }
-    //set the terminal attributes.
-    tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
-
-    struct termios t;
-    tcgetattr(STDIN_FILENO, &t);
-    t.c_lflag |= ~ECHO;
-    tcsetattr(STDIN_FILENO, TCSANOW, &t);
-}
 
 int kbhit() {
     struct timeval tv;
@@ -96,21 +67,29 @@ char Jeu::getCh() { // lire un caractere si une touche a ete pressee
 }
 
 bool Jeu::actionClavier (const char touche) {
+	bool ok=true;
 	switch(touche) {
 		case 'g' :
 				perso.deplacerG();
 				break;
+				ok = true;
 		case 'd' :
 				perso.deplacerD();
 				break;
-		case 'z' :
+				ok = true;
+		case 'r' :
 				perso.creerProj();
+				break;
+				ok = true;
+		case 'q' :
+				return ok = false;
 				break;
 		
                 }
+				return ok;
 }
 
-void Jeu::actionsAutomatiques () {
+/*void Jeu::actionsAutomatiques () {
 	for(int i=0;i<4;i++){
 		monstr[i].bougeAuto();
 	}
@@ -123,12 +102,12 @@ void Jeu::actionsAutomatiques () {
 	}
 	
 
-}
+}*/
 
 
 void Jeu::InitPersonnage()
 {
-   perso.setPos(10.5,7.5);
+   perso.setPos(10,7);
    perso.setVit(1);
 }
 

@@ -47,23 +47,23 @@ void Personnage::setVit(float v){
 }
 
 void Personnage::deplacerD(){
-    direction.x=1*vitesse;
-    position.x=position.x+direction.x;
-}
-
-void Personnage::deplacerG(){
-    direction.x=-1*vitesse;
-    position.x=position.x+direction.x;
-}
-
-void Personnage::saut(){
     direction.y=1*vitesse;
     position.y=position.y+direction.y;
 }
 
-void Personnage::tombe(){
+void Personnage::deplacerG(){
     direction.y=-1*vitesse;
     position.y=position.y+direction.y;
+}
+
+void Personnage::saut(){
+    direction.x=1*vitesse;
+    position.x=position.x+direction.x;
+}
+
+void Personnage::tombe(){
+    direction.x=-1*vitesse;
+    position.x=position.x+direction.x;
 }
 
 const string& Personnage::getNom() const{
