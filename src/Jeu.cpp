@@ -6,8 +6,7 @@
 using namespace std;
 
 Jeu::Jeu(){
-	
-
+perso.~Personnage();
 }
 
 
@@ -57,13 +56,53 @@ void Jeu::actionsAutomatiques () {
 	
 	 if(actionClavier()==false)
 	{
-		pasfleche;
-		vitesse.x -=0,01;
+		//pasfleche;
+		//vitesse.x -=0,01;
 		
 	}
 	
 
 }
+
+
+void Jeu::InitPersonnage()
+{
+   perso.setPos(5.0,2.0);
+   perso.setVit(1);
+}
+
+void Jeu::InitMonstre()
+{
+   int i;
+   time_t t;
+   srand((unsigned) time(&t));
+   for (i=0;i<4;i++)
+   {
+	   monstr[i].setPos(rand()%100, rand()%100);
+	   monstr[i].setVitM(0);
+	   monstr[i].setTailleM(rand()%4);
+	   monstr[i].setResistance(0);
+	   monstr[i].enVie=true;
+   }
+}
+
+
+void Jeu::InitBonus()
+{
+	int i;
+   time_t t;
+   srand((unsigned) time(&t));
+   for (i=0;i<4;i++)
+   {
+	   bonu[i].setPosBonus(rand()%100, rand()%100);
+	   bonu[i].setDuree(1);
+
+   }
+
+}
+
+
+
 
 void Jeu::RecommencerJeu(){
 

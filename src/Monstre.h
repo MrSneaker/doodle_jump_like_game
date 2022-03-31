@@ -18,7 +18,6 @@ class Monstre
         int resistance; /*! \brief résistance du monstre, combien de projectiles pour le tuer*/
 
     public:
-        
         bool enVie; /*! \brief  le monstre est en vie ou pas*/
         Monstre(); /*! \brief position de base : 0,0; direction, vitesse à 0, type de monstre à 0, enVie à true */
         ~Monstre(); /*! \brief supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à NULL, enVie à NULL */
@@ -37,7 +36,7 @@ class Monstre
         void bougeAuto(); /*! \brief permet aux monstres de se déplacer tout seul*/
         void setResistance(int r); /*! \brief  met a jour la resistance du monstre(s'il s'est pris un projectile par exemple*/
         void testRegression(); /*! \brief test toutes les fonctions de la classe Personnage*/
-
+        void bougeAuto();
 };
 
 

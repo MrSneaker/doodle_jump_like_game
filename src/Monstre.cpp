@@ -65,6 +65,11 @@ void Monstre::setResistance(int r){
     resistance=r;
 }
 
+void Monstre::bougeAuto () {
+    //if()
+}
+
+
 void Monstre::testRegression(){
     Monstre m1;
     assert(m1.position.x==0);

@@ -37,6 +37,9 @@ class Jeu
         void RecommencerJeu();
         void finJeu();
         void update();
+        void InitPersonnage();
+        void InitMonstre();
+        void InitBonus();
         void clear();
 
 };
