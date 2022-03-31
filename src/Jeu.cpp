@@ -67,7 +67,7 @@ void Jeu::actionsAutomatiques () {
 
 void Jeu::InitPersonnage()
 {
-   perso.setPos(5.0,2.0);
+   perso.setPos(10.5,7.5);
    perso.setVit(1);
 }
 
