@@ -26,11 +26,11 @@ class Jeu
 
     public:
         Jeu();
-        
+        ~Jeu();
         const Personnage &getConstPersonnage() const;
         const Monstre & getConstMonstre(int i) const; 
         const bonus & getConstBonus(int i) const;
-        ~Jeu();
+        char getCh();
         vector<Plateforme> getPlateforme() const;
         void actionsAutomatiques();
         bool actionClavier(const char touche);

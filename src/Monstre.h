@@ -36,7 +36,7 @@ class Monstre
         void bougeAuto(); /*! \brief permet aux monstres de se déplacer tout seul*/
         void setResistance(int r); /*! \brief  met a jour la resistance du monstre(s'il s'est pris un projectile par exemple*/
         void testRegression(); /*! \brief test toutes les fonctions de la classe Personnage*/
-        void bougeAuto();
+        void descRes();/*! \brief décrémente la res de 1*/
 };
 
 

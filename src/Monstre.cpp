@@ -71,6 +71,9 @@ void Monstre::bougeAuto () {
     //if()
 }
 
+void Monstre::descRes(){
+    resistance--;
+}
 
 void Monstre::testRegression(){
     Monstre m1;

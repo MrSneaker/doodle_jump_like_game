@@ -89,6 +89,10 @@ projectile Personnage::getProjectile(int n) const{
     return proj.at(n);
 }
 
+int Personnage::getNombreProj() const{
+    return proj.size();
+}
+
 void Personnage::testRegression(){
     Personnage p1;
     assert(p1.position.x==0);

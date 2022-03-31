@@ -12,12 +12,12 @@ using namespace std;
 class bonus
 {
 private:
-    //Vec2 position;
+    Vec2 position;
     string nomBonus;
     float vitesse;
     float duree;
 public:
-    Vec2 position;
+    bool estPris;
     bonus();/*! \brief */
     ~bonus();
     float getVitB() const; /*! \brief renvoie la vitesse du bonus */

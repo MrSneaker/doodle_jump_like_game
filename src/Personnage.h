@@ -11,21 +11,20 @@ using namespace std;
 class Personnage
 {
     private:
-        //Vec2 position; /*! \brief structure contenant la position en coordonnées x,y*/
+        Vec2 position; /*! \brief structure contenant la position en coordonnées x,y*/
         vector<projectile> proj; /*! \brief vector de vector de projectile du personnage */
         Vec2 direction; /*! \brief le vecteur de direction du personnage*/
-        //float vitesse;/*! \brief la vitesse du personnage*/
+        float vitesse;/*! \brief la vitesse du personnage*/
         string nom;/*! \brief le nom du personnage*/
        
     public:
-        float vitesse;/*! \brief la vitesse du personnage*/
-        Vec2 position; /*! \brief structure contenant la position en coordonnées x,y*/
         bool enVie;/*! \brief info si le personnage est en vie ou non*/
         Personnage();/*! \brief position de base : 0,0; projectile à NULL; direction, vitesse à 0, nom à "p0", enVie à true*/
         ~Personnage();/*! \brief supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à NULL, enVie à NULL*/
         Vec2 getPos() const;/*! \brief renvoie la position en x et en y du personnage*/
         void setPos(float x, float y);/*! \brief met à jour la position du personnage selon une position en paramètre \param p*/
         Vec2 getDir() const; /*! \brief renvoie la direction du personnage */
+        int getNombreProj() const;/*! \brief renvoie le nombre de projectile */
         projectile getProjectile(int n) const;/*! \brief renvoie le vecteur projectile demandé si il existe*/
         float getVit() const;/*! \brief renvoie la vitesse du personnage */
         void setVit(float v);/*! \brief met à jour la vitesse du personnage selon un paramètre vitesse \param v*/
