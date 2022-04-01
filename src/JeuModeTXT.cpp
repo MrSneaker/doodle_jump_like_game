@@ -85,7 +85,7 @@ void termInit()      // configure la saisie : ne pas afficher les caracteres tap
     tcsetattr(STDIN_FILENO, TCSANOW, &t);
 }
 
-bool JeuModeTXT::updatePlateau(Jeu &jeu){
+void JeuModeTXT::updatePlateau(Jeu &jeu){
     for(int i=0;i<15;i++){
         for(int j=0;j<21;j++){
             if((jeu.getConstPersonnage().getPos().x==i)&&(jeu.getConstPersonnage().getPos().y==j)&&(jeu.getConstPersonnage().enVie==true)){
@@ -99,7 +99,9 @@ bool JeuModeTXT::updatePlateau(Jeu &jeu){
             }
             for(int p=0;p<jeu.getPlateforme().size();p++){
                 if((jeu.getPlateforme().at(p).getPos().x==i)&&(jeu.getPlateforme().at(p).getPos().y==j)&&(jeu.getPlateforme().at(p).estAfficheable()==true)){
-                    if(jeu.getPlateforme().at(p).getTaille()==1) cadre[i][j]='***';
+                    if(jeu.getPlateforme().at(p).getTaille()==1) {
+                        cadre[i][j]='_';
+                    }
                 }
             }
             for(int b=0;b<4;b++){
@@ -135,8 +137,8 @@ void JeuModeTXT::affichageTXT(Jeu &jeu){
 
 
 
-bool JeuModeTXT::boucleAffTXT(Jeu &jeu){
-    bool ok=true;
+bool JeuModeTXT::boucleAffTXT(Jeu &jeu,bool ok){
+    ok=true;
     updatePlateau(jeu);
     affichageTXT(jeu);
     usleep(100000);
@@ -157,6 +159,7 @@ bool JeuModeTXT::boucleAffTXT(Jeu &jeu){
             break;
     }
     clear();
-    cout<<ok;
+    //cout<<ok;
+    //cout<<jeu.getPlateforme().size();
     return ok;
 }

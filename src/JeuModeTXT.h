@@ -14,9 +14,9 @@ private:
 public:
     JeuModeTXT();
     ~JeuModeTXT();
-    bool updatePlateau(Jeu &jeu);
+    void updatePlateau(Jeu &jeu);
     void affichageTXT(Jeu &jeu);
-    bool boucleAffTXT(Jeu &jeu);
+    bool boucleAffTXT(Jeu &jeu,bool ok);
     void affDetruireTXT(Jeu &jeu);
 };
 

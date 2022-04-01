@@ -8,13 +8,14 @@ int main(void){
     Jeu jeu;
     JeuModeTXT txt;
     jeu.InitPersonnage();
+    jeu.InitPlat();
     jeu.InitBonus();
-    jeu.InitMonstre();
+    //jeu.InitMonstre();
     txt.updatePlateau(jeu);
     txt.affichageTXT(jeu);
     do{
         jeu.update();
-        txt.boucleAffTXT(jeu);
+        txt.boucleAffTXT(jeu,ok);
 
     }while(ok);
 

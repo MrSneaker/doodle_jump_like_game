@@ -57,12 +57,12 @@ void Personnage::deplacerG(){
 }
 
 void Personnage::saut(){
-    direction.x=1*vitesse;
+    direction.x=-1*vitesse;
     position.x=position.x+direction.x;
 }
 
 void Personnage::tombe(){
-    direction.x=-1*vitesse;
+    direction.x=1*vitesse;
     position.x=position.x+direction.x;
 }
 
@@ -75,7 +75,7 @@ void Personnage::setNom(const string nomP){
 }
 
 void Personnage::creerProj(){
-    projectile a(position.x,position.y,0,10);
+    projectile a(position.x,position.y,1,0);
     proj.emplace(proj.end(),a);
     proj.back().Update();
 }

@@ -107,7 +107,7 @@ bool Jeu::actionClavier (const char touche) {
 
 void Jeu::InitPersonnage()
 {
-   perso.setPos(10,7);
+   perso.setPos(8,8);
    perso.setVit(1);
 }
 
@@ -118,10 +118,10 @@ void Jeu::InitMonstre()
    srand((unsigned) time(&t));
    for (i=0;i<4;i++)
    {
-	   monstr[i].setPos(rand()%100, rand()%100);
+	   monstr[i].setPos(rand()%13, rand()%19);
 	   monstr[i].setVitM(0);
 	   monstr[i].setTailleM(rand()%2);
-	   monstr[i].setResistance(0);
+	   monstr[i].setResistance(1);
 	   monstr[i].enVie=true;
    }
 }
@@ -130,17 +130,44 @@ void Jeu::InitMonstre()
 void Jeu::InitBonus()
 {
 	int i;
+	int j = 0;
    time_t t;
    srand((unsigned) time(&t));
    for (i=0;i<4;i++)
    {
-	   bonu[i].setPosBonus(rand()%100, rand()%100);
-	   bonu[i].setDuree(1);
+	   bonu[i].setPosBonus(rand()%13, rand()%19);
+	   while(j!=p.size()){
+		   	if((bonu[i].getPosBonus().x==p.at(j).getPos().x)&&(bonu[i].getPosBonus().y==p.at(j).getPos().y)){
+				   	bonu[i].setDuree(2);
+					bonu[i].estPris=false;
+			   }
+	   		
+			else bonu[i].estPris=true;
+			j++;
+	   }
+	   
 
    }
 
 }
 
+
+void Jeu::InitPlat(){
+	int i;
+	time_t t;
+	Plateforme p0(perso.getPos().x+1,perso.getPos().y,0,0,1,-1);
+	p.emplace(p.begin(),p0);
+	srand((unsigned)time(&t));
+	for(i=1;i<7;i++){
+		Plateforme tmp;
+		tmp.setPos(rand()%11,rand()%17);
+		if(rand()%100<=70) tmp.setRes(-1);
+		else tmp.setRes(1); 
+		tmp.setTaille(1);
+		p.emplace(p.begin()+i,tmp);
+	}
+	
+}
 
 
 
@@ -150,9 +177,14 @@ void Jeu::RecommencerJeu(){
 
 void Jeu::update(){
 	for(int i=0;i<p.size();i++){
-		if((perso.getPos().x==p.at(i).getPos().x)&&(perso.getPos().y==p.at(i).getPos().y)){
-			perso.saut();
+		if((perso.getPos().x==p.at(i).getPos().x-1)&&(perso.getPos().y==p.at(i).getPos().y)){
+			for(int j=0;j<3;j++){
+				perso.saut();
+			}
 		}
+		/*else if((perso.getPos().x!=p.at(i).getPos().x)&&(perso.getPos().y!=p.at(i).getPos().y)){
+			perso.tombe();
+		}*/
 	}
 	for(int i=0;i<4;i++){
 		if((perso.getPos().x==monstr[i].getPos().x)&&(perso.getPos().y==monstr[i].getPos().y)&&(monstr[i].enVie==true)){
@@ -161,13 +193,22 @@ void Jeu::update(){
 		}
 		if(perso.getNombreProj()!=0){
 			for(int j=0;j<perso.getNombreProj();j++){
-				if((perso.getProjectile(j).getpos().x==monstr[i].getPos().x)&&(perso.getProjectile(j).getpos().y==monstr[i].getPos().y)){
-					monstr[i].descRes();
-					if(monstr[i].getResistance()==0){
+				while (perso.getProjectile(j).existe){
+					perso.getProjectile(j).Update();
+					if((perso.getProjectile(j).getpos().x==monstr[i].getPos().x)&&(perso.getProjectile(j).getpos().y==monstr[i].getPos().y)){
+						monstr[i].descRes();
+						if(monstr[i].getResistance()==0){
 						monstr[i].enVie=false;
+						}
+						perso.detruitProj(j);
 					}
-					perso.detruitProj(j);
+					if(perso.getProjectile(j).getpos().x>20){
+						perso.detruitProj(j);
+						cout<<"lol";
+					}
+					cout<<perso.getProjectile(j).getpos().x; 
 				}
+				
 			}
 		}
 	}

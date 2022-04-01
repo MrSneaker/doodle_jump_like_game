@@ -18,12 +18,6 @@ class Jeu
         bonus bonu[4];//pareil que monstre, dans l'idée
         Monstre monstr[4];// fais une fonction initMonstre qui créée les différent types de monstre
         vector<Plateforme> p;
-
-
-        
-
-
-
     public:
         Jeu();
         ~Jeu();
@@ -40,6 +34,7 @@ class Jeu
         void InitPersonnage();
         void InitMonstre();
         void InitBonus();
+        void InitPlat();
         void clear();
 
 };
