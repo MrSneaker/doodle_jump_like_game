@@ -8,6 +8,16 @@
 #include "bonus.h"
 #include "Plateforme.h"
 #include <vector>
+#include <assert.h>
+#include <iostream>
+#include <unistd.h>
+#include <termios.h>
+#include <unistd.h>
+#include <cassert>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <iostream>
+#include <stdio.h>
 
 using namespace std;
 

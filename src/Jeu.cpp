@@ -1,15 +1,6 @@
 #include "Jeu.h"
 
-#include <assert.h>
-#include <iostream>
-#include <unistd.h>
-#include <termios.h>
-#include <unistd.h>
-#include <cassert>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <iostream>
-#include <stdio.h>
+
 
 using namespace std;
 
@@ -135,10 +126,14 @@ void Jeu::InitBonus()
    srand((unsigned) time(&t));
    for (i=0;i<4;i++)
    {
-	   bonu[i].setPosBonus(rand()%13, rand()%19);
+	   bonu[i].setPosBonus(rand()%17, rand()%11);
 	   while(j!=p.size()){
-		   	if((bonu[i].getPosBonus().x==p.at(j).getPos().x)&&(bonu[i].getPosBonus().y==p.at(j).getPos().y)){
+		   	if((bonu[i].getPosBonus().x+1==p.at(j).getPos().x)&&(bonu[i].getPosBonus().y==p.at(j).getPos().y)){
 				   	bonu[i].setDuree(2);
+					if(rand()%100>90) bonu[i].setNomB("jetpack");
+					if(rand()%100>60) bonu[i].setNomB("hélice");
+					if(rand()%100>25) bonu[i].setNomB("ressort");
+					if(rand()%100>75) bonu[i].setNomB("boing");
 					bonu[i].estPris=false;
 			   }
 	   		
@@ -158,9 +153,9 @@ void Jeu::InitPlat(){
 	Plateforme p0(perso.getPos().x+1,perso.getPos().y,0,0,1,-1);
 	p.emplace(p.begin(),p0);
 	srand((unsigned)time(&t));
-	for(i=1;i<7;i++){
+	for(i=1;i<12;i++){
 		Plateforme tmp;
-		tmp.setPos(rand()%11,rand()%17);
+		tmp.setPos(rand()%11,rand()%15);
 		if(rand()%100<=70) tmp.setRes(-1);
 		else tmp.setRes(1); 
 		tmp.setTaille(1);
@@ -182,9 +177,9 @@ void Jeu::update(){
 				perso.saut();
 			}
 		}
-		/*else if((perso.getPos().x!=p.at(i).getPos().x)&&(perso.getPos().y!=p.at(i).getPos().y)){
-			perso.tombe();
-		}*/
+		else if((perso.getPos().x!=p.at(i).getPos().x)&&(perso.getPos().y!=p.at(i).getPos().y)){
+			//perso.tombe();
+		}
 	}
 	for(int i=0;i<4;i++){
 		if((perso.getPos().x==monstr[i].getPos().x)&&(perso.getPos().y==monstr[i].getPos().y)&&(monstr[i].enVie==true)){
