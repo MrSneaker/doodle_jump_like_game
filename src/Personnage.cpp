@@ -75,7 +75,7 @@ void Personnage::setNom(const string nomP){
 }
 
 void Personnage::creerProj(){
-    projectile a(position.x,position.y,1,0);
+    projectile a(position.x,position.y,0,1);
     proj.emplace(proj.end(),a);
     proj.back().Update();
 }

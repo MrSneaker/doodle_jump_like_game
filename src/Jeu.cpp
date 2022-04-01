@@ -175,6 +175,7 @@ void Jeu::update(){
 		if((perso.getPos().x==p.at(i).getPos().x-1)&&(perso.getPos().y==p.at(i).getPos().y)){
 			for(int j=0;j<3;j++){
 				perso.saut();
+				//if(perso.getPos().x)
 			}
 		}
 		else if((perso.getPos().x!=p.at(i).getPos().x)&&(perso.getPos().y!=p.at(i).getPos().y)){
@@ -197,11 +198,11 @@ void Jeu::update(){
 						}
 						perso.detruitProj(j);
 					}
-					if(perso.getProjectile(j).getpos().x>20){
+					if(perso.getProjectile(j).getpos().y>=20){
 						perso.detruitProj(j);
 						cout<<"lol";
 					}
-					cout<<perso.getProjectile(j).getpos().x; 
+					//cout<<perso.getProjectile(j).getpos().x; 
 				}
 				
 			}
