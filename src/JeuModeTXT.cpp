@@ -137,8 +137,7 @@ void JeuModeTXT::affichageTXT(Jeu &jeu, double dt){
 
 
 
-bool JeuModeTXT::boucleAffTXT(Jeu &jeu,bool ok, double dt){
-    ok=true;
+void JeuModeTXT::boucleAffTXT(Jeu &jeu,double dt){
     updatePlateau(jeu);
     affichageTXT(jeu, dt);
     usleep(100000);
@@ -153,13 +152,8 @@ bool JeuModeTXT::boucleAffTXT(Jeu &jeu,bool ok, double dt){
         case 'r':
             jeu.actionClavier('r', dt);
             break;
-        case 'q':
-            bool ok = jeu.actionClavier('q', dt);
-            return ok;
-            break;
     }
     clear();
     //cout<<ok;
     //cout<<jeu.getPlateforme().size();
-    return ok;
 }

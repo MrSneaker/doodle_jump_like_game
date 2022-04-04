@@ -16,7 +16,7 @@ public:
     ~JeuModeTXT();
     void updatePlateau(Jeu &jeu);
     void affichageTXT(Jeu &jeu, double dt);
-    bool boucleAffTXT(Jeu &jeu,bool ok, double dt);
+    void boucleAffTXT(Jeu &jeu, double dt);
     void affDetruireTXT(Jeu &jeu);
 };
 

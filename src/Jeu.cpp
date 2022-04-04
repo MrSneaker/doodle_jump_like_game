@@ -111,7 +111,6 @@ void Jeu::InitMonstre()
    srand((unsigned) time(&t));
    for (i=0;i<4;i++)
    {
-	   monstr[i].setPos(rand()%13, rand()%19);
 	   monstr[i].setVitM(0);
 	   monstr[i].setTailleM(rand()%2);
 	   monstr[i].setResistance(1);
@@ -128,23 +127,14 @@ void Jeu::InitBonus()
    srand((unsigned) time(&t));
    for (i=0;i<4;i++)
    {
-	   bonu[i].setPosBonus(rand()%17, rand()%11);
-	   while(j!=p.size()){
-		   	if((bonu[i].getPosBonus().x+1==p.at(j).getPos().x)&&(bonu[i].getPosBonus().y==p.at(j).getPos().y)){
-				   	bonu[i].setDuree(2);
-					if(rand()%100>90) bonu[i].setNomB("jetpack");
-					if(rand()%100>60) bonu[i].setNomB("hélice");
-					if(rand()%100>25) bonu[i].setNomB("ressort");
-					if(rand()%100>75) bonu[i].setNomB("boing");
-					bonu[i].estPris=false;
-			   }
-	   		
-			else bonu[i].estPris=true;
-			j++;
-	   }
-	   
-
-   }
+		   	
+			bonu[i].setDuree(5);
+			if(rand()%100>90) bonu[i].setNomB("jetpack");
+			if(rand()%100>60) bonu[i].setNomB("hélice");
+			if(rand()%100>25) bonu[i].setNomB("ressort");
+			if(rand()%100>75) bonu[i].setNomB("boing");
+			bonu[i].estPris=false;
+	}
 
 }
 
@@ -157,10 +147,18 @@ void Jeu::InitPlat(){
 	srand((unsigned)time(&t));
 	for(i=1;i<12;i++){
 		Plateforme tmp;
-		tmp.setPos(rand()%11,rand()%15);
+		tmp.setPos(rand()%14,rand()%19);
 		if(rand()%100<=70) tmp.setRes(-1);
 		else tmp.setRes(1); 
 		tmp.setTaille(1);
+		for(int j=0;j<4;j++){
+			if(rand()%100>90){
+				bonu[j].setPosBonus(tmp.getPos().x-1,tmp.getPos().y);
+			}
+			else if(rand()%100>60){
+				monstr[j].setPos(tmp.getPos().x-1,tmp.getPos().y);
+			}
+		}
 		p.emplace(p.begin()+i,tmp);
 	}
 	
@@ -174,18 +172,15 @@ void Jeu::RecommencerJeu(){
 
 void Jeu::update(double dt){
 	for(int i=0;i<p.size();i++){
-		if((int(perso.getPos().x)==p.at(i).getPos().x-1)&&(int(perso.getPos().y)==p.at(i).getPos().y)){
-			for(int j=0;j<3;j++){
+		if((int(perso.getPos().x)==p.at(i).getPos().x)&&(int(perso.getPos().y)==p.at(i).getPos().y)){
+			while(int(perso.getPos().x)!=p.at(i).getPos().x-3){
 				perso.saut(dt);
-				//if(perso.getPos().x)
 			}
 		}
-		else if((perso.getPos().x!=p.at(i).getPos().x)&&(perso.getPos().y!=p.at(i).getPos().y)){
-			perso.tombe(dt);
-		}
+		else perso.tombe(dt);
 	}
 	for(int i=0;i<4;i++){
-		if((perso.getPos().x==monstr[i].getPos().x)&&(perso.getPos().y==monstr[i].getPos().y)&&(monstr[i].enVie==true)){
+		if((int(perso.getPos().x)==monstr[i].getPos().x)&&(int(perso.getPos().y)==monstr[i].getPos().y)&&(monstr[i].enVie==true)){
 			perso.tombe(dt);
 			perso.enVie=false;
 		}
@@ -211,15 +206,24 @@ void Jeu::update(double dt){
 		}
 	}
 	for(int i=0;i<4;i++){
-		if((perso.getPos().x==bonu[i].getPosBonus().x)&&(perso.getPos().y==bonu[i].getPosBonus().y)){
-			if(bonu[i].getNomB()=="jetpack") perso.setVit(3);
-			else if(bonu[i].getNomB()=="hélice") perso.setVit(2);
-			else if(bonu[i].getNomB()=="ressort") perso.setVit(1.5);
-			else if(bonu[i].getNomB()=="boing") perso.setVit(1.5);
+		if((int(perso.getPos().x)==bonu[i].getPosBonus().x)&&(int(perso.getPos().y)==bonu[i].getPosBonus().y)){
+			std::chrono::high_resolution_clock timer;
+			double tps=0;
+			while(tps==bonu[i].getDuree()){
+				auto start = timer.now();
+				if(bonu[i].getNomB()=="jetpack") perso.setVit(3);
+				else if(bonu[i].getNomB()=="hélice") perso.setVit(2);
+				else if(bonu[i].getNomB()=="ressort") perso.setVit(1.5);
+				else if(bonu[i].getNomB()=="boing") perso.setVit(1.5);
+				auto stop = timer.now();
+				tps+= std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
+				cout<<tps;
+			}
 			bonu[i].estPris=true;
+			perso.setVit(1);
 		}
 	}
-		
+	if(perso.getPos().x>=16) perso.enVie=false;	
 	
 }
 

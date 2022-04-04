@@ -47,22 +47,24 @@ void Personnage::setVit(float v){
 }
 
 void Personnage::deplacerD(double dt){
-    direction.y=5*(vitesse * dt);
+    direction.y=10*(vitesse * dt);
     position.y=position.y+direction.y;
+    if(position.y>20) position.y = 1;
 }
 
 void Personnage::deplacerG(double dt){
-    direction.y=-5*(vitesse *dt);
+    direction.y=-10*(vitesse *dt);
     position.y=position.y+direction.y;
+    if(position.y<0) position.y = 19;
 }
 
 void Personnage::saut(double dt){
-    direction.x=-4*(vitesse * dt);
+    direction.x=-8*(vitesse * dt);
     position.x=position.x+direction.x;
 }
 
 void Personnage::tombe(double dt){
-    direction.x=0.2*(vitesse * dt);
+    direction.x=0.1*(vitesse * dt);
     position.x=position.x+direction.x;
 }
 

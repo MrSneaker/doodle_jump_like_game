@@ -24,7 +24,9 @@ Vec2 Plateforme::getPos() const {
 
 void Plateforme::setPos(float x,float y){
     pos.x=x;
+    if(pos.x==0) pos.x=1;
     pos.y=y;
+    if(pos.y==0) pos.y=1;
 }
 
 Vec2 Plateforme::getDir() const{
