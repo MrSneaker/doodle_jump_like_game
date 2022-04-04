@@ -88,11 +88,11 @@ void termInit()      // configure la saisie : ne pas afficher les caracteres tap
 void JeuModeTXT::updatePlateau(Jeu &jeu){
     for(int i=0;i<15;i++){
         for(int j=0;j<21;j++){
-            if((jeu.getConstPersonnage().getPos().x==i)&&(jeu.getConstPersonnage().getPos().y==j)&&(jeu.getConstPersonnage().enVie==true)){
+            if((int(jeu.getConstPersonnage().getPos().x)==i)&&(int(jeu.getConstPersonnage().getPos().y)==j)&&(jeu.getConstPersonnage().enVie==true)){
                 cadre[i][j]='O';
             }
             for(int m=0;m<4;m++){
-                if((jeu.getConstMonstre(m).getPos().x==i)&&(jeu.getConstMonstre(m).getPos().y==j)&&(jeu.getConstMonstre(m).enVie==true)){
+                if((int(jeu.getConstMonstre(m).getPos().x)==i)&&(int(jeu.getConstMonstre(m).getPos().y)==j)&&(jeu.getConstMonstre(m).enVie==true)){
                     if(jeu.getConstMonstre(m).getTailleM()==1) cadre[i][j]='M';
                     else cadre[i][j]='MM';
                 }
@@ -124,7 +124,7 @@ void clear () {
             cadre[i][j]=cadreClear[i][j];
 }
 
-void JeuModeTXT::affichageTXT(Jeu &jeu){    
+void JeuModeTXT::affichageTXT(Jeu &jeu, double dt){    
     termClear();
     for(int i=0;i<15;i++){
         for(int j=0;j<21;j++){
@@ -137,24 +137,24 @@ void JeuModeTXT::affichageTXT(Jeu &jeu){
 
 
 
-bool JeuModeTXT::boucleAffTXT(Jeu &jeu,bool ok){
+bool JeuModeTXT::boucleAffTXT(Jeu &jeu,bool ok, double dt){
     ok=true;
     updatePlateau(jeu);
-    affichageTXT(jeu);
+    affichageTXT(jeu, dt);
     usleep(100000);
     int c=jeu.getCh();
     switch(c){
         case 'g':
-            jeu.actionClavier('g');
+            jeu.actionClavier('g',dt);
             break;
         case 'd':
-            jeu.actionClavier('d');
+            jeu.actionClavier('d', dt);
             break;
         case 'r':
-            jeu.actionClavier('r');
+            jeu.actionClavier('r', dt);
             break;
         case 'q':
-            bool ok = jeu.actionClavier('q');
+            bool ok = jeu.actionClavier('q', dt);
             return ok;
             break;
     }

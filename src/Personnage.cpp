@@ -46,23 +46,23 @@ void Personnage::setVit(float v){
     vitesse=v;
 }
 
-void Personnage::deplacerD(){
-    direction.y=1*vitesse;
+void Personnage::deplacerD(double dt){
+    direction.y=5*(vitesse * dt);
     position.y=position.y+direction.y;
 }
 
-void Personnage::deplacerG(){
-    direction.y=-1*vitesse;
+void Personnage::deplacerG(double dt){
+    direction.y=-5*(vitesse *dt);
     position.y=position.y+direction.y;
 }
 
-void Personnage::saut(){
-    direction.x=-1*vitesse;
+void Personnage::saut(double dt){
+    direction.x=-4*(vitesse * dt);
     position.x=position.x+direction.x;
 }
 
-void Personnage::tombe(){
-    direction.x=1*vitesse;
+void Personnage::tombe(double dt){
+    direction.x=0.2*(vitesse * dt);
     position.x=position.x+direction.x;
 }
 
@@ -111,13 +111,13 @@ void Personnage::testRegression(){
     assert(p1.position.y==10);
     cout<<"pos x : "<<p1.getPos().x<<endl;
     cout<<"pos y : "<<p1.getPos().y<<endl;
-    p1.deplacerD();
+    p1.deplacerD(1000 * 1.0 / 60.0);
     p1.setVit(2);
-    p1.deplacerD();
-    p1.deplacerG();
-    p1.saut();
-    p1.saut();
-    p1.tombe();
+    p1.deplacerD(1000 * 1.0 / 60.0);
+    p1.deplacerG(1000 * 1.0 / 60.0);
+    p1.saut(1000 * 1.0 / 60.0);
+    p1.saut(1000 * 1.0 / 60.0);
+    p1.tombe(1000 * 1.0 / 60.0);
     assert(p1.vitesse==2);
     assert(p1.position.x==11);
     assert(p1.position.y==12);

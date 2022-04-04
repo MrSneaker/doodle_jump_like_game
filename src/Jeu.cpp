@@ -57,15 +57,17 @@ char Jeu::getCh() { // lire un caractere si une touche a ete pressee
     return touche;
 }
 
-bool Jeu::actionClavier (const char touche) {
+bool Jeu::actionClavier (const char touche, double dt) {
 	bool ok=true;
 	switch(touche) {
 		case 'g' :
-				perso.deplacerG();
+				perso.deplacerG(dt);
+				cout<<perso.getPos().y;
 				break;
 				ok = true;
 		case 'd' :
-				perso.deplacerD();
+				perso.deplacerD(dt);
+				cout<<perso.getPos().y;
 				break;
 				ok = true;
 		case 'r' :
@@ -170,21 +172,21 @@ void Jeu::RecommencerJeu(){
 
 }
 
-void Jeu::update(){
+void Jeu::update(double dt){
 	for(int i=0;i<p.size();i++){
-		if((perso.getPos().x==p.at(i).getPos().x-1)&&(perso.getPos().y==p.at(i).getPos().y)){
+		if((int(perso.getPos().x)==p.at(i).getPos().x-1)&&(int(perso.getPos().y)==p.at(i).getPos().y)){
 			for(int j=0;j<3;j++){
-				perso.saut();
+				perso.saut(dt);
 				//if(perso.getPos().x)
 			}
 		}
 		else if((perso.getPos().x!=p.at(i).getPos().x)&&(perso.getPos().y!=p.at(i).getPos().y)){
-			//perso.tombe();
+			perso.tombe(dt);
 		}
 	}
 	for(int i=0;i<4;i++){
 		if((perso.getPos().x==monstr[i].getPos().x)&&(perso.getPos().y==monstr[i].getPos().y)&&(monstr[i].enVie==true)){
-			perso.tombe();
+			perso.tombe(dt);
 			perso.enVie=false;
 		}
 		if(perso.getNombreProj()!=0){

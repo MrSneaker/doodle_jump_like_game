@@ -37,10 +37,10 @@ class Jeu
         char getCh();
         vector<Plateforme> getPlateforme() const;
         void actionsAutomatiques();
-        bool actionClavier(const char touche);
+        bool actionClavier(const char touche, double dt);
         void RecommencerJeu();
         void finJeu();
-        void update();
+        void update(double dt);
         void InitPersonnage();
         void InitMonstre();
         void InitBonus();

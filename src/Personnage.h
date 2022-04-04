@@ -28,10 +28,10 @@ class Personnage
         projectile getProjectile(int n) const;/*! \brief renvoie le vecteur projectile demandé si il existe*/
         float getVit() const;/*! \brief renvoie la vitesse du personnage */
         void setVit(float v);/*! \brief met à jour la vitesse du personnage selon un paramètre vitesse \param v*/
-        void deplacerD();/*! \brief déplace le personnage à droite et modifie sa position x de +1*/
-        void deplacerG();/*! \brief déplace le personnage à gauche et modifie sa position x de -1*/
-        void saut();/*! \brief fait sauter le personnage, le déplace vers le haut en modifiant sa position y de +1*/
-        void tombe();/*! \brief fait tomber le personnage, le déplace vers le haut en modifiant sa position y de -1*/
+        void deplacerD(double dt);/*! \brief déplace le personnage à droite et modifie sa position x de +1*/
+        void deplacerG(double dt);/*! \brief déplace le personnage à gauche et modifie sa position x de -1*/
+        void saut(double dt);/*! \brief fait sauter le personnage, le déplace vers le haut en modifiant sa position y de +1*/
+        void tombe(double dt);/*! \brief fait tomber le personnage, le déplace vers le haut en modifiant sa position y de -1*/
         const string& getNom() const;/*! \brief renvoie le nom du personnage (permet de définir plusieurs apparences)*/
         void setNom(const string nomP);/*! \brief met à jour le nom du personnage selon un string \param nom en paramètre*/
         void creerProj();/*! \brief fait tirer le personnage en créant un veteur projectile*/
