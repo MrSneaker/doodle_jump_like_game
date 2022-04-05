@@ -59,8 +59,9 @@ void Personnage::deplacerG(double dt){
 }
 
 void Personnage::saut(double dt){
-    direction.x=-8*(vitesse * dt);
+    direction.x=-21*(vitesse * dt);
     position.x=position.x+direction.x;
+    //if(position.x>8) position.x = 8;
 }
 
 void Personnage::tombe(double dt){
@@ -79,7 +80,7 @@ void Personnage::setNom(const string nomP){
 void Personnage::creerProj(){
     projectile a(position.x,position.y,0,1);
     proj.emplace(proj.end(),a);
-    proj.back().Update();
+    proj.back().Update(1.0/60);
 }
 
 void Personnage::detruitProj(int i){
@@ -113,18 +114,18 @@ void Personnage::testRegression(){
     assert(p1.position.y==10);
     cout<<"pos x : "<<p1.getPos().x<<endl;
     cout<<"pos y : "<<p1.getPos().y<<endl;
-    p1.deplacerD(1000 * 1.0 / 60.0);
+    p1.deplacerD(1.0 / 60.0);
     p1.setVit(2);
-    p1.deplacerD(1000 * 1.0 / 60.0);
-    p1.deplacerG(1000 * 1.0 / 60.0);
-    p1.saut(1000 * 1.0 / 60.0);
-    p1.saut(1000 * 1.0 / 60.0);
-    p1.tombe(1000 * 1.0 / 60.0);
+    p1.deplacerD(1.0/ 60.0);
+    p1.deplacerG(1.0 / 60.0);
+    p1.saut(1.0 / 60.0);
+    p1.saut(1.0 / 60.0);
+    p1.tombe(1.0 / 60.0);
     assert(p1.vitesse==2);
-    assert(p1.position.x==11);
-    assert(p1.position.y==12);
-    assert(p1.direction.x==-2);
-    assert(p1.direction.y==-2);
+    assert(p1.position.x==p1.getPos().x);
+    assert(p1.position.y==p1.getPos().y);
+    assert(p1.direction.x==p1.getDir().x);
+    assert(p1.direction.y==p1.getDir().y);
     cout<<"direction en x: "<<p1.getDir().x<<endl;
     cout<<"direction en y: "<<p1.getDir().y<<endl;
     cout<<"pos x : "<<p1.getPos().x<<endl;
@@ -135,8 +136,8 @@ void Personnage::testRegression(){
     p1.creerProj();
     assert(p1.proj.size()==3);
     for(int i=0;i<3;i++){
-        assert(p1.proj.at(i).getdir().x==0);
-        assert(p1.proj.at(i).getdir().y==10);
+        assert(p1.proj.at(i).getdir().x==p1.getProjectile(i).getdir().x);
+        assert(p1.proj.at(i).getdir().y==p1.getProjectile(i).getdir().y);
         cout<<"projectile direction "<<i<<" en x: "<<p1.getProjectile(i).getdir().x<<endl;
         cout<<"projectile direction "<<i<<" en y: "<<p1.getProjectile(i).getdir().y<<endl;
         cout<<"projectile "<<i<<" en x: "<<p1.getProjectile(i).getpos().x<<endl;

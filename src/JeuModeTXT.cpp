@@ -98,7 +98,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu){
                 }
             }
             for(int p=0;p<jeu.getPlateforme().size();p++){
-                if((jeu.getPlateforme().at(p).getPos().x==i)&&(jeu.getPlateforme().at(p).getPos().y==j)&&(jeu.getPlateforme().at(p).estAfficheable()==true)){
+                if((int(jeu.getPlateforme().at(p).getPos().x)==i)&&(int(jeu.getPlateforme().at(p).getPos().y)==j)&&(jeu.getPlateforme().at(p).estAfficheable()==true)){
                     if(jeu.getPlateforme().at(p).getTaille()==1) {
                         cadre[i][j]='_';
                     }

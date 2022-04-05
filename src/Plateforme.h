@@ -24,7 +24,7 @@ public:
     void setTaille(float x); /*! \brief modifie la taille de la plateforme à partir d'un float \param n en paramètre*/
     int getRes() const; /*! \brief renvoie la resistance d'une plateforme*/
     void setRes(int n); /*! \brief modifie la resistance de la plateforme à partir d'un float \param n en paramètre*/
-    void Update();/*! \brief gère tous les déplacements*/
+    void Update(double dt);/*! \brief gère tous les déplacements*/
     bool estAfficheable();/*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
     void descRes();/*! \brief décremente la resistance de 1*/
     void testRegression();/*! \brief test de régression de la classe plateforme*/

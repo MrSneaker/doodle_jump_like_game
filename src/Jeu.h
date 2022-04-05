@@ -46,6 +46,7 @@ class Jeu
         void InitMonstre();
         void InitBonus();
         void InitPlat();
+        void updateDefil(double dt);
         void clear();
 
 };

@@ -165,17 +165,57 @@ void Jeu::InitPlat(){
 }
 
 
+void Jeu::updateDefil(double dt){
+	float vFall = 1;
+	float dFall = vFall * dt;
+	int compt = 0;
+	for(int i=0;i<p.size();i++){
+		if(perso.getPos().x<8){
+			float x = p.at(i).getPos().x;
+			x = x + dFall;
+			p.at(i).setPos(x,p.at(i).getPos().y);
+		}
+		if(p.at(i).getPos().x>15){
+			p.erase(p.begin()+i);
+			compt++;
+		}
+
+	}
+	for(int i=0;i<compt;i++){
+		time_t t;
+		srand((unsigned)time(&t));
+		Plateforme tmp;
+		int x = 0+rand()%4;
+		tmp.setPos(x,rand()%19);
+		if(rand()%100<=70) tmp.setRes(-1);
+		else tmp.setRes(1); 
+		tmp.setTaille(1);
+		for(int j=0;j<4;j++){
+			if(rand()%100>90){
+				bonu[j].setPosBonus(tmp.getPos().x-1,tmp.getPos().y);
+			}
+			else if(rand()%100>60){
+				monstr[j].setPos(tmp.getPos().x-1,tmp.getPos().y);
+			}
+		}
+		p.emplace(p.end()-compt+i,tmp);
+
+	}
+}
+
 
 void Jeu::RecommencerJeu(){
 
 }
 
 void Jeu::update(double dt){
+	cout<<perso.getPos().y;
 	for(int i=0;i<p.size();i++){
-		if((int(perso.getPos().x)==p.at(i).getPos().x)&&(int(perso.getPos().y)==p.at(i).getPos().y)){
-			while(int(perso.getPos().x)!=p.at(i).getPos().x-3){
+		float pposx=p.at(i).getPos().x;
+		float pposy=p.at(i).getPos().y;
+		if((perso.getPos().x>=pposx+0.01)&&(perso.getPos().y>=pposy-0.11)&&(perso.getPos().y<=pposy+0.11)){
 				perso.saut(dt);
-			}
+				cout<<"alo";
 		}
 		else perso.tombe(dt);
 	}
@@ -186,8 +226,8 @@ void Jeu::update(double dt){
 		}
 		if(perso.getNombreProj()!=0){
 			for(int j=0;j<perso.getNombreProj();j++){
-				while (perso.getProjectile(j).existe){
-					perso.getProjectile(j).Update();
+				if (perso.getProjectile(j).existe==true){
+					perso.getProjectile(j).Update(dt);
 					if((perso.getProjectile(j).getpos().x==monstr[i].getPos().x)&&(perso.getProjectile(j).getpos().y==monstr[i].getPos().y)){
 						monstr[i].descRes();
 						if(monstr[i].getResistance()==0){
@@ -204,6 +244,7 @@ void Jeu::update(double dt){
 				
 			}
 		}
+		//updateDefil(dt);
 	}
 	for(int i=0;i<4;i++){
 		if((int(perso.getPos().x)==bonu[i].getPosBonus().x)&&(int(perso.getPos().y)==bonu[i].getPosBonus().y)){

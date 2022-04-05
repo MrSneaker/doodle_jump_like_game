@@ -14,9 +14,9 @@ projectile::~projectile(){
 
 }
 
-void projectile::Update(){
-        p.x+=direction.x;
-        p.y+=direction.y;
+void projectile::Update(double dt){
+        p.x+=direction.x*dt;
+        p.y+=direction.y*dt;
 }
 
 void projectile::Suppr(){

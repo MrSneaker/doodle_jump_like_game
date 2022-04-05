@@ -18,7 +18,6 @@ int main(void){
     txt.affichageTXT(jeu,dt);
     std::chrono::high_resolution_clock timer;
     do{
-        //cout<< dt;
         auto start = timer.now();
         jeu.update(dt);
         txt.boucleAffTXT(jeu,dt);

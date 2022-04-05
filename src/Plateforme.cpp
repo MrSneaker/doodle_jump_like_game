@@ -54,15 +54,15 @@ void Plateforme::setRes(int n){
     res=n;
 }
 
-void Plateforme::Update(){
-        pos.x+=dir.x;
-        pos.y+=dir.y;
+void Plateforme::Update(double dt){
+        pos.x+=dir.x*dt;
+        pos.y+=dir.y*dt;
 }
 
 
 bool Plateforme::estAfficheable(){
     if(res!=-1){
-        if(res==0){
+        if((res==0)||(pos.x<14)){
             return false;
         }
         else return true;
@@ -92,9 +92,9 @@ void Plateforme::testRegression(){
     p1.setDir(-1,0);
     assert(p1.dir.x==-1);
     assert(p1.dir.y==0);
-    p1.Update();
-    assert(p1.pos.x==9);
-    assert(p1.pos.y==10);
+    p1.Update(1.0 / 60.0);
+    assert(p1.pos.x==p1.getPos().x);
+    assert(p1.pos.y==p1.getPos().y);
     cout<<"dir en x: "<<p1.getDir().x<<endl;
     cout<<"dir en y: "<<p1.getDir().y<<endl;
     cout<<"pos x : "<<p1.getPos().x<<endl;
