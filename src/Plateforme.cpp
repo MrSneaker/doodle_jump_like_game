@@ -59,6 +59,15 @@ void Plateforme::Update(double dt){
         pos.y+=dir.y*dt;
 }
 
+float Plateforme::getVitM() const{
+    return vitesse;
+}
+
+void Plateforme::setVitM(float v){
+    vitesse=v;
+}
+
+
 
 bool Plateforme::estAfficheable(){
     if(res!=-1){
@@ -69,6 +78,9 @@ bool Plateforme::estAfficheable(){
     }
     else return true;
 }
+
+
+
 
 void Plateforme::descRes(){
     if(res!=-1){
