@@ -100,7 +100,7 @@ bool Jeu::actionClavier (const char touche, double dt) {
 
 void Jeu::InitPersonnage()
 {
-   perso.setPos(8,8);
+   perso.setPos(50,3);
    perso.setVit(1);
 }
 
@@ -147,16 +147,16 @@ void Jeu::InitPlat(){
 	srand((unsigned)time(&t));
 	for(i=1;i<12;i++){
 		Plateforme tmp;
-		tmp.setPos(rand()%14,rand()%19);
+		tmp.setPos(rand()%100,rand()%6);
 		if(rand()%100<=70) tmp.setRes(-1);
 		else tmp.setRes(1); 
 		tmp.setTaille(1);
 		for(int j=0;j<4;j++){
 			if(rand()%100>90){
-				bonu[j].setPosBonus(tmp.getPos().x-1,tmp.getPos().y);
+				bonu[j].setPosBonus(tmp.getPos().x-5,tmp.getPos().y);
 			}
 			else if(rand()%100>60){
-				monstr[j].setPos(tmp.getPos().x-1,tmp.getPos().y);
+				monstr[j].setPos(tmp.getPos().x-5,tmp.getPos().y);
 			}
 		}
 		p.emplace(p.begin()+i,tmp);
@@ -192,10 +192,10 @@ void Jeu::updateDefil(double dt){
 		tmp.setTaille(1);
 		for(int j=0;j<4;j++){
 			if(rand()%100>90){
-				bonu[j].setPosBonus(tmp.getPos().x-1,tmp.getPos().y);
+				bonu[j].setPosBonus(tmp.getPos().x-5,tmp.getPos().y);
 			}
 			else if(rand()%100>60){
-				monstr[j].setPos(tmp.getPos().x-1,tmp.getPos().y);
+				monstr[j].setPos(tmp.getPos().x-5,tmp.getPos().y);
 			}
 		}
 		p.emplace(p.end()-compt+i,tmp);
@@ -209,20 +209,21 @@ void Jeu::RecommencerJeu(){
 }
 
 void Jeu::update(double dt){
-	cout<<perso.getPos().y;
+	//if(perso.enVie) cout<<"pos reel perso : "<<perso.getPos().x;
 	for(int i=0;i<p.size();i++){
 		float pposx=p.at(i).getPos().x;
 		float pposy=p.at(i).getPos().y;
-		if((perso.getPos().x>=pposx+0.01)&&(perso.getPos().y>=pposy-0.11)&&(perso.getPos().y<=pposy+0.11)){
+		if((perso.getPos().x>=pposx)&&(perso.getPos().y>=pposy-0.1)&&(perso.getPos().y<=pposy+0.1)){
 				perso.saut(dt);
 				cout<<"alo";
 		}
 		else perso.tombe(dt);
 	}
 	for(int i=0;i<4;i++){
-		if((int(perso.getPos().x)==monstr[i].getPos().x)&&(int(perso.getPos().y)==monstr[i].getPos().y)&&(monstr[i].enVie==true)){
+		if((perso.getPos().x==monstr[i].getPos().x)&&(perso.getPos().y==monstr[i].getPos().y)&&(monstr[i].enVie==true)){
 			perso.tombe(dt);
 			perso.enVie=false;
+			cout<<"mort d'un mob";
 		}
 		if(perso.getNombreProj()!=0){
 			for(int j=0;j<perso.getNombreProj();j++){
@@ -264,7 +265,10 @@ void Jeu::update(double dt){
 			perso.setVit(1);
 		}
 	}
-	if(perso.getPos().x>=16) perso.enVie=false;	
+	if(perso.getPos().x>=100){
+		perso.enVie=false;
+		cout<<"mort de chute";	
+	}
 	
 }
 

@@ -14,6 +14,7 @@ private:
 public:
     JeuModeTXT();
     ~JeuModeTXT();
+    Vec2 convertPos(Vec2 pos);
     void updatePlateau(Jeu &jeu);
     void affichageTXT(Jeu &jeu, double dt);
     void boucleAffTXT(Jeu &jeu, double dt);

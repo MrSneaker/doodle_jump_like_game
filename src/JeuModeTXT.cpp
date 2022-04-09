@@ -8,6 +8,9 @@
 #include <iostream>
 #include <stdio.h>
 
+const int DIMX = 15;
+const int DIMY = 21;
+
 JeuModeTXT::JeuModeTXT(){
 
 }
@@ -85,22 +88,33 @@ void termInit()      // configure la saisie : ne pas afficher les caracteres tap
     tcsetattr(STDIN_FILENO, TCSANOW, &t);
 }
 
+Vec2 JeuModeTXT::convertPos(Vec2 pos){
+    Vec2 newPos;
+    newPos.x=(DIMX*pos.x)/100;
+    newPos.y=(DIMY*pos.y)/6;
+    return newPos;
+
+}
+
 void JeuModeTXT::updatePlateau(Jeu &jeu){
     for(int i=0;i<15;i++){
         for(int j=0;j<21;j++){
-            if((int(jeu.getConstPersonnage().getPos().x)==i)&&(int(jeu.getConstPersonnage().getPos().y)==j)&&(jeu.getConstPersonnage().enVie==true)){
+            if((int(convertPos(jeu.getConstPersonnage().getPos()).x)==i)&&(int(convertPos(jeu.getConstPersonnage().getPos()).y)==j)&&(jeu.getConstPersonnage().enVie==true)){
                 cadre[i][j]='O';
+                //cout<<"perso x :"<<convertPos(jeu.getConstPersonnage().getPos()).x<<"y : "<<convertPos(jeu.getConstPersonnage().getPos()).y;
             }
             for(int m=0;m<4;m++){
-                if((int(jeu.getConstMonstre(m).getPos().x)==i)&&(int(jeu.getConstMonstre(m).getPos().y)==j)&&(jeu.getConstMonstre(m).enVie==true)){
-                    if(jeu.getConstMonstre(m).getTailleM()==1) cadre[i][j]='M';
-                    else cadre[i][j]='MM';
+                if((int(convertPos(jeu.getConstMonstre(m).getPos()).x)==i)&&(int(convertPos(jeu.getConstMonstre(m).getPos()).y)==j)&&(jeu.getConstMonstre(m).enVie==true)){
+                    if(jeu.getConstMonstre(m).getTailleM()==1) cadre[i][j]='m';
+                    else cadre[i][j]='M';
                 }
             }
             for(int p=0;p<jeu.getPlateforme().size();p++){
-                if((int(jeu.getPlateforme().at(p).getPos().x)==i)&&(int(jeu.getPlateforme().at(p).getPos().y)==j)&&(jeu.getPlateforme().at(p).estAfficheable()==true)){
+                if((int(convertPos(jeu.getPlateforme().at(p).getPos()).x)==i)&&(int(convertPos(jeu.getPlateforme().at(p).getPos()).y)==j)&&(jeu.getPlateforme().at(p).estAfficheable()==true)){
                     if(jeu.getPlateforme().at(p).getTaille()==1) {
                         cadre[i][j]='_';
+                        //cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
+                        //cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
                     }
                 }
             }
