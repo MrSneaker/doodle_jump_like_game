@@ -88,6 +88,20 @@ void Plateforme::descRes(){
     }
 }
 
+void Plateforme::bougeAuto(double dt){
+    if(estAfficheable()){
+        if(pos.x==5){
+            dir.x=-1;
+            cout<<"plat va a gauche !";
+        }
+        else if(pos.x==1){   
+            dir.x=1;
+            cout<<"plat va a droite !";
+        }
+        Update(dt); 
+    }
+}
+
 void Plateforme::testRegression(){
     Plateforme p1(0,0,0,0,0,0);
     assert(p1.pos.x==0);

@@ -37,7 +37,7 @@ class Jeu
         const bonus & getConstBonus(int i) const;
         char getCh();
         vector<Plateforme> getPlateforme() const;
-        void actionsAutomatiques();
+        void actionsAutomatiques(double dt);
         bool actionClavier(const char touche, double dt);
         void RecommencerJeu();
         void finJeu();

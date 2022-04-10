@@ -74,7 +74,7 @@ void Monstre::bougeAuto(){
         {
             if(direction.x==1) //se déplace vers la droite
                 {
-                    if(position.x==13) //si le monstre touche le rebord droit
+                    if(position.x==5) //si le monstre touche le rebord droit
                     {
                         direction.x=-1;
                         deplacerG();
@@ -87,7 +87,7 @@ void Monstre::bougeAuto(){
                 }
             else
                 {
-                    if(position.x==2) //si le monstre touche le rebord gauche
+                    if(position.x==1) //si le monstre touche le rebord gauche
                     {   
                         direction.x=1;
                         deplacerD();

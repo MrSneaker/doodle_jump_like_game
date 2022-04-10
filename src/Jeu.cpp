@@ -82,35 +82,27 @@ bool Jeu::actionClavier (const char touche, double dt) {
 				return ok;
 }
 
-/*void Jeu::actionsAutomatiques () {
+void Jeu::actionsAutomatiques (double dt) {
 	for(int i=0;i<4;i++){
-		monstr[i].bougeAuto();
-	}
-	
-	 if(actionClavier()==false)
-	{
-		//pasfleche;
-		//vitesse.x -=0,01;
+		if(monstr[i].getTailleM()==1){
+			if(rand()%100>70) monstr[i].bougeAuto();
+		}
 		
 	}
+	int a = rand()%p.size();
+	if(rand()%100>=90) p.at(a).bougeAuto(dt);
 	
+}
 
-}*/
 
-
-void Jeu::InitPersonnage()
-{
+void Jeu::InitPersonnage(){
    perso.setPos(50,3);
    perso.setVit(1);
 }
 
-void Jeu::InitMonstre()
-{
+void Jeu::InitMonstre(){
    int i;
-   time_t t;
-   srand((unsigned) time(&t));
-   for (i=0;i<4;i++)
-   {
+   for (i=0;i<4;i++){
 	   monstr[i].setVitM(0);
 	   monstr[i].setTailleM(rand()%2);
 	   monstr[i].setResistance(1);
@@ -123,8 +115,6 @@ void Jeu::InitBonus()
 {
 	int i;
 	int j = 0;
-   time_t t;
-   srand((unsigned) time(&t));
    for (i=0;i<4;i++)
    {
 		   	
@@ -150,15 +140,15 @@ void Jeu::InitPlat(){
 		tmp.setPos(rand()%100,rand()%6);
 		if(rand()%100<=70) tmp.setRes(-1);
 		else tmp.setRes(1); 
+		tmp.setDir(1,1);
 		tmp.setTaille(1);
-		for(int j=0;j<4;j++){
-			if(rand()%100>90){
-				bonu[j].setPosBonus(tmp.getPos().x-5,tmp.getPos().y);
-			}
-			else if(rand()%100>60){
-				monstr[j].setPos(tmp.getPos().x-5,tmp.getPos().y);
-			}
+		if(rand()%100>90){
+			bonu[rand()%4].setPosBonus(tmp.getPos().x-5,tmp.getPos().y);
 		}
+		else if(rand()%100>60){
+			monstr[rand()%4].setPos(tmp.getPos().x-5,tmp.getPos().y);
+		}
+		
 		p.emplace(p.begin()+i,tmp);
 	}
 	
@@ -209,13 +199,12 @@ void Jeu::RecommencerJeu(){
 }
 
 void Jeu::update(double dt){
-	//if(perso.enVie) cout<<"pos reel perso : "<<perso.getPos().x;
+	//actionsAutomatiques(dt);
 	for(int i=0;i<p.size();i++){
 		float pposx=p.at(i).getPos().x;
 		float pposy=p.at(i).getPos().y;
 		if((perso.getPos().x>=pposx)&&(perso.getPos().y>=pposy-0.1)&&(perso.getPos().y<=pposy+0.1)){
 				perso.saut(dt);
-				cout<<"alo";
 		}
 		else perso.tombe(dt);
 	}
