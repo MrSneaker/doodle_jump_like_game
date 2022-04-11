@@ -30,7 +30,7 @@ public:
     void Update(double dt);/*! \brief gère tous les déplacements*/
     bool estAfficheable();/*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
     void descRes();/*! \brief décremente la resistance de 1*/
-    void bougeAuto(double dt); /*! \brief permet aux plateformes de se déplacer toutes seules*/
+    void bougeAutoLateral(double dt); /*! \brief permet aux plateformes de se déplacer toutes seules*/
     void testRegression();/*! \brief test de régression de la classe plateforme*/
 };
 

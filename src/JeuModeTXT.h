@@ -11,6 +11,7 @@ class JeuModeTXT
 {
 private:
     Jeu jeu;
+
 public:
     JeuModeTXT();
     ~JeuModeTXT();
@@ -20,8 +21,5 @@ public:
     void boucleAffTXT(Jeu &jeu, double dt);
     void affDetruireTXT(Jeu &jeu);
 };
-
-
-
 
 #endif

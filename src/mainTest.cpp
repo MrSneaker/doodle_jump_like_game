@@ -8,7 +8,8 @@
 
 using namespace std;
 
-int main(void){
+int main(void)
+{
     Personnage p;
     Monstre m;
     bonus b;
@@ -17,9 +18,4 @@ int main(void){
     m.testRegression();
     b.testRegression();
     pl.testRegression();
-
-    
-
 }
-
-
