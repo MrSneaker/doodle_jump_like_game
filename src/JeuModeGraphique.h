@@ -41,14 +41,21 @@ private:
     int winx, winy;
     int TAILLE_BORDURE;
     SDL_Renderer * renderer; /*render SDL */
-    SDL_Surface *screen = NULL ;
-    SDL_Surface *background  = NULL ;
-    SDL_Surface *menu[3] = {NULL} ;
+    SDL_Surface * m_surface ;
+    SDL_Surface * background  = NULL ;
     SDL_Rect *rectangle;
-    TTF_Font *police_ecriture;
-    
-    //image img_Perso;
-    //image img_Monstres;
+    TTF_Font * font;
+    Image font_im;
+    SDL_Color font_color;
+    Image im_projectile;
+    Image im_perso;
+    Image im_bonus;
+    Image im_monstres;
+    bool souris;
+    bool touche;
+    Mix_Chunk * sound; 
+    bool withSound;
+
     
     
 public:

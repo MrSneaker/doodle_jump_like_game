@@ -93,10 +93,84 @@ void Image::setSurface(SDL_Surface * surf) {
 
 // ============= CLASS JEUMODEGRAPHIQUE =============== //
 
-JeuModeGRAPHIQUE::JeuModeGRAPHIQUE(){
+JeuModeGRAPHIQUE::JeuModeGRAPHIQUE():jeu() {
+    // Initialisation de la SDL
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
 
+    if (TTF_Init() != 0) {
+        cout << "Erreur lors de l'initialisation de la SDL_ttf : " << TTF_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+    int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
+    if( !(IMG_Init(imgFlags) & imgFlags)) {
+        cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
+        SDL_Quit();
+        exit(1);
+    }
+
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+    {
+        cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
+        cout << "No sound !!!" << endl;
+        //SDL_Quit();exit(1);
+        withSound = false;
+    }
+    else withSound = true;
+
+	int dimx, dimy;
+	dimx = jeu.getPlateforme();
+	dimy = jeu.getPlateforme();
+	dimx = dimx * TAILLE_SPRITE;
+	dimy = dimy * TAILLE_SPRITE;
+
+    // Creation de la fenetre
+    window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    if (window == nullptr) {
+        cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
+        SDL_Quit(); 
+        exit(1);
+    }
+
+    renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
+
+    // IMAGES
+    im_perso.loadFromFile("data/perso.png",renderer);
+    im_projectile.loadFromFile("data/projectile.png",renderer);
+    im_bonus.loadFromFile("data/bonus.png",renderer);
+    im_monstres.loadFromFile("data/monstres.png",renderer);
+
+    // FONTS
+    font = TTF_OpenFont("data/DejaVuSansCondensed.ttf",50);
+    if (font == nullptr)
+        font = TTF_OpenFont("../data/DejaVuSansCondensed.ttf",50);
+    if (font == nullptr) {
+            cout << "Failed to load DejaVuSansCondensed.ttf! SDL_TTF Error: " << TTF_GetError() << endl; 
+            SDL_Quit(); 
+            exit(1);
+	}
+	font_color.r = 50;font_color.g = 50;font_color.b = 255;
+	font_im.setSurface(TTF_RenderText_Solid(font,"Foodle_Jump",font_color));
+	font_im.loadFromCurrentSurface(renderer);
+
+    // SONS
+    if (withSound)
+    {
+        sound = Mix_LoadWAV("data/son.wav");
+        if (sound == nullptr) 
+            sound = Mix_LoadWAV("../data/son.wav");
+        if (sound == nullptr) {
+                cout << "Failed to load son.wav! SDL_mixer Error: " << Mix_GetError() << endl; 
+                SDL_Quit();
+                exit(1);
+        }
+    }
 }
-
 
 
 JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE(){
