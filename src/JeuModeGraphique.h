@@ -61,10 +61,12 @@ private:
 public:
     JeuModeGRAPHIQUE();
     ~JeuModeGRAPHIQUE();
-    void updatePlateau(Jeu &jeu);
-    void affichageInitGRAPHIQUE(Jeu &jeu, double dt);
-    void boucleAffGRAPHIQUE(Jeu &jeu, double dt);
-    void affDetruireGRAPHIQUE(Jeu &jeu);
+    //void updatePlateau(Jeu &jeu); /*! \brief */
+    void affichageInitGRAPHIQUE(); /*! \brief affichage de SDL2*/
+    void affichageGRAPHIQUE(); /*! \brief affiche l'image dans la fenetre SDL2*/
+    void boucleaffichageGRAPHIQUE(); /*! \brief rafraichissement de l'image*/
+    void affDetruireGRAPHIQUE(); /*! \brief Détruit l'affichage*/
+
     
 };
 
