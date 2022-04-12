@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 
+const int TAILLE_SPRITE = 32;
 
 
 // ============= CLASS IMAGE =============== //
@@ -27,7 +28,7 @@ Image::~Image()
 }
 
 
-void Image::loadFromFile (const char* filename, SDL_Renderer * renderer) {
+/* void Image::loadFromFile (const char* filename, SDL_Renderer * renderer) {
     m_surface = IMG_Load(filename);
     if (m_surface == nullptr) {
         string nfn = string("../") + filename;
@@ -54,7 +55,7 @@ void Image::loadFromFile (const char* filename, SDL_Renderer * renderer) {
         SDL_Quit();
         exit(1);
     }
-}
+} */
 
 void Image::loadFromCurrentSurface (SDL_Renderer * renderer) {
     m_texture = SDL_CreateTextureFromSurface(renderer,m_surface);
@@ -107,7 +108,7 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE():jeu() {
         exit(1);
     }
 
-    int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
+    /* int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
     if( !(IMG_Init(imgFlags) & imgFlags)) {
         cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
         SDL_Quit();
@@ -121,16 +122,14 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE():jeu() {
         //SDL_Quit();exit(1);
         withSound = false;
     }
-    else withSound = true;
+    else withSound = true; */
 
 	int dimx, dimy;
-	dimx = jeu.getPlateforme();
-	dimy = jeu.getPlateforme();
 	dimx = dimx * TAILLE_SPRITE;
 	dimy = dimy * TAILLE_SPRITE;
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Foodle_Jump", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -140,11 +139,11 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE():jeu() {
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
-    im_perso.loadFromFile("data/perso.png",renderer);
+    /*im_perso.loadFromFile("data/perso.png",renderer);
     im_projectile.loadFromFile("data/projectile.png",renderer);
     im_bonus.loadFromFile("data/bonus.png",renderer);
     im_monstres.loadFromFile("data/monstres.png",renderer);
-
+    
     // FONTS
     font = TTF_OpenFont("data/DejaVuSansCondensed.ttf",50);
     if (font == nullptr)
@@ -159,7 +158,7 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE():jeu() {
 	font_im.loadFromCurrentSurface(renderer);
 
     // SONS
-    if (withSound)
+    /* if (withSound)
     {
         sound = Mix_LoadWAV("data/son.wav");
         if (sound == nullptr) 
@@ -169,17 +168,23 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE():jeu() {
                 SDL_Quit();
                 exit(1);
         }
-    }
+    } */
 }
 
 
 JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE(){
+    //if (withSound) Mix_Quit();
+    TTF_CloseFont(font);
+    TTF_Quit();
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 }
 
 
 
 
-void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(Jeu &jeu, double dt){
+void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
          cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() <<  endl;
@@ -201,14 +206,44 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(Jeu &jeu, double dt){
    
 
 
-void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu,double dt){
-    
-}
 
-void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE(Jeu &jeu){
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
-    SDL_Quit();
-}
+/*void JeuModeGRAPHIQUE::boucleaffichageGRAPHIQUE(){
+    SDL_Event events;
+    bool quit=false;
+    // tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
+		while (SDL_PollEvent(&events)) {
+			if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
+			else if (events.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
+                bool enVie = false;
+				switch (events.key.keysym.scancode) {
+				case SDL_SCANCODE_UP:
+					enVie = jeu.actionClavier('r');    // car Y inverse
+					break;
+				case SDL_SCANCODE_LEFT:
+					enVie = jeu.actionClavier('g');
+					break;
+				case SDL_SCANCODE_RIGHT:
+					enVie = jeu.actionClavier('d');
+					break;
+                case SDL_SCANCODE_ESCAPE:
+                case SDL_SCANCODE_Q:
+                    quit = true;
+                    break;
+				default: break;
+				}
+				if ((withSound) && (mangePastille))
+                    Mix_PlayChannel(-1,sound,0);
+			}
+		}
+
+		// on affiche le jeu sur le buffer cach�
+		affichageGRAPHIQUE();
+
+		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
+        SDL_RenderPresent(renderer);
+	}
+} */
+
+
 
 
