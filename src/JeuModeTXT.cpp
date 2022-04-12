@@ -92,7 +92,7 @@ Vec2 JeuModeTXT::convertPos(Vec2 pos)
 {
     Vec2 newPos;
     newPos.x = (DIMX * pos.x) / 100;
-    newPos.y = (DIMY * pos.y) / 6;
+    newPos.y = (DIMY * pos.y) / 12;
     return newPos;
 }
 
@@ -105,7 +105,6 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             if ((int(convertPos(jeu.getConstPersonnage().getPos()).x) == i) && (int(convertPos(jeu.getConstPersonnage().getPos()).y) == j) && (jeu.getConstPersonnage().enVie == true))
             {
                 cadre[i][j] = 'O';
-                // cout<<"perso x :"<<convertPos(jeu.getConstPersonnage().getPos()).x<<"y : "<<convertPos(jeu.getConstPersonnage().getPos()).y;
             }
             for (int m = 0; m < 4; m++)
             {
@@ -121,12 +120,21 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             {
                 if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
                 {
-                    if (jeu.getPlateforme().at(p).getTaille() == 1)
+                    if (jeu.getPlateforme().at(p).getTaille().y == 2)
                     {
                         cadre[i][j] = '_';
+                        cadre[i][j+1] = '_';
                         // cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
                         // cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
                     }
+                }
+            }
+            for (int pr = 0; pr < jeu.getConstPersonnage().getNombreProj(); pr++)
+            {
+                Vec2 pospr = convertPos(jeu.getConstPersonnage().getProjectileAff(pr).getpos());
+                if ((int(pospr.x) == i) && (int(pospr.y) == j) && (jeu.getConstPersonnage().getProjectileAff(pr).existe))
+                {
+                    cadre[i][j] = '.';
                 }
             }
             for (int b = 0; b < 4; b++)

@@ -11,8 +11,8 @@ Monstre::Monstre()
     position.x = 0;
     position.y = 0;
     resistance = 0;
-    direction.x = 1;
-    direction.y = 1;
+    direction.x = 0;
+    direction.y = 0;
     vitesse = 1;
     enVie = true;
 }
@@ -37,8 +37,10 @@ Vec2 Monstre::getDirM() const
     return direction;
 }
 
-void Monstre::Update(double dt){
-    position.y+=direction.y*dt;
+void Monstre::Update(double dt)
+{
+    position.y += direction.y * dt;
+    position.x += direction.x * dt;
 }
 
 float Monstre::getVitM() const
@@ -75,19 +77,19 @@ void Monstre::bougeAuto(double dt)
 {
     if (enVie == true)
     {
-        if(position.y > 5.5){
-            direction.y=-1;
+        if (position.y > 5.5)
+        {
+            direction.y = -1;
             Update(dt);
-            cout<<"ola";
         }
-        else if(position.y < 0.5){
-            direction.y=1;
+        else if (position.y < 0.5)
+        {
+            direction.y = 1;
             Update(dt);
-            cout<<"ola2";
         }
-        else Update(dt);
+        else
+            Update(dt);
     }
-    cout << "posy :"<<position.y;
 }
 
 void Monstre::descRes()

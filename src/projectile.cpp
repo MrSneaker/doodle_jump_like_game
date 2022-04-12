@@ -8,7 +8,6 @@ projectile::projectile(float x, float y, float dx, float dy)
     direction.x = dx;
     direction.y = dy;
     existe = true;
-    cout << "proj existe ? :" << existe << endl;
 }
 
 projectile::~projectile()

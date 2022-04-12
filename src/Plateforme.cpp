@@ -4,15 +4,23 @@
 
 Plateforme::Plateforme()
 {
+    pos.x = 0;
+    pos.y = 0;
+    dir.x = 0;
+    dir.y = 0;
+    taille.x = 0;
+    taille.y = 0;
+    res = 0;
 }
 
-Plateforme::Plateforme(float posx, float posy, float dirx, float diry, float t, int resist)
+Plateforme::Plateforme(float posx, float posy, float dirx, float diry, float tx, float ty, int resist)
 {
     pos.x = posx;
     pos.y = posy;
     dir.x = dirx;
     dir.y = diry;
-    taille = t;
+    taille.x = tx;
+    taille.y = ty;
     res = resist;
 }
 
@@ -46,14 +54,15 @@ void Plateforme::setDir(float x, float y)
     dir.y = y;
 }
 
-float Plateforme::getTaille() const
+Vec2 Plateforme::getTaille() const
 {
     return taille;
 }
 
-void Plateforme::setTaille(float x)
+void Plateforme::setTaille(float x, float y)
 {
-    taille = x;
+    taille.x = x;
+    taille.y = y;
 }
 
 int Plateforme::getRes() const
@@ -130,30 +139,28 @@ void Plateforme::bougeAutoLateral(double dt)
             {
                 dir.x = -4;
                 Update(dt);
-                cout << "en haut??";
             }
             else if (pos.x < 40)
             {
                 dir.x = 4;
                 Update(dt);
-                cout << "en bas??";
             }
             else
                 Update(dt);
-            cout << "pos x : " << pos.x;
         }
     }
 }
 
 void Plateforme::testRegression()
 {
-    Plateforme p1(0, 0, 0, 0, 0, 0);
+    Plateforme p1(0, 0, 0, 0, 0, 0, 0);
     assert(p1.pos.x == 0);
     assert(p1.pos.y == 0);
     assert(p1.dir.x == 0);
     assert(p1.dir.y == 0);
     assert(p1.res == 0);
-    assert(p1.taille == 0);
+    assert(p1.taille.x == 0);
+    assert(p1.taille.y == 0);
     p1.setPos(10, 10);
     assert(p1.pos.x == 10);
     assert(p1.pos.y == 10);
@@ -175,7 +182,9 @@ void Plateforme::testRegression()
     p1.descRes();
     assert(p1.res == 0);
     cout << "res palteforme apres descRes : " << p1.getRes() << endl;
-    p1.setTaille(2);
-    assert(p1.taille == 2);
-    cout << "taille plateforme : " << p1.getTaille() << endl;
+    p1.setTaille(2,2);
+    assert(p1.taille.x == 2);
+    assert(p1.taille.y == 2);
+    cout << "taille plateforme x: " << p1.getTaille().x << endl;
+    cout << "taille plateforme y: " << p1.getTaille().y << endl;
 }

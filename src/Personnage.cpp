@@ -11,6 +11,8 @@ Personnage::Personnage()
     proj = {};
     direction = {0, 0};
     vitesse = 1;
+    taille.x = 1;
+    taille.y = 1;
     nom = "p0";
     enVie = true;
 }
@@ -54,27 +56,37 @@ void Personnage::setVit(float v)
     vitesse = v;
 }
 
+Vec2 Personnage::getTaille() const
+{
+    return taille;
+}
+
+void Personnage::setTaille(float x, float y)
+{
+    taille.x = x;
+    taille.y = y;
+}
+
 void Personnage::deplacerD(double dt)
 {
-    direction.y = 1.25 * (vitesse * dt);
+    direction.y = 3.5 * (vitesse * dt);
     position.y = position.y + direction.y;
-    if (position.y > 6)
+    if (position.y > 12)
         position.y = 0;
 }
 
 void Personnage::deplacerG(double dt)
 {
-    direction.y = -1.25 * (vitesse * dt);
+    direction.y = -3.5 * (vitesse * dt);
     position.y = position.y + direction.y;
     if (position.y < 0)
-        position.y = 6;
+        position.y = 12;
 }
 
 void Personnage::saut(double dt)
 {
     direction.x = -110 * (vitesse * dt);
     position.x = position.x + direction.x;
-    // if(position.x>8) position.x = 8;
 }
 
 void Personnage::tombe(double dt)
@@ -93,11 +105,10 @@ void Personnage::setNom(const string nomP)
     nom = nomP;
 }
 
-void Personnage::creerProj()
+void Personnage::creerProj(double dt)
 {
-    projectile a(position.x, position.y, 0, 1);
+    projectile a(position.x, position.y, -110, 0);
     proj.emplace(proj.end(), a);
-    proj.back().Update(1.0 / 60);
 }
 
 void Personnage::detruitProj(int i)
@@ -106,7 +117,12 @@ void Personnage::detruitProj(int i)
     proj.erase(proj.begin() + i);
 }
 
-projectile Personnage::getProjectile(int n) const
+projectile &Personnage::getProjectile(int n)
+{
+    return proj.at(n);
+}
+
+projectile Personnage::getProjectileAff(int n) const
 {
     return proj.at(n);
 }
@@ -152,9 +168,9 @@ void Personnage::testRegression()
     cout << "pos x : " << p1.getPos().x << endl;
     cout << "pos y : " << p1.getPos().y << endl;
     cout << "vitesse : " << p1.getVit() << endl;
-    p1.creerProj();
-    p1.creerProj();
-    p1.creerProj();
+    p1.creerProj(1.0 / 60.0);
+    p1.creerProj(1.0 / 60.0);
+    p1.creerProj(1.0 / 60.0);
     assert(p1.proj.size() == 3);
     for (int i = 0; i < 3; i++)
     {

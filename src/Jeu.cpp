@@ -69,7 +69,7 @@ bool Jeu::actionClavier(const char touche, double dt)
 		break;
 		ok = true;
 	case 'r':
-		perso.creerProj();
+		perso.creerProj(dt);
 		break;
 		ok = true;
 	case 'q':
@@ -88,13 +88,13 @@ void Jeu::actionsAutomatiques(double dt)
 			monstr[i].bougeAuto(dt);
 		}
 	}
-	int a = rand() % p.size();
-	p.at(a).bougeAutoLateral(dt);
+	for (int i = 0; i < p.size(); i++)
+		p.at(i).bougeAutoLateral(dt);
 }
 
 void Jeu::InitPersonnage()
 {
-	perso.setPos(50, 3);
+	perso.setPos(50, 6);
 	perso.setVit(1);
 }
 
@@ -104,8 +104,11 @@ void Jeu::InitMonstre()
 	for (i = 0; i < 4; i++)
 	{
 		monstr[i].setVitM(1);
-		monstr[i].setTailleM(1);
-		monstr[i].setResistance(1);
+		monstr[i].setTailleM((rand() % 1) + 1);
+		if (monstr[i].getTailleM() == 2)
+			monstr[i].setResistance(2);
+		else
+			monstr[i].setResistance(1);
 		monstr[i].enVie = true;
 	}
 }
@@ -134,18 +137,21 @@ void Jeu::InitPlat()
 {
 	int i;
 	time_t t;
-	Plateforme p0(perso.getPos().x + 1, perso.getPos().y, 0, 0, 1, -1);
+	Plateforme p0(perso.getPos().x + 1, perso.getPos().y, 0, 0, 1, 2, -1);
 	p.emplace(p.begin(), p0);
 	for (i = 1; i < 12; i++)
 	{
 		Plateforme tmp;
-		tmp.setPos(rand() % 100, rand() % 6);
+		tmp.setPos((rand() % 99) + 1, (rand() % 11) + 1);
 		if (rand() % 100 <= 70)
 			tmp.setRes(-1);
 		else
 			tmp.setRes(1);
-		tmp.setDir(1, 1);
-		tmp.setTaille(1);
+		if (rand() % 100 > 90)
+			tmp.setDir(0, 1);
+		if (rand() % 100 > 90)
+			tmp.setDir(1, 0);
+		tmp.setTaille(1,2);
 		if (rand() % 100 > 90)
 		{
 			bonu[rand() % 4].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
@@ -189,7 +195,7 @@ void Jeu::updateDefil(double dt)
 			tmp.setRes(-1);
 		else
 			tmp.setRes(1);
-		tmp.setTaille(1);
+		tmp.setTaille(1,2);
 		for (int j = 0; j < 4; j++)
 		{
 			if (rand() % 100 > 90)
@@ -216,12 +222,37 @@ void Jeu::update(double dt)
 	{
 		float pposx = p.at(i).getPos().x;
 		float pposy = p.at(i).getPos().y;
-		if ((perso.getPos().x >= pposx) && (perso.getPos().y >= pposy - 0.1) && (perso.getPos().y <= pposy + 0.1))
+		float pSupx = pposx-p.at(i).getTaille().x;
+		float pSupy = pposy+p.at(i).getTaille().y;
+		if ((perso.getPos().x <= pposx) &&(perso.getPos().x>=pSupx)&& (((perso.getPos().y >= pposy) && (perso.getPos().y <= pSupy))))
 		{
 			perso.saut(dt);
 		}
 		else
 			perso.tombe(dt);
+	}
+	for (int j = 0; j < perso.getNombreProj(); j++)
+	{
+		if (perso.getProjectile(j).existe == true)
+		{
+			perso.getProjectile(j).Update(dt);
+			for (int i = 0; i < 4; i++)
+			{
+				if ((perso.getProjectile(j).getpos().x == monstr[i].getPos().x) && (perso.getProjectile(j).getpos().y == monstr[i].getPos().y))
+				{
+					monstr[i].descRes();
+					if (monstr[i].getResistance() == 0)
+					{
+						monstr[i].enVie = false;
+					}
+					perso.detruitProj(j);
+				}
+			}
+			if (perso.getProjectile(j).getpos().x < -5)
+			{
+				perso.detruitProj(j);
+			}
+		}
 	}
 	for (int i = 0; i < 4; i++)
 	{
@@ -231,31 +262,7 @@ void Jeu::update(double dt)
 			perso.enVie = false;
 			cout << "mort d'un mob";
 		}
-		if (perso.getNombreProj() != 0)
-		{
-			for (int j = 0; j < perso.getNombreProj(); j++)
-			{
-				if (perso.getProjectile(j).existe == true)
-				{
-					perso.getProjectile(j).Update(dt);
-					if ((perso.getProjectile(j).getpos().x == monstr[i].getPos().x) && (perso.getProjectile(j).getpos().y == monstr[i].getPos().y))
-					{
-						monstr[i].descRes();
-						if (monstr[i].getResistance() == 0)
-						{
-							monstr[i].enVie = false;
-						}
-						perso.detruitProj(j);
-					}
-					if (perso.getProjectile(j).getpos().y >= 20)
-					{
-						perso.detruitProj(j);
-						cout << "lol";
-					}
-					// cout<<perso.getProjectile(j).getpos().x;
-				}
-			}
-		}
+
 		// updateDefil(dt);
 	}
 	for (int i = 0; i < 4; i++)

@@ -12,9 +12,9 @@ int main(void)
     Jeu jeu;
     JeuModeTXT txt;
     bool ok = jeu.getConstPersonnage().enVie;
-    // jeu.InitPersonnage();
+    jeu.InitPersonnage();
     jeu.InitPlat();
-    // jeu.InitBonus();
+    jeu.InitBonus();
     jeu.InitMonstre();
     txt.updatePlateau(jeu);
     txt.affichageTXT(jeu, dt);
@@ -27,7 +27,7 @@ int main(void)
         ok = jeu.getConstPersonnage().enVie;
         auto stop = timer.now();
         dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
-        // cout<<"pos convert perso x : "<<txt.convertPos(jeu.getConstPersonnage().getPos()).x;
+        //cout<<"pos convert perso x : "<<txt.convertPos(jeu.getConstPersonnage().getPos()).x;
     } while (ok);
     cout << "partie terminée.." << endl;
     return 0;
