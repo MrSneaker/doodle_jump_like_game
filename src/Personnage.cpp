@@ -107,7 +107,7 @@ void Personnage::setNom(const string nomP)
 
 void Personnage::creerProj(double dt)
 {
-    projectile a(position.x, position.y, -110, 0);
+    projectile a(position.x, position.y+0.5, -110, 0);
     proj.emplace(proj.end(), a);
 }
 

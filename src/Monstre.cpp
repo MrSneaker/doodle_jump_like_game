@@ -9,12 +9,14 @@ using namespace std;
 Monstre::Monstre()
 {
     position.x = 0;
-    position.y = 0;
+    position.y = 100;
     resistance = 0;
     direction.x = 0;
     direction.y = 0;
+    taille.x = 0;
+    taille.y = 0;
     vitesse = 1;
-    enVie = true;
+    enVie = false;
 }
 
 Monstre::~Monstre()
@@ -37,6 +39,12 @@ Vec2 Monstre::getDirM() const
     return direction;
 }
 
+void Monstre::setDirM(float x, float y)
+{
+    direction.x = x;
+    direction.y = y;
+}
+
 void Monstre::Update(double dt)
 {
     position.y += direction.y * dt;
@@ -53,14 +61,15 @@ void Monstre::setVitM(float v)
     vitesse = v;
 }
 
-float Monstre::getTailleM() const
+Vec2 Monstre::getTailleM() const
 {
     return taille;
 }
 
-void Monstre::setTailleM(float t)
+void Monstre::setTailleM(float tx, float ty)
 {
-    taille = t;
+    taille.x = tx;
+    taille.y = ty;
 }
 
 int Monstre::getResistance()
@@ -77,7 +86,7 @@ void Monstre::bougeAuto(double dt)
 {
     if (enVie == true)
     {
-        if (position.y > 5.5)
+        if (position.y > 11.5)
         {
             direction.y = -1;
             Update(dt);
@@ -107,7 +116,8 @@ void Monstre::testRegression()
     assert(m1.direction.y == 0);
     assert(m1.vitesse == 1);
     assert(m1.resistance == 0);
-    assert(m1.taille == 0);
+    assert(m1.taille.x == 0);
+    assert(m1.taille.y == 0);
     assert(m1.enVie == true);
     m1.setPos(10, 10);
     assert(m1.position.x = 10);
@@ -117,8 +127,9 @@ void Monstre::testRegression()
     m1.setVitM(2);
     m1.Update(dt);
     m1.setResistance(2);
-    m1.setTailleM(2);
-    assert(m1.taille == 2);
+    m1.setTailleM(2, 2);
+    assert(m1.taille.x == 2);
+    assert(m1.taille.x == 2);
     assert(m1.vitesse == 2);
     assert(m1.resistance == 2);
     assert(m1.position.x == 12);
@@ -130,5 +141,6 @@ void Monstre::testRegression()
     cout << "pos y monstre : " << m1.getPos().y << endl;
     cout << "vitesse monstre : " << m1.getVitM() << endl;
     cout << "resistance monstre : " << m1.getResistance() << endl;
-    cout << "taille monstre : " << m1.getTailleM() << endl;
+    cout << "taille monstre x: " << m1.getTailleM().x << endl;
+    cout << "taille monstre y: " << m1.getTailleM().y << endl;
 }

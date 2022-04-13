@@ -2,14 +2,14 @@
 #include <assert.h>
 #include <iostream>
 
-bonus::bonus(/* args */)
+bonus::bonus()
 {
     position.x = 0;
-    position.y = 0;
+    position.y = 100;
     duree = 0;
     vitesse = 0;
     nomBonus = "b0";
-    estPris == false;
+    estPris == true;
 }
 
 bonus::~bonus()

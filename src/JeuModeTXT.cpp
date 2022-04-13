@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 const int DIMX = 15;
-const int DIMY = 21;
+const int DIMY = 30;
 
 JeuModeTXT::JeuModeTXT()
 {
@@ -19,39 +19,39 @@ JeuModeTXT::~JeuModeTXT()
 {
 }
 
-char cadre[15][21] = {
-    "####################",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "####################"};
+char cadre[15][30] = {
+    "#############################",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#############################"};
 
-char cadreClear[15][21] = {
-    "####################",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "#                  #",
-    "####################"};
+char cadreClear[15][30] = {
+    "#############################",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#############################"};
 
 void termClear() // efface le terminal
 {
@@ -100,17 +100,20 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
 {
     for (int i = 0; i < 15; i++)
     {
-        for (int j = 0; j < 21; j++)
+        for (int j = 0; j < 30; j++)
         {
             if ((int(convertPos(jeu.getConstPersonnage().getPos()).x) == i) && (int(convertPos(jeu.getConstPersonnage().getPos()).y) == j) && (jeu.getConstPersonnage().enVie == true))
             {
-                cadre[i][j] = 'O';
+                cadre[i][j] = 'l';
+                cadre[i - 1][j] = 'o';
+                cadre[i - 1][j + 1] = 'o';
+                cadre[i][j + 1] = 'l';
             }
             for (int m = 0; m < 4; m++)
             {
                 if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true))
                 {
-                    if (jeu.getConstMonstre(m).getTailleM() == 1)
+                    if (jeu.getConstMonstre(m).getTailleM().y == 1)
                         cadre[i][j] = 'm';
                     else
                         cadre[i][j] = 'M';
@@ -123,7 +126,9 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                     if (jeu.getPlateforme().at(p).getTaille().y == 2)
                     {
                         cadre[i][j] = '_';
-                        cadre[i][j+1] = '_';
+                        cadre[i][j + 1] = '_';
+                        cadre[i][j + 2] = '_';
+                        cadre[i][j + 3] = '_';
                         // cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
                         // cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
                     }
@@ -158,7 +163,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
 void clear()
 {
     for (int i = 0; i < 15; ++i)
-        for (int j = 0; j < 21; ++j)
+        for (int j = 0; j < 30; ++j)
             cadre[i][j] = cadreClear[i][j];
 }
 
@@ -167,7 +172,7 @@ void JeuModeTXT::affichageTXT(Jeu &jeu, double dt)
     termClear();
     for (int i = 0; i < 15; i++)
     {
-        for (int j = 0; j < 21; j++)
+        for (int j = 0; j < 30; j++)
         {
             cout << cadre[i][j];
         }
