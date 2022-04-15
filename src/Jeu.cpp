@@ -129,7 +129,7 @@ void Jeu::InitBonus()
 			bonu[i].setNomB("ressort");
 		if (rand() % 100 > 75)
 			bonu[i].setNomB("boing");
-		}
+	}
 }
 
 void Jeu::InitPlat()
@@ -220,14 +220,16 @@ void Jeu::RecommencerJeu()
 
 void Jeu::update(double dt)
 {
-	actionsAutomatiques(dt);
+	float px = perso.getPos().x;
+	float py = perso.getPos().y;
+
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
 		float pposx = p.at(i).getPos().x;
 		float pposy = p.at(i).getPos().y;
 		float pSupx = pposx - p.at(i).getTaille().x;
 		float pSupy = pposy + p.at(i).getTaille().y;
-		if (((perso.getPos().x <= pposx) && (perso.getPos().x >= pSupx)) && ((((perso.getPos().y >= pposy) && (perso.getPos().y <= pSupy))) || (((perso.getPos().y + perso.getTaille().y >= pposy) && (perso.getPos().y + perso.getTaille().y <= pSupy)))))
+		if (((px <= pposx) && (px >= pSupx)) && ((((py >= pposy) && (py <= pSupy))) || (((py + perso.getTaille().y >= pposy) && (py + perso.getTaille().y <= pSupy)))))
 		{
 			perso.saut(dt);
 		}
@@ -241,15 +243,17 @@ void Jeu::update(double dt)
 			perso.getProjectile(j).Update(dt);
 			for (int i = 0; i < 4; i++)
 			{
-				if ((perso.getProjectile(j).getpos().x >= monstr[i].getPos().x) && (perso.getProjectile(j).getpos().x <= monstr[i].getPos().x - monstr[i].getTailleM().x) && (perso.getProjectile(j).getpos().y >= monstr[i].getPos().y) && (perso.getProjectile(j).getpos().y <= monstr[i].getPos().y + monstr[i].getTailleM().y))
+				cout<<" j = "<<j;
+				if (((perso.getProjectile(j).getpos().x <= monstr[i].getPos().x) && (perso.getProjectile(j).getpos().x >= monstr[i].getPos().x - monstr[i].getTailleM().x)) && ((perso.getProjectile(j).getpos().y >= monstr[i].getPos().y) && (perso.getProjectile(j).getpos().y <= monstr[i].getPos().y + monstr[i].getTailleM().y)))
 				{
+					cout<<" j à détruire = "<<j;
 					cout << "alo?????";
+					perso.detruitProj(j);
 					monstr[i].descRes();
 					if (monstr[i].getResistance() == 0)
 					{
 						monstr[i].enVie = false;
 					}
-					perso.detruitProj(j);
 				}
 			}
 			if (perso.getProjectile(j).getpos().x < -5)
@@ -260,18 +264,18 @@ void Jeu::update(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if ((perso.getPos().x == monstr[i].getPos().x) && (perso.getPos().y == monstr[i].getPos().y) && (monstr[i].enVie == true))
+		float mx = monstr[i].getPos().x;
+		float my = monstr[i].getPos().y;
+		if ((((px <= mx) && (px >= mx - monstr[i].getTailleM().x) && (py >= my) && (py <= my + monstr[i].getTailleM().y)) || ((px - perso.getTaille().x <= mx) && (px - perso.getTaille().x >= mx - monstr[i].getTailleM().x) && (py + perso.getTaille().y >= my) && (py + perso.getTaille().y <= my + monstr[i].getTailleM().y))) && (monstr[i].enVie == true))
 		{
 			perso.tombe(dt);
 			perso.enVie = false;
 			cout << "mort d'un mob";
 		}
-
-		// updateDefil(dt);
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if ((int(perso.getPos().x) == bonu[i].getPosBonus().x) && (int(perso.getPos().y) == bonu[i].getPosBonus().y))
+		if ((int(px) == bonu[i].getPosBonus().x) && (int(py) == bonu[i].getPosBonus().y))
 		{
 			std::chrono::high_resolution_clock timer;
 			double tps = 0;
@@ -294,9 +298,10 @@ void Jeu::update(double dt)
 			perso.setVit(1);
 		}
 	}
-	if (perso.getPos().x >= 100)
+	if (px >= 100)
 	{
 		perso.enVie = false;
 		cout << "mort de chute";
 	}
+	actionsAutomatiques(dt);
 }

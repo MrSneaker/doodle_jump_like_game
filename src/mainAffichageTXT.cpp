@@ -27,7 +27,8 @@ int main(void)
         ok = jeu.getConstPersonnage().enVie;
         auto stop = timer.now();
         dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
-        //cout<<"pos convert perso x : "<<txt.convertPos(jeu.getConstPersonnage().getPos()).x;
+        //cout<<"pos perso x : "<<jeu.getConstPersonnage().getPos().x;
+        //cout<<"pos perso y : "<<jeu.getConstPersonnage().getPos().y;
     } while (ok);
     cout << "partie terminée.." << endl;
     return 0;

@@ -114,12 +114,17 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                 if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true))
                 {
                     if (jeu.getConstMonstre(m).getTailleM().y == 1)
+                    {
                         cadre[i][j] = 'm';
+                        cadre[i - 1][j] = 'm';
+                        cadre[i - 1][j + 1] = 'm';
+                        cadre[i][j + 1] = 'm';
+                    }
                     else
                         cadre[i][j] = 'M';
                 }
             }
-            for (int p = 0; p < jeu.getPlateforme().size(); p++)
+            for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++)
             {
                 if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
                 {
