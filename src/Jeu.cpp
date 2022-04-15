@@ -2,6 +2,8 @@
 
 using namespace std;
 
+int g = 666;
+
 Jeu::Jeu()
 {
 }
@@ -222,6 +224,8 @@ void Jeu::update(double dt)
 {
 	float px = perso.getPos().x;
 	float py = perso.getPos().y;
+	
+	cout <<"g  = "<<g;
 
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
@@ -243,16 +247,18 @@ void Jeu::update(double dt)
 			perso.getProjectile(j).Update(dt);
 			for (int i = 0; i < 4; i++)
 			{
-				cout<<" j = "<<j;
+				
 				if (((perso.getProjectile(j).getpos().x <= monstr[i].getPos().x) && (perso.getProjectile(j).getpos().x >= monstr[i].getPos().x - monstr[i].getTailleM().x)) && ((perso.getProjectile(j).getpos().y >= monstr[i].getPos().y) && (perso.getProjectile(j).getpos().y <= monstr[i].getPos().y + monstr[i].getTailleM().y)))
 				{
+					g = j;
 					cout<<" j à détruire = "<<j;
 					cout << "alo?????";
-					perso.detruitProj(j);
+					//perso.detruitProj(j);
 					monstr[i].descRes();
 					if (monstr[i].getResistance() == 0)
 					{
 						monstr[i].enVie = false;
+						cout<<"monstre mort de proj";
 					}
 				}
 			}
