@@ -115,7 +115,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                 {
                     if (jeu.getConstMonstre(m).getTailleM().y == 1)
                     {
-                        cadre[i][j] = 'm';
+                        cadre[i][j] = 'M';
                         cadre[i - 1][j] = 'm';
                         cadre[i - 1][j + 1] = 'm';
                         cadre[i][j + 1] = 'm';

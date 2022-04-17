@@ -13,11 +13,14 @@ private:
     string nomBonus;
     float vitesse;
     float duree;
+    Vec2 taille;
 
 public:
     bool estPris;
     bonus(); /*! \brief */
     ~bonus();
+    Vec2 getTailleB() const;             /*! \brief renvoie la taille du bonus */
+    void setTailleB(float x, float y);   /*! \brief met à jour la taille avec les paramètres \param x, \param y*/
     float getVitB() const;               /*! \brief renvoie la vitesse du bonus */
     void setVitB(float v);               /*! \brief met à jour la vitesse du bonus selon un parametre \param v*/
     Vec2 getPosBonus() const;            /*! \brief renvoie la position du monstre en x et y*/

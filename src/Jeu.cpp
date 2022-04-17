@@ -111,7 +111,7 @@ void Jeu::InitMonstre()
 			monstr[i].setResistance(2);
 		else
 			monstr[i].setResistance(1);
-		if ((rand() % 100 > 60) && (monstr[i].getTailleM().y == 1))
+		if ((rand() % 100 > 110) && (monstr[i].getTailleM().y == 1))
 			monstr[i].setDirM(0, 1);
 	}
 }
@@ -137,7 +137,7 @@ void Jeu::InitBonus()
 void Jeu::InitPlat()
 {
 	int i;
-	Plateforme p0(perso.getPos().x + 1, perso.getPos().y, 0, 0, 1, 2, -1);
+	Plateforme p0(perso.getPos().x + 20, perso.getPos().y, 0, 0, 1, 2, -1);
 	p.emplace(p.begin(), p0);
 	for (i = 1; i < 12; i++)
 	{
@@ -224,8 +224,6 @@ void Jeu::update(double dt)
 {
 	float px = perso.getPos().x;
 	float py = perso.getPos().y;
-	
-	cout <<"g  = "<<g;
 
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
@@ -240,31 +238,73 @@ void Jeu::update(double dt)
 		else
 			perso.tombe(dt);
 	}
-	for (int j = 0; j < perso.getNombreProj(); j++)
+	if (perso.getNombreProj() > 0)
 	{
-		if (perso.getProjectile(j).existe == true)
+		for (int j = 0; j < perso.getNombreProj(); j++)
 		{
-			perso.getProjectile(j).Update(dt);
-			for (int i = 0; i < 4; i++)
+			bool detruit = false;
+			if (perso.getProjectile(j).existe == true)
 			{
-				
-				if (((perso.getProjectile(j).getpos().x <= monstr[i].getPos().x) && (perso.getProjectile(j).getpos().x >= monstr[i].getPos().x - monstr[i].getTailleM().x)) && ((perso.getProjectile(j).getpos().y >= monstr[i].getPos().y) && (perso.getProjectile(j).getpos().y <= monstr[i].getPos().y + monstr[i].getTailleM().y)))
+				perso.getProjectile(j).Update(dt);
+				if (detruit == false)
 				{
-					g = j;
-					cout<<" j à détruire = "<<j;
-					cout << "alo?????";
-					//perso.detruitProj(j);
-					monstr[i].descRes();
-					if (monstr[i].getResistance() == 0)
+					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[0].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[0].getPos().x - monstr[0].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[0].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[0].getPos().y + monstr[0].getTailleM().y)) && (monstr[0].enVie == true))
 					{
-						monstr[i].enVie = false;
-						cout<<"monstre mort de proj";
+						perso.detruitProj(j);
+						detruit = true;
+						monstr[0].descRes();
+						if (monstr[0].getResistance() == 0)
+						{
+							monstr[0].enVie = false;
+						}
 					}
 				}
-			}
-			if (perso.getProjectile(j).getpos().x < -5)
-			{
-				perso.detruitProj(j);
+				if (detruit == false)
+				{
+					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[1].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[1].getPos().x - monstr[1].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[1].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[1].getPos().y + monstr[1].getTailleM().y)) && (monstr[1].enVie == true))
+					{
+						perso.detruitProj(j);
+						detruit = true;
+						monstr[1].descRes();
+						if (monstr[1].getResistance() == 0)
+						{
+							monstr[1].enVie = false;
+						}
+					}
+				}
+				if (detruit == false)
+				{
+					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[2].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[2].getPos().x - monstr[2].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[2].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[2].getPos().y + monstr[2].getTailleM().y)) && (monstr[2].enVie == true))
+					{
+						perso.detruitProj(j);
+						detruit = true;
+						monstr[2].descRes();
+						if (monstr[2].getResistance() == 0)
+						{
+							monstr[2].enVie = false;
+						}
+					}
+				}
+				if (detruit == false)
+				{
+					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[3].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[3].getPos().x - monstr[3].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[3].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[3].getPos().y + monstr[3].getTailleM().y)) && (monstr[3].enVie == true))
+					{
+						perso.detruitProj(j);
+						detruit = true;
+						monstr[3].descRes();
+						if (monstr[3].getResistance() == 0)
+						{
+							monstr[3].enVie = false;
+						}
+					}
+				}
+				if (detruit == false)
+				{
+					if (perso.getProjectile(j).getpos().x < -5)
+					{
+						perso.detruitProj(j);
+					}
+				}
 			}
 		}
 	}

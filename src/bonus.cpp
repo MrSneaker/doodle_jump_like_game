@@ -8,6 +8,8 @@ bonus::bonus()
     position.y = 100;
     duree = 0;
     vitesse = 0;
+    taille.x = 0;
+    taille.y = 0;
     nomBonus = "b0";
     estPris == true;
 }
@@ -25,6 +27,17 @@ void bonus::setPosBonus(float x, float y)
 {
     position.x = x;
     position.y = y;
+}
+
+Vec2 bonus::getTailleB() const
+{
+    return taille;
+}
+
+void bonus::setTailleB(float x, float y)
+{
+    taille.x = x;
+    taille.y = y;
 }
 
 float bonus::getVitB() const

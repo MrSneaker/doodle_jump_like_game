@@ -108,12 +108,11 @@ void Personnage::setNom(const string nomP)
 void Personnage::creerProj(double dt)
 {
     projectile a(position.x, position.y+0.5, -100, 0);
-    proj.emplace(proj.end(), a);
+    proj.push_back(a);
 }
 
 void Personnage::detruitProj(int i)
 {
-    cout <<"AZAEAZAEA";
     proj.at(i).Suppr();
     proj.erase(proj.begin() + i);
 }
