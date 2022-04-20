@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int g = 666;
+float tps = 0;
 
 Jeu::Jeu()
 {
@@ -121,23 +121,38 @@ void Jeu::InitBonus()
 	int i;
 	for (i = 0; i < 4; i++)
 	{
-
+		bonu[i].setTailleB(1, 1);
 		bonu[i].setDuree(5);
-		if (rand() % 100 > 90)
-			bonu[i].setNomB("jetpack");
-		if (rand() % 100 > 60)
-			bonu[i].setNomB("hélice");
-		if (rand() % 100 > 25)
-			bonu[i].setNomB("ressort");
-		if (rand() % 100 > 75)
-			bonu[i].setNomB("boing");
+		if (i == 0)
+		{
+			bonu[i].setNomB("j");
+			bonu[i].setVitB(5);
+		}
+
+		if (i == 1)
+		{
+			bonu[i].setNomB("h");
+			bonu[i].setVitB(3);
+		}
+
+		if (i == 2)
+		{
+			bonu[i].setNomB("r");
+			bonu[i].setVitB(2);
+		}
+
+		if (i == 3)
+		{
+			bonu[i].setNomB("b");
+			bonu[i].setVitB(2);
+		}
 	}
 }
 
 void Jeu::InitPlat()
 {
 	int i;
-	Plateforme p0(perso.getPos().x + 20, perso.getPos().y, 0, 0, 1, 2, -1);
+	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 1, 2, -1);
 	p.emplace(p.begin(), p0);
 	for (i = 1; i < 12; i++)
 	{
@@ -152,7 +167,7 @@ void Jeu::InitPlat()
 		if (rand() % 100 > 90)
 			tmp.setDir(1, 0);
 		tmp.setTaille(1, 2);
-		if (rand() % 100 > 90)
+		if (rand() % 100 > 50)
 		{
 			int b = rand() % 4;
 			bonu[b].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
@@ -203,11 +218,12 @@ void Jeu::updateDefil(double dt)
 		tmp.setTaille(1, 2);
 		for (int j = 0; j < 4; j++)
 		{
-			if (rand() % 100 > 90)
+			if (rand() % 100 > 50)
 			{
 				bonu[j].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
+				bonu[j].estPris = false;
 			}
-			else if (rand() % 100 > 60)
+			else if (rand() % 100 > 70)
 			{
 				monstr[j].setPos(tmp.getPos().x - 5, tmp.getPos().y);
 			}
@@ -321,29 +337,38 @@ void Jeu::update(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		if ((int(px) == bonu[i].getPosBonus().x) && (int(py) == bonu[i].getPosBonus().y))
+		cout<<"bonus "<<bonu[i].getNomB()<<" : "<<bonu[i].estPris<<" ";
+		cout<<"bonus "<<bonu[i].getNomB()<<" x : "<<bonu[i].getPosBonus().x<<" ";
+		cout<<"bonus "<<bonu[i].getNomB()<<" y : "<<bonu[i].getPosBonus().y<<" ";
+		float bx = bonu[i].getPosBonus().x;
+		float by = bonu[i].getPosBonus().y;
+		if ((((px <= bx) && (px >= bx - bonu[i].getTailleB().x) && (py >= by) && (py <= by + bonu[i].getTailleB().y)) || ((px - perso.getTaille().x <= bx) && (px - perso.getTaille().x >= bx - bonu[i].getTailleB().x) && (py + perso.getTaille().y >= by) && (py + perso.getTaille().y <= by + bonu[i].getTailleB().y))) && (bonu[i].estPris == false))
 		{
-			std::chrono::high_resolution_clock timer;
-			double tps = 0;
-			while (tps == bonu[i].getDuree())
-			{
-				auto start = timer.now();
-				if (bonu[i].getNomB() == "jetpack")
-					perso.setVit(3);
-				else if (bonu[i].getNomB() == "hélice")
-					perso.setVit(2);
-				else if (bonu[i].getNomB() == "ressort")
-					perso.setVit(1.5);
-				else if (bonu[i].getNomB() == "boing")
-					perso.setVit(1.5);
-				auto stop = timer.now();
-				tps += std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
-				cout << tps;
-			}
+			tps = bonu[i].getDuree();
 			bonu[i].estPris = true;
-			perso.setVit(1);
+			cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 		}
 	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (bonu[i].estPris)
+		{
+			cout << bonu[i].getNomB() << " est pris";
+			if (tps > 0)
+			{
+				perso.setVit(bonu[i].getVitB());
+				perso.saut(dt);
+				tps -= dt;
+				cout << "temps bonus : " << tps;
+			}
+			else
+			{
+				perso.setVit(1);
+				bonu[i].estPris = false;
+			}
+		}
+	}
+
 	if (px >= 100)
 	{
 		perso.enVie = false;

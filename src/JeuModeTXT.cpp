@@ -149,16 +149,39 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             }
             for (int b = 0; b < 4; b++)
             {
-                if ((jeu.getConstBonus(b).getPosBonus().x == i) && (jeu.getConstBonus(b).getPosBonus().y == j) && (jeu.getConstBonus(b).estPris == false))
+                if ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x) == i) && (int(convertPos(jeu.getConstBonus(b).getPosBonus()).y) == j) && (jeu.getConstBonus(b).estPris == false))
                 {
-                    if (jeu.getConstBonus(b).getNomB() == "jetpack")
-                        cadre[i][j] = 'J';
-                    if (jeu.getConstBonus(b).getNomB() == "hélice")
-                        cadre[i][j] = 'H';
-                    if (jeu.getConstBonus(b).getNomB() == "ressort")
-                        cadre[i][j] = 'R';
-                    if (jeu.getConstBonus(b).getNomB() == "boing")
-                        cadre[i][j] = 'B';
+                    if (jeu.getConstBonus(b).getNomB() == "j")
+                    {
+                        cadre[i][j] = 'j';
+                        cadre[i - 1][j] = 'j';
+                        cadre[i - 1][j + 1] = 'j';
+                        cadre[i][j + 1] = 'j';
+                    }
+
+                    if (jeu.getConstBonus(b).getNomB() == "h")
+                    {
+                        cadre[i][j] = 'h';
+                        cadre[i - 1][j] = 'h';
+                        cadre[i - 1][j + 1] = 'h';
+                        cadre[i][j + 1] = 'h';
+                    }
+
+                    if (jeu.getConstBonus(b).getNomB() == "r")
+                    {
+                        cadre[i][j] = 'r';
+                        cadre[i - 1][j] = 'r';
+                        cadre[i - 1][j + 1] = 'r';
+                        cadre[i][j + 1] = 'r';
+                    }
+
+                    if (jeu.getConstBonus(b).getNomB() == "b")
+                    {
+                        cadre[i][j] = 'b';
+                        cadre[i - 1][j] = 'b';
+                        cadre[i - 1][j + 1] = 'b';
+                        cadre[i][j + 1] = 'b';
+                    }
                 }
             }
         }
