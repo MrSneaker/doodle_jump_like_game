@@ -3,6 +3,7 @@
 using namespace std;
 
 float tps = 0;
+float camX = 0;
 
 Jeu::Jeu()
 {
@@ -98,6 +99,7 @@ void Jeu::InitPersonnage()
 {
 	perso.setPos(50, 6);
 	perso.setVit(1);
+	camX = perso.getPos().x;
 }
 
 void Jeu::InitMonstre()
@@ -238,8 +240,12 @@ void Jeu::RecommencerJeu()
 
 void Jeu::update(double dt)
 {
+
 	float px = perso.getPos().x;
 	float py = perso.getPos().y;
+	float newcamX = perso.getPos().x + 10;
+	if (newcamX < camX)
+		camX = newcamX;
 
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
@@ -252,7 +258,9 @@ void Jeu::update(double dt)
 			perso.saut(dt);
 		}
 		else
+		{
 			perso.tombe(dt);
+		}
 	}
 	if (perso.getNombreProj() > 0)
 	{
@@ -316,7 +324,7 @@ void Jeu::update(double dt)
 				}
 				if (detruit == false)
 				{
-					if (perso.getProjectile(j).getpos().x < -5)
+					if (perso.getProjectile(j).getpos().x < perso.getPos().x - 60)
 					{
 						perso.detruitProj(j);
 					}
@@ -337,9 +345,6 @@ void Jeu::update(double dt)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		cout<<"bonus "<<bonu[i].getNomB()<<" : "<<bonu[i].estPris<<" ";
-		cout<<"bonus "<<bonu[i].getNomB()<<" x : "<<bonu[i].getPosBonus().x<<" ";
-		cout<<"bonus "<<bonu[i].getNomB()<<" y : "<<bonu[i].getPosBonus().y<<" ";
 		float bx = bonu[i].getPosBonus().x;
 		float by = bonu[i].getPosBonus().y;
 		if ((((px <= bx) && (px >= bx - bonu[i].getTailleB().x) && (py >= by) && (py <= by + bonu[i].getTailleB().y)) || ((px - perso.getTaille().x <= bx) && (px - perso.getTaille().x >= bx - bonu[i].getTailleB().x) && (py + perso.getTaille().y >= by) && (py + perso.getTaille().y <= by + bonu[i].getTailleB().y))) && (bonu[i].estPris == false))
@@ -369,7 +374,7 @@ void Jeu::update(double dt)
 		}
 	}
 
-	if (px >= 100)
+	if (px >= camX + 105)
 	{
 		perso.enVie = false;
 		cout << "mort de chute";

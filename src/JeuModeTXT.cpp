@@ -13,6 +13,8 @@ const int DIMY = 30;
 
 JeuModeTXT::JeuModeTXT()
 {
+    cam.x = 0;
+    cam.y = 0;
 }
 
 JeuModeTXT::~JeuModeTXT()
@@ -91,18 +93,31 @@ void termInit() // configure la saisie : ne pas afficher les caracteres tapes
 Vec2 JeuModeTXT::convertPos(Vec2 pos)
 {
     Vec2 newPos;
-    newPos.x = (DIMX * pos.x) / 100;
+    double scaleX = 100 / DIMX;
+    // double scaleY = 12 / DIMY;
+    newPos.x = ((pos.x - cam.x) / scaleX + DIMX / 2);
     newPos.y = (DIMY * pos.y) / 12;
-    return newPos;
+    //if (newPos.x >= 0 && newPos.x <= DIMX && newPos.y >=0 && newPos.y <= DIMY)
+        return newPos;
+}
+
+void JeuModeTXT::InitCam()
+{
+    cam.x = convertPos(jeu.getConstPersonnage().getPos()).x + DIMX / 2;
+    cam.y = convertPos(jeu.getConstPersonnage().getPos()).y + DIMY / 2;
 }
 
 void JeuModeTXT::updatePlateau(Jeu &jeu)
 {
+    float newcamX = convertPos(jeu.getConstPersonnage().getPos()).x;
+    cout << "newcamX : " << newcamX;
+    if (newcamX <= cam.x)
+        cam.x = newcamX;
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 30; j++)
         {
-            if ((int(convertPos(jeu.getConstPersonnage().getPos()).x) == i) && (int(convertPos(jeu.getConstPersonnage().getPos()).y) == j) && (jeu.getConstPersonnage().enVie == true))
+            if ((int(convertPos(jeu.getConstPersonnage().getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstPersonnage().getPos()).y) == j) && (jeu.getConstPersonnage().enVie == true))
             {
                 cadre[i][j] = 'l';
                 cadre[i - 1][j] = 'o';
@@ -111,7 +126,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             }
             for (int m = 0; m < 4; m++)
             {
-                if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true))
+                if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true) && ((int(convertPos(jeu.getConstMonstre(m).getPos()).x) > 0)))
                 {
                     if (jeu.getConstMonstre(m).getTailleM().y == 1)
                     {
@@ -126,7 +141,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             }
             for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++)
             {
-                if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
+                if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).x) > 0))
                 {
                     if (jeu.getPlateforme().at(p).getTaille().y == 2)
                     {
@@ -142,14 +157,14 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             for (int pr = 0; pr < jeu.getConstPersonnage().getNombreProj(); pr++)
             {
                 Vec2 pospr = convertPos(jeu.getConstPersonnage().getProjectileAff(pr).getpos());
-                if ((int(pospr.x) == i) && (int(pospr.y) == j) && (jeu.getConstPersonnage().getProjectileAff(pr).existe))
+                if ((int(pospr.x - cam.x + DIMX / 2) == i) && (int(pospr.y) == j) && (jeu.getConstPersonnage().getProjectileAff(pr).existe) && ((int(pospr.x) > 0)))
                 {
                     cadre[i][j] = '.';
                 }
             }
             for (int b = 0; b < 4; b++)
             {
-                if ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x) == i) && (int(convertPos(jeu.getConstBonus(b).getPosBonus()).y) == j) && (jeu.getConstBonus(b).estPris == false))
+                if ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstBonus(b).getPosBonus()).y) == j) && (jeu.getConstBonus(b).estPris == false) && ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x) > 0)))
                 {
                     if (jeu.getConstBonus(b).getNomB() == "j")
                     {

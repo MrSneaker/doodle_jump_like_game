@@ -11,10 +11,13 @@ class JeuModeTXT
 {
 private:
     Jeu jeu;
+    
 
 public:
+    Vec2 cam;
     JeuModeTXT();
     ~JeuModeTXT();
+    void InitCam();
     Vec2 convertPos(Vec2 pos);
     void updatePlateau(Jeu &jeu);
     void affichageTXT(Jeu &jeu, double dt);
