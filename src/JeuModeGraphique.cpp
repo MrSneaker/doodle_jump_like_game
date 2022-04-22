@@ -10,12 +10,16 @@
 
 
 const int TAILLE_SPRITE = 32;
+const int DIMX= 30; 
+const int DIMY= 60;
 
 
 
 // ============= CLASS JEUMODEGRAPHIQUE =============== //
 
-JeuModeGRAPHIQUE::JeuModeGRAPHIQUE():jeu() {
+JeuModeGRAPHIQUE::JeuModeGRAPHIQUE(){
+    cam.x = 0;
+    cam.y = 0;
 }
 
 JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE(){  
@@ -32,10 +36,19 @@ Vec2 JeuModeGRAPHIQUE::convertPos(Vec2 pos)
         return newPos;
 }
 
-void JeuModeTXT::InitCam()
+void JeuModeGRAPHIQUE::InitCam()
 {
     cam.x = convertPos(jeu.getConstPersonnage().getPos()).x + DIMX / 2;
     cam.y = convertPos(jeu.getConstPersonnage().getPos()).y + DIMY / 2;
+}
+
+void termClear()  // efface le terminal
+{
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
 
 
@@ -71,6 +84,23 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
    
 }
 
+void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu) {
+	//Remplir l'écran de blanc
+    SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
+    SDL_RenderClear(renderer);
+    SDL_Rect plateformes;
+
+
+	int x,y;
+	const Personnage& perso = jeu.getConstPersonnage();
+
+
+    // Afficher les sprites des plateformes et des projectiles
+	for (x=0;x<perso.getTaille();++x)
+		for (y=0;y<perso.getTaille();++y)
+			if (
+
+}
    
 
 
