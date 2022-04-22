@@ -102,7 +102,14 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu) {
 
 }
    
-
+void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE(Jeu &jeu){
+ 
+    TTF_CloseFont(font);
+    TTF_Quit();
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
 
 
 
