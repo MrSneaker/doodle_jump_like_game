@@ -14,7 +14,7 @@ private:
     Vec2 direction; /*! \brief le vecteur de direction des monstres*/
     float vitesse;  /*! \brief la vitesse du monstre à l'écran*/
     Vec2 taille;    /*! \brief la taille du monstre*/
-    char TypeM[4];  /*! \brief tableau contenant 4 monstres différents */
+    int TypeM;      /*! \brief entier représentant le monstre voulu */
     int resistance; /*! \brief résistance du monstre, combien de projectiles pour le tuer*/
 
 public:
@@ -23,8 +23,8 @@ public:
     ~Monstre();                          /*! \brief supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à NULL, enVie à NULL */
     Vec2 getPos() const;                 /*! \brief renvoie la position du monstre en x et y*/
     void setPos(float x, float y);       /*! \brief met à jour la position du monstre selon une position en paramètre \param x, \param y*/
-    int getTypeM();                      /*! \brief renvoie le type de monstre (taille,couleur,forme)*/
-    void setTypeM();                     /*! \brief met a jour le type de monstre*/
+    int getTypeM() const;                /*! \brief renvoie le type de monstre (taille,couleur,forme)*/
+    void setTypeM(int n);                     /*! \brief met a jour le type de monstre*/
     Vec2 getDirM() const;                /*! \brief renvoie la direction du monstre*/
     void setDirM(float x, float y);      /*! \brief met à jour la direction par rapport au paramètres \param x, \param y donnés*/
     void Update(double dt);              /*! \brief gère le mouvement du monstre en fonction d'un paramètre \param dt*/

@@ -45,6 +45,16 @@ void Monstre::setDirM(float x, float y)
     direction.y = y;
 }
 
+int Monstre::getTypeM() const
+{
+    return TypeM;
+}
+
+void Monstre::setTypeM(int n)
+{
+    TypeM = n;
+}
+
 void Monstre::Update(double dt)
 {
     position.y += direction.y * dt;

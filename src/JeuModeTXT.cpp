@@ -110,7 +110,7 @@ void JeuModeTXT::InitCam()
 void JeuModeTXT::updatePlateau(Jeu &jeu)
 {
     float newcamX = convertPos(jeu.getConstPersonnage().getPos()).x;
-    cout << "newcamX : " << newcamX;
+    //cout << "newcamX : " << newcamX;
     if (newcamX <= cam.x)
         cam.x = newcamX;
     for (int i = 0; i < 15; i++)
