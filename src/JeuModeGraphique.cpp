@@ -20,10 +20,17 @@ const int DIMY= 60;
 JeuModeGRAPHIQUE::JeuModeGRAPHIQUE(){
     cam.x = 0;
     cam.y = 0;
+    JeuModeTXT txt;
 }
+
+
 
 JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE(){  
 }
+
+
+char bordure[15][30];
+char bordureClean[15][30];
 
 Vec2 JeuModeGRAPHIQUE::convertPos(Vec2 pos)
 {
@@ -41,6 +48,16 @@ void JeuModeGRAPHIQUE::InitCam()
     cam.x = convertPos(jeu.getConstPersonnage().getPos()).x + DIMX / 2;
     cam.y = convertPos(jeu.getConstPersonnage().getPos()).y + DIMY / 2;
 }
+
+void termClear()  // efface le terminal
+{
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
 
 void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
     
@@ -71,6 +88,13 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
 
     //Initialisation du rendu
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
+
+
+    //Creation des rectangles pour plateformes, perso, monstres et bonus
+    SDL_Rect perso; //carré jaune
+    SDL_Rect plateformes; //bleu pour l'instant
+    SDL_Rect monstres; //carre rouge
+    SDL_Rect bonus; //carre vert
    
 }
 
@@ -78,6 +102,95 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
 void JeuModeGRAPHIQUE::updatePlateau(Jeu &jeu)
 {
 
+    float newcamX = convertPos(jeu.getConstPersonnage().getPos()).x;
+    //cout << "newcamX : " << newcamX;
+    if (newcamX <= cam.x)
+        cam.x = newcamX;
+    for (int i = 0; i < 15; i++)
+    {
+        for (int j = 0; j < 30; j++)
+        {
+            if ((int(convertPos(jeu.getConstPersonnage().getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstPersonnage().getPos()).y) == j) && (jeu.getConstPersonnage().enVie == true))
+            {
+                
+            }
+            for (int m = 0; m < 4; m++)
+            {
+                if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true) && ((int(convertPos(jeu.getConstMonstre(m).getPos()).x) > 0)))
+                {
+                    if (jeu.getConstMonstre(m).getTailleM().y == 1)
+                    {
+                        bordure[i][j] = ;
+                        bordure[i - 1][j] = 'm';
+                        bordure[i - 1][j + 1] = 'm';
+                        bordure[i][j + 1] = 'm';
+                    }
+                    else
+                        bordure[i][j] = 'M';
+                }
+            }
+            for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++)
+            {
+                if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).x) > 0))
+                {
+                    if (jeu.getPlateforme().at(p).getTaille().y == 2)
+                    {
+                        bordure[i][j] = '_';
+                        bordure[i][j + 1] = '_';
+                        bordure[i][j + 2] = '_';
+                        bordure[i][j + 3] = '_';
+                        // cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
+                        // cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
+                    }
+                }
+            }
+            for (int pr = 0; pr < jeu.getConstPersonnage().getNombreProj(); pr++)
+            {
+                Vec2 pospr = convertPos(jeu.getConstPersonnage().getProjectileAff(pr).getpos());
+                if ((int(pospr.x - cam.x + DIMX / 2) == i) && (int(pospr.y) == j) && (jeu.getConstPersonnage().getProjectileAff(pr).existe) && ((int(pospr.x) > 0)))
+                {
+                    bordure[i][j] = '.';
+                }
+            }
+            for (int b = 0; b < 4; b++)
+            {
+                if ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstBonus(b).getPosBonus()).y) == j) && (jeu.getConstBonus(b).estPris == false) && ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x) > 0)))
+                {
+                    if (jeu.getConstBonus(b).getNomB() == "j")
+                    {
+                        bordure[i][j] = 'j';
+                        bordure[i - 1][j] = 'j';
+                        bordure[i - 1][j + 1] = 'j';
+                        bordure[i][j + 1] = 'j';
+                    }
+
+                    if (jeu.getConstBonus(b).getNomB() == "h")
+                    {
+                        bordure[i][j] = 'h';
+                        bordure[i - 1][j] = 'h';
+                        bordure[i - 1][j + 1] = 'h';
+                        bordure[i][j + 1] = 'h';
+                    }
+
+                    if (jeu.getConstBonus(b).getNomB() == "r")
+                    {
+                        bordure[i][j] = 'r';
+                        bordure[i - 1][j] = 'r';
+                        bordure[i - 1][j + 1] = 'r';
+                        bordure[i][j + 1] = 'r';
+                    }
+
+                    if (jeu.getConstBonus(b).getNomB() == "b")
+                    {
+                        bordure[i][j] = 'b';
+                        bordure[i - 1][j] = 'b';
+                        bordure[i - 1][j + 1] = 'b';
+                        bordure[i][j + 1] = 'b';
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -86,19 +199,11 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt) {
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
     SDL_Rect rect;
-    rect.x = 15;
-    rect.y = 30;
-    rect.h = 1;
-    rect.w = 1;
-    //float bordure = txt.retournercadre();
-    //float bordureclear = txt.retournercadreClear();
-    for (int i = 0; i < 15; i++)
-    {
-        for (int j = 0; j < 30; j++)
-        {
-            //bordure = SDL_RenderDrawRect(renderer, &rect);
-        }
-    }
+    int x,y;
+	const Personnage& perso = jeu.getConstPersonnage();
+	const Monstre& mon = jeu.getConstMonstre(dt);
+    const bonus& bon = jeu.getConstBonus(dt);
+    Vec2
     
 }
 
