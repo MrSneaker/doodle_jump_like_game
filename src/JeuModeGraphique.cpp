@@ -20,7 +20,6 @@ const int DIMY= 60;
 JeuModeGRAPHIQUE::JeuModeGRAPHIQUE(){
     cam.x = 0;
     cam.y = 0;
-    JeuModeTXT txt;
 }
 
 JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE(){  
@@ -42,16 +41,6 @@ void JeuModeGRAPHIQUE::InitCam()
     cam.x = convertPos(jeu.getConstPersonnage().getPos()).x + DIMX / 2;
     cam.y = convertPos(jeu.getConstPersonnage().getPos()).y + DIMY / 2;
 }
-
-void termClear()  // efface le terminal
-{
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
-
 
 void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
     
@@ -101,13 +90,13 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt) {
     rect.y = 30;
     rect.h = 1;
     rect.w = 1;
-    float bordure = txt.retournercadre();
+    //float bordure = txt.retournercadre();
     //float bordureclear = txt.retournercadreClear();
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 30; j++)
         {
-            bordure = SDL_RenderDrawRect(renderer, &rect);
+            //bordure = SDL_RenderDrawRect(renderer, &rect);
         }
     }
     

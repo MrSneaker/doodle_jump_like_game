@@ -6,7 +6,7 @@
 #include "Personnage.h"
 #include "Monstre.h"
 #include "bonus.h"
-#include "Plateforme.h"
+#include "Ecran.h"
 #include <vector>
 #include <assert.h>
 #include <iostream>
@@ -29,6 +29,7 @@ private:
     bonus bonu[4];     // pareil que monstre, dans l'idée
     Monstre monstr[4]; // fais une fonction initMonstre qui créée les différent types de monstre
     vector<Plateforme> p;
+    vector<Ecran> e;
     
 
 public:

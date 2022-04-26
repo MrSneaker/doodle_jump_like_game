@@ -65,18 +65,15 @@ bool Jeu::actionClavier(const char touche, double dt)
 		perso.deplacerG(dt);
 		cout << perso.getPos().y;
 		break;
-		ok = true;
 	case 'd':
 		perso.deplacerD(dt);
 		cout << perso.getPos().y;
 		break;
-		ok = true;
 	case 'r':
 		perso.creerProj(dt);
 		break;
-		ok = true;
 	case 'q':
-		return ok = false;
+		return false;
 		break;
 	}
 	return ok;
@@ -86,7 +83,7 @@ void Jeu::actionsAutomatiques(double dt)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (monstr[i].getTailleM().y == 1)
+		if (monstr[i].getTailleM().y == 1) // on fait bouger les monstres de tailles 1/1 uniquement.
 		{
 			monstr[i].bougeAuto(dt);
 		}
@@ -124,7 +121,7 @@ void Jeu::InitBonus()
 	for (i = 0; i < 4; i++)
 	{
 		bonu[i].setTailleB(1, 1);
-		bonu[i].setDuree(2);
+		bonu[i].setDuree(0.25);
 		if (i == 0)
 		{
 			bonu[i].setNomB("j");
@@ -151,40 +148,14 @@ void Jeu::InitBonus()
 	}
 }
 
-void Jeu::InitPlat()
+void Jeu::InitPlat() // TODO faire un seul rand
 {
-	int i;
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 1, 2, -1);
 	p.emplace(p.begin(), p0);
-	for (i = 1; i < 12; i++)
-	{
-		Plateforme tmp;
-		tmp.setPos((rand() % 99) + 1, (rand() % 11) + 1);
-		if (rand() % 100 <= 70)
-			tmp.setRes(-1);
-		else
-			tmp.setRes(1);
-		if (rand() % 100 > 90)
-			tmp.setDir(0, 1);
-		if (rand() % 100 > 90)
-			tmp.setDir(1, 0);
-		tmp.setTaille(1, 2);
-		if (rand() % 100 > 80)
-		{
-			int b = rand() % 4;
-			bonu[b].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
-			bonu[b].estPris = false;
-		}
-		else if (rand() % 100 > 70)
-		{
-			int m = rand() % 4;
-			cout << "monstre n° : " << m;
-			monstr[m].enVie = true;
-			monstr[m].setPos(tmp.getPos().x - 5, tmp.getPos().y);
-		}
-
-		p.emplace(p.begin() + i, tmp);
-	}
+	Ecran e1(100, 0, 20, p, bonu, monstr);
+	Ecran e2(0, -100, 18, p, bonu, monstr);
+	e.push_back(e1);
+	e.push_back(e2);
 }
 
 void Jeu::updateDefil(double dt)
@@ -207,12 +178,12 @@ void Jeu::updateDefil(double dt)
 			compt++;
 		}
 	}
-	cout<<" compt : "<<compt;
-	if (compt<12)
+	cout << " compt : " << compt;
+	if (compt < 12)
 	{
 		Plateforme tmp;
-		int x = (perso.getPos().x - 50) - rand()%100;
-		cout<<" x tiré : "<<x;
+		int x = (perso.getPos().x - 50) - rand() % 100;
+		cout << " x tiré : " << x;
 		tmp.setPos(x, rand() % 12);
 		if (rand() % 100 <= 70)
 			tmp.setRes(-1);
@@ -221,7 +192,7 @@ void Jeu::updateDefil(double dt)
 		tmp.setTaille(1, 2);
 		for (int j = 0; j < 4; j++)
 		{
-			if (rand() % 100 > 50 && bonu[j].estPris==true)
+			if (rand() % 100 > 50 && bonu[j].estPris == true)
 			{
 				bonu[j].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
 				bonu[j].estPris = false;
@@ -239,22 +210,54 @@ void Jeu::RecommencerJeu()
 {
 }
 
-void Jeu::update(double dt)
+bool doOverlap(Vec2 l1, Vec2 r1, Vec2 l2, Vec2 r2)
 {
 
+	if (l1.x == r1.x || l1.y == r1.y || l2.x == r2.x || l2.y == r2.y)
+	{
+		// the line cannot have positive overlap
+		return false;
+	}
+
+	// If one rectangle is on left side of other
+	if (l1.x >= r2.x || l2.x >= r1.x)
+		return false;
+
+	// If one rectangle is above other
+	if (r1.y >= l2.y || r2.y >= l1.y)
+		return false;
+
+	return true;
+}
+
+void Jeu::update(double dt)
+{
+	cout << "nb plat : " << p.size();
 	float px = perso.getPos().x;
 	float py = perso.getPos().y;
+	float persoSupx = px - perso.getTaille().x;
+	float persoSupy = py + perso.getTaille().y;
+	Vec2 posperso;
+	Vec2 posSupperso;
+	posperso.x = px;
+	posperso.y = py;
+	posSupperso.x = persoSupx;
+	posSupperso.y = persoSupy;
 	float newcamX = perso.getPos().x + 10;
 	if (newcamX < camX)
 		camX = newcamX;
 
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
+		Vec2 ppos = p.at(i).getPos();
 		float pposx = p.at(i).getPos().x;
 		float pposy = p.at(i).getPos().y;
 		float pSupx = pposx - p.at(i).getTaille().x;
 		float pSupy = pposy + p.at(i).getTaille().y;
-		if (((px <= pposx) && (px >= pSupx)) && ((((py >= pposy) && (py <= pSupy))) || ((((py + perso.getTaille().y >= pposy) && (py + perso.getTaille().y <= pSupy))) && (p.at(i).estAfficheable()))))
+		Vec2 pposSup;
+		pposSup.x = pSupx;
+		pposSup.y = pSupy;
+		if ((doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable())
 		{
 			perso.saut(dt);
 			if (p.at(i).getRes() != -1 && p.at(i).getRes() != 0)
@@ -341,8 +344,17 @@ void Jeu::update(double dt)
 	{
 		float mx = monstr[i].getPos().x;
 		float my = monstr[i].getPos().y;
+		float mxSup = mx - monstr[i].getTailleM().x;
+		float mySup = my - monstr[i].getTailleM().y;
+		Vec2 monstre;
+		Vec2 monstreSup;
+		monstre.x = mx;
+		monstre.y = my;
+		monstreSup.x = mxSup;
+		monstreSup.y = mySup;
 		if ((((px <= mx) && (px >= mx - monstr[i].getTailleM().x) && (py >= my) && (py <= my + monstr[i].getTailleM().y)) || ((px - perso.getTaille().x <= mx) && (px - perso.getTaille().x >= mx - monstr[i].getTailleM().x) && (py + perso.getTaille().y >= my) && (py + perso.getTaille().y <= my + monstr[i].getTailleM().y))) && (monstr[i].enVie == true))
 		{
+			//(doOverlap(monstre,monstreSup,posperso,posSupperso) && (monstr[i].enVie == true))
 			perso.tombe(dt);
 			perso.enVie = false;
 			cout << "mort d'un mob";
@@ -385,5 +397,5 @@ void Jeu::update(double dt)
 		cout << "mort de chute";
 	}
 	actionsAutomatiques(dt);
-	updateDefil(dt);
+	// updateDefil(dt);
 }
