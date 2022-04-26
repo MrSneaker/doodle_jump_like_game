@@ -1,5 +1,5 @@
-#ifndef __JEUMODETXT_H__
-#define __JEUMODETXT_H__
+#ifndef JEUMODETXT_H
+#define JEUMODETXT_H
 
 using namespace std;
 
@@ -11,10 +11,11 @@ class JeuModeTXT
 {
 private:
     Jeu jeu;
-    
+
 
 public:
     Vec2 cam;
+    char cadre[15][30], cadreClear[15][30];
     JeuModeTXT();
     ~JeuModeTXT();
     void InitCam();
@@ -23,6 +24,9 @@ public:
     void affichageTXT(Jeu &jeu, double dt);
     void boucleAffTXT(Jeu &jeu, double dt);
     void affDetruireTXT(Jeu &jeu);
+    char retournercadre();
+    char retournercadreClear();
+    void clear();
 };
 
 #endif

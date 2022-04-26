@@ -11,49 +11,41 @@
 const int DIMX = 15;
 const int DIMY = 30;
 
+
+
+const char cadreDebut[15][30] = {
+    "#############################",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#                           #",
+    "#############################"};
 JeuModeTXT::JeuModeTXT()
 {
     cam.x = 0;
     cam.y = 0;
+    for(int i = 0; i < 15; i++)
+    {
+        for(int j = 0; j < 30; j++){
+            cadre[i][j] = cadreDebut[i][j];
+            cadreClear[i][j] = cadreDebut[i][j];
+        }
+    }
 }
 
 JeuModeTXT::~JeuModeTXT()
 {
 }
 
-char cadre[15][30] = {
-    "#############################",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#############################"};
-
-char cadreClear[15][30] = {
-    "#############################",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#############################"};
 
 void termClear() // efface le terminal
 {
@@ -203,7 +195,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
     }
 }
 
-void clear()
+void JeuModeTXT::clear()
 {
     for (int i = 0; i < 15; ++i)
         for (int j = 0; j < 30; ++j)

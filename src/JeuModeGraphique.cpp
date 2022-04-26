@@ -20,6 +20,7 @@ const int DIMY= 60;
 JeuModeGRAPHIQUE::JeuModeGRAPHIQUE(){
     cam.x = 0;
     cam.y = 0;
+    JeuModeTXT txt;
 }
 
 JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE(){  
@@ -56,7 +57,7 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
     
     int winx, winy;
     Jeu jeu;
-
+    
     // Initialisation de la SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << endl;
@@ -84,23 +85,70 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
    
 }
 
-void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu) {
+
+void JeuModeGRAPHIQUE::updatePlateau(Jeu &jeu)
+{
+
+}
+
+
+void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt) {
 	//Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
-    SDL_Rect plateformes;
-
-
-	int x,y;
-	const Personnage& perso = jeu.getConstPersonnage();
-
-
-    // Afficher les sprites des plateformes et des projectiles
-	for (x=0;x<perso.getTaille();++x)
-		for (y=0;y<perso.getTaille();++y)
-			if (
-
+    SDL_Rect rect;
+    rect.x = 15;
+    rect.y = 30;
+    rect.h = 1;
+    rect.w = 1;
+    float bordure = txt.retournercadre();
+    //float bordureclear = txt.retournercadreClear();
+    for (int i = 0; i < 15; i++)
+    {
+        for (int j = 0; j < 30; j++)
+        {
+            bordure = SDL_RenderDrawRect(renderer, &rect);
+        }
+    }
+    
 }
+
+
+
+void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
+{
+    SDL_Event events;
+    updatePlateau(jeu);
+    affichageGRAPHIQUE(jeu, dt);
+    SDL_Delay(1000);
+    bool quit=false;
+    while (!quit){
+        while (SDL_PollEvent(&events)) {
+			if (events.type == SDL_QUIT) quit = true;
+			else if (events.type == SDL_KEYDOWN) {              
+                bool seDeplace = false;
+				switch (events.key.keysym.scancode) {
+				case SDL_SCANCODE_UP:
+					seDeplace = jeu.actionClavier('r', dt);    //lance un proj
+					break;
+				case SDL_SCANCODE_LEFT:
+					seDeplace = jeu.actionClavier('g', dt); //se deplace a gauche
+					break;
+				case SDL_SCANCODE_RIGHT:
+					seDeplace = jeu.actionClavier('d', dt); //se deplace a droite
+					break;
+                case SDL_SCANCODE_Q:
+                    quit = true;
+                    break;
+				default: break;
+				}
+    }}}
+
+    
+}
+
+
+
    
 void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE(Jeu &jeu){
  
