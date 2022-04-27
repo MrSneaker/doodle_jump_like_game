@@ -16,7 +16,7 @@ Monstre::Monstre()
     taille.x = 0;
     taille.y = 0;
     vitesse = 1;
-    enVie = true;
+    enVie = false;
 }
 
 Monstre::~Monstre()

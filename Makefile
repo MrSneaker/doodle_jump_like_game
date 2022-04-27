@@ -5,7 +5,7 @@ CC = g++ $(CCOPTIONS)
 all: bin/test bin/affichageTXT bin/affichageModeGRAPHIQUE
 
 obj/Monstre.o: src/Monstre.cpp src/Monstre.h
-	$(CC) -c -o obj/Monstre.o src/Monstre.cpp
+	$(CC) -c -o obj/Monstre.o src/Monstre.cpp 
 
 obj/Plateforme.o: src/Plateforme.cpp src/Plateforme.h
 	$(CC) -c -o obj/Plateforme.o src/Plateforme.cpp

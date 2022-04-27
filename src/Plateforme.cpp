@@ -91,7 +91,7 @@ void Plateforme::setVitM(float v)
     vitesse = v;
 }
 
-bool Plateforme::estAfficheable()
+bool Plateforme::estAfficheable() const
 {
     if (res != -1)
     {

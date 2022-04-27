@@ -126,7 +126,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             }
             for (int m = 0; m < 4; m++)
             {
-                if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true) && ((int(convertPos(jeu.getConstMonstre(m).getPos()).x) > 0)))
+                if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true))
                 {
                     if (jeu.getConstMonstre(m).getTailleM().y == 1)
                     {
@@ -141,7 +141,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             }
             for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++)
             {
-                if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).x) > 0))
+                if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
                 {
                     if (jeu.getPlateforme().at(p).getTaille().y == 2)
                     {
@@ -149,8 +149,16 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                         cadre[i][j + 1] = '_';
                         cadre[i][j + 2] = '_';
                         cadre[i][j + 3] = '_';
+                        //cout<<" p"<<p<<" ok";
                         // cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
                         // cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
+                    }
+                    if(jeu.getPlateforme().at(p).getRes()==1)
+                    {
+                        cadre[i][j] = '*';
+                        cadre[i][j + 1] = '*';
+                        cadre[i][j + 2] = '*';
+                        cadre[i][j + 3] = '*';
                     }
                 }
             }
@@ -164,7 +172,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             }
             for (int b = 0; b < 4; b++)
             {
-                if ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstBonus(b).getPosBonus()).y) == j) && (jeu.getConstBonus(b).estPris == false) && ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x) > 0)))
+                if ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstBonus(b).getPosBonus()).y) == j) && (jeu.getConstBonus(b).estPris == false))
                 {
                     if (jeu.getConstBonus(b).getNomB() == "j")
                     {

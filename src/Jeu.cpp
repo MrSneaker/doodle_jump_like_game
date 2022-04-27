@@ -23,7 +23,7 @@ const Monstre &Jeu::getConstMonstre(int i) const
 	return monstr[i];
 }
 
-vector<Plateforme> Jeu::getPlateforme() const
+const vector<Plateforme> &Jeu::getPlateforme() const
 {
 	return p;
 }
@@ -153,56 +153,36 @@ void Jeu::InitPlat() // TODO faire un seul rand
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 1, 2, -1);
 	p.emplace(p.begin(), p0);
 	Ecran e1(100, 0, 20, p, bonu, monstr);
-	Ecran e2(0, -100, 18, p, bonu, monstr);
+	Ecran e2(0, -100, 20, p, bonu, monstr);
+	Ecran e3(-100, -200, 20, p, bonu, monstr);
 	e.push_back(e1);
 	e.push_back(e2);
+	e.push_back(e3);
 }
 
-void Jeu::updateDefil(double dt)
+void Jeu::updateEcran(double dt)
 {
-
-	for (long unsigned int i = 0; i < p.size(); i++)
+	int debutNewEc = 0;
+	int finNewEc = 0;
+	for(int i=0;i<e.size();i++)
 	{
-		if (p.at(i).getPos().x > camX + 50)
+		bool ecranSuppr = false;
+		int dernierSuppr = 0;
+		if(perso.getPos().x<e.at(i).getFinEc() - 50)
 		{
-			p.erase(p.begin() + i);
-			cout << "plat " << i << "supprimée";
+			e.at(i).detruireEc(p,bonu,monstr,e.at(i).getNbPlEc());
+			e.erase(e.begin()+i);
+			ecranSuppr = true;
+			dernierSuppr = i;
 		}
-	}
-	cout << "nb plat : " << p.size();
-	int compt = 0;
-	for (long unsigned int i = 0; i < p.size(); i++)
-	{
-		if (p.at(i).getPos().x <= perso.getPos().x - 50)
+		if(ecranSuppr)
 		{
-			compt++;
+			debutNewEc = e.at(e.size()-1).getFinEc();
+			finNewEc = e.at(e.size()-1).getFinEc()-100;
+			Ecran tmp(debutNewEc,finNewEc,20,p,bonu,monstr);
+			e.push_back(tmp);
 		}
-	}
-	cout << " compt : " << compt;
-	if (compt < 12)
-	{
-		Plateforme tmp;
-		int x = (perso.getPos().x - 50) - rand() % 100;
-		cout << " x tiré : " << x;
-		tmp.setPos(x, rand() % 12);
-		if (rand() % 100 <= 70)
-			tmp.setRes(-1);
-		else
-			tmp.setRes(1);
-		tmp.setTaille(1, 2);
-		for (int j = 0; j < 4; j++)
-		{
-			if (rand() % 100 > 50 && bonu[j].estPris == true)
-			{
-				bonu[j].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
-				bonu[j].estPris = false;
-			}
-			else if (rand() % 100 > 70 && monstr[j].enVie == false)
-			{
-				monstr[j].setPos(tmp.getPos().x - 5, tmp.getPos().y);
-			}
-		}
-		p.emplace(p.end(), tmp);
+		cout <<"dernier ecran suppr : "<< dernierSuppr;
 	}
 }
 
@@ -233,10 +213,15 @@ bool doOverlap(Vec2 l1, Vec2 r1, Vec2 l2, Vec2 r2)
 void Jeu::update(double dt)
 {
 	cout << "nb plat : " << p.size();
-	float px = perso.getPos().x;
-	float py = perso.getPos().y;
-	float persoSupx = px - perso.getTaille().x;
-	float persoSupy = py + perso.getTaille().y;
+	cout << "nb ecran : "<<e.size();
+	for(int i=0;i<p.size();i++)
+	{
+		//cout<<"position x de p"<<i<<" : "<<p.at(i).getPos().x;
+	}
+	double px = perso.getPos().x;
+	double py = perso.getPos().y;
+	double persoSupx = px - perso.getTaille().x;
+	double persoSupy = py + perso.getTaille().y;
 	Vec2 posperso;
 	Vec2 posSupperso;
 	posperso.x = px;
@@ -332,7 +317,7 @@ void Jeu::update(double dt)
 				}
 				if (detruit == false)
 				{
-					if (perso.getProjectile(j).getpos().x < perso.getPos().x - 60)
+					if (perso.getProjectile(j).getpos().x < perso.getPos().x - 100)
 					{
 						perso.detruitProj(j);
 					}
@@ -386,7 +371,6 @@ void Jeu::update(double dt)
 			else
 			{
 				perso.setVit(1);
-				bonu[i].estPris = false;
 			}
 		}
 	}
@@ -397,5 +381,5 @@ void Jeu::update(double dt)
 		cout << "mort de chute";
 	}
 	actionsAutomatiques(dt);
-	// updateDefil(dt);
+	updateEcran(dt);
 }

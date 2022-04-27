@@ -39,7 +39,7 @@ public:
     const Monstre &getConstMonstre(int i) const;
     const bonus &getConstBonus(int i) const;
     char getCh();
-    vector<Plateforme> getPlateforme() const;
+    const vector<Plateforme> &getPlateforme() const;
     void actionsAutomatiques(double dt);
     bool actionClavier(const char touche, double dt);
     void RecommencerJeu();
@@ -49,7 +49,7 @@ public:
     void InitMonstre();
     void InitBonus();
     void InitPlat();
-    void updateDefil(double dt);
+    void updateEcran(double dt);
     void clear();
 };
 

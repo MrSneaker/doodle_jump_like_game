@@ -17,6 +17,7 @@ private:
 
 public:
     bool estPris;
+    bool disponible;
     bonus(); /*! \brief */
     ~bonus();
     Vec2 getTailleB() const;             /*! \brief renvoie la taille du bonus */

@@ -11,7 +11,8 @@ bonus::bonus()
     taille.x = 0;
     taille.y = 0;
     nomBonus = "b0";
-    estPris == true;
+    estPris = true;
+    disponible = true;
 }
 
 bonus::~bonus()

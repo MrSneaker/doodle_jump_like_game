@@ -11,10 +11,17 @@ using namespace std;
 class Ecran
 {
 private:
-public:
-    Ecran(int posDebut, int posFin, int nbPlat,vector<Plateforme> &p,bonus b[4], Monstre m[4]);
-    ~Ecran();
+    int debutEcran;
+    int finEcran;
+    int nbPlEc;
 
+public:
+    Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus b[4], Monstre m[4]);
+    int getDebutEc() const;
+    int getFinEc() const;
+    void detruireEc(vector<Plateforme> &p, bonus b[4], Monstre m[4],int nbPl);
+    int getNbPlEc() const;
+    ~Ecran();
 };
 
 #endif
