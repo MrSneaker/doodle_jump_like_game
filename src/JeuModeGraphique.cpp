@@ -49,14 +49,6 @@ void JeuModeGRAPHIQUE::InitCam()
     cam.y = convertPos(jeu.getConstPersonnage().getPos()).y + DIMY / 2;
 }
 
-void termClear()  // efface le terminal
-{
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
 
 
 void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE(){
@@ -120,7 +112,7 @@ void JeuModeGRAPHIQUE::updatePlateau(Jeu &jeu)
                 {
                     if (jeu.getConstMonstre(m).getTailleM().y == 1)
                     {
-                        bordure[i][j] = ;
+                        bordure[i][j] = 4;
                         bordure[i - 1][j] = 'm';
                         bordure[i - 1][j + 1] = 'm';
                         bordure[i][j + 1] = 'm';
@@ -203,7 +195,7 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt) {
 	const Personnage& perso = jeu.getConstPersonnage();
 	const Monstre& mon = jeu.getConstMonstre(dt);
     const bonus& bon = jeu.getConstBonus(dt);
-    Vec2
+    Vec2 a;
     
 }
 

@@ -17,22 +17,7 @@ int main(void)
     jeu.InitBonus();
     jeu.InitMonstre();
     txt.InitCam();
-    txt.updatePlateau(jeu);
-    txt.affichageTXT(jeu, dt);
-    std::chrono::high_resolution_clock timer;
-    do
-    {
-        auto start = timer.now();
-        jeu.update(dt);
-        txt.boucleAffTXT(jeu, dt);
-        ok = jeu.getConstPersonnage().enVie;
-        auto stop = timer.now();
-        dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
-        //cout<<"pos perso x cadre: "<<txt.convertPos(jeu.getConstPersonnage().getPos()).x;
-        //cout<<"pos perso y : "<<txt.convertPos(jeu.getConstPersonnage().getPos()).y;
-        cout<<"pos perso jeu x : "<<jeu.getConstPersonnage().getPos().x;
-        //cout<<"pos cam x : "<<txt.cam.x;
-    } while (ok);
+    txt.boucleAffTXT(jeu,dt);
     cout << "partie terminée.." << endl;
     return 0;
 }

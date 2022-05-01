@@ -164,25 +164,24 @@ void Jeu::updateEcran(double dt)
 {
 	int debutNewEc = 0;
 	int finNewEc = 0;
-	for(int i=0;i<e.size();i++)
+	for (int i = 0; i < e.size(); i++)
 	{
 		bool ecranSuppr = false;
 		int dernierSuppr = 0;
-		if(perso.getPos().x<e.at(i).getFinEc() - 50)
+		if (perso.getPos().x < e.at(i).getFinEc() - 50)
 		{
-			e.at(i).detruireEc(p,bonu,monstr,e.at(i).getNbPlEc());
-			e.erase(e.begin()+i);
+			e.at(i).detruireEc(p, bonu, monstr, e.at(i).getNbPlEc());
+			e.erase(e.begin() + i);
 			ecranSuppr = true;
 			dernierSuppr = i;
 		}
-		if(ecranSuppr)
+		if (ecranSuppr)
 		{
-			debutNewEc = e.at(e.size()-1).getFinEc();
-			finNewEc = e.at(e.size()-1).getFinEc()-100;
-			Ecran tmp(debutNewEc,finNewEc,20,p,bonu,monstr);
+			debutNewEc = e.at(e.size() - 1).getFinEc();
+			finNewEc = e.at(e.size() - 1).getFinEc() - 100;
+			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr);
 			e.push_back(tmp);
 		}
-		cout <<"dernier ecran suppr : "<< dernierSuppr;
 	}
 }
 
@@ -210,14 +209,21 @@ bool doOverlap(Vec2 l1, Vec2 r1, Vec2 l2, Vec2 r2)
 	return true;
 }
 
+Ecran Jeu::locEc()
+{
+	int numEc = 0;
+	for (int i = 0; i < e.size(); i++)
+	{
+		if (camX > e.at(i).getFinEc() && camX < e.at(i).getDebutEc())
+		{
+			numEc = i;
+		}
+	}
+	return e.at(numEc);
+}
+
 void Jeu::update(double dt)
 {
-	cout << "nb plat : " << p.size();
-	cout << "nb ecran : "<<e.size();
-	for(int i=0;i<p.size();i++)
-	{
-		//cout<<"position x de p"<<i<<" : "<<p.at(i).getPos().x;
-	}
 	double px = perso.getPos().x;
 	double py = perso.getPos().y;
 	double persoSupx = px - perso.getTaille().x;
@@ -257,69 +263,53 @@ void Jeu::update(double dt)
 		perso.tombe(dt);
 	if (perso.getNombreProj() > 0)
 	{
-		for (int j = 0; j < perso.getNombreProj(); j++)
+		for (int i = 0; i < 4; i++)
 		{
-			bool detruit = false;
-			if (perso.getProjectile(j).existe == true)
+			float mx = monstr[i].getPos().x;
+			float my = monstr[i].getPos().y;
+			float mxSup = mx - monstr[i].getTailleM().x;
+			float mySup = my + monstr[i].getTailleM().y;
+			Vec2 monstre;
+			Vec2 monstreSup;
+			monstre.x = mx;
+			monstre.y = my;
+			monstreSup.x = mxSup;
+			monstreSup.y = mySup;
+			for (int j = 0; j < perso.getNombreProj(); j++)
 			{
-				perso.getProjectile(j).Update(dt);
-				if (detruit == false)
+				float projX = perso.getProjectile(j).getpos().x;
+				float projY = perso.getProjectile(j).getpos().y;
+				Vec2 proj;
+				Vec2 projRadius;
+				proj.x = projX;
+				proj.y = projY;
+				projRadius.x = projX - 0.2;
+				projRadius.y = projY + 0.2;
+				bool detruit = false;
+				if (perso.getProjectile(j).existe == true)
 				{
-					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[0].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[0].getPos().x - monstr[0].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[0].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[0].getPos().y + monstr[0].getTailleM().y)) && (monstr[0].enVie == true))
+					perso.getProjectile(j).Update(dt);
+					if (detruit == false)
 					{
-						perso.detruitProj(j);
-						detruit = true;
-						monstr[0].descRes();
-						if (monstr[0].getResistance() == 0)
+						if (doOverlap(projRadius, proj, monstreSup, monstre) && (monstr[i].enVie == true))
 						{
-							monstr[0].enVie = false;
+							perso.detruitProj(j);
+							detruit = true;
+							monstr[i].descRes();
+							if (monstr[i].getResistance() == 0)
+							{
+								monstr[i].enVie = false;
+							}
+							break;
 						}
 					}
-				}
-				if (detruit == false)
-				{
-					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[1].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[1].getPos().x - monstr[1].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[1].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[1].getPos().y + monstr[1].getTailleM().y)) && (monstr[1].enVie == true))
+
+					if (detruit == false)
 					{
-						perso.detruitProj(j);
-						detruit = true;
-						monstr[1].descRes();
-						if (monstr[1].getResistance() == 0)
+						if (perso.getProjectile(j).getpos().x < perso.getPos().x - 100)
 						{
-							monstr[1].enVie = false;
+							perso.detruitProj(j);
 						}
-					}
-				}
-				if (detruit == false)
-				{
-					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[2].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[2].getPos().x - monstr[2].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[2].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[2].getPos().y + monstr[2].getTailleM().y)) && (monstr[2].enVie == true))
-					{
-						perso.detruitProj(j);
-						detruit = true;
-						monstr[2].descRes();
-						if (monstr[2].getResistance() == 0)
-						{
-							monstr[2].enVie = false;
-						}
-					}
-				}
-				if (detruit == false)
-				{
-					if (((perso.getProjectile(j).getpos().x + 0.2 <= monstr[3].getPos().x) && (perso.getProjectile(j).getpos().x - 0.2 >= monstr[3].getPos().x - monstr[3].getTailleM().x)) && ((perso.getProjectile(j).getpos().y - 0.2 >= monstr[3].getPos().y) && (perso.getProjectile(j).getpos().y + 0.2 <= monstr[3].getPos().y + monstr[3].getTailleM().y)) && (monstr[3].enVie == true))
-					{
-						perso.detruitProj(j);
-						detruit = true;
-						monstr[3].descRes();
-						if (monstr[3].getResistance() == 0)
-						{
-							monstr[3].enVie = false;
-						}
-					}
-				}
-				if (detruit == false)
-				{
-					if (perso.getProjectile(j).getpos().x < perso.getPos().x - 100)
-					{
-						perso.detruitProj(j);
 					}
 				}
 			}
@@ -330,16 +320,15 @@ void Jeu::update(double dt)
 		float mx = monstr[i].getPos().x;
 		float my = monstr[i].getPos().y;
 		float mxSup = mx - monstr[i].getTailleM().x;
-		float mySup = my - monstr[i].getTailleM().y;
+		float mySup = my + monstr[i].getTailleM().y;
 		Vec2 monstre;
 		Vec2 monstreSup;
 		monstre.x = mx;
 		monstre.y = my;
 		monstreSup.x = mxSup;
 		monstreSup.y = mySup;
-		if ((((px <= mx) && (px >= mx - monstr[i].getTailleM().x) && (py >= my) && (py <= my + monstr[i].getTailleM().y)) || ((px - perso.getTaille().x <= mx) && (px - perso.getTaille().x >= mx - monstr[i].getTailleM().x) && (py + perso.getTaille().y >= my) && (py + perso.getTaille().y <= my + monstr[i].getTailleM().y))) && (monstr[i].enVie == true))
+		if (doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true))
 		{
-			//(doOverlap(monstre,monstreSup,posperso,posSupperso) && (monstr[i].enVie == true))
 			perso.tombe(dt);
 			perso.enVie = false;
 			cout << "mort d'un mob";
@@ -349,18 +338,24 @@ void Jeu::update(double dt)
 	{
 		float bx = bonu[i].getPosBonus().x;
 		float by = bonu[i].getPosBonus().y;
-		if ((((px <= bx) && (px >= bx - bonu[i].getTailleB().x) && (py >= by) && (py <= by + bonu[i].getTailleB().y)) || ((px - perso.getTaille().x <= bx) && (px - perso.getTaille().x >= bx - bonu[i].getTailleB().x) && (py + perso.getTaille().y >= by) && (py + perso.getTaille().y <= by + bonu[i].getTailleB().y))) && (bonu[i].estPris == false))
+		float bSupx = bx - bonu[i].getTailleB().x;
+		float bSupy = by + bonu[i].getTailleB().y;
+		Vec2 bonus;
+		Vec2 bonusSup;
+		bonus.x = bx;
+		bonus.y = by;
+		bonusSup.x = bSupx;
+		bonusSup.y = bSupy;
+		if (doOverlap(bonusSup, bonus, posSupperso, posperso) && (bonu[i].estPris == false))
 		{
 			tps = bonu[i].getDuree();
 			bonu[i].estPris = true;
-			cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 		}
 	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (bonu[i].estPris)
 		{
-			cout << bonu[i].getNomB() << " est pris";
 			if (tps > 0)
 			{
 				perso.setVit(bonu[i].getVitB());
@@ -375,7 +370,7 @@ void Jeu::update(double dt)
 		}
 	}
 
-	if (px >= camX + 55)
+	if (px >= camX + 50)
 	{
 		perso.enVie = false;
 		cout << "mort de chute";

@@ -50,7 +50,7 @@ public:
     void InitBonus();
     void InitPlat();
     void updateEcran(double dt);
-    void clear();
+    Ecran locEc();/*! \brief renvoie l'écran dans lequel se situe la caméra.*/
 };
 
 #endif

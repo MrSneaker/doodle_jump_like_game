@@ -97,8 +97,8 @@ Vec2 JeuModeTXT::convertPos(Vec2 pos)
     // double scaleY = 12 / DIMY;
     newPos.x = ((pos.x - cam.x) / scaleX + DIMX / 2);
     newPos.y = (DIMY * pos.y) / 12;
-    //if (newPos.x >= 0 && newPos.x <= DIMX && newPos.y >=0 && newPos.y <= DIMY)
-        return newPos;
+    // if (newPos.x >= 0 && newPos.x <= DIMX && newPos.y >=0 && newPos.y <= DIMY)
+    return newPos;
 }
 
 void JeuModeTXT::InitCam()
@@ -110,7 +110,7 @@ void JeuModeTXT::InitCam()
 void JeuModeTXT::updatePlateau(Jeu &jeu)
 {
     float newcamX = convertPos(jeu.getConstPersonnage().getPos()).x;
-    //cout << "newcamX : " << newcamX;
+    // cout << "newcamX : " << newcamX;
     if (newcamX <= cam.x)
         cam.x = newcamX;
     for (int i = 0; i < 15; i++)
@@ -149,11 +149,11 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                         cadre[i][j + 1] = '_';
                         cadre[i][j + 2] = '_';
                         cadre[i][j + 3] = '_';
-                        //cout<<" p"<<p<<" ok";
-                        // cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
-                        // cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
+                        // cout<<" p"<<p<<" ok";
+                        //  cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
+                        //  cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
                     }
-                    if(jeu.getPlateforme().at(p).getRes()==1)
+                    if (jeu.getPlateforme().at(p).getRes() == 1)
                     {
                         cadre[i][j] = '*';
                         cadre[i][j + 1] = '*';
@@ -165,7 +165,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             for (int pr = 0; pr < jeu.getConstPersonnage().getNombreProj(); pr++)
             {
                 Vec2 pospr = convertPos(jeu.getConstPersonnage().getProjectileAff(pr).getpos());
-                if ((int(pospr.x - cam.x + DIMX / 2) == i) && (int(pospr.y) == j) && (jeu.getConstPersonnage().getProjectileAff(pr).existe) && ((int(pospr.x) > 0)))
+                if ((int(pospr.x - cam.x + DIMX / 2) == i) && (int(pospr.y) == j) && (jeu.getConstPersonnage().getProjectileAff(pr).existe))
                 {
                     cadre[i][j] = '.';
                 }
@@ -233,23 +233,33 @@ void JeuModeTXT::affichageTXT(Jeu &jeu, double dt)
 
 void JeuModeTXT::boucleAffTXT(Jeu &jeu, double dt)
 {
+    jeu.update(dt);
     updatePlateau(jeu);
-    affichageTXT(jeu, dt);
-    usleep(100000);
-    int c = jeu.getCh();
-    switch (c)
+    bool ok = jeu.getConstPersonnage().enVie;
+    std::chrono::high_resolution_clock timer;
+    do
     {
-    case 'g':
-        jeu.actionClavier('g', dt);
-        break;
-    case 'd':
-        jeu.actionClavier('d', dt);
-        break;
-    case 'r':
-        jeu.actionClavier('r', dt);
-        break;
-    }
-    clear();
-    // cout<<ok;
-    // cout<<jeu.getPlateforme().size();
+        auto start = timer.now();
+        usleep(100000);
+        jeu.update(dt);
+        updatePlateau(jeu);
+        affichageTXT(jeu, dt);
+        auto stop = timer.now();
+        dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
+        ok = jeu.getConstPersonnage().enVie;
+        int c = jeu.getCh();
+        switch (c)
+        {
+        case 'g':
+            jeu.actionClavier('g', dt);
+            break;
+        case 'd':
+            jeu.actionClavier('d', dt);
+            break;
+        case 'r':
+            jeu.actionClavier('r', dt);
+            break;
+        }
+        clear();
+    } while (ok);
 }

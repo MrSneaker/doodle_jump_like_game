@@ -1,6 +1,7 @@
 #include "Ecran.h"
 
-int random(int min, int max)
+int random(int min, int max) // fonction permettant de renvoyer un nombre aléatoire
+							 // négatif ou positif en fonction des bornes fournies en paramètres.
 {
 	int res;
 	if (max - min < 0)
@@ -57,7 +58,7 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 			tmp.setPos(tmp.getPos().x - 10, tmp.getPos().y);
 		}
 		p0 = tmp;
-		p.emplace(p.begin(),tmp);
+		p.emplace(p.begin(), tmp);
 	}
 }
 
