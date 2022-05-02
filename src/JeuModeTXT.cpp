@@ -21,39 +21,7 @@ JeuModeTXT::~JeuModeTXT()
 {
 }
 
-char cadre[15][30] = {
-    "#############################",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#############################"};
 
-const char cadreClear[15][30] = {
-    "#############################",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#                           #",
-    "#############################"};
 
 void termClear() // efface le terminal
 {
@@ -94,10 +62,8 @@ Vec2 JeuModeTXT::convertPos(Vec2 pos)
 {
     Vec2 newPos;
     double scaleX = 100 / DIMX;
-    // double scaleY = 12 / DIMY;
     newPos.x = ((pos.x - cam.x) / scaleX + DIMX / 2);
     newPos.y = (DIMY * pos.y) / 12;
-    // if (newPos.x >= 0 && newPos.x <= DIMX && newPos.y >=0 && newPos.y <= DIMY)
     return newPos;
 }
 
@@ -110,23 +76,26 @@ void JeuModeTXT::InitCam()
 void JeuModeTXT::updatePlateau(Jeu &jeu)
 {
     float newcamX = convertPos(jeu.getConstPersonnage().getPos()).x;
-    // cout << "newcamX : " << newcamX;
     if (newcamX <= cam.x)
         cam.x = newcamX;
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 30; j++)
         {
-            if ((int(convertPos(jeu.getConstPersonnage().getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstPersonnage().getPos()).y) == j) && (jeu.getConstPersonnage().enVie == true))
+            int persoX = int(convertPos(jeu.getConstPersonnage().getPos()).x - cam.x + DIMX / 2);
+            int persoY = int(convertPos(jeu.getConstPersonnage().getPos()).y);
+            if ((persoX == i) && (persoY == j) && (jeu.getConstPersonnage().enVie == true))
             {
                 cadre[i][j] = 'l';
                 cadre[i - 1][j] = 'o';
                 cadre[i - 1][j + 1] = 'o';
                 cadre[i][j + 1] = 'l';
             }
-            for (int m = 0; m < 4; m++)
+            for (int m = 0; m < NB_MONSTRE; m++)
             {
-                if ((int(convertPos(jeu.getConstMonstre(m).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstMonstre(m).getPos()).y) == j) && (jeu.getConstMonstre(m).enVie == true))
+                int monstreX = int(convertPos(jeu.getConstMonstre(m).getPos()).x - cam.x + DIMX / 2);
+                int monstreY = int(convertPos(jeu.getConstMonstre(m).getPos()).y);
+                if ((monstreX == i) && (monstreY == j) && (jeu.getConstMonstre(m).enVie == true))
                 {
                     if (jeu.getConstMonstre(m).getTailleM().y == 1)
                     {
@@ -141,7 +110,9 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             }
             for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++)
             {
-                if ((int(convertPos(jeu.getPlateforme().at(p).getPos()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getPlateforme().at(p).getPos()).y) == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
+                int plX = int(convertPos(jeu.getPlateforme().at(p).getPos()).x - cam.x + DIMX / 2);
+                int plY = int(convertPos(jeu.getPlateforme().at(p).getPos()).y);
+                if ((plX == i) && (plY == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
                 {
                     if (jeu.getPlateforme().at(p).getTaille().y == 2)
                     {
@@ -149,9 +120,6 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                         cadre[i][j + 1] = '_';
                         cadre[i][j + 2] = '_';
                         cadre[i][j + 3] = '_';
-                        // cout<<" p"<<p<<" ok";
-                        //  cout<<"pos conv plat x: "<<convertPos(jeu.getPlateforme().at(p).getPos()).x;
-                        //  cout<<"pos conv plat y: "<<convertPos(jeu.getPlateforme().at(p).getPos()).y;
                     }
                     if (jeu.getPlateforme().at(p).getRes() == 1)
                     {
@@ -165,14 +133,17 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
             for (int pr = 0; pr < jeu.getConstPersonnage().getNombreProj(); pr++)
             {
                 Vec2 pospr = convertPos(jeu.getConstPersonnage().getProjectileAff(pr).getpos());
-                if ((int(pospr.x - cam.x + DIMX / 2) == i) && (int(pospr.y) == j) && (jeu.getConstPersonnage().getProjectileAff(pr).existe))
+                bool prExiste = jeu.getConstPersonnage().getProjectileAff(pr).existe;
+                if ((int(pospr.x - cam.x + DIMX / 2) == i) && (int(pospr.y) == j) && (prExiste))
                 {
                     cadre[i][j] = '.';
                 }
             }
-            for (int b = 0; b < 4; b++)
+            for (int b = 0; b < NB_BONUS; b++)
             {
-                if ((int(convertPos(jeu.getConstBonus(b).getPosBonus()).x - cam.x + DIMX / 2) == i) && (int(convertPos(jeu.getConstBonus(b).getPosBonus()).y) == j) && (jeu.getConstBonus(b).estPris == false))
+                int bonusX = int(convertPos(jeu.getConstBonus(b).getPosBonus()).x - cam.x + DIMX / 2);
+                int bonusY = int(convertPos(jeu.getConstBonus(b).getPosBonus()).y);
+                if ((bonusX == i) && (bonusY == j) && (jeu.getConstBonus(b).estPris == false))
                 {
                     if (jeu.getConstBonus(b).getNomB() == "j")
                     {
@@ -211,14 +182,37 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
     }
 }
 
-void clear()
+void JeuModeTXT::affDetruireTXT()
 {
     for (int i = 0; i < 15; ++i)
         for (int j = 0; j < 30; ++j)
             cadre[i][j] = cadreClear[i][j];
 }
 
-void JeuModeTXT::affichageTXT(Jeu &jeu, double dt)
+int kbhit()
+{
+    struct timeval tv;
+    fd_set fds;
+    tv.tv_sec = 0;
+    tv.tv_usec = 0;
+    FD_ZERO(&fds);
+    FD_SET(STDIN_FILENO, &fds); // STDIN_FILENO is 0
+    select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
+    return FD_ISSET(STDIN_FILENO, &fds);
+}
+
+char getCh()
+{ // lire un caractere si une touche a ete pressee
+    char touche = 0;
+    if (kbhit())
+    {
+        touche = fgetc(stdin);
+    }
+
+    return touche;
+}
+
+void JeuModeTXT::affichageTXT(Jeu &jeu)
 {
     termClear();
     for (int i = 0; i < 15; i++)
@@ -243,11 +237,11 @@ void JeuModeTXT::boucleAffTXT(Jeu &jeu, double dt)
         usleep(100000);
         jeu.update(dt);
         updatePlateau(jeu);
-        affichageTXT(jeu, dt);
+        affichageTXT(jeu);
         auto stop = timer.now();
         dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
         ok = jeu.getConstPersonnage().enVie;
-        int c = jeu.getCh();
+        int c = getCh();
         switch (c)
         {
         case 'g':
@@ -259,7 +253,9 @@ void JeuModeTXT::boucleAffTXT(Jeu &jeu, double dt)
         case 'r':
             jeu.actionClavier('r', dt);
             break;
+        case 'q':
+            ok = jeu.actionClavier('q', dt);
         }
-        clear();
+        affDetruireTXT();
     } while (ok);
 }

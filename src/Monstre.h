@@ -24,7 +24,7 @@ public:
     Vec2 getPos() const;                 /*! \brief renvoie la position du monstre en x et y*/
     void setPos(float x, float y);       /*! \brief met à jour la position du monstre selon une position en paramètre \param x, \param y*/
     int getTypeM() const;                /*! \brief renvoie le type de monstre (taille,couleur,forme)*/
-    void setTypeM(int n);                     /*! \brief met a jour le type de monstre*/
+    void setTypeM(int n);                /*! \brief met a jour le type de monstre*/
     Vec2 getDirM() const;                /*! \brief renvoie la direction du monstre*/
     void setDirM(float x, float y);      /*! \brief met à jour la direction par rapport au paramètres \param x, \param y donnés*/
     void Update(double dt);              /*! \brief gère le mouvement du monstre en fonction d'un paramètre \param dt*/

@@ -7,6 +7,7 @@ float camX = 0;
 
 Jeu::Jeu()
 {
+	Init();
 }
 
 Jeu::~Jeu()
@@ -33,28 +34,7 @@ const bonus &Jeu::getConstBonus(int i) const
 	return bonu[i];
 }
 
-int kbhit()
-{
-	struct timeval tv;
-	fd_set fds;
-	tv.tv_sec = 0;
-	tv.tv_usec = 0;
-	FD_ZERO(&fds);
-	FD_SET(STDIN_FILENO, &fds); // STDIN_FILENO is 0
-	select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
-	return FD_ISSET(STDIN_FILENO, &fds);
-}
 
-char Jeu::getCh()
-{ // lire un caractere si une touche a ete pressee
-	char touche = 0;
-	if (kbhit())
-	{
-		touche = fgetc(stdin);
-	}
-
-	return touche;
-}
 
 bool Jeu::actionClavier(const char touche, double dt)
 {
@@ -118,7 +98,7 @@ void Jeu::InitMonstre()
 void Jeu::InitBonus()
 {
 	int i;
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < NB_BONUS; i++)
 	{
 		bonu[i].setTailleB(1, 1);
 		bonu[i].setDuree(0.25);
@@ -148,7 +128,7 @@ void Jeu::InitBonus()
 	}
 }
 
-void Jeu::InitPlat() // TODO faire un seul rand
+void Jeu::InitEc()
 {
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 1, 2, -1);
 	p.emplace(p.begin(), p0);
@@ -164,16 +144,14 @@ void Jeu::updateEcran(double dt)
 {
 	int debutNewEc = 0;
 	int finNewEc = 0;
-	for (int i = 0; i < e.size(); i++)
+	for (long unsigned int i = 0; i < e.size(); i++)
 	{
 		bool ecranSuppr = false;
-		int dernierSuppr = 0;
 		if (perso.getPos().x < e.at(i).getFinEc() - 50)
 		{
 			e.at(i).detruireEc(p, bonu, monstr, e.at(i).getNbPlEc());
 			e.erase(e.begin() + i);
 			ecranSuppr = true;
-			dernierSuppr = i;
 		}
 		if (ecranSuppr)
 		{
@@ -212,7 +190,7 @@ bool doOverlap(Vec2 l1, Vec2 r1, Vec2 l2, Vec2 r2)
 Ecran Jeu::locEc()
 {
 	int numEc = 0;
-	for (int i = 0; i < e.size(); i++)
+	for (long unsigned int i = 0; i < e.size(); i++)
 	{
 		if (camX > e.at(i).getFinEc() && camX < e.at(i).getDebutEc())
 		{
@@ -220,6 +198,14 @@ Ecran Jeu::locEc()
 		}
 	}
 	return e.at(numEc);
+}
+
+void Jeu::Init()
+{
+	InitPersonnage();
+	InitBonus();
+	InitMonstre();
+	InitEc();
 }
 
 void Jeu::update(double dt)
@@ -263,7 +249,7 @@ void Jeu::update(double dt)
 		perso.tombe(dt);
 	if (perso.getNombreProj() > 0)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < NB_MONSTRE; i++)
 		{
 			float mx = monstr[i].getPos().x;
 			float my = monstr[i].getPos().y;
@@ -315,7 +301,7 @@ void Jeu::update(double dt)
 			}
 		}
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < NB_MONSTRE; i++)
 	{
 		float mx = monstr[i].getPos().x;
 		float my = monstr[i].getPos().y;
@@ -334,7 +320,7 @@ void Jeu::update(double dt)
 			cout << "mort d'un mob";
 		}
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < NB_BONUS; i++)
 	{
 		float bx = bonu[i].getPosBonus().x;
 		float by = bonu[i].getPosBonus().y;
@@ -352,7 +338,7 @@ void Jeu::update(double dt)
 			bonu[i].estPris = true;
 		}
 	}
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < NB_BONUS; i++)
 	{
 		if (bonu[i].estPris)
 		{
