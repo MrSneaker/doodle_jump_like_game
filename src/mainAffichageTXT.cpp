@@ -11,11 +11,6 @@ int main(void)
     srand((unsigned)time(&t));
     Jeu jeu;
     JeuModeTXT txt;
-    bool ok = jeu.getConstPersonnage().enVie;
-    jeu.InitPersonnage();
-    jeu.InitPlat();
-    jeu.InitBonus();
-    jeu.InitMonstre();
     txt.InitCam();
     txt.boucleAffTXT(jeu,dt);
     cout << "partie terminée.." << endl;

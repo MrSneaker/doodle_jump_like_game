@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     JeuModeGRAPHIQUE sl;
     bool ok = jeu.getConstPersonnage().enVie;
     jeu.InitPersonnage();
-    jeu.InitPlat();
+    jeu.InitEc();
     jeu.InitBonus();
     jeu.InitMonstre();
     sl.updatePlateau(jeu);

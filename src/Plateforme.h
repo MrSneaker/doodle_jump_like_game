@@ -28,7 +28,7 @@ public:
     int getRes() const;               /*! \brief renvoie la resistance d'une plateforme*/
     void setRes(int n);               /*! \brief modifie la resistance de la plateforme à partir d'un float \param n en paramètre*/
     void Update(double dt);           /*! \brief gère tous les déplacements*/
-    bool estAfficheable() const;            /*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
+    bool estAfficheable() const;      /*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
     void descRes();                   /*! \brief décremente la resistance de 1*/
     void bougeAutoLateral(double dt); /*! \brief permet aux plateformes de se déplacer toutes seules*/
     void testRegression();            /*! \brief test de régression de la classe plateforme*/
