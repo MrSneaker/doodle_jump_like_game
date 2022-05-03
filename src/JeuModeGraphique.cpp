@@ -20,7 +20,6 @@ const int DIMY= 60;
 JeuModeGRAPHIQUE::JeuModeGRAPHIQUE(){
     cam.x = 0;
     cam.y = 0;
-    JeuModeTXT txt;
 }
 
 
@@ -103,12 +102,18 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt) {
 	//Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
-    SDL_Rect rect;
-    int x,y;
 	const Personnage& perso = jeu.getConstPersonnage();
 	const Monstre& mon = jeu.getConstMonstre(dt);
     const bonus& bon = jeu.getConstBonus(dt);
-    Vec2 a;
+    SDL_Rect rectPers;
+    rectPers.x = perso.getPos().y;;
+    rectPers.y = perso.getPos().x;
+    rectPers.h = perso.getTaille().x;
+    rectPers.w = perso.getTaille().y;
+    IMG_Init(IMG_INIT_PNG);
+    texture = IMG_LoadTexture(renderer,"data/foodle.png");
+    SDL_RenderCopy(renderer,texture,NULL,&rectPers);
+
     
 }
 

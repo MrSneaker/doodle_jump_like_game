@@ -22,8 +22,9 @@ private:
     int winx, winy;
     int TAILLE_BORDURE;
     SDL_Renderer * renderer; /*render SDL */
-    SDL_Surface * m_surface ;
+    SDL_Surface * surface ;
     SDL_Surface * background  = NULL ;
+    SDL_Texture * texture;
     SDL_Rect *rectangle;
     TTF_Font * font;
     SDL_Color font_color;
@@ -31,7 +32,8 @@ private:
     bool touche;
     Mix_Chunk * sound; 
     bool withSound;
-
+    const int NB_BONUS = 4;
+    const int NB_MONSTRE = 4;
     
     
 public:
