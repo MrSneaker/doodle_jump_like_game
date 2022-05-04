@@ -2,12 +2,13 @@
 
 using namespace std;
 
-float tps = 0;
-float camX = 0;
-
 Jeu::Jeu()
 {
 	Init();
+	Ptombe = true;
+	Psaute = false;
+	Pdroite = false;
+	Pgauche = false;
 }
 
 Jeu::~Jeu()
@@ -34,8 +35,6 @@ const bonus &Jeu::getConstBonus(int i) const
 	return bonu[i];
 }
 
-
-
 bool Jeu::actionClavier(const char touche, double dt)
 {
 	bool ok = true;
@@ -43,11 +42,13 @@ bool Jeu::actionClavier(const char touche, double dt)
 	{
 	case 'g':
 		perso.deplacerG(dt);
-		cout << perso.getPos().y;
+		Pgauche = true;
+		Pdroite = false;
 		break;
 	case 'd':
 		perso.deplacerD(dt);
-		cout << perso.getPos().y;
+		Pgauche = false;
+		Pdroite = true;
 		break;
 	case 'r':
 		perso.creerProj(dt);
@@ -130,7 +131,7 @@ void Jeu::InitBonus()
 
 void Jeu::InitEc()
 {
-	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 1, 2, -1);
+	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 0.7, 2, -1);
 	p.emplace(p.begin(), p0);
 	Ecran e1(100, 0, 20, p, bonu, monstr);
 	Ecran e2(0, -100, 20, p, bonu, monstr);
@@ -227,18 +228,24 @@ void Jeu::update(double dt)
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
 		Vec2 ppos = p.at(i).getPos();
-		float pposx = p.at(i).getPos().x;
+		float pposx = p.at(i).getPos().x - 10; // on décale de 10 pour que le personnage
 		float pposy = p.at(i).getPos().y;
 		float pSupx = pposx - p.at(i).getTaille().x;
 		float pSupy = pposy + p.at(i).getTaille().y;
 		Vec2 pposSup;
 		pposSup.x = pSupx;
 		pposSup.y = pSupy;
-		if ((doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable())
+		if ((doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable() && Ptombe)
 		{
-			perso.saut(dt);
+			tpsSaut = 20;
+			Psaute = true;
 			if (p.at(i).getRes() != -1 && p.at(i).getRes() != 0)
 				p.at(i).descRes();
+		}
+		if (tpsSaut > 0)
+		{
+			perso.saut(dt);
+			tpsSaut -= dt;
 		}
 		else
 		{
@@ -347,7 +354,7 @@ void Jeu::update(double dt)
 				perso.setVit(bonu[i].getVitB());
 				perso.saut(dt);
 				tps -= dt;
-				cout << "temps bonus : " << tps;
+				cout << "temps bonus : " << tps << endl;
 			}
 			else
 			{

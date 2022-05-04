@@ -40,7 +40,7 @@ void Plateforme::setPos(float x, float y)
         pos.x = 1;
     pos.y = y;
     if (pos.y == 0)
-        pos.y = 1;
+        pos.y = 1 + taille.y;
 }
 
 Vec2 Plateforme::getDir() const

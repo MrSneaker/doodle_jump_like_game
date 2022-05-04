@@ -5,6 +5,7 @@
 #include <string>
 #include "projectile.h"
 #include "vec2.h"
+#include <unistd.h>
 
 using namespace std;
 

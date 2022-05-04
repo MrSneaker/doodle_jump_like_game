@@ -20,7 +20,13 @@ private:
     Jeu jeu;
     SDL_Window * window; /*fenetre SDL */ 
     SDL_Renderer * renderer; /*render SDL */
-    SDL_Texture * texture;
+    SDL_Texture * textureBackground;
+    SDL_Texture * texturePersF;
+    SDL_Texture * texturePersD;
+    SDL_Texture * texturePersG;
+    SDL_Texture * texturePlat[2];
+    SDL_Texture * textureMonstre[4];
+    SDL_Texture * textureBonus[4];
     TTF_Font * font;
     SDL_Color font_color;
     bool souris;
@@ -38,6 +44,7 @@ public:
     Vec2 cam;
     Vec2 convertPos(Vec2 pos);
     void InitCam();
+    void InitTexture();
     void affichageInitGRAPHIQUE(); /*! \brief affichage de SDL2*/
     void affichageGRAPHIQUE(Jeu &jeu, double dt); /*! \brief affiche l'image dans la fenetre SDL2*/
     void boucleAffGRAPHIQUE(Jeu &jeu, double dt); /*! \brief rafraichissement de l'image*/

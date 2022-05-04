@@ -34,7 +34,7 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 			tmp.setDir(0, 1);
 		if (r % 100 > 95)
 			tmp.setDir(1, 0);
-		tmp.setTaille(1, 2);
+		tmp.setTaille(0.7, 2);
 		if (r % 100 > 80)
 		{
 			int bonus = r % NB_BONUS;

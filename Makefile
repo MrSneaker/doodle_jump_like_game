@@ -1,5 +1,5 @@
 SDL2= `sdl2-config --cflags --libs` -lSDL2_image -lSDL2 -lSDL2_ttf -lSDL2_mixer
-CCOPTIONS	= -Wall -ggdb
+CCOPTIONS	= -Wall -ggdb -p
 CC = g++ $(CCOPTIONS)
 
 all: bin/test bin/affichageTXT bin/affichageModeGRAPHIQUE

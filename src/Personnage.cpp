@@ -11,8 +11,8 @@ Personnage::Personnage()
     proj = {};
     direction = {0, 0};
     vitesse = 1;
-    taille.x = 1;
-    taille.y = 1;
+    taille.x = 2;
+    taille.y = 2;
     nom = "p0";
     enVie = true;
 }
@@ -85,13 +85,13 @@ void Personnage::deplacerG(double dt)
 
 void Personnage::saut(double dt)
 {
-    direction.x = -250 * (vitesse * dt);
+    direction.x = -0.7 * (vitesse * dt);
     position.x = position.x + direction.x;
 }
 
 void Personnage::tombe(double dt)
 {
-    direction.x = 0.2 * (vitesse * dt);
+    direction.x = 0.4 * (vitesse * dt);
     position.x = position.x + direction.x;
 }
 

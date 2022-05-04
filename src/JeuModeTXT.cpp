@@ -245,10 +245,10 @@ void JeuModeTXT::boucleAffTXT(Jeu &jeu, double dt)
         switch (c)
         {
         case 'g':
-            jeu.actionClavier('g', dt);
+            jeu.actionClavier('d', dt);
             break;
         case 'd':
-            jeu.actionClavier('d', dt);
+            jeu.actionClavier('g', dt);
             break;
         case 'r':
             jeu.actionClavier('r', dt);
