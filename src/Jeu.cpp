@@ -52,6 +52,7 @@ bool Jeu::actionClavier(const char touche, double dt)
 		break;
 	case 'r':
 		perso.creerProj(dt);
+		cout<<"alo?"<<endl;
 		break;
 	case 'q':
 		return false;
@@ -83,16 +84,32 @@ void Jeu::InitPersonnage()
 void Jeu::InitMonstre()
 {
 	int i;
-	for (i = 0; i < 4; i++)
+	int r = rand() % 100;
+	for (i = 0; i < NB_MONSTRE; i++)
 	{
 		monstr[i].setVitM(1);
-		monstr[i].setTailleM((rand() % 1) + 1, (rand() % 1) + 1);
-		if (monstr[i].getTailleM().y == 2)
-			monstr[i].setResistance(2);
-		else
+		if (i == 0)
+		{
+			monstr[i].setTailleM(1, 2);
 			monstr[i].setResistance(1);
-		if ((rand() % 100 > 90) && (monstr[i].getTailleM().y == 1))
-			monstr[i].setDirM(0, 1);
+			if (r > 90)
+				monstr[i].setDirM(0, 1);
+		}
+		if (i == 1)
+		{
+			monstr[i].setTailleM(1, 1);
+			monstr[i].setResistance(1);
+		}
+		if (i == 2)
+		{
+			monstr[i].setTailleM(1.5, 1);
+			monstr[i].setResistance(2);
+		}
+		if (i == 3)
+		{
+			monstr[i].setTailleM(0.7, 2);
+			monstr[i].setResistance(2);
+		}
 	}
 }
 
@@ -211,6 +228,7 @@ void Jeu::Init()
 
 void Jeu::update(double dt)
 {
+	
 	double px = perso.getPos().x;
 	double py = perso.getPos().y;
 	double persoSupx = px - perso.getTaille().x;
@@ -228,7 +246,7 @@ void Jeu::update(double dt)
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
 		Vec2 ppos = p.at(i).getPos();
-		float pposx = p.at(i).getPos().x - 10; // on décale de 10 pour que le personnage
+		float pposx = p.at(i).getPos().x - 10; // on décale pour que le personnage saute au niveau de ses pieds.
 		float pposy = p.at(i).getPos().y;
 		float pSupx = pposx - p.at(i).getTaille().x;
 		float pSupy = pposy + p.at(i).getTaille().y;
@@ -237,18 +255,22 @@ void Jeu::update(double dt)
 		pposSup.y = pSupy;
 		if ((doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable() && Ptombe)
 		{
-			tpsSaut = 20;
+			cout<<"ptombe : "<<Ptombe<<endl;
+			tpsSaut = 30;
 			Psaute = true;
+			Ptombe = false;
 			if (p.at(i).getRes() != -1 && p.at(i).getRes() != 0)
 				p.at(i).descRes();
 		}
-		if (tpsSaut > 0)
+		if (tpsSaut > 0 && Psaute)
 		{
 			perso.saut(dt);
 			tpsSaut -= dt;
 		}
 		else
 		{
+			Psaute = false;
+			Ptombe = true;
 			perso.tombe(dt);
 		}
 	}
@@ -276,8 +298,8 @@ void Jeu::update(double dt)
 				Vec2 projRadius;
 				proj.x = projX;
 				proj.y = projY;
-				projRadius.x = projX - 0.2;
-				projRadius.y = projY + 0.2;
+				projRadius.x = projX - 0.5;
+				projRadius.y = projY + 0.5;
 				bool detruit = false;
 				if (perso.getProjectile(j).existe == true)
 				{
@@ -289,10 +311,6 @@ void Jeu::update(double dt)
 							perso.detruitProj(j);
 							detruit = true;
 							monstr[i].descRes();
-							if (monstr[i].getResistance() == 0)
-							{
-								monstr[i].enVie = false;
-							}
 							break;
 						}
 					}
@@ -305,6 +323,10 @@ void Jeu::update(double dt)
 						}
 					}
 				}
+			}
+			if (monstr[i].getResistance() == 0)
+			{
+				monstr[i].enVie = false;
 			}
 		}
 	}
@@ -322,9 +344,23 @@ void Jeu::update(double dt)
 		monstreSup.y = mySup;
 		if (doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true))
 		{
-			perso.tombe(dt);
-			perso.enVie = false;
-			cout << "mort d'un mob";
+			if (Ptombe)
+			{
+				tpsSaut = 20;
+				Psaute = true;
+				Ptombe = false;
+				monstr[i].descRes();
+			}
+			else
+			{
+				perso.tombe(dt);
+				perso.enVie = false;
+				cout << "mort d'un mob";
+			}
+		}
+		if (monstr[i].getResistance() == 0)
+		{
+			monstr[i].enVie = false;
 		}
 	}
 	for (int i = 0; i < NB_BONUS; i++)

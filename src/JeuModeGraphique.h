@@ -26,7 +26,8 @@ private:
     SDL_Texture * texturePersG;
     SDL_Texture * texturePlat[2];
     SDL_Texture * textureMonstre[4];
-    SDL_Texture * textureBonus[4];
+    SDL_Texture * textureBonus[5];
+    SDL_Texture * projTex;
     TTF_Font * font;
     SDL_Color font_color;
     bool souris;

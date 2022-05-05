@@ -13,6 +13,8 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
+    time_t t;
+    srand((unsigned)time(&t));
     Jeu jeu;
     JeuModeGRAPHIQUE sl;
     sl.InitCam();

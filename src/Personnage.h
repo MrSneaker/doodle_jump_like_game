@@ -17,7 +17,7 @@ private:
     Vec2 direction;          /*! \brief le vecteur de direction du personnage*/
     float vitesse;           /*! \brief la vitesse du personnage*/
     string nom;              /*! \brief le nom du personnage*/
-    Vec2 taille;
+    Vec2 taille;             /*! \brief la taille du personnage*/
 
 public:
     bool enVie;                       /*! \brief info si le personnage est en vie ou non*/
@@ -29,6 +29,7 @@ public:
     int getNombreProj() const;        /*! \brief renvoie le nombre de projectile */
     projectile &getProjectile(int n); /*! \brief renvoie le vecteur projectile demandé si il existe*/
     projectile getProjectileAff(int n) const;
+    const projectile &getProjectileAffSdl(int n) const;
     Vec2 getTaille() const;
     void setTaille(float x, float y);
     float getVit() const;           /*! \brief renvoie la vitesse du personnage */

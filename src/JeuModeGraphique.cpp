@@ -32,6 +32,7 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE()
     {
         textureMonstre[i] = NULL;
     }
+    projTex = NULL;
 }
 
 JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE()
@@ -119,8 +120,22 @@ void JeuModeGRAPHIQUE::InitTexture()
     texturePersG = IMG_LoadTexture(renderer, "data/persoGauche.png");
     texturePersD = IMG_LoadTexture(renderer, "data/persoDroite.png");
     texturePersF = IMG_LoadTexture(renderer, "data/persoFace.png");
+
     texturePlat[0] = IMG_LoadTexture(renderer, "data/plateforme1.png");
     texturePlat[1] = IMG_LoadTexture(renderer, "data/plateforme4.png");
+
+    textureMonstre[0] = IMG_LoadTexture(renderer, "data/monstre1.png");
+    textureMonstre[1] = IMG_LoadTexture(renderer, "data/monstre2.png");
+    textureMonstre[2] = IMG_LoadTexture(renderer, "data/monstre3.png");
+    textureMonstre[3] = IMG_LoadTexture(renderer, "data/monstre4.png");
+
+    textureBonus[0] = IMG_LoadTexture(renderer, "data/bonus1.png");
+    textureBonus[1] = IMG_LoadTexture(renderer, "data/bonus2.png");
+    textureBonus[2] = IMG_LoadTexture(renderer, "data/bonus3.png");
+    textureBonus[3] = IMG_LoadTexture(renderer, "data/bonus4.png");
+    textureBonus[4] = IMG_LoadTexture(renderer, "data/bonus42.png");
+
+    projTex = IMG_LoadTexture(renderer, "data/projectile.png");
 }
 
 void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
@@ -130,15 +145,12 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         cam.y = newcamY;
     SDL_RenderCopy(renderer, textureBackground, NULL, NULL);
     const Personnage &perso = jeu.getConstPersonnage();
-    const Monstre &mon = jeu.getConstMonstre(dt);
-    const bonus &bon = jeu.getConstBonus(dt);
     SDL_Rect rectPers;
 
     rectPers.x = convertPos(perso.getPos()).y;
     rectPers.y = convertPos(perso.getPos()).x - cam.y + DIMY / 2;
     rectPers.h = perso.getTaille().x * TAILLE_SPRITE;
     rectPers.w = perso.getTaille().y * TAILLE_SPRITE;
-
     SDL_RenderCopy(renderer, texturePersD, NULL, &rectPers);
     int nbPl = jeu.getPlateforme().size();
     for (int i = 0; i < nbPl; i++)
@@ -149,13 +161,84 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         rectPlat.y = convertPos(Pl.getPos()).x - cam.y + DIMY / 2;
         rectPlat.h = Pl.getTaille().x * TAILLE_SPRITE;
         rectPlat.w = Pl.getTaille().y * TAILLE_SPRITE;
-        if (Pl.getRes() == -1)
+        if (Pl.estAfficheable())
         {
-            SDL_RenderCopy(renderer, texturePlat[0], NULL, &rectPlat);
+            if (Pl.getRes() == -1)
+            {
+                SDL_RenderCopy(renderer, texturePlat[0], NULL, &rectPlat);
+            }
+            else if (Pl.getRes() == 1)
+            {
+                SDL_RenderCopy(renderer, texturePlat[1], NULL, &rectPlat);
+            }
         }
-        else if (Pl.getRes() == 1)
+    }
+    for (int i = 0; i < NB_MONSTRE; i++)
+    {
+        const Monstre &mon = jeu.getConstMonstre(i);
+        SDL_Rect rectM;
+        float tailleY = mon.getTailleM().x;
+        float tailleX = mon.getTailleM().y;
+        rectM.x = convertPos(mon.getPos()).y;
+        rectM.y = convertPos(mon.getPos()).x - cam.y + DIMY / 2;
+        rectM.h = tailleY * TAILLE_SPRITE;
+        rectM.w = tailleX * TAILLE_SPRITE;
+        if (tailleX == 2 && tailleY == 1 && mon.enVie)
         {
-            SDL_RenderCopy(renderer, texturePlat[1], NULL, &rectPlat);
+            SDL_RenderCopy(renderer, textureMonstre[0], NULL, &rectM);
+        }
+        else if (tailleX == 1 && tailleY == 1 && mon.enVie)
+        {
+            SDL_RenderCopy(renderer, textureMonstre[1], NULL, &rectM);
+        }
+        else if (tailleX == 1 && tailleY == 1.5 && mon.enVie)
+        {
+            SDL_RenderCopy(renderer, textureMonstre[2], NULL, &rectM);
+        }
+        else if (tailleX == 2 && tailleY == 0.5 && mon.enVie)
+        {
+            SDL_RenderCopy(renderer, textureMonstre[3], NULL, &rectM);
+        }
+    }
+    for (int i = 0; i < NB_BONUS; i++)
+    {
+        const bonus &bon = jeu.getConstBonus(i);
+        SDL_Rect rectB;
+        rectB.x = convertPos(bon.getPosBonus()).y;
+        rectB.y = convertPos(bon.getPosBonus()).x - cam.y + DIMY / 2;
+        rectB.h = bon.getTailleB().x * TAILLE_SPRITE;
+        rectB.w = bon.getTailleB().y * TAILLE_SPRITE;
+        if (bon.getNomB() == "h" && !bon.estPris)
+        {
+            SDL_RenderCopy(renderer, textureBonus[0], NULL, &rectB);
+        }
+        else if (bon.getNomB() == "j" && !bon.estPris)
+        {
+            SDL_RenderCopy(renderer, textureBonus[1], NULL, &rectB);
+        }
+        else if (bon.getNomB() == "b" && !bon.estPris)
+        {
+            SDL_RenderCopy(renderer, textureMonstre[2], NULL, &rectB);
+        }
+        else if (bon.getNomB() == "r")
+        {
+            if (bon.estPris)
+                SDL_RenderCopy(renderer, textureBonus[4], NULL, &rectB);
+            else
+                SDL_RenderCopy(renderer, textureBonus[3], NULL, &rectB);
+        }
+    }
+    for (int i = 0; i < perso.getNombreProj(); i++)
+    {
+        const projectile &proj = perso.getProjectileAff(i);
+        SDL_Rect rectProj;
+        if (proj.existe)
+        {
+            rectProj.x = convertPos(proj.getpos()).y;
+            rectProj.y = convertPos(proj.getpos()).x - cam.y + DIMY / 2;
+            rectProj.h = 0.5 * TAILLE_SPRITE;
+            rectProj.w = 0.5 * TAILLE_SPRITE;
+            SDL_RenderCopy(renderer, projTex, NULL, &rectProj);
         }
     }
 
@@ -172,7 +255,7 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
     while (!quit)
     {
         auto start = timer.now();
-        SDL_Delay(10);
+        SDL_Delay(20);
         jeu.update(dt);
         while (SDL_PollEvent(&events))
         {
