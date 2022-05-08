@@ -253,7 +253,7 @@ void Jeu::update(double dt)
 		Vec2 pposSup;
 		pposSup.x = pSupx;
 		pposSup.y = pSupy;
-		if ((doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable() && Ptombe)
+		if ((doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable() && Ptombe && !Psaute)
 		{
 			cout<<"ptombe : "<<Ptombe<<endl;
 			tpsSaut = 30;
@@ -266,6 +266,7 @@ void Jeu::update(double dt)
 		{
 			perso.saut(dt);
 			tpsSaut -= dt;
+			cout<<"saute"<<endl;
 		}
 		else
 		{

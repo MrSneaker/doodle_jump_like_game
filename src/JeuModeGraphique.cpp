@@ -195,7 +195,7 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         {
             SDL_RenderCopy(renderer, textureMonstre[2], NULL, &rectM);
         }
-        else if (tailleX == 2 && tailleY == 0.5 && mon.enVie)
+        else if (tailleX == 2 && tailleY > 0.5 && mon.enVie)
         {
             SDL_RenderCopy(renderer, textureMonstre[3], NULL, &rectM);
         }
@@ -218,7 +218,7 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         }
         else if (bon.getNomB() == "b" && !bon.estPris)
         {
-            SDL_RenderCopy(renderer, textureMonstre[2], NULL, &rectB);
+            SDL_RenderCopy(renderer, textureBonus[2], NULL, &rectB);
         }
         else if (bon.getNomB() == "r")
         {
@@ -255,7 +255,7 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
     while (!quit)
     {
         auto start = timer.now();
-        SDL_Delay(20);
+        SDL_Delay(30);
         jeu.update(dt);
         while (SDL_PollEvent(&events))
         {
