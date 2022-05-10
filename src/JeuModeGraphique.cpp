@@ -251,8 +251,11 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         }
     }
 
-    SDL_RenderPresent(renderer);
+   SDL_RenderPresent(renderer);
 }
+
+
+
 
 void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
 {

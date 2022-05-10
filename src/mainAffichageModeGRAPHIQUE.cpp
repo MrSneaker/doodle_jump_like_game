@@ -1,4 +1,5 @@
 #include "JeuModeGraphique.h"
+#include "Menu.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_error.h>
 #include <SDL2/SDL_video.h>
@@ -17,6 +18,7 @@ int main(int argc, char** argv)
     srand((unsigned)time(&t));
     Jeu jeu;
     JeuModeGRAPHIQUE sl;
+    Menu menu();
     sl.InitCam();
     sl.boucleAffGRAPHIQUE(jeu, dt);
     return 0;
