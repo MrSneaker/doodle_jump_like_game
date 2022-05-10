@@ -10,11 +10,14 @@ Personnage::Personnage()
     position.y = 0;
     proj = {};
     direction = {0, 0};
-    vitesse = 1;
+    vitesse.x = 1;
+    vitesse.y = 1;
     taille.x = 2;
     taille.y = 2;
     nom = "p0";
     enVie = true;
+    aPrisB = false;
+
 }
 
 Personnage::~Personnage()
@@ -26,7 +29,8 @@ Personnage::~Personnage()
     position.x = 0;
     position.y = 0;
     direction = {0, 0};
-    vitesse = 0;
+    vitesse.x = 0;
+    vitesse.y = 0;
     nom = "p0";
 }
 
@@ -46,14 +50,15 @@ Vec2 Personnage::getDir() const
     return direction;
 }
 
-float Personnage::getVit() const
+Vec2 Personnage::getVit() const
 {
     return vitesse;
 }
 
-void Personnage::setVit(float v)
+void Personnage::setVit(float vx ,float vy)
 {
-    vitesse = v;
+    vitesse.x = vx;
+    vitesse.y = vy;
 }
 
 Vec2 Personnage::getTaille() const
@@ -69,7 +74,7 @@ void Personnage::setTaille(float x, float y)
 
 void Personnage::deplacerD(double dt)
 {
-    direction.y = 5.5 * (vitesse * dt);
+    direction.y = 5.5 * (vitesse.y * dt);
     position.y = position.y + direction.y;
     if (position.y > 12 + taille.y)
         position.y = 0 - taille.y;
@@ -77,7 +82,7 @@ void Personnage::deplacerD(double dt)
 
 void Personnage::deplacerG(double dt)
 {
-    direction.y = -5.5 * (vitesse * dt);
+    direction.y = -5.5 * (vitesse.y * dt);
     position.y = position.y + direction.y;
     if (position.y < 0 - taille.y)
         position.y = 12;
@@ -85,13 +90,15 @@ void Personnage::deplacerG(double dt)
 
 void Personnage::saut(double dt)
 {
-    direction.x = -0.7 * (vitesse * dt);
+    //vitesse.x = vitesse.x + 1/1*dt*-9.81;
+    direction.x = -0.7 * (vitesse.x * dt);
     position.x = position.x + direction.x;
 }
 
 void Personnage::tombe(double dt)
 {
-    direction.x = 0.4 * (vitesse * dt);
+    //vitesse.x = vitesse.x + 1/1*dt*-9.81;
+    direction.x = 0.4 * (vitesse.x * dt);
     position.x = position.x + direction.x;
 }
 
@@ -140,7 +147,8 @@ void Personnage::testRegression()
     assert(p1.proj.size() == 0);
     assert(p1.direction.x == 0);
     assert(p1.direction.y == 0);
-    assert(p1.vitesse == 1);
+    assert(p1.vitesse.x == 1);
+    assert(p1.vitesse.y == 1);
     assert(p1.nom == "p0");
     assert(p1.enVie == true);
     p1.setNom("test");
@@ -152,13 +160,14 @@ void Personnage::testRegression()
     cout << "pos x : " << p1.getPos().x << endl;
     cout << "pos y : " << p1.getPos().y << endl;
     p1.deplacerD(1.0 / 60.0);
-    p1.setVit(2);
+    p1.setVit(2,2);
     p1.deplacerD(1.0 / 60.0);
     p1.deplacerG(1.0 / 60.0);
     p1.saut(1.0 / 60.0);
     p1.saut(1.0 / 60.0);
     p1.tombe(1.0 / 60.0);
-    assert(p1.vitesse == 2);
+    assert(p1.vitesse.x == 2);
+    assert(p1.vitesse.y == 2);
     assert(p1.position.x == p1.getPos().x);
     assert(p1.position.y == p1.getPos().y);
     assert(p1.direction.x == p1.getDir().x);
@@ -167,7 +176,8 @@ void Personnage::testRegression()
     cout << "direction en y: " << p1.getDir().y << endl;
     cout << "pos x : " << p1.getPos().x << endl;
     cout << "pos y : " << p1.getPos().y << endl;
-    cout << "vitesse : " << p1.getVit() << endl;
+    cout << "vitesse x: " << p1.getVit().x << endl;
+    cout << "vitesse y: " << p1.getVit().y << endl;
     p1.creerProj(1.0 / 60.0);
     p1.creerProj(1.0 / 60.0);
     p1.creerProj(1.0 / 60.0);

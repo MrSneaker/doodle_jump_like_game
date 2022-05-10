@@ -28,10 +28,10 @@ private:
     float tps = 0;     // temps bonus
     float tpsSaut = 0; // temps saut
     float camX = 0;    // clone logique de la caméra des affichages,  permettant la condition de mort.
-    const int NB_BONUS = 4;
+    const int NB_BONUS = 5;
     const int NB_MONSTRE = 4;
     Personnage perso;     /*! \brief Personnage controlé par le joueur*/
-    bonus bonu[4];        /*! \brief Tableau statique de bonus de taille NB_BONUS*/
+    bonus bonu[5];        /*! \brief Tableau statique de bonus de taille NB_BONUS*/
     Monstre monstr[4];    /*! \brief Tableau statique de monstre de taille NB_MONSTRE*/
     vector<Plateforme> p; /*! \brief Tableau dynamique de plateforme*/
     vector<Ecran> e;      /*! \brief Tableau dynamique d'écran*/

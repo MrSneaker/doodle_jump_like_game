@@ -39,14 +39,9 @@ JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE()
 {
 }
 
-char bordure[15][30];
-char bordureClean[15][30];
-
 Vec2 JeuModeGRAPHIQUE::convertPos(Vec2 pos)
 {
     Vec2 newPos;
-    double scaleX = 100 / DIMY;
-    double scaleY = 12 / DIMX;
     newPos.x = (DIMY * pos.x) / 100;
     newPos.y = (DIMX * pos.y) / 12;
     return newPos;
@@ -86,7 +81,7 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE()
         exit(1);
     }
 
-    int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
+    int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG | IMG_INIT_WEBP;
     if (!(IMG_Init(imgFlags) & imgFlags))
     {
         cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
@@ -134,6 +129,7 @@ void JeuModeGRAPHIQUE::InitTexture()
     textureBonus[2] = IMG_LoadTexture(renderer, "data/bonus3.png");
     textureBonus[3] = IMG_LoadTexture(renderer, "data/bonus4.png");
     textureBonus[4] = IMG_LoadTexture(renderer, "data/bonus42.png");
+    textureBonus[5] = IMG_LoadTexture(renderer, "data/hole.png");
 
     projTex = IMG_LoadTexture(renderer, "data/projectile.png");
 }
@@ -151,7 +147,16 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
     rectPers.y = convertPos(perso.getPos()).x - cam.y + DIMY / 2;
     rectPers.h = perso.getTaille().x * TAILLE_SPRITE;
     rectPers.w = perso.getTaille().y * TAILLE_SPRITE;
-    SDL_RenderCopy(renderer, texturePersD, NULL, &rectPers);
+    if (jeu.Pdroite)
+    {
+        SDL_RenderCopy(renderer, texturePersD, NULL, &rectPers);
+    }
+    else if (jeu.Pgauche)
+    {
+        SDL_RenderCopy(renderer, texturePersG, NULL, &rectPers);
+    }
+    else
+        SDL_RenderCopy(renderer, texturePersF, NULL, &rectPers);
     int nbPl = jeu.getPlateforme().size();
     for (int i = 0; i < nbPl; i++)
     {
@@ -227,6 +232,10 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
             else
                 SDL_RenderCopy(renderer, textureBonus[3], NULL, &rectB);
         }
+        else if (bon.getNomB() == "t")
+        {
+            SDL_RenderCopy(renderer, textureBonus[5], NULL, &rectB);
+        }
     }
     for (int i = 0; i < perso.getNombreProj(); i++)
     {
@@ -266,7 +275,7 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
                 bool seDeplace = false;
                 switch (events.key.keysym.scancode)
                 {
-                case SDL_SCANCODE_UP:
+                case SDL_SCANCODE_SPACE:
                     seDeplace = jeu.actionClavier('r', dt); // lance un proj
                     break;
                 case SDL_SCANCODE_LEFT:
@@ -307,6 +316,14 @@ void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE()
     SDL_DestroyTexture(texturePersG);
     SDL_DestroyTexture(texturePlat[0]);
     SDL_DestroyTexture(texturePlat[1]);
+    for (int i = 0; i < NB_BONUS; i++)
+    {
+        SDL_DestroyTexture(textureBonus[i]);
+    }
+    for (int i = 0; i < NB_MONSTRE; i++)
+    {
+        SDL_DestroyTexture(textureMonstre[i]);
+    }
     IMG_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_Quit();

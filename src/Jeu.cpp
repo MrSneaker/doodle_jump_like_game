@@ -52,7 +52,7 @@ bool Jeu::actionClavier(const char touche, double dt)
 		break;
 	case 'r':
 		perso.creerProj(dt);
-		cout<<"alo?"<<endl;
+		cout << "alo?" << endl;
 		break;
 	case 'q':
 		return false;
@@ -77,7 +77,7 @@ void Jeu::actionsAutomatiques(double dt)
 void Jeu::InitPersonnage()
 {
 	perso.setPos(50, 6);
-	perso.setVit(1);
+	perso.setVit(1, 1);
 	camX = perso.getPos().x;
 }
 
@@ -118,30 +118,43 @@ void Jeu::InitBonus()
 	int i;
 	for (i = 0; i < NB_BONUS; i++)
 	{
-		bonu[i].setTailleB(1, 1);
-		bonu[i].setDuree(0.25);
+
 		if (i == 0)
 		{
+			bonu[i].setDuree(10);
+			bonu[i].setTailleB(2, 1);
 			bonu[i].setNomB("j");
-			bonu[i].setVitB(5);
+			bonu[i].setVitB(3.5);
 		}
 
 		if (i == 1)
 		{
+			bonu[i].setDuree(10);
+			bonu[i].setTailleB(1, 1);
 			bonu[i].setNomB("h");
-			bonu[i].setVitB(3);
+			bonu[i].setVitB(2);
 		}
 
 		if (i == 2)
 		{
+			bonu[i].setDuree(0.25);
+			bonu[i].setTailleB(1, 1);
 			bonu[i].setNomB("r");
 			bonu[i].setVitB(2);
 		}
 
 		if (i == 3)
 		{
+			bonu[i].setDuree(5);
+			bonu[i].setTailleB(1, 1);
 			bonu[i].setNomB("b");
 			bonu[i].setVitB(2);
+		}
+		if (i == 4)
+		{
+			bonu[i].setDuree(0.25);
+			bonu[i].setTailleB(2, 2);
+			bonu[i].setNomB("t");
 		}
 	}
 }
@@ -228,7 +241,8 @@ void Jeu::Init()
 
 void Jeu::update(double dt)
 {
-	
+	// cout<<"perso x : "<<perso.getPos().x<<endl;
+	// cout<<"lol"<<endl;
 	double px = perso.getPos().x;
 	double py = perso.getPos().y;
 	double persoSupx = px - perso.getTaille().x;
@@ -245,6 +259,7 @@ void Jeu::update(double dt)
 
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
+
 		Vec2 ppos = p.at(i).getPos();
 		float pposx = p.at(i).getPos().x - 10; // on décale pour que le personnage saute au niveau de ses pieds.
 		float pposy = p.at(i).getPos().y;
@@ -253,10 +268,13 @@ void Jeu::update(double dt)
 		Vec2 pposSup;
 		pposSup.x = pSupx;
 		pposSup.y = pSupy;
-		if ((doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable() && Ptombe && !Psaute)
+		bool collisionPlat = (doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable();
+		bool platOutRange = ppos.x > camX + 50;
+		if (collisionPlat && Ptombe && !perso.aPrisB)
 		{
-			cout<<"ptombe : "<<Ptombe<<endl;
-			tpsSaut = 30;
+			cout << "3" << endl;
+			cout << "ptombe : " << Ptombe << endl;
+			tpsSaut = 35;
 			Psaute = true;
 			Ptombe = false;
 			if (p.at(i).getRes() != -1 && p.at(i).getRes() != 0)
@@ -266,9 +284,8 @@ void Jeu::update(double dt)
 		{
 			perso.saut(dt);
 			tpsSaut -= dt;
-			cout<<"saute"<<endl;
 		}
-		else
+		else if (!perso.aPrisB)
 		{
 			Psaute = false;
 			Ptombe = true;
@@ -299,8 +316,8 @@ void Jeu::update(double dt)
 				Vec2 projRadius;
 				proj.x = projX;
 				proj.y = projY;
-				projRadius.x = projX - 0.5;
-				projRadius.y = projY + 0.5;
+				projRadius.x = projX - 1;
+				projRadius.y = projY + 1;
 				bool detruit = false;
 				if (perso.getProjectile(j).existe == true)
 				{
@@ -343,20 +360,22 @@ void Jeu::update(double dt)
 		monstre.y = my;
 		monstreSup.x = mxSup;
 		monstreSup.y = mySup;
-		if (doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true))
+		if (doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true) && !perso.aPrisB)
 		{
+			cout << "2" << endl;
 			if (Ptombe)
 			{
-				tpsSaut = 20;
+				tpsSaut = 30;
 				Psaute = true;
 				Ptombe = false;
 				monstr[i].descRes();
+				cout << "saut sur mob!" << endl;
 			}
 			else
 			{
 				perso.tombe(dt);
 				perso.enVie = false;
-				cout << "mort d'un mob";
+				cout << "mort d'un mob" << endl;
 			}
 		}
 		if (monstr[i].getResistance() == 0)
@@ -376,35 +395,46 @@ void Jeu::update(double dt)
 		bonus.y = by;
 		bonusSup.x = bSupx;
 		bonusSup.y = bSupy;
-		if (doOverlap(bonusSup, bonus, posSupperso, posperso) && (bonu[i].estPris == false))
+		if (doOverlap(bonusSup, bonus, posSupperso, posperso) && !bonu[i].estPris && !perso.aPrisB)
 		{
 			tps = bonu[i].getDuree();
 			bonu[i].estPris = true;
+			bonu[i].disponible = true;
+			perso.aPrisB = true;
+			cout << "1" << endl;
 		}
 	}
 	for (int i = 0; i < NB_BONUS; i++)
 	{
 		if (bonu[i].estPris)
 		{
-			if (tps > 0)
+			// cout<<"bonus : "<<i<<"est pris"<<endl;
+			if (i == 4)
 			{
-				perso.setVit(bonu[i].getVitB());
-				perso.saut(dt);
-				tps -= dt;
-				cout << "temps bonus : " << tps << endl;
+				perso.enVie = false;
+				cout << "mort du trou noir" << endl;
 			}
-			else
-			{
-				perso.setVit(1);
-			}
+		}
+		if (tps > 0)
+		{
+			perso.setVit(bonu[i].getVitB(), perso.getVit().y);
+			perso.setPos(perso.getPos().x - perso.getVit().x, perso.getPos().y);
+			tps -= dt;
+			cout << "temps bonus : " << tps << endl;
+		}
+		else
+		{
+			perso.setVit(1, perso.getVit().y);
+			perso.aPrisB = false;
 		}
 	}
 
 	if (px >= camX + 50)
 	{
 		perso.enVie = false;
-		cout << "mort de chute";
+		cout << "mort de chute" << endl;
 	}
 	actionsAutomatiques(dt);
 	updateEcran(dt);
+	// cout<<"update tourne"<<endl;
 }

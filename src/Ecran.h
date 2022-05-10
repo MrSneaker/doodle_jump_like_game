@@ -15,7 +15,7 @@ private:
     int finEcran;   /*! \brief Entie désignant la position à laquelle fini l'écran.*/
     int nbPlEc;     /*! \brief Entier désignant le nombre de plateformes dans l'écran.*/
     int NB_MONSTRE = 4;
-    int NB_BONUS = 4;
+    int NB_BONUS = 5;
 
 public:
     Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus b[4], Monstre m[4]); /*! \brief constructeur permettant de construire un écran à partir de sa position de début et de fin ( \param posDebut, \param posFin), ainsi qu'à son nombre de plateformes \param nbPlat, en prenant en paramètres tous les éléments du jeu nécessaire à la construction (tableau dynamique de plateforme passé en référence  \param p, tableau statique de taille NB_BONUS \param b, tableau statique de taille NB_MONSTRE \param m). */

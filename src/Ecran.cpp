@@ -19,44 +19,63 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 	debutEcran = posDebut;
 	finEcran = posFin;
 	nbPlEc = nbPlat;
+	bool genereOk = true;
+	int rep = 0;
 	Plateforme p0;
-	p0.setPos(posDebut - 5, (rand() % 11) + 1);
+	p0.setPos(posDebut, (rand() % 11) + 1);
 	for (int i = 0; i < nbPlat; i++)
 	{
 		int r = rand();
 		Plateforme tmp;
+		float p0X = p0.getPos().x;
+		float tmpX = tmp.getPos().x;
 		tmp.setPos(random(posFin, posDebut), (r % 11) + 1);
+		/*if (tmpX <= p0X - 15)
+		{
+			cout<<"pl replace"<<endl;
+			rep++;
+			tmp.setPos(tmp.getPos().x + 10, tmp.getPos().y);
+		}*/
+		if(tmpX <= posDebut - 50 && tmpX >= posFin) // on ne génère pas au début d'un écran pour éviter les morts inévitable en début de partie. 
+		{
+			genereOk = false;
+		}
 		if (r % 100 <= 70)
 			tmp.setRes(-1);
 		else
 			tmp.setRes(1);
-		if (r % 100 > 90)
+		if (r % 100 > 80)
 			tmp.setDir(0, 1);
-		if (r % 100 > 95)
+		if (r % 100 > 90)
 			tmp.setDir(1, 0);
 		tmp.setTaille(0.7, 2);
 		if (r % 100 > 80)
 		{
 			int bonus = r % NB_BONUS;
-			if (b[bonus].disponible)
+			if (b[bonus].disponible && genereOk)
 			{
-				b[bonus].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
-				b[bonus].estPris = false;
-				b[bonus].disponible = false;
+				if (bonus == 4)
+				{
+					b[bonus].setPosBonus(random(posFin, posDebut), (r % 11) + 1);
+					b[bonus].estPris = false;
+					b[bonus].disponible = false;
+				}
+				else
+				{
+					b[bonus].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
+					b[bonus].estPris = false;
+					b[bonus].disponible = false;
+				}
 			}
 		}
 		else if (r % 100 > 70)
 		{
 			int monstre = r % NB_MONSTRE;
-			if (m[monstre].enVie == false)
+			if (m[monstre].enVie == false && genereOk)
 			{
 				m[monstre].enVie = true;
 				m[monstre].setPos(tmp.getPos().x - 5, tmp.getPos().y);
 			}
-		}
-		if (tmp.getPos().x == p0.getPos().x)
-		{
-			tmp.setPos(tmp.getPos().x - 10, tmp.getPos().y);
 		}
 		p0 = tmp;
 		p.emplace(p.begin(), tmp);
@@ -84,7 +103,7 @@ void Ecran::detruireEc(vector<Plateforme> &p, bonus b[4], Monstre m[4], int nbPl
 		float posbX = b[i].getPosBonus().x;
 		if (posbX < debutEcran && posbX > finEcran)
 		{
-			b[i].estPris = true;
+			b[i].disponible = true;
 		}
 	}
 	for (int i = 0; i < NB_MONSTRE; i++)

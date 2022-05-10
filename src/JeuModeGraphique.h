@@ -26,7 +26,7 @@ private:
     SDL_Texture * texturePersG;
     SDL_Texture * texturePlat[2];
     SDL_Texture * textureMonstre[4];
-    SDL_Texture * textureBonus[5];
+    SDL_Texture * textureBonus[6];
     SDL_Texture * projTex;
     TTF_Font * font;
     SDL_Color font_color;
@@ -34,7 +34,7 @@ private:
     bool touche;
     Mix_Chunk * sound; 
     bool withSound;
-    const int NB_BONUS = 4;
+    const int NB_BONUS = 5;
     const int NB_MONSTRE = 4;
     
     

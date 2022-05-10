@@ -15,12 +15,14 @@ private:
     Vec2 position;           /*! \brief structure contenant la position en coordonnées x,y*/
     vector<projectile> proj; /*! \brief vector de vector de projectile du personnage */
     Vec2 direction;          /*! \brief le vecteur de direction du personnage*/
-    float vitesse;           /*! \brief la vitesse du personnage*/
+    Vec2 vitesse;            /*! \brief la vitesse du personnage*/
     string nom;              /*! \brief le nom du personnage*/
     Vec2 taille;             /*! \brief la taille du personnage*/
+    float force;
 
 public:
     bool enVie;                       /*! \brief info si le personnage est en vie ou non*/
+    bool aPrisB;
     Personnage();                     /*! \brief position de base : 0,0; projectile à NULL; direction, vitesse à 0, nom à "p0", enVie à true*/
     ~Personnage();                    /*! \brief supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à NULL, enVie à NULL*/
     Vec2 getPos() const;              /*! \brief renvoie la position en x et en y du personnage*/
@@ -32,17 +34,17 @@ public:
     const projectile &getProjectileAffSdl(int n) const;
     Vec2 getTaille() const;
     void setTaille(float x, float y);
-    float getVit() const;           /*! \brief renvoie la vitesse du personnage */
-    void setVit(float v);           /*! \brief met à jour la vitesse du personnage selon un paramètre vitesse \param v*/
-    void deplacerD(double dt);      /*! \brief déplace le personnage à droite et modifie sa position x de +1*/
-    void deplacerG(double dt);      /*! \brief déplace le personnage à gauche et modifie sa position x de -1*/
-    void saut(double dt);           /*! \brief fait sauter le personnage, le déplace vers le haut en modifiant sa position y de +1*/
-    void tombe(double dt);          /*! \brief fait tomber le personnage, le déplace vers le haut en modifiant sa position y de -1*/
-    const string &getNom() const;   /*! \brief renvoie le nom du personnage (permet de définir plusieurs apparences)*/
-    void setNom(const string nomP); /*! \brief met à jour le nom du personnage selon un string \param nom en paramètre*/
-    void creerProj(double dt);      /*! \brief fait tirer le personnage en créant un veteur projectile*/
-    void detruitProj(int i);        /*! \brief supprime un projectile*/
-    void testRegression();          /*! \brief test toutes les fonctions de la classe Personnage*/
+    Vec2 getVit() const;             /*! \brief renvoie la vitesse du personnage */
+    void setVit(float vx, float vy); /*! \brief met à jour la vitesse du personnage selon un paramètre vitesse \param v*/
+    void deplacerD(double dt);       /*! \brief déplace le personnage à droite et modifie sa position x de +1*/
+    void deplacerG(double dt);       /*! \brief déplace le personnage à gauche et modifie sa position x de -1*/
+    void saut(double dt);            /*! \brief fait sauter le personnage, le déplace vers le haut en modifiant sa position y de +1*/
+    void tombe(double dt);           /*! \brief fait tomber le personnage, le déplace vers le haut en modifiant sa position y de -1*/
+    const string &getNom() const;    /*! \brief renvoie le nom du personnage (permet de définir plusieurs apparences)*/
+    void setNom(const string nomP);  /*! \brief met à jour le nom du personnage selon un string \param nom en paramètre*/
+    void creerProj(double dt);       /*! \brief fait tirer le personnage en créant un veteur projectile*/
+    void detruitProj(int i);         /*! \brief supprime un projectile*/
+    void testRegression();           /*! \brief test toutes les fonctions de la classe Personnage*/
 };
 
 #endif
