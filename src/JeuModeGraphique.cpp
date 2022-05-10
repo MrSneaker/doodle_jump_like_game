@@ -112,7 +112,7 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE()
 void JeuModeGRAPHIQUE::InitTexture()
 {
     textureBackground = IMG_LoadTexture(renderer, "data/background.png");
-    texturePersG = IMG_LoadTexture(renderer, "data/helicoGIF.gif");
+    texturePersG = IMG_LoadTexture(renderer, "data/persoGauche.png");
     texturePersD = IMG_LoadTexture(renderer, "data/persoDroite.png");
     texturePersF = IMG_LoadTexture(renderer, "data/persoFca.png");
 
