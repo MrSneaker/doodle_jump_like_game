@@ -163,9 +163,9 @@ void Jeu::InitEc()
 {
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 0.7, 2, -1);
 	p.emplace(p.begin(), p0);
-	Ecran e1(100, 0, 20, p, bonu, monstr);
-	Ecran e2(0, -100, 20, p, bonu, monstr);
-	Ecran e3(-100, -200, 20, p, bonu, monstr);
+	Ecran e1(100, 0, 20, p, bonu, monstr,false);
+	Ecran e2(0, -100, 20, p, bonu, monstr,true);
+	Ecran e3(-100, -200, 20, p, bonu, monstr,true);
 	e.push_back(e1);
 	e.push_back(e2);
 	e.push_back(e3);
@@ -188,7 +188,7 @@ void Jeu::updateEcran(double dt)
 		{
 			debutNewEc = e.at(e.size() - 1).getFinEc();
 			finNewEc = e.at(e.size() - 1).getFinEc() - 100;
-			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr);
+			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr,true);
 			e.push_back(tmp);
 		}
 	}
@@ -362,7 +362,6 @@ void Jeu::update(double dt)
 		monstreSup.y = mySup;
 		if (doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true) && !perso.aPrisB)
 		{
-			cout << "2" << endl;
 			if (Ptombe)
 			{
 				tpsSaut = 30;
@@ -401,17 +400,16 @@ void Jeu::update(double dt)
 			bonu[i].estPris = true;
 			bonu[i].disponible = true;
 			perso.aPrisB = true;
-			cout << "1" << endl;
 		}
 	}
 	for (int i = 0; i < NB_BONUS; i++)
 	{
 		if (bonu[i].estPris)
 		{
-			// cout<<"bonus : "<<i<<"est pris"<<endl;
+			cout<<"bonus : "<<i<<" est pris"<<endl;
 			if (i == 4)
 			{
-				perso.enVie = false;
+				//perso.enVie = false;
 				cout << "mort du trou noir" << endl;
 			}
 		}

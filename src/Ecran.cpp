@@ -14,12 +14,11 @@ int random(int min, int max) // fonction permettant de renvoyer un nombre aléat
 	return res;
 }
 
-Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus b[4], Monstre m[4])
+Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus b[4], Monstre m[4], bool genereMB)
 {
 	debutEcran = posDebut;
 	finEcran = posFin;
 	nbPlEc = nbPlat;
-	bool genereOk = true;
 	int rep = 0;
 	Plateforme p0;
 	p0.setPos(posDebut, (rand() % 11) + 1);
@@ -36,10 +35,6 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 			rep++;
 			tmp.setPos(tmp.getPos().x + 10, tmp.getPos().y);
 		}*/
-		if(tmpX <= posDebut - 50 && tmpX >= posFin) // on ne génère pas au début d'un écran pour éviter les morts inévitable en début de partie. 
-		{
-			genereOk = false;
-		}
 		if (r % 100 <= 70)
 			tmp.setRes(-1);
 		else
@@ -49,34 +44,38 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 		if (r % 100 > 90)
 			tmp.setDir(1, 0);
 		tmp.setTaille(0.7, 2);
-		if (r % 100 > 80)
+		if (genereMB)
 		{
-			int bonus = r % NB_BONUS;
-			if (b[bonus].disponible && genereOk)
+			if (r % 100 > 80)
 			{
-				if (bonus == 4)
+				int bonus = r % NB_BONUS;
+				if (b[bonus].disponible)
 				{
-					b[bonus].setPosBonus(random(posFin, posDebut), (r % 11) + 1);
-					b[bonus].estPris = false;
-					b[bonus].disponible = false;
+					if (bonus == 4)
+					{
+						b[bonus].setPosBonus(random(posFin, posDebut), (r % 11) + 1);
+						b[bonus].estPris = false;
+						b[bonus].disponible = false;
+					}
+					else
+					{
+						b[bonus].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
+						b[bonus].estPris = false;
+						b[bonus].disponible = false;
+					}
 				}
-				else
+			}
+			else if (r % 100 > 70)
+			{
+				int monstre = r % NB_MONSTRE;
+				if (m[monstre].enVie == false)
 				{
-					b[bonus].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
-					b[bonus].estPris = false;
-					b[bonus].disponible = false;
+					m[monstre].enVie = true;
+					m[monstre].setPos(tmp.getPos().x - 5, tmp.getPos().y);
 				}
 			}
 		}
-		else if (r % 100 > 70)
-		{
-			int monstre = r % NB_MONSTRE;
-			if (m[monstre].enVie == false && genereOk)
-			{
-				m[monstre].enVie = true;
-				m[monstre].setPos(tmp.getPos().x - 5, tmp.getPos().y);
-			}
-		}
+
 		p0 = tmp;
 		p.emplace(p.begin(), tmp);
 	}
@@ -104,6 +103,7 @@ void Ecran::detruireEc(vector<Plateforme> &p, bonus b[4], Monstre m[4], int nbPl
 		if (posbX < debutEcran && posbX > finEcran)
 		{
 			b[i].disponible = true;
+			b[i].estPris = false;
 		}
 	}
 	for (int i = 0; i < NB_MONSTRE; i++)

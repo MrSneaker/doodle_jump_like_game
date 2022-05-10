@@ -74,7 +74,7 @@ void Personnage::setTaille(float x, float y)
 
 void Personnage::deplacerD(double dt)
 {
-    direction.y = 5.5 * (vitesse.y * dt);
+    direction.y = 9.5 * (vitesse.y * dt);
     position.y = position.y + direction.y;
     if (position.y > 12 + taille.y)
         position.y = 0 - taille.y;
@@ -82,7 +82,7 @@ void Personnage::deplacerD(double dt)
 
 void Personnage::deplacerG(double dt)
 {
-    direction.y = -5.5 * (vitesse.y * dt);
+    direction.y = -9.5 * (vitesse.y * dt);
     position.y = position.y + direction.y;
     if (position.y < 0 - taille.y)
         position.y = 12;
@@ -114,7 +114,7 @@ void Personnage::setNom(const string nomP)
 
 void Personnage::creerProj(double dt)
 {
-    projectile a(position.x, position.y + 0.5, -50, 0);
+    projectile a(position.x, position.y + 1, -50, 0);
     proj.push_back(a);
 }
 
