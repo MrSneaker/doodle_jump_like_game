@@ -25,9 +25,9 @@ using namespace std;
 class Jeu
 {
 private:
-    float tps = 0;     // temps bonus
-    float tpsSaut = 0; // temps saut
-    float camX = 0;    // clone logique de la caméra des affichages,  permettant la condition de mort.
+    float tps = 0;        // temps bonus
+    float tpsSaut = 0;    // temps saut
+    float camX = 0;       // clone logique de la caméra des affichages,  permettant la condition de mort.
     const int NB_BONUS = 5;
     const int NB_MONSTRE = 4;
     Personnage perso;     /*! \brief Personnage controlé par le joueur*/
@@ -39,12 +39,14 @@ private:
 public:
     Jeu(); /*! \brief constructeur du jeu, appel la procédure Init() pour initialiser l'entièreté de ses composantes.*/
     ~Jeu();
-    bool Ptombe;                                      /*! \brief Booléen vrai si le personnage tombe, faux sinon, vrai par défaut.*/
-    bool Psaute;                                      /*! \brief Booléen vrai si le personnage saute, faux sinon, faux par défaut.*/
-    bool Pdroite;                                     /*! \brief Booléen vrai si le personnage va à droite, faux sinon, faux par défaut.*/
-    bool Pgauche;                                     /*! \brief Booléen vrai si le personnage va à gauche, faux sinon, faux par défaut.*/
-    bool Ptire;                                       /*! \brief Booléen vrai si le personnage tir, faux sinon, faux par défaut.*/
+    bool Ptombe;  /*! \brief Booléen vrai si le personnage tombe, faux sinon, vrai par défaut.*/
+    bool Psaute;  /*! \brief Booléen vrai si le personnage saute, faux sinon, faux par défaut.*/
+    bool Pdroite; /*! \brief Booléen vrai si le personnage va à droite, faux sinon, faux par défaut.*/
+    bool Pgauche; /*! \brief Booléen vrai si le personnage va à gauche, faux sinon, faux par défaut.*/
+    bool Ptire;   /*! \brief Booléen vrai si le personnage tir, faux sinon, faux par défaut.*/
     bool PcollPl;
+    bool Mtouche1;
+    bool Mtouche2;
     int score;
     const Personnage &getConstPersonnage() const;     /*! \brief Renvoie une référence au personnage et ses caractéristiques pour l'affichage texte et SDL*/
     const Monstre &getConstMonstre(int i) const;      /*! \brief Renvoie une référence au monstre numéro \param i et ses caractéristiques pour l'affichage texte et SDL*/

@@ -122,8 +122,9 @@ void JeuModeGRAPHIQUE::InitTexture()
     texturePersF = IMG_LoadTexture(renderer, "data/persoDroite.png");
     texturePersS = IMG_LoadTexture(renderer, "data/persoFace.png");
     texturePersH[0] = IMG_LoadTexture(renderer, "data/persoHelico.png");
-    texturePersJ[0] = IMG_LoadTexture(renderer, "data/bonus1.png");
+    texturePersJ[0] = IMG_LoadTexture(renderer, "data/persoFuseeDroite.png");
     texturePersH[1] = IMG_LoadTexture(renderer, "data/persoHelicoG.png");
+    texturePersJ[1] = IMG_LoadTexture(renderer, "data/persoFuseeGauche.png");
 
     texturePlat[0] = IMG_LoadTexture(renderer, "data/plateforme1.png");
     texturePlat[1] = IMG_LoadTexture(renderer, "data/plateforme4.png");
@@ -148,6 +149,9 @@ void JeuModeGRAPHIQUE::initSon()
     saut = Mix_LoadMUS("data/jump.wav");
     helico = Mix_LoadMUS("data/helico.mp3");
     jetpack = Mix_LoadMUS("data/fusee.mp3");
+    tir = Mix_LoadMUS("data/pucanje.mp3");
+    Mmeurt = Mix_LoadMUS("data/monsterpogodak.mp3");
+    ressort = Mix_LoadMUS("data/feder.mp3");
 }
 
 void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
@@ -175,7 +179,7 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
     {
         SDL_RenderCopy(renderer, texturePersS, NULL, &rectPers);
     }
-    else if(!perso.aPrisB)
+    else if (!perso.aPrisB)
         SDL_RenderCopy(renderer, texturePersF, NULL, &rectPers);
     int nbPl = jeu.getPlateforme().size();
     for (int i = 0; i < nbPl; i++)
@@ -224,6 +228,12 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         {
             SDL_RenderCopy(renderer, textureMonstre[3], NULL, &rectM);
         }
+        if (jeu.Mtouche1 || jeu.Mtouche2)
+        {
+            Mix_PlayMusic(Mmeurt, 1);
+            jeu.Mtouche1 = false;
+            jeu.Mtouche2 = false;
+        }
     }
     for (int i = 0; i < NB_BONUS; i++)
     {
@@ -243,12 +253,23 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         }
         else if (bon.getNomB() == "b" && !bon.estPris)
         {
+            tpsR = bon.getDuree();
             SDL_RenderCopy(renderer, textureBonus[2], NULL, &rectB);
+        }
+        else if (bon.getNomB() == "b" && bon.estPris)
+        {
+            Mix_PlayMusic(ressort, 1);
+        }
+        else if (bon.getNomB() == "r" && bon.estPris) // pour jouer le son du ressort.
+        {
+            Mix_PlayMusic(ressort, 1);
         }
         else if (bon.getNomB() == "r")
         {
             if (bon.estPris)
+            {
                 SDL_RenderCopy(renderer, textureBonus[4], NULL, &rectB);
+            }
             else
                 SDL_RenderCopy(renderer, textureBonus[3], NULL, &rectB);
         }
@@ -276,8 +297,14 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         }
         else if (tpsJ > 0)
         {
-            SDL_RenderCopy(renderer, texturePersJ[0], NULL, &rectPers);
+            if (jeu.Pdroite)
+                SDL_RenderCopy(renderer, texturePersJ[0], NULL, &rectPers);
+            else
+                SDL_RenderCopy(renderer, texturePersJ[1], NULL, &rectPers);
             tpsJ -= dt;
+        }
+        if (tpsR > 0)
+        {
         }
     }
     for (int i = 0; i < perso.getNombreProj(); i++)
@@ -321,6 +348,7 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
                 {
                 case SDL_SCANCODE_SPACE:
                     jeu.actionClavier('r', dt); // lance un proj
+                    Mix_PlayMusic(tir, 1);
                     break;
                 case SDL_SCANCODE_LEFT:
                     jeu.actionClavier('g', dt); // se deplace a gauche
@@ -356,6 +384,9 @@ void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE()
     Mix_FreeMusic(saut);
     Mix_FreeMusic(helico);
     Mix_FreeMusic(jetpack);
+    Mix_FreeMusic(Mmeurt);
+    Mix_FreeMusic(tir);
+    Mix_FreeMusic(ressort);
     // TTF_CloseFont(font);
     TTF_Quit();
     SDL_DestroyWindow(window);

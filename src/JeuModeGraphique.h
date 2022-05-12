@@ -34,11 +34,15 @@ private:
     Mix_Music *saut;
     Mix_Music *helico;
     Mix_Music *jetpack;
+    Mix_Music *tir;
+    Mix_Music *Mmeurt;
+    Mix_Music *ressort;
     bool withSound;
     const int NB_BONUS = 5;
     const int NB_MONSTRE = 4;
     float tpsJ = 0;
     float tpsH = 0;
+    float tpsR = 0;
 
 public:
     JeuModeGRAPHIQUE();

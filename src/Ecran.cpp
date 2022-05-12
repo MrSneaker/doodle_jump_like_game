@@ -4,6 +4,8 @@ int random(int min, int max) // fonction permettant de renvoyer un nombre aléat
 							 // négatif ou positif en fonction des bornes fournies en paramètres.
 {
 	int res;
+	if(max - min == 0)
+	 return EXIT_FAILURE;
 	if (max - min < 0)
 	{
 		res = -1 * (min + rand() % (max - min));
@@ -26,16 +28,21 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 	{
 		int r = rand();
 		Plateforme tmp;
-		float p0X = p0.getPos().x;
+		int p0X = p0.getPos().x;
 		float tmpX = tmp.getPos().x;
 		tmp.setPos(random(posFin, posDebut), (r % 11) + 1);
-		/*if (tmpX <= p0X - 15)
+		if ((-1*tmpX) - (-1*p0X)> 20) // on replace les plateformes situées trop proche les une des autres
 		{
-			cout<<"pl replace"<<endl;
-			rep++;
-			tmp.setPos(tmp.getPos().x + 10, tmp.getPos().y);
-		}*/
-		if (r % 100 <= 70)
+			cout << "pl replace" << endl;
+			int diff = -1*(tmpX + 20);
+			tmp.setPos(tmp.getPos().x + diff, tmp.getPos().y);
+		}
+		else if ((-1*p0X) - (-1*tmpX)> 20)
+		{
+			int diff = -1*(tmpX + 20);
+			tmp.setPos(tmp.getPos().x - diff, tmp.getPos().y);
+		}
+		if (r % 100 <= 50)
 			tmp.setRes(-1);
 		else
 			tmp.setRes(1);

@@ -19,7 +19,8 @@ class Menu {
 
 
     public:
-    
+        Menu();
+        ~Menu();
         int afficherMenu(SDL_Surface *screen, TTF_Font *font);
 };
 

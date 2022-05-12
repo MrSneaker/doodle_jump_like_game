@@ -18,7 +18,6 @@ int main(int argc, char** argv)
     srand((unsigned)time(&t));
     Jeu jeu;
     JeuModeGRAPHIQUE sl;
-    Menu menu();
     sl.InitCam();
     sl.boucleAffGRAPHIQUE(jeu, dt);
     return 0;

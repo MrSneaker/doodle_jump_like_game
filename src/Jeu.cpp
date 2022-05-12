@@ -11,6 +11,8 @@ Jeu::Jeu()
 	Pgauche = false;
 	Ptire = false;
 	PcollPl = false;
+	Mtouche1 = false;
+	Mtouche2 = false;
 	score = 0;
 }
 
@@ -139,15 +141,15 @@ void Jeu::InitBonus()
 			bonu[i].setDuree(10);
 			bonu[i].setTailleB(1, 1);
 			bonu[i].setNomB("h");
-			bonu[i].setVitB(2);
+			bonu[i].setVitB(0.8);
 		}
 
 		if (i == 2)
 		{
-			bonu[i].setDuree(0.25);
+			bonu[i].setDuree(0.5);
 			bonu[i].setTailleB(1, 1);
 			bonu[i].setNomB("r");
-			bonu[i].setVitB(2);
+			bonu[i].setVitB(1.75);
 		}
 
 		if (i == 3)
@@ -170,9 +172,9 @@ void Jeu::InitEc()
 {
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 0.7, 2, -1);
 	p.emplace(p.begin(), p0);
-	Ecran e1(100, 0, 20, p, bonu, monstr, false);
-	Ecran e2(0, -100, 20, p, bonu, monstr, true);
-	Ecran e3(-100, -200, 20, p, bonu, monstr, true);
+	Ecran e1(100, 0, 25, p, bonu, monstr, false);
+	Ecran e2(0, -100, 25, p, bonu, monstr, true);
+	Ecran e3(-100, -200, 25, p, bonu, monstr, true);
 	e.push_back(e1);
 	e.push_back(e2);
 	e.push_back(e3);
@@ -195,7 +197,7 @@ void Jeu::updateEcran(double dt)
 		{
 			debutNewEc = e.at(e.size() - 1).getFinEc();
 			finNewEc = e.at(e.size() - 1).getFinEc() - 100;
-			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr, true);
+			Ecran tmp(debutNewEc, finNewEc, 25, p, bonu, monstr, true);
 			e.push_back(tmp);
 		}
 	}
@@ -246,9 +248,14 @@ void Jeu::Init()
 	InitEc();
 }
 
+float nbEC = 0;
 void Jeu::update(double dt)
 {
-	// cout<<"perso x : "<<perso.getPos().x<<endl;
+	if(perso.getPos().x < locEc().getFinEc())
+	{
+		cout<<"ecran dépassé"<<endl;
+	}
+	cout<<"perso x : "<<perso.getPos().x<<endl;
 	// cout<<"lol"<<endl;
 	cout << "pcol : " << PcollPl;
 	double px = perso.getPos().x;
@@ -285,8 +292,8 @@ void Jeu::update(double dt)
 		bool collisionPlat = (doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable();
 		if (collisionPlat && Ptombe && !perso.aPrisB)
 		{
-			tpsSaut = 35; //duree du saut.
-			Psaute = true; // on peut sauter.. 
+			tpsSaut = 35;	// duree du saut.
+			Psaute = true;	// on peut sauter..
 			Ptombe = false; // .. mais pas tomber.
 			if (p.at(i).getRes() != -1 && p.at(i).getRes() != 0)
 				p.at(i).descRes();
@@ -299,7 +306,7 @@ void Jeu::update(double dt)
 		else if (!perso.aPrisB) // si le perso n'est pas avec un bonus.
 		{
 			Psaute = false; // on ne saute plus..
-			Ptombe = true; //.. donc on tombe.
+			Ptombe = true;	//.. donc on tombe.
 			perso.tombe(dt);
 		}
 		if (tpsSaut >= 34)
@@ -345,10 +352,10 @@ void Jeu::update(double dt)
 							detruit = true;
 							monstr[i].descRes();
 							score += 500;
+							Mtouche1 = true;
 							break;
 						}
 					}
-
 					if (detruit == false)
 					{
 						if (perso.getProjectile(j).getpos().x < perso.getPos().x - 100)
@@ -364,6 +371,7 @@ void Jeu::update(double dt)
 			}
 		}
 	}
+
 	for (int i = 0; i < NB_MONSTRE; i++)
 	{
 		float mx = monstr[i].getPos().x;
@@ -384,6 +392,7 @@ void Jeu::update(double dt)
 				Psaute = true;
 				Ptombe = false;
 				monstr[i].enVie = false;
+				Mtouche2 = true;
 				score += 1000;
 				cout << "saut sur mob!" << endl;
 			}

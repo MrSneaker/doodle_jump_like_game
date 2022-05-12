@@ -114,7 +114,7 @@ void Personnage::setNom(const string nomP)
 
 void Personnage::creerProj(double dt)
 {
-    projectile a(position.x, position.y + 1, -50, 0);
+    projectile a(position.x, position.y + 1, -30, 0);
     proj.push_back(a);
 }
 
