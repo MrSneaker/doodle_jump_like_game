@@ -10,19 +10,17 @@ using namespace std;
 
 class Menu {
     private:
-        SDL_Renderer *rendu;
-        int texture, x, y;
-        SDL_Texture **T_Menu;
-        SDL_Rect cursor;
+        SDL_Surface *screen=NULL;
+        SDL_Surface *text =NULL;
+        SDL_Event event;
+        bool run=true;
 
 
 
 
     public:
-        Menu(SDL_Renderer * rendu_);
-        void affichage();
-        SDL_Texture * Load(const char* chemin);
-        void option();
+    
+        int afficherMenu(SDL_Surface *screen, TTF_Font *font);
 };
 
 
