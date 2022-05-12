@@ -39,7 +39,7 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 			tmp.setRes(-1);
 		else
 			tmp.setRes(1);
-		if (r % 100 > 80)
+		if (r % 100 > 60)
 			tmp.setDir(0, 1);
 		if (r % 100 > 90)
 			tmp.setDir(1, 0);
@@ -59,7 +59,7 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 					}
 					else
 					{
-						b[bonus].setPosBonus(tmp.getPos().x - 5, tmp.getPos().y);
+						b[bonus].setPosBonus(tmp.getPos().x, tmp.getPos().y);
 						b[bonus].estPris = false;
 						b[bonus].disponible = false;
 					}
@@ -71,7 +71,7 @@ Ecran::Ecran(int posDebut, int posFin, int nbPlat, vector<Plateforme> &p, bonus 
 				if (m[monstre].enVie == false)
 				{
 					m[monstre].enVie = true;
-					m[monstre].setPos(tmp.getPos().x - 5, tmp.getPos().y);
+					m[monstre].setPos(tmp.getPos().x, tmp.getPos().y);
 				}
 			}
 		}

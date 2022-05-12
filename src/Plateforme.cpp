@@ -120,7 +120,7 @@ void Plateforme::bougeAutoLateral(double dt)
     {
         if ((dir.y > 0) || (dir.y < 0))
         {
-            if (pos.y > 5.5)
+            if (pos.y > 11.5)
             {
                 dir.y = -1;
                 Update(dt);

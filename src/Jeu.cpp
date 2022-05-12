@@ -9,6 +9,9 @@ Jeu::Jeu()
 	Psaute = false;
 	Pdroite = false;
 	Pgauche = false;
+	Ptire = false;
+	PcollPl = false;
+	score = 0;
 }
 
 Jeu::~Jeu()
@@ -44,15 +47,19 @@ bool Jeu::actionClavier(const char touche, double dt)
 		perso.deplacerG(dt);
 		Pgauche = true;
 		Pdroite = false;
+		Ptire = false;
 		break;
 	case 'd':
 		perso.deplacerD(dt);
 		Pgauche = false;
 		Pdroite = true;
+		Ptire = false;
 		break;
 	case 'r':
 		perso.creerProj(dt);
-		cout << "alo?" << endl;
+		Pgauche = false;
+		Pdroite = false;
+		Ptire = true;
 		break;
 	case 'q':
 		return false;
@@ -163,9 +170,9 @@ void Jeu::InitEc()
 {
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 0.7, 2, -1);
 	p.emplace(p.begin(), p0);
-	Ecran e1(100, 0, 20, p, bonu, monstr,false);
-	Ecran e2(0, -100, 20, p, bonu, monstr,true);
-	Ecran e3(-100, -200, 20, p, bonu, monstr,true);
+	Ecran e1(100, 0, 20, p, bonu, monstr, false);
+	Ecran e2(0, -100, 20, p, bonu, monstr, true);
+	Ecran e3(-100, -200, 20, p, bonu, monstr, true);
 	e.push_back(e1);
 	e.push_back(e2);
 	e.push_back(e3);
@@ -188,7 +195,7 @@ void Jeu::updateEcran(double dt)
 		{
 			debutNewEc = e.at(e.size() - 1).getFinEc();
 			finNewEc = e.at(e.size() - 1).getFinEc() - 100;
-			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr,true);
+			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr, true);
 			e.push_back(tmp);
 		}
 	}
@@ -243,6 +250,7 @@ void Jeu::update(double dt)
 {
 	// cout<<"perso x : "<<perso.getPos().x<<endl;
 	// cout<<"lol"<<endl;
+	cout << "pcol : " << PcollPl;
 	double px = perso.getPos().x;
 	double py = perso.getPos().y;
 	double persoSupx = px - perso.getTaille().x;
@@ -255,7 +263,13 @@ void Jeu::update(double dt)
 	posSupperso.y = persoSupy;
 	float newcamX = perso.getPos().x + 10;
 	if (newcamX < camX)
+	{
 		camX = newcamX;
+		if (camX > 0)
+			score += camX / 100;
+		else
+			score += (-1 * camX) / 100;
+	}
 
 	for (long unsigned int i = 0; i < p.size(); i++)
 	{
@@ -269,14 +283,11 @@ void Jeu::update(double dt)
 		pposSup.x = pSupx;
 		pposSup.y = pSupy;
 		bool collisionPlat = (doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable();
-		bool platOutRange = ppos.x > camX + 50;
 		if (collisionPlat && Ptombe && !perso.aPrisB)
 		{
-			cout << "3" << endl;
-			cout << "ptombe : " << Ptombe << endl;
-			tpsSaut = 35;
-			Psaute = true;
-			Ptombe = false;
+			tpsSaut = 35; //duree du saut.
+			Psaute = true; // on peut sauter.. 
+			Ptombe = false; // .. mais pas tomber.
 			if (p.at(i).getRes() != -1 && p.at(i).getRes() != 0)
 				p.at(i).descRes();
 		}
@@ -285,12 +296,16 @@ void Jeu::update(double dt)
 			perso.saut(dt);
 			tpsSaut -= dt;
 		}
-		else if (!perso.aPrisB)
+		else if (!perso.aPrisB) // si le perso n'est pas avec un bonus.
 		{
-			Psaute = false;
-			Ptombe = true;
+			Psaute = false; // on ne saute plus..
+			Ptombe = true; //.. donc on tombe.
 			perso.tombe(dt);
 		}
+		if (tpsSaut >= 34)
+			PcollPl = true; // on est en collision avec la plateforme (pour le bruit de saut).
+		else
+			PcollPl = false;
 	}
 	if (p.size() == 0)
 		perso.tombe(dt);
@@ -329,6 +344,7 @@ void Jeu::update(double dt)
 							perso.detruitProj(j);
 							detruit = true;
 							monstr[i].descRes();
+							score += 500;
 							break;
 						}
 					}
@@ -364,13 +380,14 @@ void Jeu::update(double dt)
 		{
 			if (Ptombe)
 			{
-				tpsSaut = 30;
+				tpsSaut = 35;
 				Psaute = true;
 				Ptombe = false;
-				monstr[i].descRes();
+				monstr[i].enVie = false;
+				score += 1000;
 				cout << "saut sur mob!" << endl;
 			}
-			else
+			else if (!Ptombe)
 			{
 				perso.tombe(dt);
 				perso.enVie = false;
@@ -406,10 +423,10 @@ void Jeu::update(double dt)
 	{
 		if (bonu[i].estPris)
 		{
-			cout<<"bonus : "<<i<<" est pris"<<endl;
+			cout << "bonus : " << i << " est pris" << endl;
 			if (i == 4)
 			{
-				//perso.enVie = false;
+				perso.enVie = false;
 				cout << "mort du trou noir" << endl;
 			}
 		}
@@ -427,7 +444,7 @@ void Jeu::update(double dt)
 		}
 	}
 
-	if (px >= camX + 50)
+	if (px >= camX + 45)
 	{
 		perso.enVie = false;
 		cout << "mort de chute" << endl;
@@ -435,4 +452,5 @@ void Jeu::update(double dt)
 	actionsAutomatiques(dt);
 	updateEcran(dt);
 	// cout<<"update tourne"<<endl;
+	cout << "score : " << score << endl;
 }

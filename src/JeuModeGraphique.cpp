@@ -21,6 +21,11 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE()
     texturePersD = NULL;
     texturePersG = NULL;
     texturePersF = NULL;
+    texturePersS = NULL;
+    texturePersJ[0] = NULL;
+    texturePersH[0] = NULL;
+    texturePersJ[1] = NULL;
+    texturePersH[1] = NULL;
     textureBackground = NULL;
     texturePlat[0] = NULL;
     texturePlat[1] = NULL;
@@ -114,7 +119,11 @@ void JeuModeGRAPHIQUE::InitTexture()
     textureBackground = IMG_LoadTexture(renderer, "data/background.png");
     texturePersG = IMG_LoadTexture(renderer, "data/persoGauche.png");
     texturePersD = IMG_LoadTexture(renderer, "data/persoDroite.png");
-    texturePersF = IMG_LoadTexture(renderer, "data/persoFca.png");
+    texturePersF = IMG_LoadTexture(renderer, "data/persoDroite.png");
+    texturePersS = IMG_LoadTexture(renderer, "data/persoFace.png");
+    texturePersH[0] = IMG_LoadTexture(renderer, "data/persoHelico.png");
+    texturePersJ[0] = IMG_LoadTexture(renderer, "data/bonus1.png");
+    texturePersH[1] = IMG_LoadTexture(renderer, "data/persoHelicoG.png");
 
     texturePlat[0] = IMG_LoadTexture(renderer, "data/plateforme1.png");
     texturePlat[1] = IMG_LoadTexture(renderer, "data/plateforme4.png");
@@ -134,6 +143,13 @@ void JeuModeGRAPHIQUE::InitTexture()
     projTex = IMG_LoadTexture(renderer, "data/projectile.png");
 }
 
+void JeuModeGRAPHIQUE::initSon()
+{
+    saut = Mix_LoadMUS("data/jump.wav");
+    helico = Mix_LoadMUS("data/helico.mp3");
+    jetpack = Mix_LoadMUS("data/fusee.mp3");
+}
+
 void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
 {
     float newcamY = convertPos(jeu.getConstPersonnage().getPos()).x;
@@ -147,15 +163,19 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
     rectPers.y = convertPos(perso.getPos()).x - cam.y + DIMY / 2;
     rectPers.h = perso.getTaille().x * TAILLE_SPRITE;
     rectPers.w = perso.getTaille().y * TAILLE_SPRITE;
-    if (jeu.Pdroite)
+    if (jeu.Pdroite && !perso.aPrisB)
     {
         SDL_RenderCopy(renderer, texturePersD, NULL, &rectPers);
     }
-    else if (jeu.Pgauche)
+    else if (jeu.Pgauche && !perso.aPrisB)
     {
         SDL_RenderCopy(renderer, texturePersG, NULL, &rectPers);
     }
-    else
+    else if (jeu.Ptire && !perso.aPrisB)
+    {
+        SDL_RenderCopy(renderer, texturePersS, NULL, &rectPers);
+    }
+    else if(!perso.aPrisB)
         SDL_RenderCopy(renderer, texturePersF, NULL, &rectPers);
     int nbPl = jeu.getPlateforme().size();
     for (int i = 0; i < nbPl; i++)
@@ -236,6 +256,29 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         {
             SDL_RenderCopy(renderer, textureBonus[5], NULL, &rectB);
         }
+        if (bon.getNomB() == "h" && bon.estPris)
+        {
+            Mix_PlayMusic(helico, 1);
+            tpsH = bon.getDuree();
+        }
+        else if (bon.getNomB() == "j" && bon.estPris)
+        {
+            Mix_PlayMusic(jetpack, 1);
+            tpsJ = bon.getDuree();
+        }
+        if (tpsH > 0)
+        {
+            if (jeu.Pdroite)
+                SDL_RenderCopy(renderer, texturePersH[0], NULL, &rectPers);
+            else
+                SDL_RenderCopy(renderer, texturePersH[1], NULL, &rectPers);
+            tpsH -= dt;
+        }
+        else if (tpsJ > 0)
+        {
+            SDL_RenderCopy(renderer, texturePersJ[0], NULL, &rectPers);
+            tpsJ -= dt;
+        }
     }
     for (int i = 0; i < perso.getNombreProj(); i++)
     {
@@ -251,17 +294,15 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         }
     }
 
-   SDL_RenderPresent(renderer);
+    SDL_RenderPresent(renderer);
 }
-
-
-
 
 void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
 {
     SDL_Event events;
     affichageInitGRAPHIQUE();
     InitTexture();
+    initSon();
     std::chrono::high_resolution_clock timer;
     bool quit = false;
     while (!quit)
@@ -275,17 +316,17 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
                 quit = true;
             else if (events.type == SDL_KEYDOWN)
             {
-                bool seDeplace = false;
+
                 switch (events.key.keysym.scancode)
                 {
                 case SDL_SCANCODE_SPACE:
-                    seDeplace = jeu.actionClavier('r', dt); // lance un proj
+                    jeu.actionClavier('r', dt); // lance un proj
                     break;
                 case SDL_SCANCODE_LEFT:
-                    seDeplace = jeu.actionClavier('g', dt); // se deplace a gauche
+                    jeu.actionClavier('g', dt); // se deplace a gauche
                     break;
                 case SDL_SCANCODE_RIGHT:
-                    seDeplace = jeu.actionClavier('d', dt); // se deplace a droite
+                    jeu.actionClavier('d', dt); // se deplace a droite
                     break;
                 case SDL_SCANCODE_A:
                     quit = true;
@@ -295,6 +336,8 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
                 }
             }
         }
+        if (jeu.PcollPl)
+            Mix_PlayMusic(saut, 1);
         affichageGRAPHIQUE(jeu, dt);
         auto stop = timer.now();
         dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
@@ -310,15 +353,23 @@ void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE()
 {
     if (withSound)
         Mix_Quit();
+    Mix_FreeMusic(saut);
+    Mix_FreeMusic(helico);
+    Mix_FreeMusic(jetpack);
     // TTF_CloseFont(font);
     TTF_Quit();
     SDL_DestroyWindow(window);
     SDL_DestroyTexture(texturePersD);
     SDL_DestroyTexture(textureBackground);
     SDL_DestroyTexture(texturePersF);
+    SDL_DestroyTexture(texturePersS);
     SDL_DestroyTexture(texturePersG);
     SDL_DestroyTexture(texturePlat[0]);
     SDL_DestroyTexture(texturePlat[1]);
+    SDL_DestroyTexture(texturePersH[0]);
+    SDL_DestroyTexture(texturePersH[1]);
+    SDL_DestroyTexture(texturePersJ[0]);
+    SDL_DestroyTexture(texturePersJ[1]);
     for (int i = 0; i < NB_BONUS; i++)
     {
         SDL_DestroyTexture(textureBonus[i]);

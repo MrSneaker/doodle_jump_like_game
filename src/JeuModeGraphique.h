@@ -12,32 +12,34 @@ using namespace std;
 #include <SDL2/SDL_image.h>
 #include <SDL_mixer.h>
 
-
-
 class JeuModeGRAPHIQUE
 {
 private:
     Jeu jeu;
-    SDL_Window * window; /*fenetre SDL */ 
-    SDL_Renderer * renderer; /*render SDL */
-    SDL_Texture * textureBackground;
-    SDL_Texture * texturePersF;
-    SDL_Texture * texturePersD;
-    SDL_Texture * texturePersG;
-    SDL_Texture * texturePlat[2];
-    SDL_Texture * textureMonstre[4];
-    SDL_Texture * textureBonus[6];
-    SDL_Texture * projTex;
-    TTF_Font * font;
+    SDL_Window *window;     /*fenetre SDL */
+    SDL_Renderer *renderer; /*render SDL */
+    SDL_Texture *textureBackground;
+    SDL_Texture *texturePersF;
+    SDL_Texture *texturePersD;
+    SDL_Texture *texturePersG;
+    SDL_Texture *texturePersS;
+    SDL_Texture *texturePersJ[2];
+    SDL_Texture *texturePersH[2];
+    SDL_Texture *texturePlat[2];
+    SDL_Texture *textureMonstre[4];
+    SDL_Texture *textureBonus[6];
+    SDL_Texture *projTex;
+    TTF_Font *font;
     SDL_Color font_color;
-    bool souris;
-    bool touche;
-    Mix_Chunk * sound; 
+    Mix_Music *saut;
+    Mix_Music *helico;
+    Mix_Music *jetpack;
     bool withSound;
     const int NB_BONUS = 5;
     const int NB_MONSTRE = 4;
-    
-    
+    float tpsJ = 0;
+    float tpsH = 0;
+
 public:
     JeuModeGRAPHIQUE();
     ~JeuModeGRAPHIQUE();
@@ -46,16 +48,11 @@ public:
     Vec2 convertPos(Vec2 pos);
     void InitCam();
     void InitTexture();
-    void affichageInitGRAPHIQUE(); /*! \brief affichage de SDL2*/
+    void initSon();
+    void affichageInitGRAPHIQUE();                /*! \brief affichage de SDL2*/
     void affichageGRAPHIQUE(Jeu &jeu, double dt); /*! \brief affiche l'image dans la fenetre SDL2*/
     void boucleAffGRAPHIQUE(Jeu &jeu, double dt); /*! \brief rafraichissement de l'image*/
-    void affDetruireGRAPHIQUE(); /*! \brief Détruit l'affichage*/
-    
-    
-    
+    void affDetruireGRAPHIQUE();                  /*! \brief Détruit l'affichage*/
 };
-
-
-
 
 #endif

@@ -43,6 +43,9 @@ public:
     bool Psaute;                                      /*! \brief Booléen vrai si le personnage saute, faux sinon, faux par défaut.*/
     bool Pdroite;                                     /*! \brief Booléen vrai si le personnage va à droite, faux sinon, faux par défaut.*/
     bool Pgauche;                                     /*! \brief Booléen vrai si le personnage va à gauche, faux sinon, faux par défaut.*/
+    bool Ptire;                                       /*! \brief Booléen vrai si le personnage tir, faux sinon, faux par défaut.*/
+    bool PcollPl;
+    int score;
     const Personnage &getConstPersonnage() const;     /*! \brief Renvoie une référence au personnage et ses caractéristiques pour l'affichage texte et SDL*/
     const Monstre &getConstMonstre(int i) const;      /*! \brief Renvoie une référence au monstre numéro \param i et ses caractéristiques pour l'affichage texte et SDL*/
     const bonus &getConstBonus(int i) const;          /*! \brief Renvoie une référence au bonus numéro \param i et ses caractéristiques pour l'affichage texte et SDL*/
