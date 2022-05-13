@@ -14,6 +14,7 @@ private:
     int res;
 
 public:
+    float posXbase; /*! \brief variable permettant d'obtenir la position verticale de base lors de la construction, pour bougeAuto. */
     Plateforme();
     Plateforme(float posx, float posy, float dirx, float diry, float tx, float ty, int resist); /*! \brief tout est défini à partir des paramètres */
     ~Plateforme();
@@ -30,7 +31,7 @@ public:
     void Update(double dt);           /*! \brief gère tous les déplacements*/
     bool estAfficheable() const;      /*! \brief renvoie vrai si la plateforme à une resistance à -1 ou supérieur à 0, faux sinon*/
     void descRes();                   /*! \brief décremente la resistance de 1*/
-    void bougeAutoLateral(double dt); /*! \brief permet aux plateformes de se déplacer toutes seules*/
+    void bougeAuto(double dt);        /*! \brief permet aux plateformes de se déplacer toutes seules*/
     void testRegression();            /*! \brief test de régression de la classe plateforme*/
 };
 

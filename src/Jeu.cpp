@@ -74,18 +74,15 @@ void Jeu::actionsAutomatiques(double dt)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (monstr[i].getTailleM().y == 1) // on fait bouger les monstres de tailles 1/1 uniquement.
-		{
-			monstr[i].bougeAuto(dt);
-		}
+		monstr[i].bougeAuto(dt);
 	}
 	for (long unsigned int i = 0; i < p.size(); i++)
-		p.at(i).bougeAutoLateral(dt);
+		p.at(i).bougeAuto(dt);
 }
 
 void Jeu::InitPersonnage()
 {
-	perso.setPos(50, 6);
+	perso.setPos(90, 6); // personnage innitialisé au milieu de l'écran en horizontal, en bas de celui-ci.
 	perso.setVit(1, 1);
 	camX = perso.getPos().x;
 }
@@ -101,13 +98,15 @@ void Jeu::InitMonstre()
 		{
 			monstr[i].setTailleM(1, 2);
 			monstr[i].setResistance(1);
-			if (r > 90)
+			if (r > 70)
 				monstr[i].setDirM(0, 1);
 		}
 		if (i == 1)
 		{
 			monstr[i].setTailleM(1, 1);
 			monstr[i].setResistance(1);
+			if (r > 70)
+				monstr[i].setDirM(0, 1);
 		}
 		if (i == 2)
 		{
@@ -168,13 +167,13 @@ void Jeu::InitBonus()
 	}
 }
 
-void Jeu::InitEc()
+void Jeu::InitEc() // on joue avec trois écran générés à la fois.
 {
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 0.7, 2, -1);
 	p.emplace(p.begin(), p0);
-	Ecran e1(100, 0, 25, p, bonu, monstr, false);
-	Ecran e2(0, -100, 25, p, bonu, monstr, true);
-	Ecran e3(-100, -200, 25, p, bonu, monstr, true);
+	Ecran e1(100, 0, 20, p, bonu, monstr, false);
+	Ecran e2(0, -100, 20, p, bonu, monstr, true);
+	Ecran e3(-100, -200, 20, p, bonu, monstr, true);
 	e.push_back(e1);
 	e.push_back(e2);
 	e.push_back(e3);
@@ -187,17 +186,17 @@ void Jeu::updateEcran(double dt)
 	for (long unsigned int i = 0; i < e.size(); i++)
 	{
 		bool ecranSuppr = false;
-		if (perso.getPos().x < e.at(i).getFinEc() - 50)
+		if (perso.getPos().x < e.at(i).getFinEc() - 50) // si on dépasse l'écran..
 		{
-			e.at(i).detruireEc(p, bonu, monstr, e.at(i).getNbPlEc());
-			e.erase(e.begin() + i);
-			ecranSuppr = true;
+			e.at(i).detruireEc(p, bonu, monstr, e.at(i).getNbPlEc()); // on appel la fonction de destruction..
+			e.erase(e.begin() + i);									  // on le supprime du tableau dynamique..
+			ecranSuppr = true;										  //.. et on indique qu'un écran vient d'être supprimé.
 		}
-		if (ecranSuppr)
+		if (ecranSuppr) // si l'écran est supprimé..
 		{
-			debutNewEc = e.at(e.size() - 1).getFinEc();
-			finNewEc = e.at(e.size() - 1).getFinEc() - 100;
-			Ecran tmp(debutNewEc, finNewEc, 25, p, bonu, monstr, true);
+			debutNewEc = e.at(e.size() - 1).getFinEc();					// on construit un nouvel écran depuis la fin de l'ancien..
+			finNewEc = e.at(e.size() - 1).getFinEc() - 100;				// on calcul sa position de fin..
+			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr, true); //.. on appel le constructeur.
 			e.push_back(tmp);
 		}
 	}
@@ -207,20 +206,17 @@ void Jeu::RecommencerJeu()
 {
 }
 
-bool doOverlap(Vec2 l1, Vec2 r1, Vec2 l2, Vec2 r2)
+bool doOverlap(Vec2 l1, Vec2 r1, Vec2 l2, Vec2 r2) // fonction vérifiant si deux rectangles en paramètres se superposent.
 {
 
 	if (l1.x == r1.x || l1.y == r1.y || l2.x == r2.x || l2.y == r2.y)
 	{
-		// the line cannot have positive overlap
 		return false;
 	}
 
-	// If one rectangle is on left side of other
 	if (l1.x >= r2.x || l2.x >= r1.x)
 		return false;
 
-	// If one rectangle is above other
 	if (r1.y >= l2.y || r2.y >= l1.y)
 		return false;
 
@@ -248,19 +244,11 @@ void Jeu::Init()
 	InitEc();
 }
 
-float nbEC = 0;
 void Jeu::update(double dt)
 {
-	if(perso.getPos().x < locEc().getFinEc())
-	{
-		cout<<"ecran dépassé"<<endl;
-	}
-	cout<<"perso x : "<<perso.getPos().x<<endl;
-	// cout<<"lol"<<endl;
-	cout << "pcol : " << PcollPl;
-	double px = perso.getPos().x;
+	double px = perso.getPos().x; // on prend la position du personnage basse..
 	double py = perso.getPos().y;
-	double persoSupx = px - perso.getTaille().x;
+	double persoSupx = px - perso.getTaille().x; // ..et haute (i.e coins bas et coins haut de celui ci)
 	double persoSupy = py + perso.getTaille().y;
 	Vec2 posperso;
 	Vec2 posSupperso;
@@ -269,18 +257,17 @@ void Jeu::update(double dt)
 	posSupperso.x = persoSupx;
 	posSupperso.y = persoSupy;
 	float newcamX = perso.getPos().x + 10;
-	if (newcamX < camX)
+	if (newcamX < camX) // définition de la position de la caméra.
 	{
 		camX = newcamX;
-		if (camX > 0)
+		if (camX > 0) // le score augmente si le joueur monte, donc si la caméra monte.
 			score += camX / 100;
-		else
+		else // comme on monte dans les négatifs, on prend l'opposé.
 			score += (-1 * camX) / 100;
 	}
 
-	for (long unsigned int i = 0; i < p.size(); i++)
+	for (long unsigned int i = 0; i < p.size(); i++) // on vérifie pour chaque plateforme.
 	{
-
 		Vec2 ppos = p.at(i).getPos();
 		float pposx = p.at(i).getPos().x - 10; // on décale pour que le personnage saute au niveau de ses pieds.
 		float pposy = p.at(i).getPos().y;
@@ -289,8 +276,8 @@ void Jeu::update(double dt)
 		Vec2 pposSup;
 		pposSup.x = pSupx;
 		pposSup.y = pSupy;
-		bool collisionPlat = (doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable();
-		if (collisionPlat && Ptombe && !perso.aPrisB)
+		bool collisionPlat = (doOverlap(pposSup, ppos, posSupperso, posperso)) && p.at(i).estAfficheable(); // on rentre en collision si la plateforme est toujours là.
+		if (collisionPlat && Ptombe && !perso.aPrisB && perso.enVie)
 		{
 			tpsSaut = 35;	// duree du saut.
 			Psaute = true;	// on peut sauter..
@@ -314,11 +301,11 @@ void Jeu::update(double dt)
 		else
 			PcollPl = false;
 	}
-	if (p.size() == 0)
+	if (p.size() == 0) // si il n'y a pas de plateformes, on tombe (pour éviter les blocages en cas de bug).
 		perso.tombe(dt);
 	if (perso.getNombreProj() > 0)
 	{
-		for (int i = 0; i < NB_MONSTRE; i++)
+		for (int i = 0; i < NB_MONSTRE; i++) // pour tous les monstres..
 		{
 			float mx = monstr[i].getPos().x;
 			float my = monstr[i].getPos().y;
@@ -330,7 +317,7 @@ void Jeu::update(double dt)
 			monstre.y = my;
 			monstreSup.x = mxSup;
 			monstreSup.y = mySup;
-			for (int j = 0; j < perso.getNombreProj(); j++)
+			for (int j = 0; j < perso.getNombreProj(); j++) // pour tous les projectiles..
 			{
 				float projX = perso.getProjectile(j).getpos().x;
 				float projY = perso.getProjectile(j).getpos().y;
@@ -341,38 +328,38 @@ void Jeu::update(double dt)
 				projRadius.x = projX - 1;
 				projRadius.y = projY + 1;
 				bool detruit = false;
-				if (perso.getProjectile(j).existe == true)
+				if (perso.getProjectile(j).existe == true) // si le projectile existe..
 				{
-					perso.getProjectile(j).Update(dt);
-					if (detruit == false)
+					perso.getProjectile(j).Update(dt); // on le fait avancer..
+					if (detruit == false)			   // si il n'est pas déjà détruit..
 					{
-						if (doOverlap(projRadius, proj, monstreSup, monstre) && (monstr[i].enVie == true))
+						if (doOverlap(projRadius, proj, monstreSup, monstre) && (monstr[i].enVie == true)) //.. et qu'il rentre en collision avec un monstre..
 						{
-							perso.detruitProj(j);
-							detruit = true;
-							monstr[i].descRes();
+							perso.detruitProj(j); // on détruit le projectile..
+							detruit = true;		  // on l'indique..
+							monstr[i].descRes();  // monstre perd une vie..
 							score += 500;
-							Mtouche1 = true;
-							break;
+							Mtouche1 = true; // on indique pour le son qu'on a touché le monstre une fois.
+							break;			 // on sort de la boucle, car le projectile n'existe plus.
 						}
 					}
-					if (detruit == false)
+					if (detruit == false) // si le projectile n'est toujours pas
 					{
-						if (perso.getProjectile(j).getpos().x < perso.getPos().x - 100)
+						if (perso.getProjectile(j).getpos().x < perso.getPos().x - 100) // on le détruit si il dépasse 100 au dessus de nous.
 						{
 							perso.detruitProj(j);
 						}
 					}
 				}
 			}
-			if (monstr[i].getResistance() == 0)
+			if (monstr[i].getResistance() == 0) // si plus de vie, monstre mort.
 			{
 				monstr[i].enVie = false;
 			}
 		}
 	}
 
-	for (int i = 0; i < NB_MONSTRE; i++)
+	for (int i = 0; i < NB_MONSTRE; i++) // pour tous les monstres.. (boucle sur les collisions avec le perso)
 	{
 		float mx = monstr[i].getPos().x;
 		float my = monstr[i].getPos().y;
@@ -384,31 +371,31 @@ void Jeu::update(double dt)
 		monstre.y = my;
 		monstreSup.x = mxSup;
 		monstreSup.y = mySup;
-		if (doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true) && !perso.aPrisB)
-		{
-			if (Ptombe)
+		bool collisionM = doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true);
+		if (collisionM && !perso.aPrisB) // si le personnage n'a pas de bonus, et si le monstre est en vie..
+		{								 // on rentre en collision.
+			if (Ptombe && perso.enVie)					 // si le personnage est entrain de tomber
 			{
-				tpsSaut = 35;
+				tpsSaut = 35; // on saute..
 				Psaute = true;
 				Ptombe = false;
-				monstr[i].enVie = false;
-				Mtouche2 = true;
+				monstr[i].enVie = false; // et le monstre meurt..
+				Mtouche2 = true;		 // on joue le son quand on touche un monstre.
 				score += 1000;
-				cout << "saut sur mob!" << endl;
 			}
-			else if (!Ptombe)
+			else if (!Ptombe) // sinon, on meurt.
 			{
 				perso.tombe(dt);
 				perso.enVie = false;
 				cout << "mort d'un mob" << endl;
 			}
 		}
-		if (monstr[i].getResistance() == 0)
+		if (monstr[i].getResistance() == 0) // si le monstre n'a plus de resistance..
 		{
-			monstr[i].enVie = false;
+			monstr[i].enVie = false; // il meurt.
 		}
 	}
-	for (int i = 0; i < NB_BONUS; i++)
+	for (int i = 0; i < NB_BONUS; i++) // pour tous les bonus.
 	{
 		float bx = bonu[i].getPosBonus().x;
 		float by = bonu[i].getPosBonus().y;
@@ -420,46 +407,44 @@ void Jeu::update(double dt)
 		bonus.y = by;
 		bonusSup.x = bSupx;
 		bonusSup.y = bSupy;
-		if (doOverlap(bonusSup, bonus, posSupperso, posperso) && !bonu[i].estPris && !perso.aPrisB)
-		{
-			tps = bonu[i].getDuree();
-			bonu[i].estPris = true;
-			bonu[i].disponible = true;
-			perso.aPrisB = true;
+		if (doOverlap(bonusSup, bonus, posSupperso, posperso) && !bonu[i].estPris && !perso.aPrisB) // si le personnage n'a pas déjà un bonus et que le bonus n'a pas déjà été pris..
+		{																							// on peut rentrer en collision.
+			tps = bonu[i].getDuree();																// on initialise la duree du bonus.
+			bonu[i].estPris = true;																	// on indique qu'il n'est plus disponible pour le personnage.
+			bonu[i].disponible = true;																// on indique qu'il est disponible pour la génération de l'écran suivant.
+			perso.aPrisB = true;																	// on indique que le personnage a pris un bonus.
 		}
 	}
-	for (int i = 0; i < NB_BONUS; i++)
+	for (int i = 0; i < NB_BONUS; i++) // pour tous les bonus.
 	{
-		if (bonu[i].estPris)
+		if (bonu[i].estPris) // si le bonus est pris..
 		{
 			cout << "bonus : " << i << " est pris" << endl;
-			if (i == 4)
+			if (i == 4) // si c'est le trou noir..
 			{
-				perso.enVie = false;
+				perso.enVie = false; //.. on meurt.
 				cout << "mort du trou noir" << endl;
 			}
 		}
-		if (tps > 0)
+		if (tps > 0) // si le tps à été initialisé..
 		{
-			perso.setVit(bonu[i].getVitB(), perso.getVit().y);
-			perso.setPos(perso.getPos().x - perso.getVit().x, perso.getPos().y);
-			tps -= dt;
-			cout << "temps bonus : " << tps << endl;
+			perso.setPos(perso.getPos().x - perso.getVit().x, perso.getPos().y); // on met à jour la position verticale du personnage (plus la vitesse du bonus est grande, plus il monte vite.).
+			tps -= dt;															 // on décrémente la durée de dt à chaque itération de l'update.
 		}
 		else
 		{
-			perso.setVit(1, perso.getVit().y);
+			if(i == 2)
+				bonu[i].estPris = false;
 			perso.aPrisB = false;
 		}
 	}
 
-	if (px >= camX + 45)
+	if (px >= camX + 45) // si le personnage dépasse la caméra + 45, i.e si il passe sous la vue du joueur..
 	{
-		perso.enVie = false;
+		perso.enVie = false; // il meurt.
 		cout << "mort de chute" << endl;
 	}
-	actionsAutomatiques(dt);
-	updateEcran(dt);
-	// cout<<"update tourne"<<endl;
+	actionsAutomatiques(dt); // executions des action automatiques.
+	updateEcran(dt);		 // mise à jour des écran.
 	cout << "score : " << score << endl;
 }

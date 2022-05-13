@@ -95,7 +95,7 @@ bool Plateforme::estAfficheable() const
 {
     if (res != -1)
     {
-        if ((res == 0) || (pos.x < 14))
+        if ((res == 0))
         {
             return false;
         }
@@ -114,7 +114,7 @@ void Plateforme::descRes()
     }
 }
 
-void Plateforme::bougeAutoLateral(double dt)
+void Plateforme::bougeAuto(double dt)
 {
     if (estAfficheable())
     {
@@ -135,14 +135,14 @@ void Plateforme::bougeAutoLateral(double dt)
         }
         else if ((dir.x > 0) || (dir.x < 0))
         {
-            if (pos.x > 60)
-            {
-                dir.x = -4;
-                Update(dt);
-            }
-            else if (pos.x < 40)
+            if (pos.x < posXbase)
             {
                 dir.x = 4;
+                Update(dt);
+            }
+            else if (pos.x > posXbase + 20)
+            {
+                dir.x = -4;
                 Update(dt);
             }
             else

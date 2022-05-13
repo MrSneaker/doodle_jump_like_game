@@ -29,6 +29,9 @@ JeuModeGRAPHIQUE::JeuModeGRAPHIQUE()
     textureBackground = NULL;
     texturePlat[0] = NULL;
     texturePlat[1] = NULL;
+    texturePersB[0] = NULL;
+    texturePersB[1] = NULL;
+    font = NULL;
     for (int i = 0; i < NB_BONUS; i++)
     {
         textureBonus[i] = NULL;
@@ -125,6 +128,8 @@ void JeuModeGRAPHIQUE::InitTexture()
     texturePersJ[0] = IMG_LoadTexture(renderer, "data/persoFuseeDroite.png");
     texturePersH[1] = IMG_LoadTexture(renderer, "data/persoHelicoG.png");
     texturePersJ[1] = IMG_LoadTexture(renderer, "data/persoFuseeGauche.png");
+    texturePersB[0] = IMG_LoadTexture(renderer, "data/persoDroiteBoing.png");
+    texturePersB[1] = IMG_LoadTexture(renderer, "data/persoGaucheBoing.png");
 
     texturePlat[0] = IMG_LoadTexture(renderer, "data/plateforme1.png");
     texturePlat[1] = IMG_LoadTexture(renderer, "data/plateforme4.png");
@@ -152,6 +157,13 @@ void JeuModeGRAPHIQUE::initSon()
     tir = Mix_LoadMUS("data/pucanje.mp3");
     Mmeurt = Mix_LoadMUS("data/monsterpogodak.mp3");
     ressort = Mix_LoadMUS("data/feder.mp3");
+    Pmort = Mix_LoadMUS("data/pada.mp3");
+}
+
+void JeuModeGRAPHIQUE::initFont()
+{
+    font = TTF_OpenFont("data/PIXEAB__.TTF", 15);
+    font_color = {0, 0, 0};
 }
 
 void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
@@ -160,6 +172,16 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
     if (newcamY <= cam.y)
         cam.y = newcamY;
     SDL_RenderCopy(renderer, textureBackground, NULL, NULL);
+    string tmp = to_string(jeu.score);
+    const char *scoreString = tmp.c_str();
+    scoreSurf = TTF_RenderText_Solid(font, scoreString, font_color);
+    SDL_Rect scoreRect;
+    scoreRect.x = 0;
+    scoreRect.y = 0;
+    scoreRect.w = 100;
+    scoreRect.h = 100;
+    score = SDL_CreateTextureFromSurface(renderer, scoreSurf);
+    SDL_FreeSurface(scoreSurf);
     const Personnage &perso = jeu.getConstPersonnage();
     SDL_Rect rectPers;
 
@@ -253,22 +275,18 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         }
         else if (bon.getNomB() == "b" && !bon.estPris)
         {
-            tpsR = bon.getDuree();
             SDL_RenderCopy(renderer, textureBonus[2], NULL, &rectB);
-        }
-        else if (bon.getNomB() == "b" && bon.estPris)
-        {
-            Mix_PlayMusic(ressort, 1);
-        }
-        else if (bon.getNomB() == "r" && bon.estPris) // pour jouer le son du ressort.
-        {
-            Mix_PlayMusic(ressort, 1);
         }
         else if (bon.getNomB() == "r")
         {
             if (bon.estPris)
             {
+                Mix_PlayMusic(ressort, 1);
                 SDL_RenderCopy(renderer, textureBonus[4], NULL, &rectB);
+                if (jeu.Pdroite)
+                    SDL_RenderCopy(renderer, texturePersD, NULL, &rectPers);
+                else
+                    SDL_RenderCopy(renderer, texturePersG, NULL, &rectPers);
             }
             else
                 SDL_RenderCopy(renderer, textureBonus[3], NULL, &rectB);
@@ -276,6 +294,9 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         else if (bon.getNomB() == "t")
         {
             SDL_RenderCopy(renderer, textureBonus[5], NULL, &rectB);
+        }
+        else if (bon.getNomB() == "r" && bon.estPris) // pour jouer le son du ressort.
+        {
         }
         if (bon.getNomB() == "h" && bon.estPris)
         {
@@ -286,6 +307,11 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         {
             Mix_PlayMusic(jetpack, 1);
             tpsJ = bon.getDuree();
+        }
+        else if (bon.getNomB() == "b" && bon.estPris)
+        {
+            Mix_PlayMusic(ressort, 1);
+            tpsB = bon.getDuree();
         }
         if (tpsH > 0)
         {
@@ -303,8 +329,15 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
                 SDL_RenderCopy(renderer, texturePersJ[1], NULL, &rectPers);
             tpsJ -= dt;
         }
-        if (tpsR > 0)
+        else if (tpsB > 0)
         {
+            cout << tpsB << endl;
+            cout << "lol" << endl;
+            if (jeu.Pdroite)
+                SDL_RenderCopy(renderer, texturePersB[0], NULL, &rectPers);
+            else
+                SDL_RenderCopy(renderer, texturePersB[1], NULL, &rectPers);
+            tpsB -= dt;
         }
     }
     for (int i = 0; i < perso.getNombreProj(); i++)
@@ -320,7 +353,13 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
             SDL_RenderCopy(renderer, projTex, NULL, &rectProj);
         }
     }
-
+    if (jeu.getConstPersonnage().enVie == false)
+    {
+        cout << tpsSonMort << endl;
+        if (tpsSonMort == 0)
+            tpsSonMort = 0.01;
+    }
+    SDL_RenderCopy(renderer, score, NULL, &scoreRect);
     SDL_RenderPresent(renderer);
 }
 
@@ -330,6 +369,7 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
     affichageInitGRAPHIQUE();
     InitTexture();
     initSon();
+    initFont();
     std::chrono::high_resolution_clock timer;
     bool quit = false;
     while (!quit)
@@ -369,10 +409,15 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
         affichageGRAPHIQUE(jeu, dt);
         auto stop = timer.now();
         dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
-        if (jeu.getConstPersonnage().enVie == false)
+        if (tpsSonMort > 0)
         {
-            quit = true;
+            Mix_PlayMusic(Pmort, 1);
+            tpsSonMort -= dt;
         }
+        if (Mix_PlayingMusic() == 0 && jeu.getConstPersonnage().enVie == false)
+            quit = true;
+
+        cout << "musique joue : " << Mix_PlayingMusic() << endl;
     }
     affDetruireGRAPHIQUE();
 }
@@ -387,9 +432,11 @@ void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE()
     Mix_FreeMusic(Mmeurt);
     Mix_FreeMusic(tir);
     Mix_FreeMusic(ressort);
-    // TTF_CloseFont(font);
+    Mix_FreeMusic(Pmort);
+    TTF_CloseFont(font);
     TTF_Quit();
     SDL_DestroyWindow(window);
+    SDL_DestroyTexture(score);
     SDL_DestroyTexture(texturePersD);
     SDL_DestroyTexture(textureBackground);
     SDL_DestroyTexture(texturePersF);
