@@ -8,9 +8,7 @@
 #include <iostream>
 #include <stdio.h>
 
-const int TAILLE_SPRITE = 32;
-const int DIMX = 300;
-const int DIMY = 600;
+
 
 // ============= CLASS JEUMODEGRAPHIQUE =============== //
 
@@ -331,8 +329,6 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         }
         else if (tpsB > 0)
         {
-            cout << tpsB << endl;
-            cout << "lol" << endl;
             if (jeu.Pdroite)
                 SDL_RenderCopy(renderer, texturePersB[0], NULL, &rectPers);
             else
@@ -355,7 +351,6 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
     }
     if (jeu.getConstPersonnage().enVie == false)
     {
-        cout << tpsSonMort << endl;
         if (tpsSonMort == 0)
             tpsSonMort = 0.01;
     }
@@ -416,8 +411,6 @@ void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
         }
         if (Mix_PlayingMusic() == 0 && jeu.getConstPersonnage().enVie == false)
             quit = true;
-
-        cout << "musique joue : " << Mix_PlayingMusic() << endl;
     }
     affDetruireGRAPHIQUE();
 }
@@ -458,5 +451,4 @@ void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE()
     }
     IMG_Quit();
     SDL_DestroyRenderer(renderer);
-    SDL_Quit();
 }

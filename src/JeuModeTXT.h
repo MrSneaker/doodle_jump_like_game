@@ -45,7 +45,7 @@ private:
         "#                           #",
         "#                           #",
         "#############################"}; /*! \brief Cadre permettant le raffraichissement du jeu.*/
-        const int NB_BONUS = 4;
+        const int NB_BONUS = 5;
         const int NB_MONSTRE = 4;
 
 public:

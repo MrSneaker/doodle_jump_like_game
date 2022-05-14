@@ -32,8 +32,8 @@ private:
     SDL_Texture *projTex;
     TTF_Font *font;
     SDL_Color font_color;
-    SDL_Surface* scoreSurf;
-    SDL_Texture * score;
+    SDL_Surface *scoreSurf;
+    SDL_Texture *score;
     Mix_Music *saut;
     Mix_Music *helico;
     Mix_Music *jetpack;
@@ -48,6 +48,9 @@ private:
     float tpsH = 0;
     float tpsB = 0;
     float tpsSonMort = 0;
+    const int TAILLE_SPRITE = 32;
+    const int DIMX = 300;
+    const int DIMY = 600;
 
 public:
     JeuModeGRAPHIQUE();

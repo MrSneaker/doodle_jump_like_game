@@ -1,4 +1,3 @@
-#include "JeuModeGraphique.h"
 #include "Menu.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_error.h>
@@ -14,11 +13,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    time_t t;
-    srand((unsigned)time(&t));
-    Jeu jeu;
-    JeuModeGRAPHIQUE sl;
-    sl.InitCam();
-    sl.boucleAffGRAPHIQUE(jeu, dt);
+    Menu m;
+    m.boucleMenu(dt);
     return 0;
 }

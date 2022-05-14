@@ -28,7 +28,7 @@ Plateforme::~Plateforme()
 {
 }
 
-Vec2 Plateforme::getPos() const
+const Vec2& Plateforme::getPos() const
 {
     return pos;
 }

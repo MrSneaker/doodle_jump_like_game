@@ -2,106 +2,228 @@
 
 Menu::Menu()
 {
+  background = NULL;
+  bouton[0] = NULL;
+  bouton[1] = NULL;
+  bouton[2] = NULL;
 }
 
 Menu::~Menu()
 {
 }
 
-int Menu::afficherMenu(SDL_Surface *screen, TTF_Font *font)
+void Menu::affichageInitMenu()
 {
 
-  Uint32 time;
-  int x, y;
-  const int NUMMENU = 2;
-  const char *labels[NUMMENU] = {"Jouer", "Quitter"};
-  SDL_Surface *menus[NUMMENU];
-
-  bool selected[NUMMENU] = {0, 0};
-  SDL_Color color[2] = {{255, 255, 255}, {255, 0, 0}};
-
-  menus[0] = TTF_RenderText_Solid(font, labels[0], color[0]);
-  menus[1] = TTF_RenderText_Solid(font, labels[1], color[0]);
-
-  SDL_Rect pos[NUMMENU];
-  pos[0].x = screen->clip_rect.w / 2 - menus[0]->clip_rect.w / 2;
-  pos[0].y = screen->clip_rect.h / 2 - menus[0]->clip_rect.h;
-  pos[1].x = screen->clip_rect.w / 2 - menus[0]->clip_rect.w / 2;
-  pos[1].y = screen->clip_rect.h / 2 + menus[0]->clip_rect.h;
-
-  SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0x00, 0x00, 0x00));
-
-  SDL_Event event;
-  while (true)
+  // Initialisation de la SDL
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
   {
-    time = SDL_GetTicks();
-    while (SDL_PollEvent(&event))
+    cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << endl;
+    SDL_Quit();
+    exit(1);
+  }
+  // Initialisation de l'écriture
+  if (TTF_Init() != 0)
+  {
+    cout << "Erreur lors de l'initialisation de la SDL_ttf : " << TTF_GetError() << endl;
+    SDL_Quit();
+    exit(1);
+  }
+
+  // Creation de la fenetre
+  window = SDL_CreateWindow("Foodle_Jump", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DIMX, DIMY, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+  if (window == NULL)
+  {
+    cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl;
+    SDL_Quit();
+    exit(1);
+  }
+
+  int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG | IMG_INIT_WEBP;
+  if (!(IMG_Init(imgFlags) & imgFlags))
+  {
+    cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
+    SDL_Quit();
+    exit(1);
+  }
+
+  if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+  {
+    cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
+    cout << "No sound !!!" << endl;
+    // SDL_Quit();exit(1);
+    withSound = false;
+  }
+  else
+    withSound = true;
+
+  // Initialisation du rendu
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  if (renderer == NULL)
+  {
+    cout << "erreur lors de la création du rendu " << endl;
+    SDL_Quit();
+    exit(1);
+  }
+}
+
+void Menu::initFont()
+{
+  font = TTF_OpenFont("data/PIXEAB__.TTF", 15);
+  font_color = {0, 0, 0};
+}
+
+void Menu::initTexture()
+{
+  background = IMG_LoadTexture(renderer, "data/background.png");
+  bouton[0] = IMG_LoadTexture(renderer, "data/bouton.png");
+  bouton[1] = IMG_LoadTexture(renderer, "data/boutonQuitter.png");
+  bouton[2] = IMG_LoadTexture(renderer, "data/boutonJouerTXT.png");
+}
+
+void Menu::initSon()
+{
+}
+
+void Menu::afficherMenu()
+{
+  SDL_RenderCopy(renderer, background, NULL, NULL);
+  titreSurf = TTF_RenderText_Solid(font, "FOODLE JUMP", font_color);
+  titre = SDL_CreateTextureFromSurface(renderer, titreSurf);
+  SDL_FreeSurface(titreSurf);
+  SDL_Rect titreRect;
+  titreRect.x = DIMX / 2 - 100;
+  titreRect.y = 30;
+  titreRect.h = 150;
+  titreRect.w = 200;
+
+  boutonJouer.x = DIMX / 2 - 100;
+  boutonJouer.y = DIMY / 2 - 100;
+  boutonJouer.w = 200;
+  boutonJouer.h = 100;
+
+  boutonJouer2.x = DIMX / 2 - 100;
+  boutonJouer2.y = DIMY / 2;
+  boutonJouer2.w = 200;
+  boutonJouer2.h = 100;
+
+  boutonQuitter.x = DIMX / 2 - 100;
+  boutonQuitter.y = DIMY / 2 + 100;
+  boutonQuitter.w = 200;
+  boutonQuitter.h = 100;
+
+  SDL_RenderCopy(renderer, bouton[0], NULL, &boutonJouer);
+  SDL_RenderCopy(renderer, bouton[1], NULL, &boutonQuitter);
+  SDL_RenderCopy(renderer, bouton[2], NULL, &boutonJouer2);
+  SDL_RenderCopy(renderer, titre, NULL, &titreRect);
+  SDL_RenderPresent(renderer);
+}
+
+void Menu::afficheDetruireMenu()
+{
+  if (withSound)
+    Mix_Quit();
+  TTF_CloseFont(font);
+  TTF_Quit();
+  SDL_DestroyWindow(window);
+  SDL_DestroyTexture(background);
+  SDL_DestroyTexture(bouton[0]);
+  SDL_DestroyTexture(bouton[1]);
+  SDL_DestroyTexture(bouton[2]);
+  SDL_DestroyTexture(titre);
+  IMG_Quit();
+  SDL_DestroyRenderer(renderer);
+}
+
+void Menu::jouerSDL(Jeu jeu, JeuModeGRAPHIQUE sl, double dt)
+{
+  time_t t;
+  srand((unsigned)time(&t));
+  sl.InitCam();
+  sl.boucleAffGRAPHIQUE(jeu, dt);
+}
+
+void Menu::jouerTXT(Jeu jeu, JeuModeTXT txt, double dt)
+{
+  time_t t;
+  srand((unsigned)time(&t));
+  txt.InitCam();
+  txt.boucleAffTXT(jeu, dt);
+}
+
+void Menu::boucleMenu(double dt)
+{
+  affichageInitMenu();
+  initFont();
+  initTexture();
+  initSon();
+  Jeu jeu;
+  JeuModeGRAPHIQUE sl;
+  JeuModeTXT txt;
+  SDL_Event events;
+  bool quit = false;
+  int x, y;
+  x = 0;
+  y = 0;
+  afficherMenu();
+  while (!quit)
+  {
+    while (SDL_PollEvent(&events))
     {
-      switch (event.type)
+      switch (events.type)
       {
       case SDL_QUIT:
-        for (int i = 0; i < NUMMENU; i++)
-        {
-          SDL_FreeSurface(menus[i]);
-        }
-        return 1;
-
-      case SDL_MOUSEMOTION:
-        x = event.motion.x;
-        y = event.motion.y;
-        for (int i = 0; i < NUMMENU; i++)
-        {
-          if (x >= pos[1].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
-          {
-            if (!selected[i])
-            {
-              selected[i] = 1;
-              SDL_FreeSurface(menus[i]);
-              menus[i] = TTF_RenderText_Solid(font, labels[i], color[1]);
-            }
-          }
-
-          else
-          {
-            if (selected[i])
-            {
-              selected[i] = 0;
-              SDL_FreeSurface(menus[i]);
-              menus[i] = TTF_RenderText_Solid(font, labels[i], color[0]);
-            }
-          }
-        }
+        quit = true;
         break;
-
       case SDL_MOUSEBUTTONDOWN:
-        x = event.button.x;
-        y = event.button.y;
-
-        for (int i = 0; i < NUMMENU; i++)
-        {
-          if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
-          {
-            for (int j = 0; j < NUMMENU; j++)
-              SDL_FreeSurface(menus[j]);
-
-            return i;
-          }
-        }
+        x = events.motion.x;
+        y = events.motion.y;
         break;
-
-      case SDL_KEYDOWN:
-        switch (event.key.keysym.sym)
-        {
-        case SDLK_ESCAPE:
-          for (int i = 0; i < NUMMENU; i++)
-            SDL_FreeSurface(menus[i]);
-
-          return 0;
-        }
+      default:
+        break;
       }
     }
+    boutonJouer.x = DIMX / 2 - 100;
+    boutonJouer.y = DIMY / 2 - 100;
+    boutonJouer.w = 200;
+    boutonJouer.h = 100;
 
-    for (int i = 0; i < NUMMENU; i++)
-      SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
+    boutonJouer2.x = DIMX / 2 - 100;
+    boutonJouer2.y = DIMY / 2;
+    boutonJouer2.w = 200;
+    boutonJouer2.h = 100;
+
+    boutonQuitter.x = DIMX / 2 - 100;
+    boutonQuitter.y = DIMY / 2 + 100;
+    boutonQuitter.w = 200;
+    boutonQuitter.h = 100;
+    if ((x > boutonJouer.x) && (x < boutonJouer.x + boutonJouer.w) && (y > boutonJouer.y) && (y < boutonJouer.y + boutonJouer.h))
+    {
+      afficheDetruireMenu();
+      jouerSDL(jeu, sl, dt);
+      x = 0;
+      y = 0;
+      affichageInitMenu();
+      initFont();
+      initTexture();
+      initSon();
+    }
+    else if ((x > boutonJouer2.x) && (x < boutonJouer2.x + boutonJouer2.w) && (y > boutonJouer2.y) && (y < boutonJouer2.y + boutonJouer2.h))
+    {
+      afficheDetruireMenu();
+      jouerTXT(jeu, txt, dt);
+      x = 0;
+      y = 0;
+      affichageInitMenu();
+      initFont();
+      initTexture();
+      initSon();
+    }
+    else if ((x > boutonQuitter.x) && (x < boutonQuitter.x + boutonQuitter.w) && (y > boutonQuitter.y) && (y < boutonQuitter.y + boutonQuitter.h))
+    {
+      quit = true;
+    }
+    afficherMenu();
   }
+  SDL_Quit();
 }

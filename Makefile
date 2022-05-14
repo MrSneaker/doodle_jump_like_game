@@ -40,7 +40,7 @@ obj/mainTest.o: src/mainTest.cpp src/Personnage.h src/projectile.h src/Monstre.h
 obj/mainAffichageTXT.o: src/mainAffichageTXT.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h src/Jeu.h src/JeuModeTXT.h src/Ecran.h
 	$(CC) -c -o obj/mainAffichageTXT.o src/mainAffichageTXT.cpp
 
-obj/mainAffichageModeGRAPHIQUE.o: src/mainAffichageModeGRAPHIQUE.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h src/Jeu.h src/JeuModeGraphique.h src/Ecran.h src/Menu.h
+obj/mainAffichageModeGRAPHIQUE.o: src/mainAffichageModeGRAPHIQUE.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h src/Jeu.h src/JeuModeGraphique.h src/Ecran.h src/Menu.h src/JeuModeTXT.h
 	$(CC) -c -o obj/mainAffichageModeGRAPHIQUE.o src/mainAffichageModeGRAPHIQUE.cpp $(SDL2)
 
 bin/test: obj/Personnage.o obj/projectile.o obj/mainTest.o obj/Monstre.o obj/bonus.o obj/Plateforme.o

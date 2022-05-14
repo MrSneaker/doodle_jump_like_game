@@ -148,7 +148,7 @@ void Jeu::InitBonus()
 			bonu[i].setDuree(0.5);
 			bonu[i].setTailleB(1, 1);
 			bonu[i].setNomB("r");
-			bonu[i].setVitB(1.75);
+			bonu[i].setVitB(5);
 		}
 
 		if (i == 3)
@@ -171,9 +171,9 @@ void Jeu::InitEc() // on joue avec trois écran générés à la fois.
 {
 	Plateforme p0(perso.getPos().x + 5, perso.getPos().y, 0, 0, 0.7, 2, -1);
 	p.emplace(p.begin(), p0);
-	Ecran e1(100, 0, 20, p, bonu, monstr, false);
-	Ecran e2(0, -100, 20, p, bonu, monstr, true);
-	Ecran e3(-100, -200, 20, p, bonu, monstr, true);
+	Ecran e1(100, 0, 20, p, bonu, monstr, false, 0);
+	Ecran e2(0, -100, 20, p, bonu, monstr, true, 0);
+	Ecran e3(-100, -200, 20, p, bonu, monstr, true, 0);
 	e.push_back(e1);
 	e.push_back(e2);
 	e.push_back(e3);
@@ -194,9 +194,9 @@ void Jeu::updateEcran(double dt)
 		}
 		if (ecranSuppr) // si l'écran est supprimé..
 		{
-			debutNewEc = e.at(e.size() - 1).getFinEc();					// on construit un nouvel écran depuis la fin de l'ancien..
-			finNewEc = e.at(e.size() - 1).getFinEc() - 100;				// on calcul sa position de fin..
-			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr, true); //.. on appel le constructeur.
+			debutNewEc = e.at(e.size() - 1).getFinEc();						   // on construit un nouvel écran depuis la fin de l'ancien..
+			finNewEc = e.at(e.size() - 1).getFinEc() - 100;					   // on calcul sa position de fin..
+			Ecran tmp(debutNewEc, finNewEc, 20, p, bonu, monstr, true, score); //.. on appel le constructeur.
 			e.push_back(tmp);
 		}
 	}
@@ -374,7 +374,7 @@ void Jeu::update(double dt)
 		bool collisionM = doOverlap(monstreSup, monstre, posSupperso, posperso) && (monstr[i].enVie == true);
 		if (collisionM && !perso.aPrisB) // si le personnage n'a pas de bonus, et si le monstre est en vie..
 		{								 // on rentre en collision.
-			if (Ptombe && perso.enVie)					 // si le personnage est entrain de tomber
+			if (Ptombe && perso.enVie)	 // si le personnage est entrain de tomber
 			{
 				tpsSaut = 35; // on saute..
 				Psaute = true;
@@ -387,7 +387,6 @@ void Jeu::update(double dt)
 			{
 				perso.tombe(dt);
 				perso.enVie = false;
-				cout << "mort d'un mob" << endl;
 			}
 		}
 		if (monstr[i].getResistance() == 0) // si le monstre n'a plus de resistance..
@@ -407,23 +406,22 @@ void Jeu::update(double dt)
 		bonus.y = by;
 		bonusSup.x = bSupx;
 		bonusSup.y = bSupy;
-		if (doOverlap(bonusSup, bonus, posSupperso, posperso) && !bonu[i].estPris && !perso.aPrisB) // si le personnage n'a pas déjà un bonus et que le bonus n'a pas déjà été pris..
-		{																							// on peut rentrer en collision.
-			tps = bonu[i].getDuree();																// on initialise la duree du bonus.
-			bonu[i].estPris = true;																	// on indique qu'il n'est plus disponible pour le personnage.
-			bonu[i].disponible = true;																// on indique qu'il est disponible pour la génération de l'écran suivant.
-			perso.aPrisB = true;																	// on indique que le personnage a pris un bonus.
+		bool collisionB = doOverlap(bonusSup, bonus, posSupperso, posperso) && !bonu[i].estPris && !perso.aPrisB;
+		if (collisionB && perso.enVie) // si le personnage n'a pas déjà un bonus et que le bonus n'a pas déjà été pris et qu'il est vivant..
+		{							   // on peut rentrer en collision.
+			tps = bonu[i].getDuree();  // on initialise la duree du bonus.
+			bonu[i].estPris = true;	   // on indique qu'il n'est plus disponible pour le personnage.
+			bonu[i].disponible = true; // on indique qu'il est disponible pour la génération de l'écran suivant.
+			perso.aPrisB = true;	   // on indique que le personnage a pris un bonus.
 		}
 	}
 	for (int i = 0; i < NB_BONUS; i++) // pour tous les bonus.
 	{
 		if (bonu[i].estPris) // si le bonus est pris..
 		{
-			cout << "bonus : " << i << " est pris" << endl;
 			if (i == 4) // si c'est le trou noir..
 			{
 				perso.enVie = false; //.. on meurt.
-				cout << "mort du trou noir" << endl;
 			}
 		}
 		if (tps > 0) // si le tps à été initialisé..
@@ -433,18 +431,16 @@ void Jeu::update(double dt)
 		}
 		else
 		{
-			if(i == 2)
+			if (i == 2) // pour le ressort, comme il ne disparait pas après utilisation.
 				bonu[i].estPris = false;
 			perso.aPrisB = false;
 		}
 	}
 
-	if (px >= camX + 45) // si le personnage dépasse la caméra + 45, i.e si il passe sous la vue du joueur..
+	if (px >= camX + 40) // si le personnage dépasse la caméra + 40, i.e si il passe sous la vue du joueur..
 	{
 		perso.enVie = false; // il meurt.
-		cout << "mort de chute" << endl;
 	}
 	actionsAutomatiques(dt); // executions des action automatiques.
 	updateEcran(dt);		 // mise à jour des écran.
-	cout << "score : " << score << endl;
 }

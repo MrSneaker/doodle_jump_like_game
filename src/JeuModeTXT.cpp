@@ -21,8 +21,6 @@ JeuModeTXT::~JeuModeTXT()
 {
 }
 
-
-
 void termClear() // efface le terminal
 {
     system("clear");
@@ -61,8 +59,7 @@ void termInit() // configure la saisie : ne pas afficher les caracteres tapes
 Vec2 JeuModeTXT::convertPos(Vec2 pos)
 {
     Vec2 newPos;
-    double scaleX = 100 / DIMX;
-    newPos.x = ((pos.x - cam.x) / scaleX + DIMX / 2);
+    newPos.x = (DIMX * pos.x) / 100;
     newPos.y = (DIMY * pos.y) / 12;
     return newPos;
 }
@@ -99,13 +96,20 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                 {
                     if (jeu.getConstMonstre(m).getTailleM().y == 1)
                     {
-                        cadre[i][j] = 'M';
+                        cadre[i][j] = 'm';
                         cadre[i - 1][j] = 'm';
                         cadre[i - 1][j + 1] = 'm';
                         cadre[i][j + 1] = 'm';
                     }
-                    else
-                        cadre[i][j] = 'M';
+                    else if (jeu.getConstMonstre(m).getTailleM().y > 1)
+                    {
+                        cadre[i][j] = 'm';
+                        cadre[i - 1][j] = 'm';
+                        cadre[i - 1][j + 1] = 'm';
+                        cadre[i][j + 1] = 'm';
+                        cadre[i - 1][j + 2] = 'm';
+                        cadre[i][j + 2] = 'm';
+                    }
                 }
             }
             for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++)
@@ -114,7 +118,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                 int plY = int(convertPos(jeu.getPlateforme().at(p).getPos()).y);
                 if ((plX == i) && (plY == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
                 {
-                    if (jeu.getPlateforme().at(p).getTaille().y == 2)
+                    if (jeu.getPlateforme().at(p).getRes() == -1)
                     {
                         cadre[i][j] = '_';
                         cadre[i][j + 1] = '_';
@@ -175,6 +179,13 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                         cadre[i - 1][j] = 'b';
                         cadre[i - 1][j + 1] = 'b';
                         cadre[i][j + 1] = 'b';
+                    }
+                    if (jeu.getConstBonus(b).getNomB() == "t")
+                    {
+                        cadre[i][j] = 't';
+                        cadre[i - 1][j] = 't';
+                        cadre[i - 1][j + 1] = 't';
+                        cadre[i][j + 1] = 't';
                     }
                 }
             }
