@@ -34,14 +34,14 @@ obj/Ecran.o: src/Ecran.cpp src/Ecran.h src/Plateforme.h src/Monstre.h src/bonus.
 obj/Menu.o: src/Menu.cpp src/Menu.h
 	$(CC) -c -o obj/Menu.o src/Menu.cpp $(SDL2)
 
-obj/mainTest.o: src/mainTest.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h
+obj/mainTest.o: src/mainTest.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h src/Jeu.h src/Ecran.h
 	$(CC) -c -o obj/mainTest.o src/mainTest.cpp
 
 obj/mainAffichageModeGRAPHIQUE.o: src/mainAffichageModeGRAPHIQUE.cpp src/Personnage.h src/projectile.h src/Monstre.h src/bonus.h src/Plateforme.h src/Jeu.h src/JeuModeGraphique.h src/Ecran.h src/Menu.h src/JeuModeTXT.h
 	$(CC) -c -o obj/mainAffichageModeGRAPHIQUE.o src/mainAffichageModeGRAPHIQUE.cpp $(SDL2)
 
-bin/test: obj/Personnage.o obj/projectile.o obj/mainTest.o obj/Monstre.o obj/bonus.o obj/Plateforme.o
-	$(CC) -o bin/test obj/mainTest.o obj/Personnage.o obj/projectile.o obj/Monstre.o obj/bonus.o obj/Plateforme.o
+bin/test: obj/Personnage.o obj/projectile.o obj/mainTest.o obj/Monstre.o obj/bonus.o obj/Plateforme.o obj/Jeu.o obj/Ecran.o
+	$(CC) -o bin/test obj/mainTest.o obj/Personnage.o obj/projectile.o obj/Monstre.o obj/bonus.o obj/Plateforme.o obj/Jeu.o obj/Ecran.o
 
 bin/affichageModeGRAPHIQUE: obj/mainAffichageModeGRAPHIQUE.o obj/Personnage.o obj/projectile.o obj/mainTest.o obj/Monstre.o obj/bonus.o obj/Plateforme.o obj/Jeu.o obj/JeuModeGRAPHIQUE.o obj/JeuModeTXT.o obj/Ecran.o obj/Menu.o
 	$(CC) -o bin/affichageModeGRAPHIQUE obj/mainAffichageModeGRAPHIQUE.o obj/Personnage.o obj/projectile.o obj/Monstre.o obj/bonus.o obj/Plateforme.o obj/Jeu.o obj/JeuModeGRAPHIQUE.o obj/JeuModeTXT.o obj/Ecran.o obj/Menu.o $(SDL2)

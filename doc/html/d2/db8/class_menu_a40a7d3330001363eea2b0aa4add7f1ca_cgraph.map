@@ -1,0 +1,34 @@
+<map id="Menu::jouerSDL" name="Menu::jouerSDL">
+<area shape="rect" id="node1" title="Procédure servant à démarrer une partie sur l&#39;affichage SDL, à chaque appel la graine du jeu est regé..." alt="" coords="5,465,129,492"/>
+<area shape="rect" id="node2" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ae635e18f66bdd43fda3b3bfb7ef6da9f" title="Procédure permettant le rafraichissement de l&#39;affichage en fonction du jeu." alt="" coords="177,487,384,529"/>
+<area shape="rect" id="node32" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ae66e3c4142162cb30f0247ca96b9b8f2" title="Initialisation de la caméra, 0 en x et égale à la position du personnage en y." alt="" coords="442,81,657,108"/>
+<area shape="rect" id="node3" href="$d0/d46/class_jeu.html#aa9ada65043f2e022ec06b60814d283d2" title="Gère les actions clavier du joueur en fonction d&#39;un char." alt="" coords="481,285,617,312"/>
+<area shape="rect" id="node4" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a609a269b7a88911de252f700204594d1" title="Détruit l&#39;affichage SDL, mais ne quitte pas SDL." alt="" coords="432,337,667,378"/>
+<area shape="rect" id="node5" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a49eecb10b717bdb1cd67553f132e25f0" title="Procédure d&#39;affichage en fonction du jeu." alt="" coords="437,454,661,495"/>
+<area shape="rect" id="node10" href="$d0/d46/class_jeu.html#ae3b2e048b68b8155e7351a61ca97979b" title="Renvoie une référence au personnage et ses caractéristiques pour l&#39;affichage texte et SDL." alt="" coords="741,107,925,133"/>
+<area shape="rect" id="node26" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a709f713ac58304b6903a18d0a55d908d" title="Initialisation de la SDL2." alt="" coords="437,519,661,561"/>
+<area shape="rect" id="node27" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a825e9b83206032047ad0c93071b36acc" title="Initialisation des polices depuis leurs sources." alt="" coords="443,585,656,612"/>
+<area shape="rect" id="node28" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ae711edca9bd3038243461c3d9fe922bc" title="Initialisation des sons depuis leurs sources." alt="" coords="445,636,654,663"/>
+<area shape="rect" id="node29" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ac79f759b72581fce523549b76d8b7704" title="Initialisation des textures depuis leurs sources." alt="" coords="433,687,666,713"/>
+<area shape="rect" id="node30" href="$d0/d46/class_jeu.html#a2fde12bc97dd2ab637d6bb538cc910cb" title="Met à jour tous les éléments par rapport au intéractions entre eux, en fonction de la vitesse de mise..." alt="" coords="502,877,597,904"/>
+<area shape="rect" id="node6" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a8a95a7f5aaacb73ffabfc9d5d5319eb7" title="Fonction de conversion des positions logiques vers les positions d&#39;affichages." alt="" coords="715,5,951,32"/>
+<area shape="rect" id="node7" href="$dd/de7/class_plateforme.html#a5365423643ae6e3e4ba6e688e8de29f5" title="renvoie vrai si la plateforme à une resistance à &#45;1 ou supérieur à 0, faux sinon" alt="" coords="735,157,930,184"/>
+<area shape="rect" id="node8" href="$d0/d46/class_jeu.html#ad315f314a86500831567d28c171a5eff" title="Renvoie une référence au bonus numéro." alt="" coords="759,208,907,235"/>
+<area shape="rect" id="node9" href="$d0/d46/class_jeu.html#a665c5e226ee2d06e0467288982008919" title="Renvoie une référence au monstre numéro." alt="" coords="752,259,913,285"/>
+<area shape="rect" id="node11" href="$d3/d3c/classbonus.html#a7dad4cf0b409d91fbbc1b7bee7ebcce0" title="renvoie la duree du bonus" alt="" coords="768,309,897,336"/>
+<area shape="rect" id="node12" href="$d3/d3c/classbonus.html#a005322a91caa94b0afc6b931ef1fab40" title="renvoie le nom du bonus (permet de définir plusieurs apparences)" alt="" coords="767,360,898,387"/>
+<area shape="rect" id="node13" href="$d2/dd0/class_personnage.html#ab9b0108111a13bc95cf2b6c6ff411598" title="renvoie le nombre de projectile" alt="" coords="731,411,935,437"/>
+<area shape="rect" id="node14" href="$d0/d46/class_jeu.html#affe42aac2ad26f424d1348cc26163518" title="Renvoie une référence au tableau dynamique de plateforme et ses caractéristiques pour l&#39;affichage tex..." alt="" coords="761,461,904,488"/>
+<area shape="rect" id="node15" href="$dd/de7/class_plateforme.html#afdc8ff6c854a406e2ac96df56230e381" title="renvoie la position de la plateforme" alt="" coords="759,512,906,539"/>
+<area shape="rect" id="node16" href="$dc/d05/classprojectile.html#a2bda70dbc200b9f388bb31b7ca1be873" title="renvoie le vecteur de position du projectile" alt="" coords="765,563,900,589"/>
+<area shape="rect" id="node17" href="$d8/d9e/class_monstre.html#a6511b568050e2e76934da2eda37dc321" title="renvoie la position du monstre en x et y" alt="" coords="769,613,896,640"/>
+<area shape="rect" id="node18" href="$d2/dd0/class_personnage.html#a3a589d8772088add9b205724b18a044a" title="renvoie la position en x et en y du personnage" alt="" coords="757,56,908,83"/>
+<area shape="rect" id="node19" href="$d3/d3c/classbonus.html#a684d6f26b2ed6f4955282426f5eef616" title="renvoie la position du bonus en x et y" alt="" coords="756,664,909,691"/>
+<area shape="rect" id="node20" href="$d2/dd0/class_personnage.html#aa5d903f288763c99e01a9328e33653a3" title="renvoie le vecteur projectile demandé si il existe pour l&#39;affichage." alt="" coords="729,715,936,741"/>
+<area shape="rect" id="node21" href="$dd/de7/class_plateforme.html#aa14182b3cbae34725677fbc664d6bf5d" title="renvoie la resistance d&#39;une plateforme" alt="" coords="759,765,906,792"/>
+<area shape="rect" id="node22" href="$dd/de7/class_plateforme.html#a60180b072a3a0b9fdd7804e98162da8b" title="renvoie la taille d&#39;une plateforme" alt="" coords="754,816,911,843"/>
+<area shape="rect" id="node23" href="$d2/dd0/class_personnage.html#ac042179eac7c950d079a2f6771925cef" title="renvoie le vecteur de taille du personnage." alt="" coords="752,867,913,893"/>
+<area shape="rect" id="node24" href="$d3/d3c/classbonus.html#ac4bed9c2946faf25f2cb51d5b9ca9e88" title="renvoie la taille du bonus" alt="" coords="766,917,899,944"/>
+<area shape="rect" id="node25" href="$d8/d9e/class_monstre.html#a53f2b8ffe051a65c460dd49f5148820d" title="renvoie la taille du pixel du monstre" alt="" coords="757,968,908,995"/>
+<area shape="rect" id="node31" href="$d5/dcc/_jeu_8cpp.html#a77b1438d2bda53e2477d14c9cdf9f533" title=" " alt="" coords="788,1019,877,1045"/>
+</map>

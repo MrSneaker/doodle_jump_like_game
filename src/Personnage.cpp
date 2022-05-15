@@ -141,6 +141,7 @@ int Personnage::getNombreProj() const
 
 void Personnage::testRegression()
 {
+    cout<<"test de regression personnage : "<<endl;
     Personnage p1;
     assert(p1.position.x == 0);
     assert(p1.position.y == 0);
@@ -196,4 +197,10 @@ void Personnage::testRegression()
         p1.detruitProj(i - 1);
     }
     assert(p1.proj.size() == 0);
+    cout<<endl;
+}
+
+void Personnage::placeProjTest(projectile p)
+{
+    proj.push_back(p);
 }

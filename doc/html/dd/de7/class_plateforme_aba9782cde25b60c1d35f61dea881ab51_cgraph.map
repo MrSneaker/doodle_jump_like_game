@@ -1,0 +1,5 @@
+<map id="Plateforme::bougeAuto" name="Plateforme::bougeAuto">
+<area shape="rect" id="node1" title="permet aux plateformes de se déplacer toutes seules" alt="" coords="5,31,177,57"/>
+<area shape="rect" id="node2" href="$dd/de7/class_plateforme.html#a5365423643ae6e3e4ba6e688e8de29f5" title="renvoie vrai si la plateforme à une resistance à &#45;1 ou supérieur à 0, faux sinon" alt="" coords="225,5,420,32"/>
+<area shape="rect" id="node3" href="$dd/de7/class_plateforme.html#a1cb0f1e00845cc9174c4a9c4cd5aa093" title="gère tous les déplacements" alt="" coords="248,56,397,83"/>
+</map>

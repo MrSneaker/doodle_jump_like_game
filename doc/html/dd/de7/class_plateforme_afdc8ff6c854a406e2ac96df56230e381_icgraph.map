@@ -1,0 +1,11 @@
+<map id="Plateforme::getPos" name="Plateforme::getPos">
+<area shape="rect" id="node1" title="renvoie la position de la plateforme" alt="" coords="1000,71,1147,98"/>
+<area shape="rect" id="node2" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a49eecb10b717bdb1cd67553f132e25f0" title="Procédure d&#39;affichage en fonction du jeu." alt="" coords="728,5,952,47"/>
+<area shape="rect" id="node7" href="$d5/d3a/class_ecran.html#aaba8a1895c2032d86c98c65b763ed3af" title="constructeur permettant de construire un écran à partir de sa position de début et de fin (" alt="" coords="789,71,891,98"/>
+<area shape="rect" id="node8" href="$dd/de7/class_plateforme.html#ae98b854a83ce36723460b67e8d5f4700" title="test de régression de la classe plateforme" alt="" coords="741,122,939,149"/>
+<area shape="rect" id="node3" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ae635e18f66bdd43fda3b3bfb7ef6da9f" title="Procédure permettant le rafraichissement de l&#39;affichage en fonction du jeu." alt="" coords="473,5,680,47"/>
+<area shape="rect" id="node4" href="$d2/db8/class_menu.html#a40a7d3330001363eea2b0aa4add7f1ca" title="Procédure servant à démarrer une partie sur l&#39;affichage SDL, à chaque appel la graine du jeu est regé..." alt="" coords="301,13,425,39"/>
+<area shape="rect" id="node5" href="$d2/db8/class_menu.html#a4e0b1c5e7030c3a4283c603009cc97ee" title="Boucle d&#39;affichage du menu, détectant les événements, on prend en paramètre le double." alt="" coords="108,13,253,39"/>
+<area shape="rect" id="node6" href="$d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+<area shape="rect" id="node9" href="$dc/dd0/main_test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="549,122,604,149"/>
+</map>

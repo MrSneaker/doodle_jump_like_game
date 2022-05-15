@@ -118,6 +118,7 @@ void Monstre::descRes()
 
 void Monstre::testRegression()
 {
+    cout<<"test de regression monstre : "<<endl;
     Monstre m1;
     double dt = 0.1;
     assert(m1.position.x == 0);
@@ -154,4 +155,5 @@ void Monstre::testRegression()
     cout << "resistance monstre : " << m1.getResistance() << endl;
     cout << "taille monstre x: " << m1.getTailleM().x << endl;
     cout << "taille monstre y: " << m1.getTailleM().y << endl;
+    cout<<endl;
 }

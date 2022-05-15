@@ -1,0 +1,219 @@
+\hypertarget{class_jeu_mode_t_x_t}{}\doxysection{Référence de la classe Jeu\+Mode\+T\+XT}
+\label{class_jeu_mode_t_x_t}\index{JeuModeTXT@{JeuModeTXT}}
+
+
+{\ttfamily \#include $<$Jeu\+Mode\+T\+X\+T.\+h$>$}
+
+
+
+Graphe de collaboration de Jeu\+Mode\+T\+XT\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{df/dc0/class_jeu_mode_t_x_t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_jeu_mode_t_x_t_ad03c019f379f48385157cabda39d2f2c}{Jeu\+Mode\+T\+XT}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur du jeu T\+XT,initialise la position de la caméra à 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_jeu_mode_t_x_t_ae3302da5c0b40e0c739712812e99eb41}{$\sim$\+Jeu\+Mode\+T\+XT}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur du jeu T\+XT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_t_x_t_a9f0d74ee9b6964464ec17609bd7341cf}{Init\+Cam}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la caméra sur la position du personnage + D\+I\+M\+X/2 (la moitié de la taille de l\textquotesingle{}écran en ordonnées). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vec2}{Vec2}} \mbox{\hyperlink{class_jeu_mode_t_x_t_a3e272baaf5ebe865218b313fd68d26b3}{convert\+Pos}} (\mbox{\hyperlink{struct_vec2}{Vec2}} pos)
+\begin{DoxyCompactList}\small\item\em Convertie une position logique (i.\+e venant du moteur de jeu \mbox{\hyperlink{_jeu_8cpp}{Jeu.\+cpp}}) en une position d\textquotesingle{}affichage à partir d\textquotesingle{}un vecteur de position en paramètre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_t_x_t_a5b78c8c73f9e43a0c73fff13fbebf5a0}{update\+Plateau}} (\mbox{\hyperlink{class_jeu}{Jeu}} \&jeu)
+\begin{DoxyCompactList}\small\item\em Met le plateau à jour en fonction d\textquotesingle{}un jeu en paramètre passé par référence. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_t_x_t_a8a313e0f64f4f321939cf8781daae6e6}{affichage\+T\+XT}} (\mbox{\hyperlink{class_jeu}{Jeu}} \&jeu)
+\begin{DoxyCompactList}\small\item\em Affiche le jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_t_x_t_af48e600d2ce74f212a89acd775fb8dce}{boucle\+Aff\+T\+XT}} (\mbox{\hyperlink{class_jeu}{Jeu}} \&jeu, double \mbox{\hyperlink{main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Boucle d\textquotesingle{}affichage du jeu en paramètre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_t_x_t_a5a84309fdf984ae2686b5e56d1a35a84}{aff\+Detruire\+T\+XT}} ()
+\begin{DoxyCompactList}\small\item\em Efface le cadre de jeu en utilisant un cadre vide. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_ad03c019f379f48385157cabda39d2f2c}\label{class_jeu_mode_t_x_t_ad03c019f379f48385157cabda39d2f2c}} 
+\index{JeuModeTXT@{JeuModeTXT}!JeuModeTXT@{JeuModeTXT}}
+\index{JeuModeTXT@{JeuModeTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{JeuModeTXT()}{JeuModeTXT()}}
+{\footnotesize\ttfamily Jeu\+Mode\+T\+X\+T\+::\+Jeu\+Mode\+T\+XT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur du jeu T\+XT,initialise la position de la caméra à 0. 
+
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_ae3302da5c0b40e0c739712812e99eb41}\label{class_jeu_mode_t_x_t_ae3302da5c0b40e0c739712812e99eb41}} 
+\index{JeuModeTXT@{JeuModeTXT}!````~JeuModeTXT@{$\sim$JeuModeTXT}}
+\index{````~JeuModeTXT@{$\sim$JeuModeTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{$\sim$JeuModeTXT()}{~JeuModeTXT()}}
+{\footnotesize\ttfamily Jeu\+Mode\+T\+X\+T\+::$\sim$\+Jeu\+Mode\+T\+XT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur du jeu T\+XT. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_a5a84309fdf984ae2686b5e56d1a35a84}\label{class_jeu_mode_t_x_t_a5a84309fdf984ae2686b5e56d1a35a84}} 
+\index{JeuModeTXT@{JeuModeTXT}!affDetruireTXT@{affDetruireTXT}}
+\index{affDetruireTXT@{affDetruireTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{affDetruireTXT()}{affDetruireTXT()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::aff\+Detruire\+T\+XT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Efface le cadre de jeu en utilisant un cadre vide. 
+
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_a5a84309fdf984ae2686b5e56d1a35a84_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_a8a313e0f64f4f321939cf8781daae6e6}\label{class_jeu_mode_t_x_t_a8a313e0f64f4f321939cf8781daae6e6}} 
+\index{JeuModeTXT@{JeuModeTXT}!affichageTXT@{affichageTXT}}
+\index{affichageTXT@{affichageTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{affichageTXT()}{affichageTXT()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::affichage\+T\+XT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_jeu}{Jeu}} \&}]{jeu }\end{DoxyParamCaption})}
+
+
+
+Affiche le jeu. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em jeu} & passé en référence en effaçant le terminal. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{d9/d6a/class_jeu_mode_t_x_t_a8a313e0f64f4f321939cf8781daae6e6_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_a8a313e0f64f4f321939cf8781daae6e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_af48e600d2ce74f212a89acd775fb8dce}\label{class_jeu_mode_t_x_t_af48e600d2ce74f212a89acd775fb8dce}} 
+\index{JeuModeTXT@{JeuModeTXT}!boucleAffTXT@{boucleAffTXT}}
+\index{boucleAffTXT@{boucleAffTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{boucleAffTXT()}{boucleAffTXT()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::boucle\+Aff\+T\+XT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_jeu}{Jeu}} \&}]{jeu,  }\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Boucle d\textquotesingle{}affichage du jeu en paramètre. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em jeu} & passé en référence, réalisant l\textquotesingle{}update et l\textquotesingle{}affichage de ce dernier tant que le joueur n\textquotesingle{}a pas quitté ou perdu. Cela en fonction de la vitesse de mise à jour en paramètre\\
+\hline
+{\em dt.} & \\
+\hline
+\end{DoxyParams}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_af48e600d2ce74f212a89acd775fb8dce_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_af48e600d2ce74f212a89acd775fb8dce_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_a3e272baaf5ebe865218b313fd68d26b3}\label{class_jeu_mode_t_x_t_a3e272baaf5ebe865218b313fd68d26b3}} 
+\index{JeuModeTXT@{JeuModeTXT}!convertPos@{convertPos}}
+\index{convertPos@{convertPos}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{convertPos()}{convertPos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vec2}{Vec2}} Jeu\+Mode\+T\+X\+T\+::convert\+Pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vec2}{Vec2}}}]{pos }\end{DoxyParamCaption})}
+
+
+
+Convertie une position logique (i.\+e venant du moteur de jeu \mbox{\hyperlink{_jeu_8cpp}{Jeu.\+cpp}}) en une position d\textquotesingle{}affichage à partir d\textquotesingle{}un vecteur de position en paramètre. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pos.} & \\
+\hline
+\end{DoxyParams}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_a3e272baaf5ebe865218b313fd68d26b3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_a9f0d74ee9b6964464ec17609bd7341cf}\label{class_jeu_mode_t_x_t_a9f0d74ee9b6964464ec17609bd7341cf}} 
+\index{JeuModeTXT@{JeuModeTXT}!InitCam@{InitCam}}
+\index{InitCam@{InitCam}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{InitCam()}{InitCam()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::\+Init\+Cam (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise la caméra sur la position du personnage + D\+I\+M\+X/2 (la moitié de la taille de l\textquotesingle{}écran en ordonnées). 
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_a9f0d74ee9b6964464ec17609bd7341cf_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_a9f0d74ee9b6964464ec17609bd7341cf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_jeu_mode_t_x_t_a5b78c8c73f9e43a0c73fff13fbebf5a0}\label{class_jeu_mode_t_x_t_a5b78c8c73f9e43a0c73fff13fbebf5a0}} 
+\index{JeuModeTXT@{JeuModeTXT}!updatePlateau@{updatePlateau}}
+\index{updatePlateau@{updatePlateau}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{updatePlateau()}{updatePlateau()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::update\+Plateau (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_jeu}{Jeu}} \&}]{jeu }\end{DoxyParamCaption})}
+
+
+
+Met le plateau à jour en fonction d\textquotesingle{}un jeu en paramètre passé par référence. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em jeu.} & \\
+\hline
+\end{DoxyParams}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_a5b78c8c73f9e43a0c73fff13fbebf5a0_cgraph}
+\end{center}
+\end{figure}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d6a/class_jeu_mode_t_x_t_a5b78c8c73f9e43a0c73fff13fbebf5a0_icgraph}
+\end{center}
+\end{figure}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_jeu_mode_t_x_t_8h}{Jeu\+Mode\+T\+X\+T.\+h}}\item 
+src/\mbox{\hyperlink{_jeu_mode_t_x_t_8cpp}{Jeu\+Mode\+T\+X\+T.\+cpp}}\end{DoxyCompactItemize}

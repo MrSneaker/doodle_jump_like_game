@@ -1,0 +1,6 @@
+<map id="JeuModeGRAPHIQUE::InitCam" name="JeuModeGRAPHIQUE::InitCam">
+<area shape="rect" id="node1" title="Initialisation de la caméra, 0 en x et égale à la position du personnage en y." alt="" coords="5,56,220,83"/>
+<area shape="rect" id="node2" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a8a95a7f5aaacb73ffabfc9d5d5319eb7" title="Fonction de conversion des positions logiques vers les positions d&#39;affichages." alt="" coords="268,5,504,32"/>
+<area shape="rect" id="node3" href="$d0/d46/class_jeu.html#ae3b2e048b68b8155e7351a61ca97979b" title="Renvoie une référence au personnage et ses caractéristiques pour l&#39;affichage texte et SDL." alt="" coords="294,56,478,83"/>
+<area shape="rect" id="node4" href="$d2/dd0/class_personnage.html#a3a589d8772088add9b205724b18a044a" title="renvoie la position en x et en y du personnage" alt="" coords="311,107,461,133"/>
+</map>

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Foodle Jump:  Fichier source de src/Menu.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Foodle Jump
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Menu.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../dd/dd2/_menu_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MENU_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MENU_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL_image.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL_ttf.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;SDL_mixer.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/dc6/_jeu_mode_graphique_8h.html">JeuModeGraphique.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../df/d90/_jeu_mode_t_x_t_8h.html">JeuModeTXT.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="../../d2/db8/class_menu.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d2/db8/class_menu.html">Menu</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    SDL_Renderer *renderer;  </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    SDL_Window *window;      </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    TTF_Font *font;          </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    SDL_Color font_color;    </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    SDL_Event events;        </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    Mix_Music *musique;      </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    SDL_Texture *background; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    SDL_Texture *bouton[3];  </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    SDL_Texture *titre;      </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    SDL_Rect boutonJouer;    </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    SDL_Rect boutonJouer2;   </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    SDL_Rect boutonQuitter;  </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    SDL_Rect titreRect;      </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    SDL_Surface *titreSurf;  </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">bool</span> withSound;          </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> DIMX = 300;    </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> DIMY = 600;    </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="../../d2/db8/class_menu.html">Menu</a>();     </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ~<a class="code" href="../../d2/db8/class_menu.html">Menu</a>();         </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> affichageInitMenu(); </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> initFont(); </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> initTexture(); </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> initSon();   </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> afficherMenu();    </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> jouerSDL(<span class="keywordtype">double</span> <a class="code" href="../../d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a03e28be41881b703c836edbfe9b51b17">dt</a>);  </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> jouerTXT(<span class="keywordtype">double</span> <a class="code" href="../../d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a03e28be41881b703c836edbfe9b51b17">dt</a>); </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> boucleMenu(<span class="keywordtype">double</span> <a class="code" href="../../d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a03e28be41881b703c836edbfe9b51b17">dt</a>); </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> afficheDetruireMenu(); </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_menu_html_ad466dd83355124a6ed958430450bfe94"><div class="ttname"><a href="../../d2/db8/class_menu.html#ad466dd83355124a6ed958430450bfe94">Menu::Menu</a></div><div class="ttdeci">Menu()</div><div class="ttdoc">Constructeur du menu, initialise les textures à NULL.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:3</div></div>
+<div class="ttc" id="aclass_jeu_html_ac7c855956828e80fca5d59f909dfbc65"><div class="ttname"><a href="../../d0/d46/class_jeu.html#ac7c855956828e80fca5d59f909dfbc65">Jeu::testRegression</a></div><div class="ttdeci">void testRegression()</div><div class="ttdoc">test de régression des fonctions complexes.</div><div class="ttdef"><b>Definition:</b> Jeu.cpp:444</div></div>
+<div class="ttc" id="aclass_monstre_html"><div class="ttname"><a href="../../d8/d9e/class_monstre.html">Monstre</a></div><div class="ttdef"><b>Definition:</b> Monstre.h:10</div></div>
+<div class="ttc" id="aclass_jeu_mode_t_x_t_html_a9f0d74ee9b6964464ec17609bd7341cf"><div class="ttname"><a href="../../d9/d6a/class_jeu_mode_t_x_t.html#a9f0d74ee9b6964464ec17609bd7341cf">JeuModeTXT::InitCam</a></div><div class="ttdeci">void InitCam()</div><div class="ttdoc">Initialise la caméra sur la position du personnage + DIMX/2 (la moitié de la taille de l'écran en ord...</div><div class="ttdef"><b>Definition:</b> JeuModeTXT.cpp:64</div></div>
+<div class="ttc" id="aclass_menu_html_a4e0b1c5e7030c3a4283c603009cc97ee"><div class="ttname"><a href="../../d2/db8/class_menu.html#a4e0b1c5e7030c3a4283c603009cc97ee">Menu::boucleMenu</a></div><div class="ttdeci">void boucleMenu(double dt)</div><div class="ttdoc">Boucle d'affichage du menu, détectant les événements, on prend en paramètre le double.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:169</div></div>
+<div class="ttc" id="aclassbonus_html"><div class="ttname"><a href="../../d3/d3c/classbonus.html">bonus</a></div><div class="ttdef"><b>Definition:</b> bonus.h:9</div></div>
+<div class="ttc" id="aclass_menu_html_a831387f51358cfb88cd018e1777bc980"><div class="ttname"><a href="../../d2/db8/class_menu.html#a831387f51358cfb88cd018e1777bc980">Menu::~Menu</a></div><div class="ttdeci">~Menu()</div><div class="ttdoc">Destructeur du menu.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:31</div></div>
+<div class="ttc" id="a_jeu_mode_graphique_8h_html"><div class="ttname"><a href="../../d1/dc6/_jeu_mode_graphique_8h.html">JeuModeGraphique.h</a></div></div>
+<div class="ttc" id="aclass_jeu_mode_t_x_t_html_af48e600d2ce74f212a89acd775fb8dce"><div class="ttname"><a href="../../d9/d6a/class_jeu_mode_t_x_t.html#af48e600d2ce74f212a89acd775fb8dce">JeuModeTXT::boucleAffTXT</a></div><div class="ttdeci">void boucleAffTXT(Jeu &amp;jeu, double dt)</div><div class="ttdoc">Boucle d'affichage du jeu en paramètre.</div><div class="ttdef"><b>Definition:</b> JeuModeTXT.cpp:236</div></div>
+<div class="ttc" id="aclass_jeu_mode_g_r_a_p_h_i_q_u_e_html_ae635e18f66bdd43fda3b3bfb7ef6da9f"><div class="ttname"><a href="../../db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ae635e18f66bdd43fda3b3bfb7ef6da9f">JeuModeGRAPHIQUE::boucleAffGRAPHIQUE</a></div><div class="ttdeci">void boucleAffGRAPHIQUE(Jeu &amp;jeu, double dt)</div><div class="ttdoc">Procédure permettant le rafraichissement de l'affichage en fonction du jeu.</div><div class="ttdef"><b>Definition:</b> JeuModeGraphique.cpp:356</div></div>
+<div class="ttc" id="amain_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="../../d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> mainAffichageModeGRAPHIQUE.cpp:14</div></div>
+<div class="ttc" id="aclass_plateforme_html"><div class="ttname"><a href="../../dd/de7/class_plateforme.html">Plateforme</a></div><div class="ttdef"><b>Definition:</b> Plateforme.h:7</div></div>
+<div class="ttc" id="a_jeu_8h_html"><div class="ttname"><a href="../../d0/d9d/_jeu_8h.html">Jeu.h</a></div></div>
+<div class="ttc" id="a_menu_8h_html"><div class="ttname"><a href="../../dd/dd2/_menu_8h.html">Menu.h</a></div></div>
+<div class="ttc" id="aclass_menu_html_a3477f37ae6ab7d43a2acc174420238c0"><div class="ttname"><a href="../../d2/db8/class_menu.html#a3477f37ae6ab7d43a2acc174420238c0">Menu::initSon</a></div><div class="ttdeci">void initSon()</div><div class="ttdoc">Initialisation des sons.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:106</div></div>
+<div class="ttc" id="aclass_jeu_mode_g_r_a_p_h_i_q_u_e_html"><div class="ttname"><a href="../../db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html">JeuModeGRAPHIQUE</a></div><div class="ttdef"><b>Definition:</b> JeuModeGraphique.h:15</div></div>
+<div class="ttc" id="aclass_menu_html"><div class="ttname"><a href="../../d2/db8/class_menu.html">Menu</a></div><div class="ttdef"><b>Definition:</b> Menu.h:14</div></div>
+<div class="ttc" id="aclass_personnage_html_a8b827a72e42d38de1b6d29dee145a4b5"><div class="ttname"><a href="../../d2/dd0/class_personnage.html#a8b827a72e42d38de1b6d29dee145a4b5">Personnage::testRegression</a></div><div class="ttdeci">void testRegression()</div><div class="ttdoc">test toutes les fonctions de la classe Personnage</div><div class="ttdef"><b>Definition:</b> Personnage.cpp:142</div></div>
+<div class="ttc" id="aclass_jeu_mode_t_x_t_html"><div class="ttname"><a href="../../d9/d6a/class_jeu_mode_t_x_t.html">JeuModeTXT</a></div><div class="ttdef"><b>Definition:</b> JeuModeTXT.h:10</div></div>
+<div class="ttc" id="aclass_plateforme_html_ae98b854a83ce36723460b67e8d5f4700"><div class="ttname"><a href="../../dd/de7/class_plateforme.html#ae98b854a83ce36723460b67e8d5f4700">Plateforme::testRegression</a></div><div class="ttdeci">void testRegression()</div><div class="ttdoc">test de régression de la classe plateforme</div><div class="ttdef"><b>Definition:</b> Plateforme.cpp:154</div></div>
+<div class="ttc" id="aclass_jeu_html"><div class="ttname"><a href="../../d0/d46/class_jeu.html">Jeu</a></div><div class="ttdef"><b>Definition:</b> Jeu.h:25</div></div>
+<div class="ttc" id="amain_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_html_a03e28be41881b703c836edbfe9b51b17"><div class="ttname"><a href="../../d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a03e28be41881b703c836edbfe9b51b17">dt</a></div><div class="ttdeci">double dt</div><div class="ttdef"><b>Definition:</b> mainAffichageModeGRAPHIQUE.cpp:10</div></div>
+<div class="ttc" id="aclass_monstre_html_aee872f82703311e52960b1a11110b4b5"><div class="ttname"><a href="../../d8/d9e/class_monstre.html#aee872f82703311e52960b1a11110b4b5">Monstre::testRegression</a></div><div class="ttdeci">void testRegression()</div><div class="ttdoc">test toutes les fonctions de la classe Monstre</div><div class="ttdef"><b>Definition:</b> Monstre.cpp:119</div></div>
+<div class="ttc" id="aclass_menu_html_a9942654d15872ab5d5871e88bb4f6e8d"><div class="ttname"><a href="../../d2/db8/class_menu.html#a9942654d15872ab5d5871e88bb4f6e8d">Menu::initFont</a></div><div class="ttdeci">void initFont()</div><div class="ttdoc">Initialisation des polices d'écritures.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:89</div></div>
+<div class="ttc" id="aclassbonus_html_ae9d86187ee47c90663626c6e60677efd"><div class="ttname"><a href="../../d3/d3c/classbonus.html#ae9d86187ee47c90663626c6e60677efd">bonus::testRegression</a></div><div class="ttdeci">void testRegression()</div><div class="ttdoc">test de regression de la classe bonus</div><div class="ttdef"><b>Definition:</b> bonus.cpp:74</div></div>
+<div class="ttc" id="a_jeu_mode_t_x_t_8h_html"><div class="ttname"><a href="../../df/d90/_jeu_mode_t_x_t_8h.html">JeuModeTXT.h</a></div></div>
+<div class="ttc" id="aclass_menu_html_a5e385e13791ded5e0e8dac3dc4d88442"><div class="ttname"><a href="../../d2/db8/class_menu.html#a5e385e13791ded5e0e8dac3dc4d88442">Menu::afficherMenu</a></div><div class="ttdeci">void afficherMenu()</div><div class="ttdoc">affichage des éléments du menu sur le rendu.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:116</div></div>
+<div class="ttc" id="aclass_menu_html_a40a7d3330001363eea2b0aa4add7f1ca"><div class="ttname"><a href="../../d2/db8/class_menu.html#a40a7d3330001363eea2b0aa4add7f1ca">Menu::jouerSDL</a></div><div class="ttdeci">void jouerSDL(double dt)</div><div class="ttdoc">Procédure servant à démarrer une partie sur l'affichage SDL, à chaque appel la graine du jeu est regé...</div><div class="ttdef"><b>Definition:</b> Menu.cpp:149</div></div>
+<div class="ttc" id="amain_test_8cpp_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="../../dc/dd0/main_test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> mainTest.cpp:6</div></div>
+<div class="ttc" id="aclass_jeu_mode_g_r_a_p_h_i_q_u_e_html_ae66e3c4142162cb30f0247ca96b9b8f2"><div class="ttname"><a href="../../db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ae66e3c4142162cb30f0247ca96b9b8f2">JeuModeGRAPHIQUE::InitCam</a></div><div class="ttdeci">void InitCam()</div><div class="ttdoc">Initialisation de la caméra, 0 en x et égale à la position du personnage en y.</div><div class="ttdef"><b>Definition:</b> JeuModeGraphique.cpp:54</div></div>
+<div class="ttc" id="aclass_personnage_html"><div class="ttname"><a href="../../d2/dd0/class_personnage.html">Personnage</a></div><div class="ttdef"><b>Definition:</b> Personnage.h:12</div></div>
+<div class="ttc" id="aclass_menu_html_adab5e15eb463a26ebd755a0d89756bb9"><div class="ttname"><a href="../../d2/db8/class_menu.html#adab5e15eb463a26ebd755a0d89756bb9">Menu::affichageInitMenu</a></div><div class="ttdeci">void affichageInitMenu()</div><div class="ttdoc">Initialisation de la SDL pour le menu.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:35</div></div>
+<div class="ttc" id="aclass_menu_html_abcad602d1d53c8fe773e64a87240c80f"><div class="ttname"><a href="../../d2/db8/class_menu.html#abcad602d1d53c8fe773e64a87240c80f">Menu::afficheDetruireMenu</a></div><div class="ttdeci">void afficheDetruireMenu()</div><div class="ttdoc">Procédure de destruction du menu pour détruire la fenêtre, appelée à chaque partie lancée.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:131</div></div>
+<div class="ttc" id="aclass_menu_html_a096a163edbdc44d53fcf24a1380bfcb0"><div class="ttname"><a href="../../d2/db8/class_menu.html#a096a163edbdc44d53fcf24a1380bfcb0">Menu::initTexture</a></div><div class="ttdeci">void initTexture()</div><div class="ttdoc">Initialisation des textures.</div><div class="ttdef"><b>Definition:</b> Menu.cpp:95</div></div>
+<div class="ttc" id="aclass_menu_html_aa080c0ca2efd1811f8580c40274b179b"><div class="ttname"><a href="../../d2/db8/class_menu.html#aa080c0ca2efd1811f8580c40274b179b">Menu::jouerTXT</a></div><div class="ttdeci">void jouerTXT(double dt)</div><div class="ttdoc">Procédure servant à démarrer une partie sur l'affichage TXT, à chaque appel la graine du jeu est regé...</div><div class="ttdef"><b>Definition:</b> Menu.cpp:159</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

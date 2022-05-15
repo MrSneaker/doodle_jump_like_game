@@ -1,0 +1,119 @@
+\hypertarget{classEcran}{}\doxysection{Ecran Class Reference}
+\label{classEcran}\index{Ecran@{Ecran}}
+
+
+{\ttfamily \#include $<$Ecran.\+h$>$}
+
+
+
+Collaboration diagram for Ecran\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classEcran__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEcran_aaba8a1895c2032d86c98c65b763ed3af}{Ecran}} (int pos\+Debut, int pos\+Fin, int nb\+Plat, vector$<$ \mbox{\hyperlink{classPlateforme}{Plateforme}} $>$ \&p, \mbox{\hyperlink{classbonus}{bonus}} b\mbox{[}4\mbox{]}, \mbox{\hyperlink{classMonstre}{Monstre}} m\mbox{[}4\mbox{]}, bool genere\+MB, int score\+Jeu)
+\begin{DoxyCompactList}\small\item\em constructeur permettant de construire un écran à partir de sa position de début et de fin ( \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEcran_affb6c0a8d14647b5bdfffc0218d8e852}{get\+Debut\+Ec}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie un entier désignant le début de l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEcran_a3d4d6bdb3a7efbe004d2906b461a994b}{get\+Fin\+Ec}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie un entier désignant la fin de l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEcran_adbeec68e5a6812165f10f353d7bdec6c}{detruire\+Ec}} (vector$<$ \mbox{\hyperlink{classPlateforme}{Plateforme}} $>$ \&p, \mbox{\hyperlink{classbonus}{bonus}} b\mbox{[}4\mbox{]}, \mbox{\hyperlink{classMonstre}{Monstre}} m\mbox{[}4\mbox{]}, int nb\+Pl)
+\begin{DoxyCompactList}\small\item\em Procédure de destruction des éléments constituant l\textquotesingle{}écran à partir des paramètres. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEcran_a2e45d49372e2af90da101bb2795845da}{get\+Nb\+Pl\+Ec}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie le nombre de plateformes de l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEcran_a4405b236df3f818ec12d3bff0df63856}{$\sim$\+Ecran}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEcran_aaba8a1895c2032d86c98c65b763ed3af}\label{classEcran_aaba8a1895c2032d86c98c65b763ed3af}} 
+\index{Ecran@{Ecran}!Ecran@{Ecran}}
+\index{Ecran@{Ecran}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{Ecran()}{Ecran()}}
+{\footnotesize\ttfamily Ecran\+::\+Ecran (\begin{DoxyParamCaption}\item[{int}]{pos\+Debut,  }\item[{int}]{pos\+Fin,  }\item[{int}]{nb\+Plat,  }\item[{vector$<$ \mbox{\hyperlink{classPlateforme}{Plateforme}} $>$ \&}]{p,  }\item[{\mbox{\hyperlink{classbonus}{bonus}}}]{b\mbox{[}4\mbox{]},  }\item[{\mbox{\hyperlink{classMonstre}{Monstre}}}]{m\mbox{[}4\mbox{]},  }\item[{bool}]{genere\+MB,  }\item[{int}]{score\+Jeu }\end{DoxyParamCaption})}
+
+
+
+constructeur permettant de construire un écran à partir de sa position de début et de fin ( 
+
+Entier désignant le nombre de bonus.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos\+Debut} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEcran_a4405b236df3f818ec12d3bff0df63856}\label{classEcran_a4405b236df3f818ec12d3bff0df63856}} 
+\index{Ecran@{Ecran}!````~Ecran@{$\sim$Ecran}}
+\index{````~Ecran@{$\sim$Ecran}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{$\sim$Ecran()}{~Ecran()}}
+{\footnotesize\ttfamily Ecran\+::$\sim$\+Ecran (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEcran_adbeec68e5a6812165f10f353d7bdec6c}\label{classEcran_adbeec68e5a6812165f10f353d7bdec6c}} 
+\index{Ecran@{Ecran}!detruireEc@{detruireEc}}
+\index{detruireEc@{detruireEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{detruireEc()}{detruireEc()}}
+{\footnotesize\ttfamily void Ecran\+::detruire\+Ec (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classPlateforme}{Plateforme}} $>$ \&}]{p,  }\item[{\mbox{\hyperlink{classbonus}{bonus}}}]{b\mbox{[}4\mbox{]},  }\item[{\mbox{\hyperlink{classMonstre}{Monstre}}}]{m\mbox{[}4\mbox{]},  }\item[{int}]{nb\+Pl }\end{DoxyParamCaption})}
+
+
+
+Procédure de destruction des éléments constituant l\textquotesingle{}écran à partir des paramètres. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & un tableau dynamique passé en référence, deux tableau statique de tailles N\+B\+\_\+\+B\+O\+N\+US et N\+B\+\_\+\+M\+O\+N\+S\+T\+RE\\
+\hline
+{\em b} & et\\
+\hline
+{\em m} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEcran_affb6c0a8d14647b5bdfffc0218d8e852}\label{classEcran_affb6c0a8d14647b5bdfffc0218d8e852}} 
+\index{Ecran@{Ecran}!getDebutEc@{getDebutEc}}
+\index{getDebutEc@{getDebutEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{getDebutEc()}{getDebutEc()}}
+{\footnotesize\ttfamily int Ecran\+::get\+Debut\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie un entier désignant le début de l\textquotesingle{}écran. 
+
+\mbox{\Hypertarget{classEcran_a3d4d6bdb3a7efbe004d2906b461a994b}\label{classEcran_a3d4d6bdb3a7efbe004d2906b461a994b}} 
+\index{Ecran@{Ecran}!getFinEc@{getFinEc}}
+\index{getFinEc@{getFinEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{getFinEc()}{getFinEc()}}
+{\footnotesize\ttfamily int Ecran\+::get\+Fin\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie un entier désignant la fin de l\textquotesingle{}écran. 
+
+\mbox{\Hypertarget{classEcran_a2e45d49372e2af90da101bb2795845da}\label{classEcran_a2e45d49372e2af90da101bb2795845da}} 
+\index{Ecran@{Ecran}!getNbPlEc@{getNbPlEc}}
+\index{getNbPlEc@{getNbPlEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{getNbPlEc()}{getNbPlEc()}}
+{\footnotesize\ttfamily int Ecran\+::get\+Nb\+Pl\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie le nombre de plateformes de l\textquotesingle{}écran. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Ecran_8h}{Ecran.\+h}}\item 
+src/\mbox{\hyperlink{Ecran_8cpp}{Ecran.\+cpp}}\end{DoxyCompactItemize}

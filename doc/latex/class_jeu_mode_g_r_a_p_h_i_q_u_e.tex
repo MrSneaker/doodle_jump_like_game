@@ -1,0 +1,167 @@
+\hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e}{}\doxysection{Référence de la classe Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE}
+\label{class_jeu_mode_g_r_a_p_h_i_q_u_e}\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+
+
+{\ttfamily \#include $<$Jeu\+Mode\+Graphique.\+h$>$}
+
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_a5df9d5838d9f21a6303cf92c8aa2f701}{Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur de \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e}{Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE}}, initialise la caméra en 0,0 et initialise toutes les textures à N\+U\+LL. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_a77bd37f94bb32b60acff7ac95cfeae6f}{$\sim$\+Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur de \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e}{Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vec2}{Vec2}} \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_a8a95a7f5aaacb73ffabfc9d5d5319eb7}{convert\+Pos}} (\mbox{\hyperlink{struct_vec2}{Vec2}} pos)
+\begin{DoxyCompactList}\small\item\em Fonction de conversion des positions logiques vers les positions d\textquotesingle{}affichages. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae66e3c4142162cb30f0247ca96b9b8f2}{Init\+Cam}} ()
+\begin{DoxyCompactList}\small\item\em Initialisation de la caméra, 0 en x et égale à la position du personnage en y. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_ac79f759b72581fce523549b76d8b7704}{Init\+Texture}} ()
+\begin{DoxyCompactList}\small\item\em Initialisation des textures depuis leurs sources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae711edca9bd3038243461c3d9fe922bc}{init\+Son}} ()
+\begin{DoxyCompactList}\small\item\em Initialisation des sons depuis leurs sources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_a825e9b83206032047ad0c93071b36acc}{init\+Font}} ()
+\begin{DoxyCompactList}\small\item\em Initialisation des polices depuis leurs sources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_a709f713ac58304b6903a18d0a55d908d}{affichage\+Init\+G\+R\+A\+P\+H\+I\+Q\+UE}} ()
+\begin{DoxyCompactList}\small\item\em Initialisation de la S\+D\+L2. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_a49eecb10b717bdb1cd67553f132e25f0}{affichage\+G\+R\+A\+P\+H\+I\+Q\+UE}} (\mbox{\hyperlink{class_jeu}{Jeu}} \&jeu, double \mbox{\hyperlink{main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Procédure d\textquotesingle{}affichage en fonction du jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae635e18f66bdd43fda3b3bfb7ef6da9f}{boucle\+Aff\+G\+R\+A\+P\+H\+I\+Q\+UE}} (\mbox{\hyperlink{class_jeu}{Jeu}} \&jeu, double \mbox{\hyperlink{main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Procédure permettant le rafraichissement de l\textquotesingle{}affichage en fonction du jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e_a609a269b7a88911de252f700204594d1}{aff\+Detruire\+G\+R\+A\+P\+H\+I\+Q\+UE}} ()
+\begin{DoxyCompactList}\small\item\em Détruit l\textquotesingle{}affichage S\+DL, mais ne quitte pas S\+DL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_a5df9d5838d9f21a6303cf92c8aa2f701}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_a5df9d5838d9f21a6303cf92c8aa2f701}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{JeuModeGRAPHIQUE()}{JeuModeGRAPHIQUE()}}
+{\footnotesize\ttfamily Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::\+Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur de \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e}{Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE}}, initialise la caméra en 0,0 et initialise toutes les textures à N\+U\+LL. 
+
+Entier déterminant la taille de l\textquotesingle{}affichage en Y. \mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_a77bd37f94bb32b60acff7ac95cfeae6f}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_a77bd37f94bb32b60acff7ac95cfeae6f}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!````~JeuModeGRAPHIQUE@{$\sim$JeuModeGRAPHIQUE}}
+\index{````~JeuModeGRAPHIQUE@{$\sim$JeuModeGRAPHIQUE}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{$\sim$JeuModeGRAPHIQUE()}{~JeuModeGRAPHIQUE()}}
+{\footnotesize\ttfamily Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::$\sim$\+Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur de \mbox{\hyperlink{class_jeu_mode_g_r_a_p_h_i_q_u_e}{Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+UE}}. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_a609a269b7a88911de252f700204594d1}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_a609a269b7a88911de252f700204594d1}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!affDetruireGRAPHIQUE@{affDetruireGRAPHIQUE}}
+\index{affDetruireGRAPHIQUE@{affDetruireGRAPHIQUE}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{affDetruireGRAPHIQUE()}{affDetruireGRAPHIQUE()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::aff\+Detruire\+G\+R\+A\+P\+H\+I\+Q\+UE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Détruit l\textquotesingle{}affichage S\+DL, mais ne quitte pas S\+DL. 
+
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_a49eecb10b717bdb1cd67553f132e25f0}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_a49eecb10b717bdb1cd67553f132e25f0}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!affichageGRAPHIQUE@{affichageGRAPHIQUE}}
+\index{affichageGRAPHIQUE@{affichageGRAPHIQUE}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{affichageGRAPHIQUE()}{affichageGRAPHIQUE()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::affichage\+G\+R\+A\+P\+H\+I\+Q\+UE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_jeu}{Jeu}} \&}]{jeu,  }\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Procédure d\textquotesingle{}affichage en fonction du jeu. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em jeu} & passé par référence, et du double de la vitesse de raffraichissements\\
+\hline
+{\em dt.} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_a709f713ac58304b6903a18d0a55d908d}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_a709f713ac58304b6903a18d0a55d908d}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!affichageInitGRAPHIQUE@{affichageInitGRAPHIQUE}}
+\index{affichageInitGRAPHIQUE@{affichageInitGRAPHIQUE}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{affichageInitGRAPHIQUE()}{affichageInitGRAPHIQUE()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::affichage\+Init\+G\+R\+A\+P\+H\+I\+Q\+UE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialisation de la S\+D\+L2. 
+
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae635e18f66bdd43fda3b3bfb7ef6da9f}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae635e18f66bdd43fda3b3bfb7ef6da9f}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!boucleAffGRAPHIQUE@{boucleAffGRAPHIQUE}}
+\index{boucleAffGRAPHIQUE@{boucleAffGRAPHIQUE}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{boucleAffGRAPHIQUE()}{boucleAffGRAPHIQUE()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::boucle\+Aff\+G\+R\+A\+P\+H\+I\+Q\+UE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_jeu}{Jeu}} \&}]{jeu,  }\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Procédure permettant le rafraichissement de l\textquotesingle{}affichage en fonction du jeu. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em jeu} & passé par référence et de la vitesse de raffraichissement\\
+\hline
+{\em dt,et} & la prise en compte des événements. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_a8a95a7f5aaacb73ffabfc9d5d5319eb7}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_a8a95a7f5aaacb73ffabfc9d5d5319eb7}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!convertPos@{convertPos}}
+\index{convertPos@{convertPos}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{convertPos()}{convertPos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vec2}{Vec2}} Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::convert\+Pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vec2}{Vec2}}}]{pos }\end{DoxyParamCaption})}
+
+
+
+Fonction de conversion des positions logiques vers les positions d\textquotesingle{}affichages. 
+
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae66e3c4142162cb30f0247ca96b9b8f2}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae66e3c4142162cb30f0247ca96b9b8f2}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!InitCam@{InitCam}}
+\index{InitCam@{InitCam}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{InitCam()}{InitCam()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::\+Init\+Cam (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialisation de la caméra, 0 en x et égale à la position du personnage en y. 
+
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_a825e9b83206032047ad0c93071b36acc}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_a825e9b83206032047ad0c93071b36acc}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!initFont@{initFont}}
+\index{initFont@{initFont}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{initFont()}{initFont()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::init\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialisation des polices depuis leurs sources. 
+
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae711edca9bd3038243461c3d9fe922bc}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_ae711edca9bd3038243461c3d9fe922bc}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!initSon@{initSon}}
+\index{initSon@{initSon}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{initSon()}{initSon()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::init\+Son (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialisation des sons depuis leurs sources. 
+
+\mbox{\Hypertarget{class_jeu_mode_g_r_a_p_h_i_q_u_e_ac79f759b72581fce523549b76d8b7704}\label{class_jeu_mode_g_r_a_p_h_i_q_u_e_ac79f759b72581fce523549b76d8b7704}} 
+\index{JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}!InitTexture@{InitTexture}}
+\index{InitTexture@{InitTexture}!JeuModeGRAPHIQUE@{JeuModeGRAPHIQUE}}
+\doxysubsubsection{\texorpdfstring{InitTexture()}{InitTexture()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+G\+R\+A\+P\+H\+I\+Q\+U\+E\+::\+Init\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialisation des textures depuis leurs sources. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_jeu_mode_graphique_8h}{Jeu\+Mode\+Graphique.\+h}}\item 
+src/\mbox{\hyperlink{_jeu_mode_graphique_8cpp}{Jeu\+Mode\+Graphique.\+cpp}}\end{DoxyCompactItemize}

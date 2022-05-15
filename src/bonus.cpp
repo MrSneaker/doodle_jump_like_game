@@ -5,7 +5,7 @@
 bonus::bonus()
 {
     position.x = 0;
-    position.y = 100;
+    position.y = 0;
     duree = 0;
     vitesse = 0;
     taille.x = 0;
@@ -73,6 +73,7 @@ void bonus::setDuree(float d)
 
 void bonus::testRegression()
 {
+    cout<<"test de regression bonus : "<<endl;
     bonus p1;
     assert(p1.position.x == 0);
     assert(p1.position.y == 0);
@@ -93,4 +94,5 @@ void bonus::testRegression()
     p1.setDuree(4.34);
     assert(p1.duree == float(4.34));
     cout << "duree bonus : " << p1.getDuree() << endl;
+    cout<<endl;
 }

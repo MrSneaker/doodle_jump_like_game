@@ -1,0 +1,372 @@
+\hypertarget{classJeu}{}\doxysection{Jeu Class Reference}
+\label{classJeu}\index{Jeu@{Jeu}}
+
+
+{\ttfamily \#include $<$Jeu.\+h$>$}
+
+
+
+Collaboration diagram for Jeu\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classJeu__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJeu_acc5795ee00edf75516d3dfe65be3e6d6}{Jeu}} ()
+\begin{DoxyCompactList}\small\item\em constructeur du jeu, appel la procédure \mbox{\hyperlink{classJeu_a9a6db295bdf0fce466663d0a6fc1bf77}{Init()}} pour initialiser l\textquotesingle{}entièreté de ses composantes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classJeu_a9cd19e73df169d7f09397be61ba8548c}{$\sim$\+Jeu}} ()
+\item 
+const \mbox{\hyperlink{classPersonnage}{Personnage}} \& \mbox{\hyperlink{classJeu_ae3b2e048b68b8155e7351a61ca97979b}{get\+Const\+Personnage}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie une référence au personnage et ses caractéristiques pour l\textquotesingle{}affichage texte et S\+DL. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classMonstre}{Monstre}} \& \mbox{\hyperlink{classJeu_a665c5e226ee2d06e0467288982008919}{get\+Const\+Monstre}} (int i) const
+\begin{DoxyCompactList}\small\item\em Renvoie une référence au monstre numéro. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classbonus}{bonus}} \& \mbox{\hyperlink{classJeu_ad315f314a86500831567d28c171a5eff}{get\+Const\+Bonus}} (int i) const
+\begin{DoxyCompactList}\small\item\em Renvoie une référence au bonus numéro. \end{DoxyCompactList}\item 
+const vector$<$ \mbox{\hyperlink{classPlateforme}{Plateforme}} $>$ \& \mbox{\hyperlink{classJeu_affe42aac2ad26f424d1348cc26163518}{get\+Plateforme}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie une référence au tableau dynamique de plateforme et ses caractéristiques pour l\textquotesingle{}affichage texte et S\+DL. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a094e8f3407dd847824e8d71603be216e}{actions\+Automatiques}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Procédure gérant les déplacements automatiques des éléments du jeu (monstres et plateformes) en fonction de la vitesse de mise à jour. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_aa9ada65043f2e022ec06b60814d283d2}{action\+Clavier}} (const char touche, double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Gère les actions clavier du joueur en fonction d\textquotesingle{}un char. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a2fde12bc97dd2ab637d6bb538cc910cb}{update}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Met à jour tous les éléments par rapport au intéractions entre eux, en fonction de la vitesse de mise à jour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a74ebadf094c92220b88c2e8874139bb0}{Init\+Personnage}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la position du personnage au milieu de l\textquotesingle{}écran, sa vitesse à 1 et la position vertical logique de la caméra. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a4112952ff2f6b5fce983b0b9728d619f}{Init\+Monstre}} ()
+\begin{DoxyCompactList}\small\item\em Inialise de façon aléatoire la taille, la résistance, et si le monstre bouge ou non. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a766e039a3d58dc724f7e4e5ac03b577a}{Init\+Bonus}} ()
+\begin{DoxyCompactList}\small\item\em Initialise les bonus (leurs noms et leurs vitesse) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a694b4de2ae1028e79f5552ab66a4c522}{Init\+Ec}} ()
+\begin{DoxyCompactList}\small\item\em Initialise les 3 premiers écrans du jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a9a6db295bdf0fce466663d0a6fc1bf77}{Init}} ()
+\begin{DoxyCompactList}\small\item\em Initialise tous les éléments composant le jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_a543069932d0bebd172dfe43b17a28096}{update\+Ecran}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Supprime l\textquotesingle{}écran passé et en créé un nouveau ensuite. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEcran}{Ecran}} \mbox{\hyperlink{classJeu_a27c4c3381ed9484c8040c9dd1d69dfe0}{loc\+Ec}} ()
+\begin{DoxyCompactList}\small\item\em renvoie l\textquotesingle{}écran dans lequel se situe la caméra. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeu_ac7c855956828e80fca5d59f909dfbc65}{test\+Regression}} ()
+\begin{DoxyCompactList}\small\item\em test de régression des fonctions complexes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classJeu_abd20144f70633e52ef6c5cb9d3a7b752}{Ptombe}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage tombe, faux sinon, vrai par défaut. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_ab87069065a06cef709699d58f567b749}{Psaute}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage saute, faux sinon, faux par défaut. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_afec679212d75731bcaae3f6f9da34048}{Pdroite}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage va à droite, faux sinon, faux par défaut. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_a7a6befc61620fc9db2df2dc6338a9e61}{Pgauche}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage va à gauche, faux sinon, faux par défaut. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_ae88c3e0c305871dda73d2d280aaedd7e}{Ptire}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage tir, faux sinon, faux par défaut. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_a8a1dabd236ff8d25b6598f5fac09377f}{Pcoll\+Pl}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage est en collision avec une plateforme, faux sinon, faux par défaut. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_a3b586687aecb828d5a4952702d43f4cc}{Mtouche1}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage touche un monstre, faux sinon, faux par défaut. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJeu_aa13d1b4d8b261c50b81fdd55e330d2fa}{Mtouche2}}
+\begin{DoxyCompactList}\small\item\em Booléen vrai si le personnage touche en sautant un monstre, faux sinon, faux par défaut. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classJeu_afb0579457934264653eea59d9d94d5ee}{score}}
+\begin{DoxyCompactList}\small\item\em Entier stockant le score. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJeu_acc5795ee00edf75516d3dfe65be3e6d6}\label{classJeu_acc5795ee00edf75516d3dfe65be3e6d6}} 
+\index{Jeu@{Jeu}!Jeu@{Jeu}}
+\index{Jeu@{Jeu}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Jeu()}{Jeu()}}
+{\footnotesize\ttfamily Jeu\+::\+Jeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+constructeur du jeu, appel la procédure \mbox{\hyperlink{classJeu_a9a6db295bdf0fce466663d0a6fc1bf77}{Init()}} pour initialiser l\textquotesingle{}entièreté de ses composantes. 
+
+\mbox{\Hypertarget{classJeu_a9cd19e73df169d7f09397be61ba8548c}\label{classJeu_a9cd19e73df169d7f09397be61ba8548c}} 
+\index{Jeu@{Jeu}!````~Jeu@{$\sim$Jeu}}
+\index{````~Jeu@{$\sim$Jeu}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{$\sim$Jeu()}{~Jeu()}}
+{\footnotesize\ttfamily Jeu\+::$\sim$\+Jeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classJeu_aa9ada65043f2e022ec06b60814d283d2}\label{classJeu_aa9ada65043f2e022ec06b60814d283d2}} 
+\index{Jeu@{Jeu}!actionClavier@{actionClavier}}
+\index{actionClavier@{actionClavier}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{actionClavier()}{actionClavier()}}
+{\footnotesize\ttfamily bool Jeu\+::action\+Clavier (\begin{DoxyParamCaption}\item[{const char}]{touche,  }\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Gère les actions clavier du joueur en fonction d\textquotesingle{}un char. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em touche} & et de la vitesse de mise à jour\\
+\hline
+{\em dt.} & Renvoie faux si on presse \textquotesingle{}q\textquotesingle{}, vrai sinon. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeu_a094e8f3407dd847824e8d71603be216e}\label{classJeu_a094e8f3407dd847824e8d71603be216e}} 
+\index{Jeu@{Jeu}!actionsAutomatiques@{actionsAutomatiques}}
+\index{actionsAutomatiques@{actionsAutomatiques}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{actionsAutomatiques()}{actionsAutomatiques()}}
+{\footnotesize\ttfamily void Jeu\+::actions\+Automatiques (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Procédure gérant les déplacements automatiques des éléments du jeu (monstres et plateformes) en fonction de la vitesse de mise à jour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeu_ad315f314a86500831567d28c171a5eff}\label{classJeu_ad315f314a86500831567d28c171a5eff}} 
+\index{Jeu@{Jeu}!getConstBonus@{getConstBonus}}
+\index{getConstBonus@{getConstBonus}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{getConstBonus()}{getConstBonus()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classbonus}{bonus}} \& Jeu\+::get\+Const\+Bonus (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie une référence au bonus numéro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & et ses caractéristiques pour l\textquotesingle{}affichage texte et S\+DL \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeu_a665c5e226ee2d06e0467288982008919}\label{classJeu_a665c5e226ee2d06e0467288982008919}} 
+\index{Jeu@{Jeu}!getConstMonstre@{getConstMonstre}}
+\index{getConstMonstre@{getConstMonstre}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{getConstMonstre()}{getConstMonstre()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classMonstre}{Monstre}} \& Jeu\+::get\+Const\+Monstre (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie une référence au monstre numéro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & et ses caractéristiques pour l\textquotesingle{}affichage texte et S\+DL \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeu_ae3b2e048b68b8155e7351a61ca97979b}\label{classJeu_ae3b2e048b68b8155e7351a61ca97979b}} 
+\index{Jeu@{Jeu}!getConstPersonnage@{getConstPersonnage}}
+\index{getConstPersonnage@{getConstPersonnage}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{getConstPersonnage()}{getConstPersonnage()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classPersonnage}{Personnage}} \& Jeu\+::get\+Const\+Personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie une référence au personnage et ses caractéristiques pour l\textquotesingle{}affichage texte et S\+DL. 
+
+\mbox{\Hypertarget{classJeu_affe42aac2ad26f424d1348cc26163518}\label{classJeu_affe42aac2ad26f424d1348cc26163518}} 
+\index{Jeu@{Jeu}!getPlateforme@{getPlateforme}}
+\index{getPlateforme@{getPlateforme}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{getPlateforme()}{getPlateforme()}}
+{\footnotesize\ttfamily const vector$<$ \mbox{\hyperlink{classPlateforme}{Plateforme}} $>$ \& Jeu\+::get\+Plateforme (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie une référence au tableau dynamique de plateforme et ses caractéristiques pour l\textquotesingle{}affichage texte et S\+DL. 
+
+\mbox{\Hypertarget{classJeu_a9a6db295bdf0fce466663d0a6fc1bf77}\label{classJeu_a9a6db295bdf0fce466663d0a6fc1bf77}} 
+\index{Jeu@{Jeu}!Init@{Init}}
+\index{Init@{Init}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Jeu\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise tous les éléments composant le jeu. 
+
+\mbox{\Hypertarget{classJeu_a766e039a3d58dc724f7e4e5ac03b577a}\label{classJeu_a766e039a3d58dc724f7e4e5ac03b577a}} 
+\index{Jeu@{Jeu}!InitBonus@{InitBonus}}
+\index{InitBonus@{InitBonus}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{InitBonus()}{InitBonus()}}
+{\footnotesize\ttfamily void Jeu\+::\+Init\+Bonus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise les bonus (leurs noms et leurs vitesse) 
+
+\mbox{\Hypertarget{classJeu_a694b4de2ae1028e79f5552ab66a4c522}\label{classJeu_a694b4de2ae1028e79f5552ab66a4c522}} 
+\index{Jeu@{Jeu}!InitEc@{InitEc}}
+\index{InitEc@{InitEc}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{InitEc()}{InitEc()}}
+{\footnotesize\ttfamily void Jeu\+::\+Init\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise les 3 premiers écrans du jeu. 
+
+\mbox{\Hypertarget{classJeu_a4112952ff2f6b5fce983b0b9728d619f}\label{classJeu_a4112952ff2f6b5fce983b0b9728d619f}} 
+\index{Jeu@{Jeu}!InitMonstre@{InitMonstre}}
+\index{InitMonstre@{InitMonstre}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{InitMonstre()}{InitMonstre()}}
+{\footnotesize\ttfamily void Jeu\+::\+Init\+Monstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inialise de façon aléatoire la taille, la résistance, et si le monstre bouge ou non. 
+
+\mbox{\Hypertarget{classJeu_a74ebadf094c92220b88c2e8874139bb0}\label{classJeu_a74ebadf094c92220b88c2e8874139bb0}} 
+\index{Jeu@{Jeu}!InitPersonnage@{InitPersonnage}}
+\index{InitPersonnage@{InitPersonnage}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{InitPersonnage()}{InitPersonnage()}}
+{\footnotesize\ttfamily void Jeu\+::\+Init\+Personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise la position du personnage au milieu de l\textquotesingle{}écran, sa vitesse à 1 et la position vertical logique de la caméra. 
+
+\mbox{\Hypertarget{classJeu_a27c4c3381ed9484c8040c9dd1d69dfe0}\label{classJeu_a27c4c3381ed9484c8040c9dd1d69dfe0}} 
+\index{Jeu@{Jeu}!locEc@{locEc}}
+\index{locEc@{locEc}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{locEc()}{locEc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEcran}{Ecran}} Jeu\+::loc\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+renvoie l\textquotesingle{}écran dans lequel se situe la caméra. 
+
+\mbox{\Hypertarget{classJeu_ac7c855956828e80fca5d59f909dfbc65}\label{classJeu_ac7c855956828e80fca5d59f909dfbc65}} 
+\index{Jeu@{Jeu}!testRegression@{testRegression}}
+\index{testRegression@{testRegression}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{testRegression()}{testRegression()}}
+{\footnotesize\ttfamily void Jeu\+::test\+Regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+test de régression des fonctions complexes. 
+
+\mbox{\Hypertarget{classJeu_a2fde12bc97dd2ab637d6bb538cc910cb}\label{classJeu_a2fde12bc97dd2ab637d6bb538cc910cb}} 
+\index{Jeu@{Jeu}!update@{update}}
+\index{update@{update}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Jeu\+::update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Met à jour tous les éléments par rapport au intéractions entre eux, en fonction de la vitesse de mise à jour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt.} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeu_a543069932d0bebd172dfe43b17a28096}\label{classJeu_a543069932d0bebd172dfe43b17a28096}} 
+\index{Jeu@{Jeu}!updateEcran@{updateEcran}}
+\index{updateEcran@{updateEcran}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{updateEcran()}{updateEcran()}}
+{\footnotesize\ttfamily void Jeu\+::update\+Ecran (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Supprime l\textquotesingle{}écran passé et en créé un nouveau ensuite. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classJeu_a3b586687aecb828d5a4952702d43f4cc}\label{classJeu_a3b586687aecb828d5a4952702d43f4cc}} 
+\index{Jeu@{Jeu}!Mtouche1@{Mtouche1}}
+\index{Mtouche1@{Mtouche1}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Mtouche1}{Mtouche1}}
+{\footnotesize\ttfamily bool Jeu\+::\+Mtouche1}
+
+
+
+Booléen vrai si le personnage touche un monstre, faux sinon, faux par défaut. 
+
+\mbox{\Hypertarget{classJeu_aa13d1b4d8b261c50b81fdd55e330d2fa}\label{classJeu_aa13d1b4d8b261c50b81fdd55e330d2fa}} 
+\index{Jeu@{Jeu}!Mtouche2@{Mtouche2}}
+\index{Mtouche2@{Mtouche2}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Mtouche2}{Mtouche2}}
+{\footnotesize\ttfamily bool Jeu\+::\+Mtouche2}
+
+
+
+Booléen vrai si le personnage touche en sautant un monstre, faux sinon, faux par défaut. 
+
+\mbox{\Hypertarget{classJeu_a8a1dabd236ff8d25b6598f5fac09377f}\label{classJeu_a8a1dabd236ff8d25b6598f5fac09377f}} 
+\index{Jeu@{Jeu}!PcollPl@{PcollPl}}
+\index{PcollPl@{PcollPl}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{PcollPl}{PcollPl}}
+{\footnotesize\ttfamily bool Jeu\+::\+Pcoll\+Pl}
+
+
+
+Booléen vrai si le personnage est en collision avec une plateforme, faux sinon, faux par défaut. 
+
+\mbox{\Hypertarget{classJeu_afec679212d75731bcaae3f6f9da34048}\label{classJeu_afec679212d75731bcaae3f6f9da34048}} 
+\index{Jeu@{Jeu}!Pdroite@{Pdroite}}
+\index{Pdroite@{Pdroite}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Pdroite}{Pdroite}}
+{\footnotesize\ttfamily bool Jeu\+::\+Pdroite}
+
+
+
+Booléen vrai si le personnage va à droite, faux sinon, faux par défaut. 
+
+\mbox{\Hypertarget{classJeu_a7a6befc61620fc9db2df2dc6338a9e61}\label{classJeu_a7a6befc61620fc9db2df2dc6338a9e61}} 
+\index{Jeu@{Jeu}!Pgauche@{Pgauche}}
+\index{Pgauche@{Pgauche}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Pgauche}{Pgauche}}
+{\footnotesize\ttfamily bool Jeu\+::\+Pgauche}
+
+
+
+Booléen vrai si le personnage va à gauche, faux sinon, faux par défaut. 
+
+\mbox{\Hypertarget{classJeu_ab87069065a06cef709699d58f567b749}\label{classJeu_ab87069065a06cef709699d58f567b749}} 
+\index{Jeu@{Jeu}!Psaute@{Psaute}}
+\index{Psaute@{Psaute}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Psaute}{Psaute}}
+{\footnotesize\ttfamily bool Jeu\+::\+Psaute}
+
+
+
+Booléen vrai si le personnage saute, faux sinon, faux par défaut. 
+
+\mbox{\Hypertarget{classJeu_ae88c3e0c305871dda73d2d280aaedd7e}\label{classJeu_ae88c3e0c305871dda73d2d280aaedd7e}} 
+\index{Jeu@{Jeu}!Ptire@{Ptire}}
+\index{Ptire@{Ptire}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Ptire}{Ptire}}
+{\footnotesize\ttfamily bool Jeu\+::\+Ptire}
+
+
+
+Booléen vrai si le personnage tir, faux sinon, faux par défaut. 
+
+\mbox{\Hypertarget{classJeu_abd20144f70633e52ef6c5cb9d3a7b752}\label{classJeu_abd20144f70633e52ef6c5cb9d3a7b752}} 
+\index{Jeu@{Jeu}!Ptombe@{Ptombe}}
+\index{Ptombe@{Ptombe}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{Ptombe}{Ptombe}}
+{\footnotesize\ttfamily bool Jeu\+::\+Ptombe}
+
+
+
+Booléen vrai si le personnage tombe, faux sinon, vrai par défaut. 
+
+\mbox{\Hypertarget{classJeu_afb0579457934264653eea59d9d94d5ee}\label{classJeu_afb0579457934264653eea59d9d94d5ee}} 
+\index{Jeu@{Jeu}!score@{score}}
+\index{score@{score}!Jeu@{Jeu}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily int Jeu\+::score}
+
+
+
+Entier stockant le score. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Jeu_8h}{Jeu.\+h}}\item 
+src/\mbox{\hyperlink{Jeu_8cpp}{Jeu.\+cpp}}\end{DoxyCompactItemize}

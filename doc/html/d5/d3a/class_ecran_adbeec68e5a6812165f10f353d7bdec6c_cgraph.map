@@ -1,0 +1,5 @@
+<map id="Ecran::detruireEc" name="Ecran::detruireEc">
+<area shape="rect" id="node1" title="Procédure de destruction des éléments constituant l&#39;écran à partir des paramètres." alt="" coords="5,31,137,57"/>
+<area shape="rect" id="node2" href="$d8/d9e/class_monstre.html#a6511b568050e2e76934da2eda37dc321" title="renvoie la position du monstre en x et y" alt="" coords="199,5,325,32"/>
+<area shape="rect" id="node3" href="$d3/d3c/classbonus.html#a684d6f26b2ed6f4955282426f5eef616" title="renvoie la position du bonus en x et y" alt="" coords="185,56,339,83"/>
+</map>

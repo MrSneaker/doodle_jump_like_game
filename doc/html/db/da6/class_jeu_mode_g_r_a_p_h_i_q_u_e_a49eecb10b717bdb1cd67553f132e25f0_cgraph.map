@@ -1,0 +1,23 @@
+<map id="JeuModeGRAPHIQUE::affichageGRAPHIQUE" name="JeuModeGRAPHIQUE::affichageGRAPHIQUE">
+<area shape="rect" id="node1" title="Procédure d&#39;affichage en fonction du jeu." alt="" coords="5,479,229,521"/>
+<area shape="rect" id="node2" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a8a95a7f5aaacb73ffabfc9d5d5319eb7" title="Fonction de conversion des positions logiques vers les positions d&#39;affichages." alt="" coords="277,5,513,32"/>
+<area shape="rect" id="node3" href="$dd/de7/class_plateforme.html#a5365423643ae6e3e4ba6e688e8de29f5" title="renvoie vrai si la plateforme à une resistance à &#45;1 ou supérieur à 0, faux sinon" alt="" coords="298,56,493,83"/>
+<area shape="rect" id="node4" href="$d0/d46/class_jeu.html#ad315f314a86500831567d28c171a5eff" title="Renvoie une référence au bonus numéro." alt="" coords="321,107,469,133"/>
+<area shape="rect" id="node5" href="$d0/d46/class_jeu.html#a665c5e226ee2d06e0467288982008919" title="Renvoie une référence au monstre numéro." alt="" coords="315,157,476,184"/>
+<area shape="rect" id="node6" href="$d0/d46/class_jeu.html#ae3b2e048b68b8155e7351a61ca97979b" title="Renvoie une référence au personnage et ses caractéristiques pour l&#39;affichage texte et SDL." alt="" coords="303,208,487,235"/>
+<area shape="rect" id="node7" href="$d3/d3c/classbonus.html#a7dad4cf0b409d91fbbc1b7bee7ebcce0" title="renvoie la duree du bonus" alt="" coords="331,259,460,285"/>
+<area shape="rect" id="node8" href="$d3/d3c/classbonus.html#a005322a91caa94b0afc6b931ef1fab40" title="renvoie le nom du bonus (permet de définir plusieurs apparences)" alt="" coords="330,309,461,336"/>
+<area shape="rect" id="node9" href="$d2/dd0/class_personnage.html#ab9b0108111a13bc95cf2b6c6ff411598" title="renvoie le nombre de projectile" alt="" coords="293,360,497,387"/>
+<area shape="rect" id="node10" href="$d0/d46/class_jeu.html#affe42aac2ad26f424d1348cc26163518" title="Renvoie une référence au tableau dynamique de plateforme et ses caractéristiques pour l&#39;affichage tex..." alt="" coords="324,411,467,437"/>
+<area shape="rect" id="node11" href="$dd/de7/class_plateforme.html#afdc8ff6c854a406e2ac96df56230e381" title="renvoie la position de la plateforme" alt="" coords="322,461,469,488"/>
+<area shape="rect" id="node12" href="$dc/d05/classprojectile.html#a2bda70dbc200b9f388bb31b7ca1be873" title="renvoie le vecteur de position du projectile" alt="" coords="328,512,463,539"/>
+<area shape="rect" id="node13" href="$d8/d9e/class_monstre.html#a6511b568050e2e76934da2eda37dc321" title="renvoie la position du monstre en x et y" alt="" coords="332,563,459,589"/>
+<area shape="rect" id="node14" href="$d2/dd0/class_personnage.html#a3a589d8772088add9b205724b18a044a" title="renvoie la position en x et en y du personnage" alt="" coords="320,613,471,640"/>
+<area shape="rect" id="node15" href="$d3/d3c/classbonus.html#a684d6f26b2ed6f4955282426f5eef616" title="renvoie la position du bonus en x et y" alt="" coords="319,664,472,691"/>
+<area shape="rect" id="node16" href="$d2/dd0/class_personnage.html#aa5d903f288763c99e01a9328e33653a3" title="renvoie le vecteur projectile demandé si il existe pour l&#39;affichage." alt="" coords="292,715,499,741"/>
+<area shape="rect" id="node17" href="$dd/de7/class_plateforme.html#aa14182b3cbae34725677fbc664d6bf5d" title="renvoie la resistance d&#39;une plateforme" alt="" coords="322,765,469,792"/>
+<area shape="rect" id="node18" href="$dd/de7/class_plateforme.html#a60180b072a3a0b9fdd7804e98162da8b" title="renvoie la taille d&#39;une plateforme" alt="" coords="317,816,474,843"/>
+<area shape="rect" id="node19" href="$d2/dd0/class_personnage.html#ac042179eac7c950d079a2f6771925cef" title="renvoie le vecteur de taille du personnage." alt="" coords="315,867,476,893"/>
+<area shape="rect" id="node20" href="$d3/d3c/classbonus.html#ac4bed9c2946faf25f2cb51d5b9ca9e88" title="renvoie la taille du bonus" alt="" coords="329,917,462,944"/>
+<area shape="rect" id="node21" href="$d8/d9e/class_monstre.html#a53f2b8ffe051a65c460dd49f5148820d" title="renvoie la taille du pixel du monstre" alt="" coords="320,968,471,995"/>
+</map>

@@ -1,0 +1,300 @@
+\hypertarget{classMonstre}{}\doxysection{Monstre Class Reference}
+\label{classMonstre}\index{Monstre@{Monstre}}
+
+
+{\ttfamily \#include $<$Monstre.\+h$>$}
+
+
+
+Collaboration diagram for Monstre\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classMonstre__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMonstre_a8efe47ee8ea4b5ee8e5d3820e620059b}{Monstre}} ()
+\begin{DoxyCompactList}\small\item\em constructeur, position de base \+: 0,0; direction, vitesse à 0, type de monstre à 0, en\+Vie à true \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMonstre_a8e736b63ae1f561904dad7767448156e}{$\sim$\+Monstre}} ()
+\begin{DoxyCompactList}\small\item\em supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à N\+U\+LL, en\+Vie à N\+U\+LL \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classMonstre_a6511b568050e2e76934da2eda37dc321}{get\+Pos}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la position du monstre en x et y \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_a13736113aa013fe1a9b93188cb6b3f26}{set\+Pos}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em met à jour la position du monstre selon une position en paramètre \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMonstre_a7c880867c4241036fe55a1800fa89780}{get\+TypeM}} () const
+\begin{DoxyCompactList}\small\item\em renvoie le type de monstre (taille,couleur,forme) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_afe1070db7cad3b3df4cd17642771c31c}{set\+TypeM}} (int n)
+\begin{DoxyCompactList}\small\item\em met a jour le type de monstre \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classMonstre_af9361924b9db552b90070fc120164e3b}{get\+DirM}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la direction du monstre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_a2373dae713980d0151a4c700143b8299}{set\+DirM}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em met à jour la direction par rapport au paramètres \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_a41259622746fa80d8fb2532ded0fe346}{Update}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em gère le mouvement du monstre en fonction d\textquotesingle{}un paramètre \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classMonstre_affa2abb377ce1d00a9d95a3627ec618a}{get\+VitM}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la vitesse du monstre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_aba3b51b2826ffec3a745db9990a04d6a}{set\+VitM}} (float v)
+\begin{DoxyCompactList}\small\item\em met à jour la vitesse du monstre selon un parametre \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classMonstre_a53f2b8ffe051a65c460dd49f5148820d}{get\+TailleM}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la taille du pixel du monstre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_aedd12fb2256c9bf6508f07a9fa0cc851}{set\+TailleM}} (float tx, float ty)
+\begin{DoxyCompactList}\small\item\em met a jour la taille du monstre par rapport aux paramètres \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMonstre_a5922da983fbf2d03a68d9ab024ad3473}{get\+Resistance}} ()
+\begin{DoxyCompactList}\small\item\em renvoie la resistance du monstre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_a0f2d52617565413c7ab861fa628d0cdb}{bouge\+Auto}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em permet aux monstres de se déplacer tout seul selon la vitesse de raffraichissement \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_ad9c21ad4cbecdc08e9242bd1060771fe}{set\+Resistance}} (int r)
+\begin{DoxyCompactList}\small\item\em met a jour la resistance du monstre par rapport à l\textquotesingle{}entier en paramètre \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_aee872f82703311e52960b1a11110b4b5}{test\+Regression}} ()
+\begin{DoxyCompactList}\small\item\em test toutes les fonctions de la classe \mbox{\hyperlink{classMonstre}{Monstre}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMonstre_a768e5f9977dfea923f572a5c79e447fa}{desc\+Res}} ()
+\begin{DoxyCompactList}\small\item\em décrémente la res de 1 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classMonstre_a19a03424c70893c3a268ed538c8aabb1}{en\+Vie}}
+\begin{DoxyCompactList}\small\item\em le monstre est en vie ou pas \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMonstre_a8efe47ee8ea4b5ee8e5d3820e620059b}\label{classMonstre_a8efe47ee8ea4b5ee8e5d3820e620059b}} 
+\index{Monstre@{Monstre}!Monstre@{Monstre}}
+\index{Monstre@{Monstre}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{Monstre()}{Monstre()}}
+{\footnotesize\ttfamily Monstre\+::\+Monstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+constructeur, position de base \+: 0,0; direction, vitesse à 0, type de monstre à 0, en\+Vie à true 
+
+\mbox{\Hypertarget{classMonstre_a8e736b63ae1f561904dad7767448156e}\label{classMonstre_a8e736b63ae1f561904dad7767448156e}} 
+\index{Monstre@{Monstre}!````~Monstre@{$\sim$Monstre}}
+\index{````~Monstre@{$\sim$Monstre}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{$\sim$Monstre()}{~Monstre()}}
+{\footnotesize\ttfamily Monstre\+::$\sim$\+Monstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à N\+U\+LL, en\+Vie à N\+U\+LL 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMonstre_a0f2d52617565413c7ab861fa628d0cdb}\label{classMonstre_a0f2d52617565413c7ab861fa628d0cdb}} 
+\index{Monstre@{Monstre}!bougeAuto@{bougeAuto}}
+\index{bougeAuto@{bougeAuto}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{bougeAuto()}{bougeAuto()}}
+{\footnotesize\ttfamily void Monstre\+::bouge\+Auto (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+permet aux monstres de se déplacer tout seul selon la vitesse de raffraichissement 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt.} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMonstre_a768e5f9977dfea923f572a5c79e447fa}\label{classMonstre_a768e5f9977dfea923f572a5c79e447fa}} 
+\index{Monstre@{Monstre}!descRes@{descRes}}
+\index{descRes@{descRes}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{descRes()}{descRes()}}
+{\footnotesize\ttfamily void Monstre\+::desc\+Res (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+décrémente la res de 1 
+
+\mbox{\Hypertarget{classMonstre_af9361924b9db552b90070fc120164e3b}\label{classMonstre_af9361924b9db552b90070fc120164e3b}} 
+\index{Monstre@{Monstre}!getDirM@{getDirM}}
+\index{getDirM@{getDirM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{getDirM()}{getDirM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Monstre\+::get\+DirM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la direction du monstre 
+
+\mbox{\Hypertarget{classMonstre_a6511b568050e2e76934da2eda37dc321}\label{classMonstre_a6511b568050e2e76934da2eda37dc321}} 
+\index{Monstre@{Monstre}!getPos@{getPos}}
+\index{getPos@{getPos}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Monstre\+::get\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la position du monstre en x et y 
+
+\mbox{\Hypertarget{classMonstre_a5922da983fbf2d03a68d9ab024ad3473}\label{classMonstre_a5922da983fbf2d03a68d9ab024ad3473}} 
+\index{Monstre@{Monstre}!getResistance@{getResistance}}
+\index{getResistance@{getResistance}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{getResistance()}{getResistance()}}
+{\footnotesize\ttfamily int Monstre\+::get\+Resistance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+renvoie la resistance du monstre 
+
+\mbox{\Hypertarget{classMonstre_a53f2b8ffe051a65c460dd49f5148820d}\label{classMonstre_a53f2b8ffe051a65c460dd49f5148820d}} 
+\index{Monstre@{Monstre}!getTailleM@{getTailleM}}
+\index{getTailleM@{getTailleM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{getTailleM()}{getTailleM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Monstre\+::get\+TailleM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la taille du pixel du monstre 
+
+\mbox{\Hypertarget{classMonstre_a7c880867c4241036fe55a1800fa89780}\label{classMonstre_a7c880867c4241036fe55a1800fa89780}} 
+\index{Monstre@{Monstre}!getTypeM@{getTypeM}}
+\index{getTypeM@{getTypeM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{getTypeM()}{getTypeM()}}
+{\footnotesize\ttfamily int Monstre\+::get\+TypeM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie le type de monstre (taille,couleur,forme) 
+
+\mbox{\Hypertarget{classMonstre_affa2abb377ce1d00a9d95a3627ec618a}\label{classMonstre_affa2abb377ce1d00a9d95a3627ec618a}} 
+\index{Monstre@{Monstre}!getVitM@{getVitM}}
+\index{getVitM@{getVitM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{getVitM()}{getVitM()}}
+{\footnotesize\ttfamily float Monstre\+::get\+VitM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la vitesse du monstre 
+
+\mbox{\Hypertarget{classMonstre_a2373dae713980d0151a4c700143b8299}\label{classMonstre_a2373dae713980d0151a4c700143b8299}} 
+\index{Monstre@{Monstre}!setDirM@{setDirM}}
+\index{setDirM@{setDirM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{setDirM()}{setDirM()}}
+{\footnotesize\ttfamily void Monstre\+::set\+DirM (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+met à jour la direction par rapport au paramètres 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMonstre_a13736113aa013fe1a9b93188cb6b3f26}\label{classMonstre_a13736113aa013fe1a9b93188cb6b3f26}} 
+\index{Monstre@{Monstre}!setPos@{setPos}}
+\index{setPos@{setPos}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily void Monstre\+::set\+Pos (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+met à jour la position du monstre selon une position en paramètre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMonstre_ad9c21ad4cbecdc08e9242bd1060771fe}\label{classMonstre_ad9c21ad4cbecdc08e9242bd1060771fe}} 
+\index{Monstre@{Monstre}!setResistance@{setResistance}}
+\index{setResistance@{setResistance}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{setResistance()}{setResistance()}}
+{\footnotesize\ttfamily void Monstre\+::set\+Resistance (\begin{DoxyParamCaption}\item[{int}]{r }\end{DoxyParamCaption})}
+
+
+
+met a jour la resistance du monstre par rapport à l\textquotesingle{}entier en paramètre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r.} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMonstre_aedd12fb2256c9bf6508f07a9fa0cc851}\label{classMonstre_aedd12fb2256c9bf6508f07a9fa0cc851}} 
+\index{Monstre@{Monstre}!setTailleM@{setTailleM}}
+\index{setTailleM@{setTailleM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{setTailleM()}{setTailleM()}}
+{\footnotesize\ttfamily void Monstre\+::set\+TailleM (\begin{DoxyParamCaption}\item[{float}]{tx,  }\item[{float}]{ty }\end{DoxyParamCaption})}
+
+
+
+met a jour la taille du monstre par rapport aux paramètres 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tx} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMonstre_afe1070db7cad3b3df4cd17642771c31c}\label{classMonstre_afe1070db7cad3b3df4cd17642771c31c}} 
+\index{Monstre@{Monstre}!setTypeM@{setTypeM}}
+\index{setTypeM@{setTypeM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{setTypeM()}{setTypeM()}}
+{\footnotesize\ttfamily void Monstre\+::set\+TypeM (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+met a jour le type de monstre 
+
+\mbox{\Hypertarget{classMonstre_aba3b51b2826ffec3a745db9990a04d6a}\label{classMonstre_aba3b51b2826ffec3a745db9990a04d6a}} 
+\index{Monstre@{Monstre}!setVitM@{setVitM}}
+\index{setVitM@{setVitM}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{setVitM()}{setVitM()}}
+{\footnotesize\ttfamily void Monstre\+::set\+VitM (\begin{DoxyParamCaption}\item[{float}]{v }\end{DoxyParamCaption})}
+
+
+
+met à jour la vitesse du monstre selon un parametre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMonstre_aee872f82703311e52960b1a11110b4b5}\label{classMonstre_aee872f82703311e52960b1a11110b4b5}} 
+\index{Monstre@{Monstre}!testRegression@{testRegression}}
+\index{testRegression@{testRegression}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{testRegression()}{testRegression()}}
+{\footnotesize\ttfamily void Monstre\+::test\+Regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+test toutes les fonctions de la classe \mbox{\hyperlink{classMonstre}{Monstre}} 
+
+\mbox{\Hypertarget{classMonstre_a41259622746fa80d8fb2532ded0fe346}\label{classMonstre_a41259622746fa80d8fb2532ded0fe346}} 
+\index{Monstre@{Monstre}!Update@{Update}}
+\index{Update@{Update}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Monstre\+::\+Update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+gère le mouvement du monstre en fonction d\textquotesingle{}un paramètre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classMonstre_a19a03424c70893c3a268ed538c8aabb1}\label{classMonstre_a19a03424c70893c3a268ed538c8aabb1}} 
+\index{Monstre@{Monstre}!enVie@{enVie}}
+\index{enVie@{enVie}!Monstre@{Monstre}}
+\doxysubsubsection{\texorpdfstring{enVie}{enVie}}
+{\footnotesize\ttfamily bool Monstre\+::en\+Vie}
+
+
+
+le monstre est en vie ou pas 
+
+résistance du monstre, combien de projectiles pour le tuer 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Monstre_8h}{Monstre.\+h}}\item 
+src/\mbox{\hyperlink{Monstre_8cpp}{Monstre.\+cpp}}\end{DoxyCompactItemize}

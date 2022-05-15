@@ -1,0 +1,6 @@
+<map id="Personnage::setPos" name="Personnage::setPos">
+<area shape="rect" id="node1" title="met à jour la position du personnage selon une position en paramètre" alt="" coords="359,31,508,57"/>
+<area shape="rect" id="node2" href="$d2/dd0/class_personnage.html#a8b827a72e42d38de1b6d29dee145a4b5" title="test toutes les fonctions de la classe Personnage" alt="" coords="108,5,311,32"/>
+<area shape="rect" id="node4" href="$d0/d46/class_jeu.html#ac7c855956828e80fca5d59f909dfbc65" title="test de régression des fonctions complexes." alt="" coords="136,56,283,83"/>
+<area shape="rect" id="node3" href="$dc/dd0/main_test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,31,60,57"/>
+</map>

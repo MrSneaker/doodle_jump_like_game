@@ -1,0 +1,19 @@
+<map id="Personnage::testRegression" name="Personnage::testRegression">
+<area shape="rect" id="node1" title="test toutes les fonctions de la classe Personnage" alt="" coords="5,385,208,412"/>
+<area shape="rect" id="node2" href="$d2/dd0/class_personnage.html#a80ee7f3e71d2603b7b9c9c50e644c84a" title="fait tirer le personnage en créant un veteur projectile" alt="" coords="268,5,432,32"/>
+<area shape="rect" id="node3" href="$d2/dd0/class_personnage.html#ac8bc6bc8f981cc371afaadcccca67f7f" title="déplace le personnage à droite et modifie sa position." alt="" coords="264,56,436,83"/>
+<area shape="rect" id="node4" href="$d2/dd0/class_personnage.html#a75c5095b3a8ed92d47f901af33982ee3" title="déplace le personnage à gauche et modifie sa position." alt="" coords="264,107,436,133"/>
+<area shape="rect" id="node5" href="$d2/dd0/class_personnage.html#a77255b58126c3e9a3707a5fc6e6b0165" title="supprime un projectile" alt="" coords="263,157,437,184"/>
+<area shape="rect" id="node6" href="$dc/d05/classprojectile.html#a9cc547713117b8e15f7774ff0b764a4c" title="renvoie le vecteur de direction du projectile" alt="" coords="285,208,415,235"/>
+<area shape="rect" id="node7" href="$d2/dd0/class_personnage.html#ac5919de22e5a1e9b4ee1df0645d160bc" title="renvoie la direction du personnage" alt="" coords="277,259,423,285"/>
+<area shape="rect" id="node8" href="$d2/dd0/class_personnage.html#a060bd65b78ebf2ec5e4e474823cb0d90" title="renvoie le nom du personnage (permet de définir plusieurs apparences)" alt="" coords="271,309,429,336"/>
+<area shape="rect" id="node9" href="$dc/d05/classprojectile.html#a2bda70dbc200b9f388bb31b7ca1be873" title="renvoie le vecteur de position du projectile" alt="" coords="283,360,417,387"/>
+<area shape="rect" id="node10" href="$d2/dd0/class_personnage.html#a3a589d8772088add9b205724b18a044a" title="renvoie la position en x et en y du personnage" alt="" coords="275,411,425,437"/>
+<area shape="rect" id="node11" href="$d2/dd0/class_personnage.html#a2c15b81f42610a2cb244d605a6714910" title="renvoie le vecteur projectile demandé si il existe" alt="" coords="256,461,444,488"/>
+<area shape="rect" id="node12" href="$d2/dd0/class_personnage.html#a74abeaa27e865af6efb59e9c32911f55" title="renvoie la vitesse du personnage" alt="" coords="277,512,423,539"/>
+<area shape="rect" id="node13" href="$d2/dd0/class_personnage.html#ac280b615288d06db115d9c6b831e9534" title="fait sauter le personnage, le déplace vers le haut en modifiant sa position." alt="" coords="283,563,417,589"/>
+<area shape="rect" id="node14" href="$d2/dd0/class_personnage.html#a10997900f7eb9178ed1547703b517004" title="met à jour le nom du personnage selon un string" alt="" coords="271,613,429,640"/>
+<area shape="rect" id="node15" href="$d2/dd0/class_personnage.html#a7d4c24bf71c87368a07844555665c3d5" title="met à jour la position du personnage selon une position en paramètre" alt="" coords="275,664,425,691"/>
+<area shape="rect" id="node16" href="$d2/dd0/class_personnage.html#a7ae957508d59feb0665217389e11bcd1" title="met à jour la vitesse du personnage selon un paramètre vitesse" alt="" coords="278,715,422,741"/>
+<area shape="rect" id="node17" href="$d2/dd0/class_personnage.html#a21cb86fdd8284c71c22adb107dc01c03" title="fait tomber le personnage, le déplace vers le haut en modifiant sa position." alt="" coords="276,765,424,792"/>
+</map>

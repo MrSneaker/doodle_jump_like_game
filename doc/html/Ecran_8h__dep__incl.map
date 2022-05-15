@@ -1,0 +1,14 @@
+<map id="src/Ecran.h" name="src/Ecran.h">
+<area shape="rect" id="node1" title=" " alt="" coords="101,5,195,32"/>
+<area shape="rect" id="node2" href="$Ecran_8cpp.html" title=" " alt="" coords="35,80,143,107"/>
+<area shape="rect" id="node3" href="$Jeu_8h.html" title=" " alt="" coords="168,80,245,107"/>
+<area shape="rect" id="node4" href="$Jeu_8cpp.html" title=" " alt="" coords="23,155,115,181"/>
+<area shape="rect" id="node5" href="$JeuModeGraphique_8h.html" title=" " alt="" coords="53,229,233,256"/>
+<area shape="rect" id="node10" href="$JeuModeTXT_8h.html" title=" " alt="" coords="191,155,329,181"/>
+<area shape="rect" id="node12" href="$mainTest_8cpp.html" title=" " alt="" coords="353,155,484,181"/>
+<area shape="rect" id="node6" href="$JeuModeGraphique_8cpp.html" title=" " alt="" coords="5,304,200,331"/>
+<area shape="rect" id="node7" href="$Menu_8h.html" title=" " alt="" coords="224,304,317,331"/>
+<area shape="rect" id="node8" href="$mainAffichageModeGRAPHIQUE_8cpp.html" title=" " alt="" coords="21,379,301,405"/>
+<area shape="rect" id="node9" href="$Menu_8cpp.html" title=" " alt="" coords="326,379,434,405"/>
+<area shape="rect" id="node11" href="$JeuModeTXT_8cpp.html" title=" " alt="" coords="308,229,460,256"/>
+</map>

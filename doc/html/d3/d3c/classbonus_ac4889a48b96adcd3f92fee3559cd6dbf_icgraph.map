@@ -1,0 +1,7 @@
+<map id="bonus::setPosBonus" name="bonus::setPosBonus">
+<area shape="rect" id="node1" title="met à jour la position du bonus selon une position en paramètre" alt="" coords="323,56,475,83"/>
+<area shape="rect" id="node2" href="$d5/d3a/class_ecran.html#aaba8a1895c2032d86c98c65b763ed3af" title="constructeur permettant de construire un écran à partir de sa position de début et de fin (" alt="" coords="140,5,243,32"/>
+<area shape="rect" id="node3" href="$d3/d3c/classbonus.html#ae9d86187ee47c90663626c6e60677efd" title="test de regression de la classe bonus" alt="" coords="108,56,275,83"/>
+<area shape="rect" id="node5" href="$d0/d46/class_jeu.html#ac7c855956828e80fca5d59f909dfbc65" title="test de régression des fonctions complexes." alt="" coords="118,107,265,133"/>
+<area shape="rect" id="node4" href="$dc/dd0/main_test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,81,60,108"/>
+</map>

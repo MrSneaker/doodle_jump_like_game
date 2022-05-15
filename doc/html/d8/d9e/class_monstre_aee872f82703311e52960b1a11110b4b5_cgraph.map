@@ -1,0 +1,14 @@
+<map id="Monstre::testRegression" name="Monstre::testRegression">
+<area shape="rect" id="node1" title="test toutes les fonctions de la classe Monstre" alt="" coords="5,259,185,285"/>
+<area shape="rect" id="node2" href="$d8/d9e/class_monstre.html#af9361924b9db552b90070fc120164e3b" title="renvoie la direction du monstre" alt="" coords="253,5,388,32"/>
+<area shape="rect" id="node3" href="$d8/d9e/class_monstre.html#a6511b568050e2e76934da2eda37dc321" title="renvoie la position du monstre en x et y" alt="" coords="257,56,384,83"/>
+<area shape="rect" id="node4" href="$d8/d9e/class_monstre.html#a5922da983fbf2d03a68d9ab024ad3473" title="renvoie la resistance du monstre" alt="" coords="233,107,408,133"/>
+<area shape="rect" id="node5" href="$d8/d9e/class_monstre.html#a53f2b8ffe051a65c460dd49f5148820d" title="renvoie la taille du pixel du monstre" alt="" coords="245,157,396,184"/>
+<area shape="rect" id="node6" href="$d8/d9e/class_monstre.html#affa2abb377ce1d00a9d95a3627ec618a" title="renvoie la vitesse du monstre" alt="" coords="253,208,388,235"/>
+<area shape="rect" id="node7" href="$d8/d9e/class_monstre.html#a2373dae713980d0151a4c700143b8299" title="met à jour la direction par rapport au paramètres" alt="" coords="253,259,388,285"/>
+<area shape="rect" id="node8" href="$d8/d9e/class_monstre.html#a13736113aa013fe1a9b93188cb6b3f26" title="met à jour la position du monstre selon une position en paramètre" alt="" coords="257,309,384,336"/>
+<area shape="rect" id="node9" href="$d8/d9e/class_monstre.html#ad9c21ad4cbecdc08e9242bd1060771fe" title="met a jour la resistance du monstre par rapport à l&#39;entier en paramètre" alt="" coords="233,360,408,387"/>
+<area shape="rect" id="node10" href="$d8/d9e/class_monstre.html#aedd12fb2256c9bf6508f07a9fa0cc851" title="met a jour la taille du monstre par rapport aux paramètres" alt="" coords="246,411,395,437"/>
+<area shape="rect" id="node11" href="$d8/d9e/class_monstre.html#aba3b51b2826ffec3a745db9990a04d6a" title="met à jour la vitesse du monstre selon un parametre" alt="" coords="254,461,387,488"/>
+<area shape="rect" id="node12" href="$d8/d9e/class_monstre.html#a41259622746fa80d8fb2532ded0fe346" title="gère le mouvement du monstre en fonction d&#39;un paramètre" alt="" coords="255,512,386,539"/>
+</map>

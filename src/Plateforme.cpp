@@ -153,6 +153,7 @@ void Plateforme::bougeAuto(double dt)
 
 void Plateforme::testRegression()
 {
+    cout<<"test de regression Plateforme : "<<endl;
     Plateforme p1(0, 0, 0, 0, 0, 0, 0);
     assert(p1.pos.x == 0);
     assert(p1.pos.y == 0);
@@ -187,4 +188,5 @@ void Plateforme::testRegression()
     assert(p1.taille.y == 2);
     cout << "taille plateforme x: " << p1.getTaille().x << endl;
     cout << "taille plateforme y: " << p1.getTaille().y << endl;
+    cout<<endl;
 }

@@ -1,0 +1,52 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,917,60,944"/>
+<area shape="rect" id="node2" href="$d3/d3c/classbonus.html#ae9d86187ee47c90663626c6e60677efd" title="test de regression de la classe bonus" alt="" coords="126,208,293,235"/>
+<area shape="rect" id="node11" href="$dd/de7/class_plateforme.html#ae98b854a83ce36723460b67e8d5f4700" title="test de régression de la classe plateforme" alt="" coords="110,512,309,539"/>
+<area shape="rect" id="node22" href="$d8/d9e/class_monstre.html#aee872f82703311e52960b1a11110b4b5" title="test toutes les fonctions de la classe Monstre" alt="" coords="119,1171,299,1197"/>
+<area shape="rect" id="node34" href="$d2/dd0/class_personnage.html#a8b827a72e42d38de1b6d29dee145a4b5" title="test toutes les fonctions de la classe Personnage" alt="" coords="108,1804,311,1831"/>
+<area shape="rect" id="node50" href="$d0/d46/class_jeu.html#ac7c855956828e80fca5d59f909dfbc65" title="test de régression des fonctions complexes." alt="" coords="136,917,283,944"/>
+<area shape="rect" id="node3" href="$d3/d3c/classbonus.html#a7dad4cf0b409d91fbbc1b7bee7ebcce0" title="renvoie la duree du bonus" alt="" coords="388,664,517,691"/>
+<area shape="rect" id="node4" href="$d3/d3c/classbonus.html#a005322a91caa94b0afc6b931ef1fab40" title="renvoie le nom du bonus (permet de définir plusieurs apparences)" alt="" coords="387,107,518,133"/>
+<area shape="rect" id="node5" href="$d3/d3c/classbonus.html#a684d6f26b2ed6f4955282426f5eef616" title="renvoie la position du bonus en x et y" alt="" coords="376,157,529,184"/>
+<area shape="rect" id="node6" href="$d3/d3c/classbonus.html#aff695c7f1ac7b21461cea02c4fe11e21" title="renvoie la vitesse du bonus" alt="" coords="394,208,511,235"/>
+<area shape="rect" id="node7" href="$d3/d3c/classbonus.html#a31a120f84ec549d58a6d3f5d0e0d6c12" title="met à jour la duree du bonus selon un parametre" alt="" coords="389,715,517,741"/>
+<area shape="rect" id="node8" href="$d3/d3c/classbonus.html#ab275559f45813c1a16dc21cddf2ba2e5" title="met à jour le nom du bonus selon un string" alt="" coords="388,5,517,32"/>
+<area shape="rect" id="node9" href="$d3/d3c/classbonus.html#ac4889a48b96adcd3f92fee3559cd6dbf" title="met à jour la position du bonus selon une position en paramètre" alt="" coords="377,765,529,792"/>
+<area shape="rect" id="node10" href="$d3/d3c/classbonus.html#a5f9637abab7a9dc74bf5232db1171837" title="met à jour la vitesse du bonus selon un parametre" alt="" coords="395,56,511,83"/>
+<area shape="rect" id="node12" href="$dd/de7/class_plateforme.html#a410e4476257231e45cf79db145559983" title="décremente la resistance de 1" alt="" coords="375,411,531,437"/>
+<area shape="rect" id="node13" href="$dd/de7/class_plateforme.html#af7f21721f08937ba6bec914796aee92f" title="renvoie la direction de la plateforme" alt="" coords="381,461,524,488"/>
+<area shape="rect" id="node14" href="$dd/de7/class_plateforme.html#afdc8ff6c854a406e2ac96df56230e381" title="renvoie la position de la plateforme" alt="" coords="379,512,526,539"/>
+<area shape="rect" id="node15" href="$dd/de7/class_plateforme.html#aa14182b3cbae34725677fbc664d6bf5d" title="renvoie la resistance d&#39;une plateforme" alt="" coords="379,563,526,589"/>
+<area shape="rect" id="node16" href="$dd/de7/class_plateforme.html#a60180b072a3a0b9fdd7804e98162da8b" title="renvoie la taille d&#39;une plateforme" alt="" coords="374,613,531,640"/>
+<area shape="rect" id="node17" href="$dd/de7/class_plateforme.html#a04e54ffbe3f3657fdfe712075cc2aa0b" title="Met à jour la direction de la plateforme selon deux réels passées en paramètre." alt="" coords="382,816,523,843"/>
+<area shape="rect" id="node18" href="$dd/de7/class_plateforme.html#ab206260b11efae360b834dc5718c8b1e" title="modifie la position d&#39;une plateforme à partir d&#39;un vec2" alt="" coords="380,867,525,893"/>
+<area shape="rect" id="node19" href="$dd/de7/class_plateforme.html#a593683a817bf5ffe2c59e08506ead58b" title="modifie la resistance de la plateforme à partir d&#39;un float" alt="" coords="379,259,526,285"/>
+<area shape="rect" id="node20" href="$dd/de7/class_plateforme.html#a60b0af1a5460426e7e2d53f8eb20975c" title="modifie la taille de la plateforme à partir d&#39;un float" alt="" coords="375,309,531,336"/>
+<area shape="rect" id="node21" href="$dd/de7/class_plateforme.html#a1cb0f1e00845cc9174c4a9c4cd5aa093" title="gère tous les déplacements" alt="" coords="378,360,527,387"/>
+<area shape="rect" id="node23" href="$d8/d9e/class_monstre.html#af9361924b9db552b90070fc120164e3b" title="renvoie la direction du monstre" alt="" coords="385,1424,520,1451"/>
+<area shape="rect" id="node24" href="$d8/d9e/class_monstre.html#a6511b568050e2e76934da2eda37dc321" title="renvoie la position du monstre en x et y" alt="" coords="389,1475,516,1501"/>
+<area shape="rect" id="node25" href="$d8/d9e/class_monstre.html#a5922da983fbf2d03a68d9ab024ad3473" title="renvoie la resistance du monstre" alt="" coords="365,1069,540,1096"/>
+<area shape="rect" id="node26" href="$d8/d9e/class_monstre.html#a53f2b8ffe051a65c460dd49f5148820d" title="renvoie la taille du pixel du monstre" alt="" coords="377,1120,528,1147"/>
+<area shape="rect" id="node27" href="$d8/d9e/class_monstre.html#affa2abb377ce1d00a9d95a3627ec618a" title="renvoie la vitesse du monstre" alt="" coords="385,1221,520,1248"/>
+<area shape="rect" id="node28" href="$d8/d9e/class_monstre.html#a2373dae713980d0151a4c700143b8299" title="met à jour la direction par rapport au paramètres" alt="" coords="385,1272,520,1299"/>
+<area shape="rect" id="node29" href="$d8/d9e/class_monstre.html#a13736113aa013fe1a9b93188cb6b3f26" title="met à jour la position du monstre selon une position en paramètre" alt="" coords="389,917,516,944"/>
+<area shape="rect" id="node30" href="$d8/d9e/class_monstre.html#ad9c21ad4cbecdc08e9242bd1060771fe" title="met a jour la resistance du monstre par rapport à l&#39;entier en paramètre" alt="" coords="365,968,540,995"/>
+<area shape="rect" id="node31" href="$d8/d9e/class_monstre.html#aedd12fb2256c9bf6508f07a9fa0cc851" title="met a jour la taille du monstre par rapport aux paramètres" alt="" coords="378,1019,527,1045"/>
+<area shape="rect" id="node32" href="$d8/d9e/class_monstre.html#aba3b51b2826ffec3a745db9990a04d6a" title="met à jour la vitesse du monstre selon un parametre" alt="" coords="386,1323,519,1349"/>
+<area shape="rect" id="node33" href="$d8/d9e/class_monstre.html#a41259622746fa80d8fb2532ded0fe346" title="gère le mouvement du monstre en fonction d&#39;un paramètre" alt="" coords="387,1373,518,1400"/>
+<area shape="rect" id="node35" href="$d2/dd0/class_personnage.html#a80ee7f3e71d2603b7b9c9c50e644c84a" title="fait tirer le personnage en créant un veteur projectile" alt="" coords="371,1829,535,1856"/>
+<area shape="rect" id="node36" href="$d2/dd0/class_personnage.html#ac8bc6bc8f981cc371afaadcccca67f7f" title="déplace le personnage à droite et modifie sa position." alt="" coords="367,1880,539,1907"/>
+<area shape="rect" id="node37" href="$d2/dd0/class_personnage.html#a75c5095b3a8ed92d47f901af33982ee3" title="déplace le personnage à gauche et modifie sa position." alt="" coords="367,1931,539,1957"/>
+<area shape="rect" id="node38" href="$d2/dd0/class_personnage.html#a77255b58126c3e9a3707a5fc6e6b0165" title="supprime un projectile" alt="" coords="365,1981,540,2008"/>
+<area shape="rect" id="node39" href="$dc/d05/classprojectile.html#a9cc547713117b8e15f7774ff0b764a4c" title="renvoie le vecteur de direction du projectile" alt="" coords="388,2032,517,2059"/>
+<area shape="rect" id="node40" href="$d2/dd0/class_personnage.html#ac5919de22e5a1e9b4ee1df0645d160bc" title="renvoie la direction du personnage" alt="" coords="379,2083,526,2109"/>
+<area shape="rect" id="node41" href="$d2/dd0/class_personnage.html#a060bd65b78ebf2ec5e4e474823cb0d90" title="renvoie le nom du personnage (permet de définir plusieurs apparences)" alt="" coords="373,2133,532,2160"/>
+<area shape="rect" id="node42" href="$dc/d05/classprojectile.html#a2bda70dbc200b9f388bb31b7ca1be873" title="renvoie le vecteur de position du projectile" alt="" coords="385,2184,520,2211"/>
+<area shape="rect" id="node43" href="$d2/dd0/class_personnage.html#a3a589d8772088add9b205724b18a044a" title="renvoie la position en x et en y du personnage" alt="" coords="377,1525,528,1552"/>
+<area shape="rect" id="node44" href="$d2/dd0/class_personnage.html#a2c15b81f42610a2cb244d605a6714910" title="renvoie le vecteur projectile demandé si il existe" alt="" coords="359,1576,547,1603"/>
+<area shape="rect" id="node45" href="$d2/dd0/class_personnage.html#a74abeaa27e865af6efb59e9c32911f55" title="renvoie la vitesse du personnage" alt="" coords="380,1627,525,1653"/>
+<area shape="rect" id="node46" href="$d2/dd0/class_personnage.html#ac280b615288d06db115d9c6b831e9534" title="fait sauter le personnage, le déplace vers le haut en modifiant sa position." alt="" coords="385,1677,520,1704"/>
+<area shape="rect" id="node47" href="$d2/dd0/class_personnage.html#a10997900f7eb9178ed1547703b517004" title="met à jour le nom du personnage selon un string" alt="" coords="374,1728,531,1755"/>
+<area shape="rect" id="node48" href="$d2/dd0/class_personnage.html#a7d4c24bf71c87368a07844555665c3d5" title="met à jour la position du personnage selon une position en paramètre" alt="" coords="378,1171,527,1197"/>
+<area shape="rect" id="node49" href="$d2/dd0/class_personnage.html#a7ae957508d59feb0665217389e11bcd1" title="met à jour la vitesse du personnage selon un paramètre vitesse" alt="" coords="381,1779,525,1805"/>
+</map>

@@ -1,0 +1,282 @@
+\hypertarget{class_plateforme}{}\doxysection{Référence de la classe Plateforme}
+\label{class_plateforme}\index{Plateforme@{Plateforme}}
+
+
+{\ttfamily \#include $<$Plateforme.\+h$>$}
+
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_plateforme_a163bbfb2fb7ab9ecf057bfbace47a62e}{Plateforme}} ()
+\begin{DoxyCompactList}\small\item\em constructeur sans paramètre. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_plateforme_a9e6967fe342fb31edb45dec26bc16dde}{Plateforme}} (float posx, float posy, float dirx, float diry, float tx, float ty, int resist)
+\begin{DoxyCompactList}\small\item\em constructeur, tout est défini à partir des paramètres \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_plateforme_a92b03c338959f85818acfe472f954191}{$\sim$\+Plateforme}} ()
+\begin{DoxyCompactList}\small\item\em destructeur. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_vec2}{Vec2}} \& \mbox{\hyperlink{class_plateforme_afdc8ff6c854a406e2ac96df56230e381}{get\+Pos}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la position de la plateforme \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_ab206260b11efae360b834dc5718c8b1e}{set\+Pos}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em modifie la position d\textquotesingle{}une plateforme à partir d\textquotesingle{}un vec2 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vec2}{Vec2}} \mbox{\hyperlink{class_plateforme_af7f21721f08937ba6bec914796aee92f}{get\+Dir}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la direction de la plateforme \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_a04e54ffbe3f3657fdfe712075cc2aa0b}{set\+Dir}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Met à jour la direction de la plateforme selon deux réels passées en paramètre. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vec2}{Vec2}} \mbox{\hyperlink{class_plateforme_a60180b072a3a0b9fdd7804e98162da8b}{get\+Taille}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la taille d\textquotesingle{}une plateforme \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_a60b0af1a5460426e7e2d53f8eb20975c}{set\+Taille}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em modifie la taille de la plateforme à partir d\textquotesingle{}un float \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_plateforme_a4f6f4166952016c745bb1aa3afec4f45}{get\+VitM}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la vitesse de la plateforme \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_affaae0c37b04b4b8ff4378f7f1064cab}{set\+VitM}} (float v)
+\begin{DoxyCompactList}\small\item\em met à jour la vitesse de la plateforme selon un parametre \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_plateforme_aa14182b3cbae34725677fbc664d6bf5d}{get\+Res}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la resistance d\textquotesingle{}une plateforme \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_a593683a817bf5ffe2c59e08506ead58b}{set\+Res}} (int n)
+\begin{DoxyCompactList}\small\item\em modifie la resistance de la plateforme à partir d\textquotesingle{}un float \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_a1cb0f1e00845cc9174c4a9c4cd5aa093}{Update}} (double \mbox{\hyperlink{main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em gère tous les déplacements \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_plateforme_a5365423643ae6e3e4ba6e688e8de29f5}{est\+Afficheable}} () const
+\begin{DoxyCompactList}\small\item\em renvoie vrai si la plateforme à une resistance à -\/1 ou supérieur à 0, faux sinon \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_a410e4476257231e45cf79db145559983}{desc\+Res}} ()
+\begin{DoxyCompactList}\small\item\em décremente la resistance de 1 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_aba9782cde25b60c1d35f61dea881ab51}{bouge\+Auto}} (double \mbox{\hyperlink{main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em permet aux plateformes de se déplacer toutes seules \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plateforme_ae98b854a83ce36723460b67e8d5f4700}{test\+Regression}} ()
+\begin{DoxyCompactList}\small\item\em test de régression de la classe plateforme \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_plateforme_a6e01a3ce18ee5d422580cd4af9036c23}{pos\+Xbase}}
+\begin{DoxyCompactList}\small\item\em variable permettant d\textquotesingle{}obtenir la position verticale de base lors de la construction, pour bouge\+Auto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{class_plateforme_a163bbfb2fb7ab9ecf057bfbace47a62e}\label{class_plateforme_a163bbfb2fb7ab9ecf057bfbace47a62e}} 
+\index{Plateforme@{Plateforme}!Plateforme@{Plateforme}}
+\index{Plateforme@{Plateforme}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{Plateforme()}{Plateforme()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Plateforme\+::\+Plateforme (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+constructeur sans paramètre. 
+
+\mbox{\Hypertarget{class_plateforme_a9e6967fe342fb31edb45dec26bc16dde}\label{class_plateforme_a9e6967fe342fb31edb45dec26bc16dde}} 
+\index{Plateforme@{Plateforme}!Plateforme@{Plateforme}}
+\index{Plateforme@{Plateforme}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{Plateforme()}{Plateforme()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Plateforme\+::\+Plateforme (\begin{DoxyParamCaption}\item[{float}]{posx,  }\item[{float}]{posy,  }\item[{float}]{dirx,  }\item[{float}]{diry,  }\item[{float}]{tx,  }\item[{float}]{ty,  }\item[{int}]{resist }\end{DoxyParamCaption})}
+
+
+
+constructeur, tout est défini à partir des paramètres 
+
+\mbox{\Hypertarget{class_plateforme_a92b03c338959f85818acfe472f954191}\label{class_plateforme_a92b03c338959f85818acfe472f954191}} 
+\index{Plateforme@{Plateforme}!````~Plateforme@{$\sim$Plateforme}}
+\index{````~Plateforme@{$\sim$Plateforme}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{$\sim$Plateforme()}{~Plateforme()}}
+{\footnotesize\ttfamily Plateforme\+::$\sim$\+Plateforme (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+destructeur. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_plateforme_aba9782cde25b60c1d35f61dea881ab51}\label{class_plateforme_aba9782cde25b60c1d35f61dea881ab51}} 
+\index{Plateforme@{Plateforme}!bougeAuto@{bougeAuto}}
+\index{bougeAuto@{bougeAuto}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{bougeAuto()}{bougeAuto()}}
+{\footnotesize\ttfamily void Plateforme\+::bouge\+Auto (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+permet aux plateformes de se déplacer toutes seules 
+
+\mbox{\Hypertarget{class_plateforme_a410e4476257231e45cf79db145559983}\label{class_plateforme_a410e4476257231e45cf79db145559983}} 
+\index{Plateforme@{Plateforme}!descRes@{descRes}}
+\index{descRes@{descRes}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{descRes()}{descRes()}}
+{\footnotesize\ttfamily void Plateforme\+::desc\+Res (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+décremente la resistance de 1 
+
+\mbox{\Hypertarget{class_plateforme_a5365423643ae6e3e4ba6e688e8de29f5}\label{class_plateforme_a5365423643ae6e3e4ba6e688e8de29f5}} 
+\index{Plateforme@{Plateforme}!estAfficheable@{estAfficheable}}
+\index{estAfficheable@{estAfficheable}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{estAfficheable()}{estAfficheable()}}
+{\footnotesize\ttfamily bool Plateforme\+::est\+Afficheable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie vrai si la plateforme à une resistance à -\/1 ou supérieur à 0, faux sinon 
+
+\mbox{\Hypertarget{class_plateforme_af7f21721f08937ba6bec914796aee92f}\label{class_plateforme_af7f21721f08937ba6bec914796aee92f}} 
+\index{Plateforme@{Plateforme}!getDir@{getDir}}
+\index{getDir@{getDir}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{getDir()}{getDir()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vec2}{Vec2}} Plateforme\+::get\+Dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la direction de la plateforme 
+
+\mbox{\Hypertarget{class_plateforme_afdc8ff6c854a406e2ac96df56230e381}\label{class_plateforme_afdc8ff6c854a406e2ac96df56230e381}} 
+\index{Plateforme@{Plateforme}!getPos@{getPos}}
+\index{getPos@{getPos}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_vec2}{Vec2}} \& Plateforme\+::get\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la position de la plateforme 
+
+\mbox{\Hypertarget{class_plateforme_aa14182b3cbae34725677fbc664d6bf5d}\label{class_plateforme_aa14182b3cbae34725677fbc664d6bf5d}} 
+\index{Plateforme@{Plateforme}!getRes@{getRes}}
+\index{getRes@{getRes}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{getRes()}{getRes()}}
+{\footnotesize\ttfamily int Plateforme\+::get\+Res (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la resistance d\textquotesingle{}une plateforme 
+
+\mbox{\Hypertarget{class_plateforme_a60180b072a3a0b9fdd7804e98162da8b}\label{class_plateforme_a60180b072a3a0b9fdd7804e98162da8b}} 
+\index{Plateforme@{Plateforme}!getTaille@{getTaille}}
+\index{getTaille@{getTaille}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{getTaille()}{getTaille()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vec2}{Vec2}} Plateforme\+::get\+Taille (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la taille d\textquotesingle{}une plateforme 
+
+\mbox{\Hypertarget{class_plateforme_a4f6f4166952016c745bb1aa3afec4f45}\label{class_plateforme_a4f6f4166952016c745bb1aa3afec4f45}} 
+\index{Plateforme@{Plateforme}!getVitM@{getVitM}}
+\index{getVitM@{getVitM}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{getVitM()}{getVitM()}}
+{\footnotesize\ttfamily float Plateforme\+::get\+VitM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la vitesse de la plateforme 
+
+\mbox{\Hypertarget{class_plateforme_a04e54ffbe3f3657fdfe712075cc2aa0b}\label{class_plateforme_a04e54ffbe3f3657fdfe712075cc2aa0b}} 
+\index{Plateforme@{Plateforme}!setDir@{setDir}}
+\index{setDir@{setDir}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{setDir()}{setDir()}}
+{\footnotesize\ttfamily void Plateforme\+::set\+Dir (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+Met à jour la direction de la plateforme selon deux réels passées en paramètre. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_plateforme_ab206260b11efae360b834dc5718c8b1e}\label{class_plateforme_ab206260b11efae360b834dc5718c8b1e}} 
+\index{Plateforme@{Plateforme}!setPos@{setPos}}
+\index{setPos@{setPos}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily void Plateforme\+::set\+Pos (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+modifie la position d\textquotesingle{}une plateforme à partir d\textquotesingle{}un vec2 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em p} & en paramètre \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_plateforme_a593683a817bf5ffe2c59e08506ead58b}\label{class_plateforme_a593683a817bf5ffe2c59e08506ead58b}} 
+\index{Plateforme@{Plateforme}!setRes@{setRes}}
+\index{setRes@{setRes}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{setRes()}{setRes()}}
+{\footnotesize\ttfamily void Plateforme\+::set\+Res (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+modifie la resistance de la plateforme à partir d\textquotesingle{}un float 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em n} & en paramètre \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_plateforme_a60b0af1a5460426e7e2d53f8eb20975c}\label{class_plateforme_a60b0af1a5460426e7e2d53f8eb20975c}} 
+\index{Plateforme@{Plateforme}!setTaille@{setTaille}}
+\index{setTaille@{setTaille}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{setTaille()}{setTaille()}}
+{\footnotesize\ttfamily void Plateforme\+::set\+Taille (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+modifie la taille de la plateforme à partir d\textquotesingle{}un float 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & et\\
+\hline
+{\em y} & en paramètre \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_plateforme_affaae0c37b04b4b8ff4378f7f1064cab}\label{class_plateforme_affaae0c37b04b4b8ff4378f7f1064cab}} 
+\index{Plateforme@{Plateforme}!setVitM@{setVitM}}
+\index{setVitM@{setVitM}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{setVitM()}{setVitM()}}
+{\footnotesize\ttfamily void Plateforme\+::set\+VitM (\begin{DoxyParamCaption}\item[{float}]{v }\end{DoxyParamCaption})}
+
+
+
+met à jour la vitesse de la plateforme selon un parametre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_plateforme_ae98b854a83ce36723460b67e8d5f4700}\label{class_plateforme_ae98b854a83ce36723460b67e8d5f4700}} 
+\index{Plateforme@{Plateforme}!testRegression@{testRegression}}
+\index{testRegression@{testRegression}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{testRegression()}{testRegression()}}
+{\footnotesize\ttfamily void Plateforme\+::test\+Regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+test de régression de la classe plateforme 
+
+\mbox{\Hypertarget{class_plateforme_a1cb0f1e00845cc9174c4a9c4cd5aa093}\label{class_plateforme_a1cb0f1e00845cc9174c4a9c4cd5aa093}} 
+\index{Plateforme@{Plateforme}!Update@{Update}}
+\index{Update@{Update}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Plateforme\+::\+Update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+gère tous les déplacements 
+
+
+
+\doxysubsection{Documentation des champs}
+\mbox{\Hypertarget{class_plateforme_a6e01a3ce18ee5d422580cd4af9036c23}\label{class_plateforme_a6e01a3ce18ee5d422580cd4af9036c23}} 
+\index{Plateforme@{Plateforme}!posXbase@{posXbase}}
+\index{posXbase@{posXbase}!Plateforme@{Plateforme}}
+\doxysubsubsection{\texorpdfstring{posXbase}{posXbase}}
+{\footnotesize\ttfamily float Plateforme\+::pos\+Xbase}
+
+
+
+variable permettant d\textquotesingle{}obtenir la position verticale de base lors de la construction, pour bouge\+Auto. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_plateforme_8h}{Plateforme.\+h}}\item 
+src/\mbox{\hyperlink{_plateforme_8cpp}{Plateforme.\+cpp}}\end{DoxyCompactItemize}

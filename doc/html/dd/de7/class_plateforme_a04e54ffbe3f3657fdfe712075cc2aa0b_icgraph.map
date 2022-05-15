@@ -1,0 +1,6 @@
+<map id="Plateforme::setDir" name="Plateforme::setDir">
+<area shape="rect" id="node1" title="Met à jour la direction de la plateforme selon deux réels passées en paramètre." alt="" coords="355,31,496,57"/>
+<area shape="rect" id="node2" href="$d5/d3a/class_ecran.html#aaba8a1895c2032d86c98c65b763ed3af" title="constructeur permettant de construire un écran à partir de sa position de début et de fin (" alt="" coords="156,5,259,32"/>
+<area shape="rect" id="node3" href="$dd/de7/class_plateforme.html#ae98b854a83ce36723460b67e8d5f4700" title="test de régression de la classe plateforme" alt="" coords="108,56,307,83"/>
+<area shape="rect" id="node4" href="$dc/dd0/main_test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,56,60,83"/>
+</map>

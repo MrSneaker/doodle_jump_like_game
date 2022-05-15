@@ -1,0 +1,5 @@
+<map id="Personnage::getNom" name="Personnage::getNom">
+<area shape="rect" id="node1" title="renvoie le nom du personnage (permet de définir plusieurs apparences)" alt="" coords="359,5,517,32"/>
+<area shape="rect" id="node2" href="$d2/dd0/class_personnage.html#a8b827a72e42d38de1b6d29dee145a4b5" title="test toutes les fonctions de la classe Personnage" alt="" coords="108,5,311,32"/>
+<area shape="rect" id="node3" href="$dc/dd0/main_test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,60,32"/>
+</map>

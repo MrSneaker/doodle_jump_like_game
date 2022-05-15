@@ -1,0 +1,6 @@
+<map id="JeuModeTXT::InitCam" name="JeuModeTXT::InitCam">
+<area shape="rect" id="node1" title="Initialise la caméra sur la position du personnage + DIMX/2 (la moitié de la taille de l&#39;écran en ord..." alt="" coords="5,56,167,83"/>
+<area shape="rect" id="node2" href="$d9/d6a/class_jeu_mode_t_x_t.html#a3e272baaf5ebe865218b313fd68d26b3" title="Convertie une position logique (i.e venant du moteur de jeu Jeu.cpp) en une position d&#39;affichage à pa..." alt="" coords="215,5,398,32"/>
+<area shape="rect" id="node3" href="$d0/d46/class_jeu.html#ae3b2e048b68b8155e7351a61ca97979b" title="Renvoie une référence au personnage et ses caractéristiques pour l&#39;affichage texte et SDL." alt="" coords="215,56,399,83"/>
+<area shape="rect" id="node4" href="$d2/dd0/class_personnage.html#a3a589d8772088add9b205724b18a044a" title="renvoie la position en x et en y du personnage" alt="" coords="231,107,382,133"/>
+</map>

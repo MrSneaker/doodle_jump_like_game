@@ -1,0 +1,12 @@
+<map id="Ecran::Ecran" name="Ecran::Ecran">
+<area shape="rect" id="node1" title="constructeur permettant de construire un écran à partir de sa position de début et de fin (" alt="" coords="5,208,108,235"/>
+<area shape="rect" id="node2" href="$dd/de7/class_plateforme.html#afdc8ff6c854a406e2ac96df56230e381" title="renvoie la position de la plateforme" alt="" coords="161,5,307,32"/>
+<area shape="rect" id="node3" href="$d0/d18/_ecran_8cpp.html#ad5755de87d8b9181d2d4f9915dd918b4" title=" " alt="" coords="198,56,270,83"/>
+<area shape="rect" id="node4" href="$dd/de7/class_plateforme.html#a04e54ffbe3f3657fdfe712075cc2aa0b" title="Met à jour la direction de la plateforme selon deux réels passées en paramètre." alt="" coords="163,107,305,133"/>
+<area shape="rect" id="node5" href="$d8/d9e/class_monstre.html#a2373dae713980d0151a4c700143b8299" title="met à jour la direction par rapport au paramètres" alt="" coords="167,157,301,184"/>
+<area shape="rect" id="node6" href="$dd/de7/class_plateforme.html#ab206260b11efae360b834dc5718c8b1e" title="modifie la position d&#39;une plateforme à partir d&#39;un vec2" alt="" coords="161,208,307,235"/>
+<area shape="rect" id="node7" href="$d8/d9e/class_monstre.html#a13736113aa013fe1a9b93188cb6b3f26" title="met à jour la position du monstre selon une position en paramètre" alt="" coords="171,259,297,285"/>
+<area shape="rect" id="node8" href="$d3/d3c/classbonus.html#ac4889a48b96adcd3f92fee3559cd6dbf" title="met à jour la position du bonus selon une position en paramètre" alt="" coords="158,309,310,336"/>
+<area shape="rect" id="node9" href="$dd/de7/class_plateforme.html#a593683a817bf5ffe2c59e08506ead58b" title="modifie la resistance de la plateforme à partir d&#39;un float" alt="" coords="161,360,307,387"/>
+<area shape="rect" id="node10" href="$dd/de7/class_plateforme.html#a60b0af1a5460426e7e2d53f8eb20975c" title="modifie la taille de la plateforme à partir d&#39;un float" alt="" coords="156,411,312,437"/>
+</map>

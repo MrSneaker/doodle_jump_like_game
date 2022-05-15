@@ -1,0 +1,11 @@
+<map id="bonus::testRegression" name="bonus::testRegression">
+<area shape="rect" id="node1" title="test de regression de la classe bonus" alt="" coords="5,183,172,209"/>
+<area shape="rect" id="node2" href="$d3/d3c/classbonus.html#a7dad4cf0b409d91fbbc1b7bee7ebcce0" title="renvoie la duree du bonus" alt="" coords="232,5,361,32"/>
+<area shape="rect" id="node3" href="$d3/d3c/classbonus.html#a005322a91caa94b0afc6b931ef1fab40" title="renvoie le nom du bonus (permet de définir plusieurs apparences)" alt="" coords="231,56,362,83"/>
+<area shape="rect" id="node4" href="$d3/d3c/classbonus.html#a684d6f26b2ed6f4955282426f5eef616" title="renvoie la position du bonus en x et y" alt="" coords="220,107,373,133"/>
+<area shape="rect" id="node5" href="$d3/d3c/classbonus.html#aff695c7f1ac7b21461cea02c4fe11e21" title="renvoie la vitesse du bonus" alt="" coords="238,157,355,184"/>
+<area shape="rect" id="node6" href="$d3/d3c/classbonus.html#a31a120f84ec549d58a6d3f5d0e0d6c12" title="met à jour la duree du bonus selon un parametre" alt="" coords="233,208,361,235"/>
+<area shape="rect" id="node7" href="$d3/d3c/classbonus.html#ab275559f45813c1a16dc21cddf2ba2e5" title="met à jour le nom du bonus selon un string" alt="" coords="232,259,361,285"/>
+<area shape="rect" id="node8" href="$d3/d3c/classbonus.html#ac4889a48b96adcd3f92fee3559cd6dbf" title="met à jour la position du bonus selon une position en paramètre" alt="" coords="221,309,373,336"/>
+<area shape="rect" id="node9" href="$d3/d3c/classbonus.html#a5f9637abab7a9dc74bf5232db1171837" title="met à jour la vitesse du bonus selon un parametre" alt="" coords="239,360,355,387"/>
+</map>

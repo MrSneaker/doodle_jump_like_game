@@ -1,0 +1,6 @@
+<map id="bonus::setDuree" name="bonus::setDuree">
+<area shape="rect" id="node1" title="met à jour la duree du bonus selon un parametre" alt="" coords="323,31,451,57"/>
+<area shape="rect" id="node2" href="$d3/d3c/classbonus.html#ae9d86187ee47c90663626c6e60677efd" title="test de regression de la classe bonus" alt="" coords="108,5,275,32"/>
+<area shape="rect" id="node4" href="$d0/d46/class_jeu.html#ac7c855956828e80fca5d59f909dfbc65" title="test de régression des fonctions complexes." alt="" coords="118,56,265,83"/>
+<area shape="rect" id="node3" href="$dc/dd0/main_test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,31,60,57"/>
+</map>

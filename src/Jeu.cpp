@@ -299,7 +299,7 @@ void Jeu::update(double dt)
 	}
 	if (p.size() == 0) // si il n'y a pas de plateformes, on tombe (pour éviter les blocages en cas de bug).
 		perso.tombe(dt);
-	if (perso.getNombreProj() > 0)
+	if (perso.getNombreProj() > 0) // si le nombre de projectiles n'est pas nul.
 	{
 		for (int i = 0; i < NB_MONSTRE; i++) // pour tous les monstres..
 		{
@@ -439,4 +439,46 @@ void Jeu::update(double dt)
 	}
 	actionsAutomatiques(dt); // executions des action automatiques.
 	updateEcran(dt);		 // mise à jour des écran.
+}
+
+void Jeu::testRegression()
+{
+	cout << "test de regression de la classe Jeu : " << endl;
+	Jeu jeu;
+	jeu.perso.setPos(50, 10);
+	Plateforme p0(50, 10, 0, 0, 0.7, 2, -1);
+	jeu.p.push_back(p0);
+	jeu.update(1 / 60);
+	assert(jeu.PcollPl == true);
+	assert(jeu.Psaute == true);
+	assert(jeu.Ptombe == false);
+	assert(jeu.tpsSaut == 35);
+	cout << "collision personnage/plateforme fonctionnelle." << endl;
+	jeu.monstr[0].setPos(50, 10);
+	jeu.monstr[0].setTailleM(1, 1);
+	jeu.monstr[0].enVie = true;
+	jeu.monstr[0].setResistance(1);
+	jeu.perso.setPos(50, 10);
+	jeu.update(1 / 60);
+	assert(jeu.perso.enVie == false);
+	assert(jeu.Ptombe == false);
+	assert(jeu.Psaute == true);
+	cout << "collision personnage/monstre fonctionnelle." << endl;
+	projectile p1(50, 10, 0, 0);
+	jeu.perso.placeProjTest(p1);
+	jeu.update(1 / 60);
+	assert(jeu.monstr[0].enVie == false);
+	assert(jeu.Mtouche1 == true);
+	cout << "collision projectile/monstre fonctionnelle" << endl;
+	jeu.bonu[0].disponible = false;
+	jeu.bonu[0].estPris = false;
+	jeu.bonu[0].setPosBonus(50, 10);
+	jeu.bonu[0].setTailleB(1, 1);
+	jeu.bonu[0].setDuree(5);
+	jeu.perso.enVie = true;
+	jeu.perso.setPos(50, 10);
+	jeu.update(1 / 60);
+	assert(jeu.perso.aPrisB == true);
+	assert(jeu.tps == jeu.bonu[0].getDuree());
+	cout << "collision bonus/personnage fonctionnel" << endl;
 }

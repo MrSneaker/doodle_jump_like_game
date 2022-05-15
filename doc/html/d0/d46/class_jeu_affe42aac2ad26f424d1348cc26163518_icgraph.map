@@ -1,0 +1,11 @@
+<map id="Jeu::getPlateforme" name="Jeu::getPlateforme">
+<area shape="rect" id="node1" title="Renvoie une référence au tableau dynamique de plateforme et ses caractéristiques pour l&#39;affichage tex..." alt="" coords="1000,42,1143,69"/>
+<area shape="rect" id="node2" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#a49eecb10b717bdb1cd67553f132e25f0" title="Procédure d&#39;affichage en fonction du jeu." alt="" coords="728,5,952,47"/>
+<area shape="rect" id="node7" href="$d9/d6a/class_jeu_mode_t_x_t.html#a5b78c8c73f9e43a0c73fff13fbebf5a0" title="Met le plateau à jour en fonction d&#39;un jeu en paramètre passé par référence." alt="" coords="738,71,942,98"/>
+<area shape="rect" id="node3" href="$db/da6/class_jeu_mode_g_r_a_p_h_i_q_u_e.html#ae635e18f66bdd43fda3b3bfb7ef6da9f" title="Procédure permettant le rafraichissement de l&#39;affichage en fonction du jeu." alt="" coords="473,5,680,47"/>
+<area shape="rect" id="node4" href="$d2/db8/class_menu.html#a40a7d3330001363eea2b0aa4add7f1ca" title="Procédure servant à démarrer une partie sur l&#39;affichage SDL, à chaque appel la graine du jeu est regé..." alt="" coords="301,15,425,42"/>
+<area shape="rect" id="node5" href="$d2/db8/class_menu.html#a4e0b1c5e7030c3a4283c603009cc97ee" title="Boucle d&#39;affichage du menu, détectant les événements, on prend en paramètre le double." alt="" coords="108,42,253,69"/>
+<area shape="rect" id="node6" href="$d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,42,60,69"/>
+<area shape="rect" id="node8" href="$d9/d6a/class_jeu_mode_t_x_t.html#af48e600d2ce74f212a89acd775fb8dce" title="Boucle d&#39;affichage du jeu en paramètre." alt="" coords="479,71,675,98"/>
+<area shape="rect" id="node9" href="$d2/db8/class_menu.html#aa080c0ca2efd1811f8580c40274b179b" title="Procédure servant à démarrer une partie sur l&#39;affichage TXT, à chaque appel la graine du jeu est regé..." alt="" coords="301,67,425,94"/>
+</map>

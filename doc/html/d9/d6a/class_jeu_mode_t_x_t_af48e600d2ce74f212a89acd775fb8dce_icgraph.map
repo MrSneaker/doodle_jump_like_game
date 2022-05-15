@@ -1,0 +1,6 @@
+<map id="JeuModeTXT::boucleAffTXT" name="JeuModeTXT::boucleAffTXT">
+<area shape="rect" id="node1" title="Boucle d&#39;affichage du jeu en paramètre." alt="" coords="473,5,669,32"/>
+<area shape="rect" id="node2" href="$d2/db8/class_menu.html#aa080c0ca2efd1811f8580c40274b179b" title="Procédure servant à démarrer une partie sur l&#39;affichage TXT, à chaque appel la graine du jeu est regé..." alt="" coords="301,5,425,32"/>
+<area shape="rect" id="node3" href="$d2/db8/class_menu.html#a4e0b1c5e7030c3a4283c603009cc97ee" title="Boucle d&#39;affichage du menu, détectant les événements, on prend en paramètre le double." alt="" coords="108,5,253,32"/>
+<area shape="rect" id="node4" href="$d7/de8/main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>

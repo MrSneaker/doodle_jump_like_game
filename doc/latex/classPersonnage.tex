@@ -1,0 +1,345 @@
+\hypertarget{classPersonnage}{}\doxysection{Personnage Class Reference}
+\label{classPersonnage}\index{Personnage@{Personnage}}
+
+
+{\ttfamily \#include $<$Personnage.\+h$>$}
+
+
+
+Collaboration diagram for Personnage\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classPersonnage__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPersonnage_abec36eb0310adc71f3375297fc590c65}{Personnage}} ()
+\begin{DoxyCompactList}\small\item\em position de base \+: 0,0; projectile à N\+U\+LL; direction, vitesse à 0, nom à \char`\"{}p0\char`\"{}, en\+Vie à true \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPersonnage_a05bdf2a469885bb1fbb6c2e8f98972ab}{$\sim$\+Personnage}} ()
+\begin{DoxyCompactList}\small\item\em supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à N\+U\+LL, en\+Vie à N\+U\+LL \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classPersonnage_a3a589d8772088add9b205724b18a044a}{get\+Pos}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la position en x et en y du personnage \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a7d4c24bf71c87368a07844555665c3d5}{set\+Pos}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em met à jour la position du personnage selon une position en paramètre \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classPersonnage_ac5919de22e5a1e9b4ee1df0645d160bc}{get\+Dir}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la direction du personnage \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPersonnage_ab9b0108111a13bc95cf2b6c6ff411598}{get\+Nombre\+Proj}} () const
+\begin{DoxyCompactList}\small\item\em renvoie le nombre de projectile \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classprojectile}{projectile}} \& \mbox{\hyperlink{classPersonnage_a2c15b81f42610a2cb244d605a6714910}{get\+Projectile}} (int n)
+\begin{DoxyCompactList}\small\item\em renvoie le vecteur projectile demandé si il existe \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classprojectile}{projectile}} \mbox{\hyperlink{classPersonnage_aa5d903f288763c99e01a9328e33653a3}{get\+Projectile\+Aff}} (int n) const
+\begin{DoxyCompactList}\small\item\em renvoie le vecteur projectile demandé si il existe pour l\textquotesingle{}affichage. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classPersonnage_ac042179eac7c950d079a2f6771925cef}{get\+Taille}} () const
+\begin{DoxyCompactList}\small\item\em renvoie le vecteur de taille du personnage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a883f72c1ef645f533506b06152b27dd4}{set\+Taille}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em met à jour la taille du personnage en fonction des réels \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classPersonnage_a74abeaa27e865af6efb59e9c32911f55}{get\+Vit}} () const
+\begin{DoxyCompactList}\small\item\em renvoie la vitesse du personnage \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a7ae957508d59feb0665217389e11bcd1}{set\+Vit}} (float vx, float vy)
+\begin{DoxyCompactList}\small\item\em met à jour la vitesse du personnage selon un paramètre vitesse \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_ac8bc6bc8f981cc371afaadcccca67f7f}{deplacerD}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em déplace le personnage à droite et modifie sa position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a75c5095b3a8ed92d47f901af33982ee3}{deplacerG}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em déplace le personnage à gauche et modifie sa position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_ac280b615288d06db115d9c6b831e9534}{saut}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em fait sauter le personnage, le déplace vers le haut en modifiant sa position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a21cb86fdd8284c71c22adb107dc01c03}{tombe}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em fait tomber le personnage, le déplace vers le haut en modifiant sa position. \end{DoxyCompactList}\item 
+const string \& \mbox{\hyperlink{classPersonnage_a060bd65b78ebf2ec5e4e474823cb0d90}{get\+Nom}} () const
+\begin{DoxyCompactList}\small\item\em renvoie le nom du personnage (permet de définir plusieurs apparences) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a10997900f7eb9178ed1547703b517004}{set\+Nom}} (const string nomP)
+\begin{DoxyCompactList}\small\item\em met à jour le nom du personnage selon un string \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a80ee7f3e71d2603b7b9c9c50e644c84a}{creer\+Proj}} (double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em fait tirer le personnage en créant un veteur projectile \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a77255b58126c3e9a3707a5fc6e6b0165}{detruit\+Proj}} (int i)
+\begin{DoxyCompactList}\small\item\em supprime un projectile \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a8b827a72e42d38de1b6d29dee145a4b5}{test\+Regression}} ()
+\begin{DoxyCompactList}\small\item\em test toutes les fonctions de la classe \mbox{\hyperlink{classPersonnage}{Personnage}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a74606e80d3e6b6a53a7a91eef16cd161}{place\+Proj\+Test}} (\mbox{\hyperlink{classprojectile}{projectile}} p)
+\begin{DoxyCompactList}\small\item\em Procédure permettant le test des collisions du projectile dans la classe \mbox{\hyperlink{classJeu}{Jeu}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classPersonnage_a56728454bc5450d7581d2b0e7799bcbf}{en\+Vie}}
+\begin{DoxyCompactList}\small\item\em booléen indiquant si le personnage est en vie ou non \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPersonnage_aaab95a506f61f262ed14ea10ae56f8d5}{a\+PrisB}}
+\begin{DoxyCompactList}\small\item\em booléen indiquant si le personnage a pris un bonus ou non \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPersonnage_abec36eb0310adc71f3375297fc590c65}\label{classPersonnage_abec36eb0310adc71f3375297fc590c65}} 
+\index{Personnage@{Personnage}!Personnage@{Personnage}}
+\index{Personnage@{Personnage}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{Personnage()}{Personnage()}}
+{\footnotesize\ttfamily Personnage\+::\+Personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+position de base \+: 0,0; projectile à N\+U\+LL; direction, vitesse à 0, nom à \char`\"{}p0\char`\"{}, en\+Vie à true 
+
+\mbox{\Hypertarget{classPersonnage_a05bdf2a469885bb1fbb6c2e8f98972ab}\label{classPersonnage_a05bdf2a469885bb1fbb6c2e8f98972ab}} 
+\index{Personnage@{Personnage}!````~Personnage@{$\sim$Personnage}}
+\index{````~Personnage@{$\sim$Personnage}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{$\sim$Personnage()}{~Personnage()}}
+{\footnotesize\ttfamily Personnage\+::$\sim$\+Personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+supprimes les projectiles, tout à 0(pos x,y; direction; vitesse), nom à N\+U\+LL, en\+Vie à N\+U\+LL 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPersonnage_a80ee7f3e71d2603b7b9c9c50e644c84a}\label{classPersonnage_a80ee7f3e71d2603b7b9c9c50e644c84a}} 
+\index{Personnage@{Personnage}!creerProj@{creerProj}}
+\index{creerProj@{creerProj}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{creerProj()}{creerProj()}}
+{\footnotesize\ttfamily void Personnage\+::creer\+Proj (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+fait tirer le personnage en créant un veteur projectile 
+
+\mbox{\Hypertarget{classPersonnage_ac8bc6bc8f981cc371afaadcccca67f7f}\label{classPersonnage_ac8bc6bc8f981cc371afaadcccca67f7f}} 
+\index{Personnage@{Personnage}!deplacerD@{deplacerD}}
+\index{deplacerD@{deplacerD}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{deplacerD()}{deplacerD()}}
+{\footnotesize\ttfamily void Personnage\+::deplacerD (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+déplace le personnage à droite et modifie sa position. 
+
+\mbox{\Hypertarget{classPersonnage_a75c5095b3a8ed92d47f901af33982ee3}\label{classPersonnage_a75c5095b3a8ed92d47f901af33982ee3}} 
+\index{Personnage@{Personnage}!deplacerG@{deplacerG}}
+\index{deplacerG@{deplacerG}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{deplacerG()}{deplacerG()}}
+{\footnotesize\ttfamily void Personnage\+::deplacerG (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+déplace le personnage à gauche et modifie sa position. 
+
+\mbox{\Hypertarget{classPersonnage_a77255b58126c3e9a3707a5fc6e6b0165}\label{classPersonnage_a77255b58126c3e9a3707a5fc6e6b0165}} 
+\index{Personnage@{Personnage}!detruitProj@{detruitProj}}
+\index{detruitProj@{detruitProj}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{detruitProj()}{detruitProj()}}
+{\footnotesize\ttfamily void Personnage\+::detruit\+Proj (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+supprime un projectile 
+
+\mbox{\Hypertarget{classPersonnage_ac5919de22e5a1e9b4ee1df0645d160bc}\label{classPersonnage_ac5919de22e5a1e9b4ee1df0645d160bc}} 
+\index{Personnage@{Personnage}!getDir@{getDir}}
+\index{getDir@{getDir}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getDir()}{getDir()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Personnage\+::get\+Dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la direction du personnage 
+
+\mbox{\Hypertarget{classPersonnage_a060bd65b78ebf2ec5e4e474823cb0d90}\label{classPersonnage_a060bd65b78ebf2ec5e4e474823cb0d90}} 
+\index{Personnage@{Personnage}!getNom@{getNom}}
+\index{getNom@{getNom}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getNom()}{getNom()}}
+{\footnotesize\ttfamily const string \& Personnage\+::get\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie le nom du personnage (permet de définir plusieurs apparences) 
+
+\mbox{\Hypertarget{classPersonnage_ab9b0108111a13bc95cf2b6c6ff411598}\label{classPersonnage_ab9b0108111a13bc95cf2b6c6ff411598}} 
+\index{Personnage@{Personnage}!getNombreProj@{getNombreProj}}
+\index{getNombreProj@{getNombreProj}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getNombreProj()}{getNombreProj()}}
+{\footnotesize\ttfamily int Personnage\+::get\+Nombre\+Proj (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie le nombre de projectile 
+
+\mbox{\Hypertarget{classPersonnage_a3a589d8772088add9b205724b18a044a}\label{classPersonnage_a3a589d8772088add9b205724b18a044a}} 
+\index{Personnage@{Personnage}!getPos@{getPos}}
+\index{getPos@{getPos}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Personnage\+::get\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la position en x et en y du personnage 
+
+\mbox{\Hypertarget{classPersonnage_a2c15b81f42610a2cb244d605a6714910}\label{classPersonnage_a2c15b81f42610a2cb244d605a6714910}} 
+\index{Personnage@{Personnage}!getProjectile@{getProjectile}}
+\index{getProjectile@{getProjectile}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getProjectile()}{getProjectile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classprojectile}{projectile}} \& Personnage\+::get\+Projectile (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+renvoie le vecteur projectile demandé si il existe 
+
+\mbox{\Hypertarget{classPersonnage_aa5d903f288763c99e01a9328e33653a3}\label{classPersonnage_aa5d903f288763c99e01a9328e33653a3}} 
+\index{Personnage@{Personnage}!getProjectileAff@{getProjectileAff}}
+\index{getProjectileAff@{getProjectileAff}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getProjectileAff()}{getProjectileAff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classprojectile}{projectile}} Personnage\+::get\+Projectile\+Aff (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption}) const}
+
+
+
+renvoie le vecteur projectile demandé si il existe pour l\textquotesingle{}affichage. 
+
+\mbox{\Hypertarget{classPersonnage_ac042179eac7c950d079a2f6771925cef}\label{classPersonnage_ac042179eac7c950d079a2f6771925cef}} 
+\index{Personnage@{Personnage}!getTaille@{getTaille}}
+\index{getTaille@{getTaille}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getTaille()}{getTaille()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Personnage\+::get\+Taille (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie le vecteur de taille du personnage. 
+
+\mbox{\Hypertarget{classPersonnage_a74abeaa27e865af6efb59e9c32911f55}\label{classPersonnage_a74abeaa27e865af6efb59e9c32911f55}} 
+\index{Personnage@{Personnage}!getVit@{getVit}}
+\index{getVit@{getVit}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getVit()}{getVit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Personnage\+::get\+Vit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie la vitesse du personnage 
+
+\mbox{\Hypertarget{classPersonnage_a74606e80d3e6b6a53a7a91eef16cd161}\label{classPersonnage_a74606e80d3e6b6a53a7a91eef16cd161}} 
+\index{Personnage@{Personnage}!placeProjTest@{placeProjTest}}
+\index{placeProjTest@{placeProjTest}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{placeProjTest()}{placeProjTest()}}
+{\footnotesize\ttfamily void Personnage\+::place\+Proj\+Test (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classprojectile}{projectile}}}]{p }\end{DoxyParamCaption})}
+
+
+
+Procédure permettant le test des collisions du projectile dans la classe \mbox{\hyperlink{classJeu}{Jeu}}. 
+
+\mbox{\Hypertarget{classPersonnage_ac280b615288d06db115d9c6b831e9534}\label{classPersonnage_ac280b615288d06db115d9c6b831e9534}} 
+\index{Personnage@{Personnage}!saut@{saut}}
+\index{saut@{saut}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{saut()}{saut()}}
+{\footnotesize\ttfamily void Personnage\+::saut (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+fait sauter le personnage, le déplace vers le haut en modifiant sa position. 
+
+\mbox{\Hypertarget{classPersonnage_a10997900f7eb9178ed1547703b517004}\label{classPersonnage_a10997900f7eb9178ed1547703b517004}} 
+\index{Personnage@{Personnage}!setNom@{setNom}}
+\index{setNom@{setNom}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{setNom()}{setNom()}}
+{\footnotesize\ttfamily void Personnage\+::set\+Nom (\begin{DoxyParamCaption}\item[{const string}]{nomP }\end{DoxyParamCaption})}
+
+
+
+met à jour le nom du personnage selon un string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom} & en paramètre \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_a7d4c24bf71c87368a07844555665c3d5}\label{classPersonnage_a7d4c24bf71c87368a07844555665c3d5}} 
+\index{Personnage@{Personnage}!setPos@{setPos}}
+\index{setPos@{setPos}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily void Personnage\+::set\+Pos (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+met à jour la position du personnage selon une position en paramètre 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_a883f72c1ef645f533506b06152b27dd4}\label{classPersonnage_a883f72c1ef645f533506b06152b27dd4}} 
+\index{Personnage@{Personnage}!setTaille@{setTaille}}
+\index{setTaille@{setTaille}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{setTaille()}{setTaille()}}
+{\footnotesize\ttfamily void Personnage\+::set\+Taille (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+met à jour la taille du personnage en fonction des réels 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_a7ae957508d59feb0665217389e11bcd1}\label{classPersonnage_a7ae957508d59feb0665217389e11bcd1}} 
+\index{Personnage@{Personnage}!setVit@{setVit}}
+\index{setVit@{setVit}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{setVit()}{setVit()}}
+{\footnotesize\ttfamily void Personnage\+::set\+Vit (\begin{DoxyParamCaption}\item[{float}]{vx,  }\item[{float}]{vy }\end{DoxyParamCaption})}
+
+
+
+met à jour la vitesse du personnage selon un paramètre vitesse 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_a8b827a72e42d38de1b6d29dee145a4b5}\label{classPersonnage_a8b827a72e42d38de1b6d29dee145a4b5}} 
+\index{Personnage@{Personnage}!testRegression@{testRegression}}
+\index{testRegression@{testRegression}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{testRegression()}{testRegression()}}
+{\footnotesize\ttfamily void Personnage\+::test\+Regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+test toutes les fonctions de la classe \mbox{\hyperlink{classPersonnage}{Personnage}} 
+
+\mbox{\Hypertarget{classPersonnage_a21cb86fdd8284c71c22adb107dc01c03}\label{classPersonnage_a21cb86fdd8284c71c22adb107dc01c03}} 
+\index{Personnage@{Personnage}!tombe@{tombe}}
+\index{tombe@{tombe}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{tombe()}{tombe()}}
+{\footnotesize\ttfamily void Personnage\+::tombe (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+fait tomber le personnage, le déplace vers le haut en modifiant sa position. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classPersonnage_aaab95a506f61f262ed14ea10ae56f8d5}\label{classPersonnage_aaab95a506f61f262ed14ea10ae56f8d5}} 
+\index{Personnage@{Personnage}!aPrisB@{aPrisB}}
+\index{aPrisB@{aPrisB}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{aPrisB}{aPrisB}}
+{\footnotesize\ttfamily bool Personnage\+::a\+PrisB}
+
+
+
+booléen indiquant si le personnage a pris un bonus ou non 
+
+\mbox{\Hypertarget{classPersonnage_a56728454bc5450d7581d2b0e7799bcbf}\label{classPersonnage_a56728454bc5450d7581d2b0e7799bcbf}} 
+\index{Personnage@{Personnage}!enVie@{enVie}}
+\index{enVie@{enVie}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{enVie}{enVie}}
+{\footnotesize\ttfamily bool Personnage\+::en\+Vie}
+
+
+
+booléen indiquant si le personnage est en vie ou non 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Personnage_8h}{Personnage.\+h}}\item 
+src/\mbox{\hyperlink{Personnage_8cpp}{Personnage.\+cpp}}\end{DoxyCompactItemize}

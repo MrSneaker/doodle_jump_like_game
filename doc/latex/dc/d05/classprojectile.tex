@@ -1,0 +1,139 @@
+\hypertarget{classprojectile}{}\doxysection{Référence de la classe projectile}
+\label{classprojectile}\index{projectile@{projectile}}
+
+
+{\ttfamily \#include $<$projectile.\+h$>$}
+
+
+
+Graphe de collaboration de projectile\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{d4/dbf/classprojectile__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classprojectile_a905743b29ee5202dfcd1e1caee95802f}{projectile}} (float x, float y, float dx, float dy)
+\begin{DoxyCompactList}\small\item\em construit un projectile au coordonnées indiquées \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classprojectile_a06144f890c4579ec8e25ebc9095a1768}{$\sim$projectile}} ()
+\begin{DoxyCompactList}\small\item\em destructeur \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classprojectile_a41de52036ab958aa1c85c0dc28effe9f}{Update}} (double \mbox{\hyperlink{main_affichage_mode_g_r_a_p_h_i_q_u_e_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em met à jour la position du projectile \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vec2}{Vec2}} \mbox{\hyperlink{classprojectile_a9cc547713117b8e15f7774ff0b764a4c}{getdir}} () const
+\begin{DoxyCompactList}\small\item\em renvoie le vecteur de direction du projectile \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vec2}{Vec2}} \mbox{\hyperlink{classprojectile_a2bda70dbc200b9f388bb31b7ca1be873}{getpos}} () const
+\begin{DoxyCompactList}\small\item\em renvoie le vecteur de position du projectile \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classprojectile_af702f041808558287b815c5b0c18f107}{Suppr}} ()
+\begin{DoxyCompactList}\small\item\em Procédure de suppression d\textquotesingle{}un projectile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classprojectile_a58d37ef8aa754229a5fc82181a19a60c}{existe}}
+\begin{DoxyCompactList}\small\item\em Booléen indiquant si oui ou non le projectile existe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classprojectile_a905743b29ee5202dfcd1e1caee95802f}\label{classprojectile_a905743b29ee5202dfcd1e1caee95802f}} 
+\index{projectile@{projectile}!projectile@{projectile}}
+\index{projectile@{projectile}!projectile@{projectile}}
+\doxysubsubsection{\texorpdfstring{projectile()}{projectile()}}
+{\footnotesize\ttfamily projectile\+::projectile (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{dx,  }\item[{float}]{dy }\end{DoxyParamCaption})}
+
+
+
+construit un projectile au coordonnées indiquées 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classprojectile_a06144f890c4579ec8e25ebc9095a1768}\label{classprojectile_a06144f890c4579ec8e25ebc9095a1768}} 
+\index{projectile@{projectile}!````~projectile@{$\sim$projectile}}
+\index{````~projectile@{$\sim$projectile}!projectile@{projectile}}
+\doxysubsubsection{\texorpdfstring{$\sim$projectile()}{~projectile()}}
+{\footnotesize\ttfamily projectile\+::$\sim$projectile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+destructeur 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classprojectile_a9cc547713117b8e15f7774ff0b764a4c}\label{classprojectile_a9cc547713117b8e15f7774ff0b764a4c}} 
+\index{projectile@{projectile}!getdir@{getdir}}
+\index{getdir@{getdir}!projectile@{projectile}}
+\doxysubsubsection{\texorpdfstring{getdir()}{getdir()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vec2}{Vec2}} projectile\+::getdir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie le vecteur de direction du projectile 
+
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/d05/classprojectile_a9cc547713117b8e15f7774ff0b764a4c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classprojectile_a2bda70dbc200b9f388bb31b7ca1be873}\label{classprojectile_a2bda70dbc200b9f388bb31b7ca1be873}} 
+\index{projectile@{projectile}!getpos@{getpos}}
+\index{getpos@{getpos}!projectile@{projectile}}
+\doxysubsubsection{\texorpdfstring{getpos()}{getpos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_vec2}{Vec2}} projectile\+::getpos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+renvoie le vecteur de position du projectile 
+
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/d05/classprojectile_a2bda70dbc200b9f388bb31b7ca1be873_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classprojectile_af702f041808558287b815c5b0c18f107}\label{classprojectile_af702f041808558287b815c5b0c18f107}} 
+\index{projectile@{projectile}!Suppr@{Suppr}}
+\index{Suppr@{Suppr}!projectile@{projectile}}
+\doxysubsubsection{\texorpdfstring{Suppr()}{Suppr()}}
+{\footnotesize\ttfamily void projectile\+::\+Suppr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Procédure de suppression d\textquotesingle{}un projectile. 
+
+\mbox{\Hypertarget{classprojectile_a41de52036ab958aa1c85c0dc28effe9f}\label{classprojectile_a41de52036ab958aa1c85c0dc28effe9f}} 
+\index{projectile@{projectile}!Update@{Update}}
+\index{Update@{Update}!projectile@{projectile}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void projectile\+::\+Update (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+met à jour la position du projectile 
+
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{classprojectile_a58d37ef8aa754229a5fc82181a19a60c}\label{classprojectile_a58d37ef8aa754229a5fc82181a19a60c}} 
+\index{projectile@{projectile}!existe@{existe}}
+\index{existe@{existe}!projectile@{projectile}}
+\doxysubsubsection{\texorpdfstring{existe}{existe}}
+{\footnotesize\ttfamily bool projectile\+::existe}
+
+
+
+Booléen indiquant si oui ou non le projectile existe. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{projectile_8h}{projectile.\+h}}\item 
+src/\mbox{\hyperlink{projectile_8cpp}{projectile.\+cpp}}\end{DoxyCompactItemize}

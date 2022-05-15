@@ -1,0 +1,150 @@
+\hypertarget{classJeuModeTXT}{}\doxysection{Jeu\+Mode\+T\+XT Class Reference}
+\label{classJeuModeTXT}\index{JeuModeTXT@{JeuModeTXT}}
+
+
+{\ttfamily \#include $<$Jeu\+Mode\+T\+X\+T.\+h$>$}
+
+
+
+Collaboration diagram for Jeu\+Mode\+T\+XT\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classJeuModeTXT__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJeuModeTXT_ad03c019f379f48385157cabda39d2f2c}{Jeu\+Mode\+T\+XT}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur du jeu T\+XT,initialise la position de la caméra à 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classJeuModeTXT_ae3302da5c0b40e0c739712812e99eb41}{$\sim$\+Jeu\+Mode\+T\+XT}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur du jeu T\+XT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeuModeTXT_a9f0d74ee9b6964464ec17609bd7341cf}{Init\+Cam}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la caméra sur la position du personnage + D\+I\+M\+X/2 (la moitié de la taille de l\textquotesingle{}écran en ordonnées). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structVec2}{Vec2}} \mbox{\hyperlink{classJeuModeTXT_a3e272baaf5ebe865218b313fd68d26b3}{convert\+Pos}} (\mbox{\hyperlink{structVec2}{Vec2}} pos)
+\begin{DoxyCompactList}\small\item\em Convertie une position logique (i.\+e venant du moteur de jeu \mbox{\hyperlink{Jeu_8cpp}{Jeu.\+cpp}}) en une position d\textquotesingle{}affichage à partir d\textquotesingle{}un vecteur de position en paramètre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeuModeTXT_a5b78c8c73f9e43a0c73fff13fbebf5a0}{update\+Plateau}} (\mbox{\hyperlink{classJeu}{Jeu}} \&jeu)
+\begin{DoxyCompactList}\small\item\em Met le plateau à jour en fonction d\textquotesingle{}un jeu en paramètre passé par référence. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeuModeTXT_a8a313e0f64f4f321939cf8781daae6e6}{affichage\+T\+XT}} (\mbox{\hyperlink{classJeu}{Jeu}} \&jeu)
+\begin{DoxyCompactList}\small\item\em Affiche le jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeuModeTXT_af48e600d2ce74f212a89acd775fb8dce}{boucle\+Aff\+T\+XT}} (\mbox{\hyperlink{classJeu}{Jeu}} \&jeu, double \mbox{\hyperlink{mainAffichageModeGRAPHIQUE_8cpp_a03e28be41881b703c836edbfe9b51b17}{dt}})
+\begin{DoxyCompactList}\small\item\em Boucle d\textquotesingle{}affichage du jeu en paramètre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classJeuModeTXT_a5a84309fdf984ae2686b5e56d1a35a84}{aff\+Detruire\+T\+XT}} ()
+\begin{DoxyCompactList}\small\item\em Efface le cadre de jeu en utilisant un cadre vide. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJeuModeTXT_ad03c019f379f48385157cabda39d2f2c}\label{classJeuModeTXT_ad03c019f379f48385157cabda39d2f2c}} 
+\index{JeuModeTXT@{JeuModeTXT}!JeuModeTXT@{JeuModeTXT}}
+\index{JeuModeTXT@{JeuModeTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{JeuModeTXT()}{JeuModeTXT()}}
+{\footnotesize\ttfamily Jeu\+Mode\+T\+X\+T\+::\+Jeu\+Mode\+T\+XT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur du jeu T\+XT,initialise la position de la caméra à 0. 
+
+\mbox{\Hypertarget{classJeuModeTXT_ae3302da5c0b40e0c739712812e99eb41}\label{classJeuModeTXT_ae3302da5c0b40e0c739712812e99eb41}} 
+\index{JeuModeTXT@{JeuModeTXT}!````~JeuModeTXT@{$\sim$JeuModeTXT}}
+\index{````~JeuModeTXT@{$\sim$JeuModeTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{$\sim$JeuModeTXT()}{~JeuModeTXT()}}
+{\footnotesize\ttfamily Jeu\+Mode\+T\+X\+T\+::$\sim$\+Jeu\+Mode\+T\+XT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur du jeu T\+XT. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classJeuModeTXT_a5a84309fdf984ae2686b5e56d1a35a84}\label{classJeuModeTXT_a5a84309fdf984ae2686b5e56d1a35a84}} 
+\index{JeuModeTXT@{JeuModeTXT}!affDetruireTXT@{affDetruireTXT}}
+\index{affDetruireTXT@{affDetruireTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{affDetruireTXT()}{affDetruireTXT()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::aff\+Detruire\+T\+XT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Efface le cadre de jeu en utilisant un cadre vide. 
+
+\mbox{\Hypertarget{classJeuModeTXT_a8a313e0f64f4f321939cf8781daae6e6}\label{classJeuModeTXT_a8a313e0f64f4f321939cf8781daae6e6}} 
+\index{JeuModeTXT@{JeuModeTXT}!affichageTXT@{affichageTXT}}
+\index{affichageTXT@{affichageTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{affichageTXT()}{affichageTXT()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::affichage\+T\+XT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJeu}{Jeu}} \&}]{jeu }\end{DoxyParamCaption})}
+
+
+
+Affiche le jeu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em jeu} & passé en référence en effaçant le terminal. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeuModeTXT_af48e600d2ce74f212a89acd775fb8dce}\label{classJeuModeTXT_af48e600d2ce74f212a89acd775fb8dce}} 
+\index{JeuModeTXT@{JeuModeTXT}!boucleAffTXT@{boucleAffTXT}}
+\index{boucleAffTXT@{boucleAffTXT}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{boucleAffTXT()}{boucleAffTXT()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::boucle\+Aff\+T\+XT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJeu}{Jeu}} \&}]{jeu,  }\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Boucle d\textquotesingle{}affichage du jeu en paramètre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em jeu} & passé en référence, réalisant l\textquotesingle{}update et l\textquotesingle{}affichage de ce dernier tant que le joueur n\textquotesingle{}a pas quitté ou perdu. Cela en fonction de la vitesse de mise à jour en paramètre\\
+\hline
+{\em dt.} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeuModeTXT_a3e272baaf5ebe865218b313fd68d26b3}\label{classJeuModeTXT_a3e272baaf5ebe865218b313fd68d26b3}} 
+\index{JeuModeTXT@{JeuModeTXT}!convertPos@{convertPos}}
+\index{convertPos@{convertPos}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{convertPos()}{convertPos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structVec2}{Vec2}} Jeu\+Mode\+T\+X\+T\+::convert\+Pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVec2}{Vec2}}}]{pos }\end{DoxyParamCaption})}
+
+
+
+Convertie une position logique (i.\+e venant du moteur de jeu \mbox{\hyperlink{Jeu_8cpp}{Jeu.\+cpp}}) en une position d\textquotesingle{}affichage à partir d\textquotesingle{}un vecteur de position en paramètre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos.} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classJeuModeTXT_a9f0d74ee9b6964464ec17609bd7341cf}\label{classJeuModeTXT_a9f0d74ee9b6964464ec17609bd7341cf}} 
+\index{JeuModeTXT@{JeuModeTXT}!InitCam@{InitCam}}
+\index{InitCam@{InitCam}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{InitCam()}{InitCam()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::\+Init\+Cam (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise la caméra sur la position du personnage + D\+I\+M\+X/2 (la moitié de la taille de l\textquotesingle{}écran en ordonnées). 
+
+\mbox{\Hypertarget{classJeuModeTXT_a5b78c8c73f9e43a0c73fff13fbebf5a0}\label{classJeuModeTXT_a5b78c8c73f9e43a0c73fff13fbebf5a0}} 
+\index{JeuModeTXT@{JeuModeTXT}!updatePlateau@{updatePlateau}}
+\index{updatePlateau@{updatePlateau}!JeuModeTXT@{JeuModeTXT}}
+\doxysubsubsection{\texorpdfstring{updatePlateau()}{updatePlateau()}}
+{\footnotesize\ttfamily void Jeu\+Mode\+T\+X\+T\+::update\+Plateau (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classJeu}{Jeu}} \&}]{jeu }\end{DoxyParamCaption})}
+
+
+
+Met le plateau à jour en fonction d\textquotesingle{}un jeu en paramètre passé par référence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em jeu.} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{JeuModeTXT_8h}{Jeu\+Mode\+T\+X\+T.\+h}}\item 
+src/\mbox{\hyperlink{JeuModeTXT_8cpp}{Jeu\+Mode\+T\+X\+T.\+cpp}}\end{DoxyCompactItemize}

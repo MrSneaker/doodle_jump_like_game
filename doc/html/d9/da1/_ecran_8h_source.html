@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Foodle Jump:  Fichier source de src/Ecran.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Foodle Jump
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Ecran.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d9/da1/_ecran_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __ECRAN_H__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __ECRAN_H__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../dc/d91/_plateforme_8h.html">Plateforme.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d7/d08/bonus_8h.html">bonus.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../df/d6f/_monstre_8h.html">Monstre.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="../../d5/d3a/class_ecran.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d5/d3a/class_ecran.html">Ecran</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> debutEcran;     </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">int</span> finEcran;       </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">int</span> nbPlEc;         </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">int</span> NB_MONSTRE = 4; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> NB_BONUS = 5;   </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="../../d5/d3a/class_ecran.html">Ecran</a>(<span class="keywordtype">int</span> posDebut, <span class="keywordtype">int</span> posFin, <span class="keywordtype">int</span> nbPlat, vector&lt;Plateforme&gt; &amp;p, <a class="code" href="../../d3/d3c/classbonus.html">bonus</a> b[4], <a class="code" href="../../d8/d9e/class_monstre.html">Monstre</a> m[4], <span class="keywordtype">bool</span> genereMB, <span class="keywordtype">int</span> scoreJeu);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">int</span> getDebutEc() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">int</span> getFinEc() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> detruireEc(vector&lt;Plateforme&gt; &amp;p, <a class="code" href="../../d3/d3c/classbonus.html">bonus</a> b[4], <a class="code" href="../../d8/d9e/class_monstre.html">Monstre</a> m[4], <span class="keywordtype">int</span> nbPl);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> getNbPlEc() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    ~<a class="code" href="../../d5/d3a/class_ecran.html">Ecran</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_ecran_html_a4405b236df3f818ec12d3bff0df63856"><div class="ttname"><a href="../../d5/d3a/class_ecran.html#a4405b236df3f818ec12d3bff0df63856">Ecran::~Ecran</a></div><div class="ttdeci">~Ecran()</div><div class="ttdoc">Destructeur.</div><div class="ttdef"><b>Definition:</b> Ecran.cpp:127</div></div>
+<div class="ttc" id="aclassbonus_html_ac4889a48b96adcd3f92fee3559cd6dbf"><div class="ttname"><a href="../../d3/d3c/classbonus.html#ac4889a48b96adcd3f92fee3559cd6dbf">bonus::setPosBonus</a></div><div class="ttdeci">void setPosBonus(float x, float y)</div><div class="ttdoc">met à jour la position du bonus selon une position en paramètre</div><div class="ttdef"><b>Definition:</b> bonus.cpp:27</div></div>
+<div class="ttc" id="aclass_monstre_html"><div class="ttname"><a href="../../d8/d9e/class_monstre.html">Monstre</a></div><div class="ttdef"><b>Definition:</b> Monstre.h:10</div></div>
+<div class="ttc" id="aclassbonus_html"><div class="ttname"><a href="../../d3/d3c/classbonus.html">bonus</a></div><div class="ttdef"><b>Definition:</b> bonus.h:9</div></div>
+<div class="ttc" id="a_monstre_8h_html"><div class="ttname"><a href="../../df/d6f/_monstre_8h.html">Monstre.h</a></div></div>
+<div class="ttc" id="astruct_vec2_html_a30543787e62f6d915543cf1dfb04c094"><div class="ttname"><a href="../../db/db1/struct_vec2.html#a30543787e62f6d915543cf1dfb04c094">Vec2::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition:</b> vec2.h:7</div></div>
+<div class="ttc" id="aclass_monstre_html_a2373dae713980d0151a4c700143b8299"><div class="ttname"><a href="../../d8/d9e/class_monstre.html#a2373dae713980d0151a4c700143b8299">Monstre::setDirM</a></div><div class="ttdeci">void setDirM(float x, float y)</div><div class="ttdoc">met à jour la direction par rapport au paramètres</div><div class="ttdef"><b>Definition:</b> Monstre.cpp:42</div></div>
+<div class="ttc" id="aclass_ecran_html_affb6c0a8d14647b5bdfffc0218d8e852"><div class="ttname"><a href="../../d5/d3a/class_ecran.html#affb6c0a8d14647b5bdfffc0218d8e852">Ecran::getDebutEc</a></div><div class="ttdeci">int getDebutEc() const</div><div class="ttdoc">Renvoie un entier désignant le début de l'écran.</div><div class="ttdef"><b>Definition:</b> Ecran.cpp:87</div></div>
+<div class="ttc" id="aclass_plateforme_html_afdc8ff6c854a406e2ac96df56230e381"><div class="ttname"><a href="../../dd/de7/class_plateforme.html#afdc8ff6c854a406e2ac96df56230e381">Plateforme::getPos</a></div><div class="ttdeci">const Vec2 &amp; getPos() const</div><div class="ttdoc">renvoie la position de la plateforme</div><div class="ttdef"><b>Definition:</b> Plateforme.cpp:31</div></div>
+<div class="ttc" id="aclassbonus_html_abf30df1f88c5abb30f171ce11fc2a0c3"><div class="ttname"><a href="../../d3/d3c/classbonus.html#abf30df1f88c5abb30f171ce11fc2a0c3">bonus::estPris</a></div><div class="ttdeci">bool estPris</div><div class="ttdoc">booléen indiquant si le bonus est pris ou non.</div><div class="ttdef"><b>Definition:</b> bonus.h:20</div></div>
+<div class="ttc" id="aclass_ecran_html_a2e45d49372e2af90da101bb2795845da"><div class="ttname"><a href="../../d5/d3a/class_ecran.html#a2e45d49372e2af90da101bb2795845da">Ecran::getNbPlEc</a></div><div class="ttdeci">int getNbPlEc() const</div><div class="ttdoc">Renvoie le nombre de plateformes de l'écran.</div><div class="ttdef"><b>Definition:</b> Ecran.cpp:122</div></div>
+<div class="ttc" id="astruct_vec2_html_adf8ee322d4b4bcc04146762c018d731f"><div class="ttname"><a href="../../db/db1/struct_vec2.html#adf8ee322d4b4bcc04146762c018d731f">Vec2::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">deux réels représentant un vecteurs 2D.</div><div class="ttdef"><b>Definition:</b> vec2.h:7</div></div>
+<div class="ttc" id="aclass_plateforme_html"><div class="ttname"><a href="../../dd/de7/class_plateforme.html">Plateforme</a></div><div class="ttdef"><b>Definition:</b> Plateforme.h:7</div></div>
+<div class="ttc" id="aclass_plateforme_html_a04e54ffbe3f3657fdfe712075cc2aa0b"><div class="ttname"><a href="../../dd/de7/class_plateforme.html#a04e54ffbe3f3657fdfe712075cc2aa0b">Plateforme::setDir</a></div><div class="ttdeci">void setDir(float x, float y)</div><div class="ttdoc">Met à jour la direction de la plateforme selon deux réels passées en paramètre.</div><div class="ttdef"><b>Definition:</b> Plateforme.cpp:51</div></div>
+<div class="ttc" id="a_ecran_8cpp_html_ad5755de87d8b9181d2d4f9915dd918b4"><div class="ttname"><a href="../../d0/d18/_ecran_8cpp.html#ad5755de87d8b9181d2d4f9915dd918b4">random</a></div><div class="ttdeci">int random(int min, int max)</div><div class="ttdef"><b>Definition:</b> Ecran.cpp:3</div></div>
+<div class="ttc" id="aclass_ecran_html"><div class="ttname"><a href="../../d5/d3a/class_ecran.html">Ecran</a></div><div class="ttdef"><b>Definition:</b> Ecran.h:11</div></div>
+<div class="ttc" id="aclass_ecran_html_aaba8a1895c2032d86c98c65b763ed3af"><div class="ttname"><a href="../../d5/d3a/class_ecran.html#aaba8a1895c2032d86c98c65b763ed3af">Ecran::Ecran</a></div><div class="ttdeci">Ecran(int posDebut, int posFin, int nbPlat, vector&lt; Plateforme &gt; &amp;p, bonus b[4], Monstre m[4], bool genereMB, int scoreJeu)</div><div class="ttdoc">constructeur permettant de construire un écran à partir de sa position de début et de fin (</div><div class="ttdef"><b>Definition:</b> Ecran.cpp:19</div></div>
+<div class="ttc" id="aclass_monstre_html_a13736113aa013fe1a9b93188cb6b3f26"><div class="ttname"><a href="../../d8/d9e/class_monstre.html#a13736113aa013fe1a9b93188cb6b3f26">Monstre::setPos</a></div><div class="ttdeci">void setPos(float x, float y)</div><div class="ttdoc">met à jour la position du monstre selon une position en paramètre</div><div class="ttdef"><b>Definition:</b> Monstre.cpp:31</div></div>
+<div class="ttc" id="aclassbonus_html_a95ec3fceba452cdc4a66f3d32127795a"><div class="ttname"><a href="../../d3/d3c/classbonus.html#a95ec3fceba452cdc4a66f3d32127795a">bonus::disponible</a></div><div class="ttdeci">bool disponible</div><div class="ttdoc">booléen indiquant si le bonus est disponible à la génération ou non.</div><div class="ttdef"><b>Definition:</b> bonus.h:22</div></div>
+<div class="ttc" id="a_plateforme_8h_html"><div class="ttname"><a href="../../dc/d91/_plateforme_8h.html">Plateforme.h</a></div></div>
+<div class="ttc" id="abonus_8h_html"><div class="ttname"><a href="../../d7/d08/bonus_8h.html">bonus.h</a></div></div>
+<div class="ttc" id="aclass_plateforme_html_a60b0af1a5460426e7e2d53f8eb20975c"><div class="ttname"><a href="../../dd/de7/class_plateforme.html#a60b0af1a5460426e7e2d53f8eb20975c">Plateforme::setTaille</a></div><div class="ttdeci">void setTaille(float x, float y)</div><div class="ttdoc">modifie la taille de la plateforme à partir d'un float</div><div class="ttdef"><b>Definition:</b> Plateforme.cpp:62</div></div>
+<div class="ttc" id="aclass_ecran_html_a3d4d6bdb3a7efbe004d2906b461a994b"><div class="ttname"><a href="../../d5/d3a/class_ecran.html#a3d4d6bdb3a7efbe004d2906b461a994b">Ecran::getFinEc</a></div><div class="ttdeci">int getFinEc() const</div><div class="ttdoc">Renvoie un entier désignant la fin de l'écran.</div><div class="ttdef"><b>Definition:</b> Ecran.cpp:92</div></div>
+<div class="ttc" id="aclass_monstre_html_a6511b568050e2e76934da2eda37dc321"><div class="ttname"><a href="../../d8/d9e/class_monstre.html#a6511b568050e2e76934da2eda37dc321">Monstre::getPos</a></div><div class="ttdeci">Vec2 getPos() const</div><div class="ttdoc">renvoie la position du monstre en x et y</div><div class="ttdef"><b>Definition:</b> Monstre.cpp:26</div></div>
+<div class="ttc" id="aclass_plateforme_html_ab206260b11efae360b834dc5718c8b1e"><div class="ttname"><a href="../../dd/de7/class_plateforme.html#ab206260b11efae360b834dc5718c8b1e">Plateforme::setPos</a></div><div class="ttdeci">void setPos(float x, float y)</div><div class="ttdoc">modifie la position d'une plateforme à partir d'un vec2</div><div class="ttdef"><b>Definition:</b> Plateforme.cpp:36</div></div>
+<div class="ttc" id="aclass_monstre_html_a19a03424c70893c3a268ed538c8aabb1"><div class="ttname"><a href="../../d8/d9e/class_monstre.html#a19a03424c70893c3a268ed538c8aabb1">Monstre::enVie</a></div><div class="ttdeci">bool enVie</div><div class="ttdoc">le monstre est en vie ou pas</div><div class="ttdef"><b>Definition:</b> Monstre.h:22</div></div>
+<div class="ttc" id="aclass_plateforme_html_a6e01a3ce18ee5d422580cd4af9036c23"><div class="ttname"><a href="../../dd/de7/class_plateforme.html#a6e01a3ce18ee5d422580cd4af9036c23">Plateforme::posXbase</a></div><div class="ttdeci">float posXbase</div><div class="ttdoc">variable permettant d'obtenir la position verticale de base lors de la construction,...</div><div class="ttdef"><b>Definition:</b> Plateforme.h:18</div></div>
+<div class="ttc" id="aclass_ecran_html_adbeec68e5a6812165f10f353d7bdec6c"><div class="ttname"><a href="../../d5/d3a/class_ecran.html#adbeec68e5a6812165f10f353d7bdec6c">Ecran::detruireEc</a></div><div class="ttdeci">void detruireEc(vector&lt; Plateforme &gt; &amp;p, bonus b[4], Monstre m[4], int nbPl)</div><div class="ttdoc">Procédure de destruction des éléments constituant l'écran à partir des paramètres.</div><div class="ttdef"><b>Definition:</b> Ecran.cpp:97</div></div>
+<div class="ttc" id="a_ecran_8h_html"><div class="ttname"><a href="../../d9/da1/_ecran_8h.html">Ecran.h</a></div></div>
+<div class="ttc" id="aclassbonus_html_a684d6f26b2ed6f4955282426f5eef616"><div class="ttname"><a href="../../d3/d3c/classbonus.html#a684d6f26b2ed6f4955282426f5eef616">bonus::getPosBonus</a></div><div class="ttdeci">Vec2 getPosBonus() const</div><div class="ttdoc">renvoie la position du bonus en x et y</div><div class="ttdef"><b>Definition:</b> bonus.cpp:22</div></div>
+<div class="ttc" id="aclass_plateforme_html_a593683a817bf5ffe2c59e08506ead58b"><div class="ttname"><a href="../../dd/de7/class_plateforme.html#a593683a817bf5ffe2c59e08506ead58b">Plateforme::setRes</a></div><div class="ttdeci">void setRes(int n)</div><div class="ttdoc">modifie la resistance de la plateforme à partir d'un float</div><div class="ttdef"><b>Definition:</b> Plateforme.cpp:73</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

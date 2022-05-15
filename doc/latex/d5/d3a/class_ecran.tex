@@ -1,0 +1,132 @@
+\hypertarget{class_ecran}{}\doxysection{Référence de la classe Ecran}
+\label{class_ecran}\index{Ecran@{Ecran}}
+
+
+{\ttfamily \#include $<$Ecran.\+h$>$}
+
+
+
+Graphe de collaboration de Ecran\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{df/d01/class_ecran__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ecran_aaba8a1895c2032d86c98c65b763ed3af}{Ecran}} (int pos\+Debut, int pos\+Fin, int nb\+Plat, vector$<$ \mbox{\hyperlink{class_plateforme}{Plateforme}} $>$ \&p, \mbox{\hyperlink{classbonus}{bonus}} b\mbox{[}4\mbox{]}, \mbox{\hyperlink{class_monstre}{Monstre}} m\mbox{[}4\mbox{]}, bool genere\+MB, int score\+Jeu)
+\begin{DoxyCompactList}\small\item\em constructeur permettant de construire un écran à partir de sa position de début et de fin ( \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecran_affb6c0a8d14647b5bdfffc0218d8e852}{get\+Debut\+Ec}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie un entier désignant le début de l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecran_a3d4d6bdb3a7efbe004d2906b461a994b}{get\+Fin\+Ec}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie un entier désignant la fin de l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ecran_adbeec68e5a6812165f10f353d7bdec6c}{detruire\+Ec}} (vector$<$ \mbox{\hyperlink{class_plateforme}{Plateforme}} $>$ \&p, \mbox{\hyperlink{classbonus}{bonus}} b\mbox{[}4\mbox{]}, \mbox{\hyperlink{class_monstre}{Monstre}} m\mbox{[}4\mbox{]}, int nb\+Pl)
+\begin{DoxyCompactList}\small\item\em Procédure de destruction des éléments constituant l\textquotesingle{}écran à partir des paramètres. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ecran_a2e45d49372e2af90da101bb2795845da}{get\+Nb\+Pl\+Ec}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie le nombre de plateformes de l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ecran_a4405b236df3f818ec12d3bff0df63856}{$\sim$\+Ecran}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{class_ecran_aaba8a1895c2032d86c98c65b763ed3af}\label{class_ecran_aaba8a1895c2032d86c98c65b763ed3af}} 
+\index{Ecran@{Ecran}!Ecran@{Ecran}}
+\index{Ecran@{Ecran}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{Ecran()}{Ecran()}}
+{\footnotesize\ttfamily Ecran\+::\+Ecran (\begin{DoxyParamCaption}\item[{int}]{pos\+Debut,  }\item[{int}]{pos\+Fin,  }\item[{int}]{nb\+Plat,  }\item[{vector$<$ \mbox{\hyperlink{class_plateforme}{Plateforme}} $>$ \&}]{p,  }\item[{\mbox{\hyperlink{classbonus}{bonus}}}]{b\mbox{[}4\mbox{]},  }\item[{\mbox{\hyperlink{class_monstre}{Monstre}}}]{m\mbox{[}4\mbox{]},  }\item[{bool}]{genere\+MB,  }\item[{int}]{score\+Jeu }\end{DoxyParamCaption})}
+
+
+
+constructeur permettant de construire un écran à partir de sa position de début et de fin ( 
+
+Entier désignant le nombre de bonus.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pos\+Debut} & \\
+\hline
+\end{DoxyParams}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{d5/d3a/class_ecran_aaba8a1895c2032d86c98c65b763ed3af_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_ecran_a4405b236df3f818ec12d3bff0df63856}\label{class_ecran_a4405b236df3f818ec12d3bff0df63856}} 
+\index{Ecran@{Ecran}!````~Ecran@{$\sim$Ecran}}
+\index{````~Ecran@{$\sim$Ecran}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{$\sim$Ecran()}{~Ecran()}}
+{\footnotesize\ttfamily Ecran\+::$\sim$\+Ecran (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur. 
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_ecran_adbeec68e5a6812165f10f353d7bdec6c}\label{class_ecran_adbeec68e5a6812165f10f353d7bdec6c}} 
+\index{Ecran@{Ecran}!detruireEc@{detruireEc}}
+\index{detruireEc@{detruireEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{detruireEc()}{detruireEc()}}
+{\footnotesize\ttfamily void Ecran\+::detruire\+Ec (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_plateforme}{Plateforme}} $>$ \&}]{p,  }\item[{\mbox{\hyperlink{classbonus}{bonus}}}]{b\mbox{[}4\mbox{]},  }\item[{\mbox{\hyperlink{class_monstre}{Monstre}}}]{m\mbox{[}4\mbox{]},  }\item[{int}]{nb\+Pl }\end{DoxyParamCaption})}
+
+
+
+Procédure de destruction des éléments constituant l\textquotesingle{}écran à partir des paramètres. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em p} & un tableau dynamique passé en référence, deux tableau statique de tailles N\+B\+\_\+\+B\+O\+N\+US et N\+B\+\_\+\+M\+O\+N\+S\+T\+RE\\
+\hline
+{\em b} & et\\
+\hline
+{\em m} & \\
+\hline
+\end{DoxyParams}
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{d5/d3a/class_ecran_adbeec68e5a6812165f10f353d7bdec6c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_ecran_affb6c0a8d14647b5bdfffc0218d8e852}\label{class_ecran_affb6c0a8d14647b5bdfffc0218d8e852}} 
+\index{Ecran@{Ecran}!getDebutEc@{getDebutEc}}
+\index{getDebutEc@{getDebutEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{getDebutEc()}{getDebutEc()}}
+{\footnotesize\ttfamily int Ecran\+::get\+Debut\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie un entier désignant le début de l\textquotesingle{}écran. 
+
+\mbox{\Hypertarget{class_ecran_a3d4d6bdb3a7efbe004d2906b461a994b}\label{class_ecran_a3d4d6bdb3a7efbe004d2906b461a994b}} 
+\index{Ecran@{Ecran}!getFinEc@{getFinEc}}
+\index{getFinEc@{getFinEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{getFinEc()}{getFinEc()}}
+{\footnotesize\ttfamily int Ecran\+::get\+Fin\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie un entier désignant la fin de l\textquotesingle{}écran. 
+
+\mbox{\Hypertarget{class_ecran_a2e45d49372e2af90da101bb2795845da}\label{class_ecran_a2e45d49372e2af90da101bb2795845da}} 
+\index{Ecran@{Ecran}!getNbPlEc@{getNbPlEc}}
+\index{getNbPlEc@{getNbPlEc}!Ecran@{Ecran}}
+\doxysubsubsection{\texorpdfstring{getNbPlEc()}{getNbPlEc()}}
+{\footnotesize\ttfamily int Ecran\+::get\+Nb\+Pl\+Ec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Renvoie le nombre de plateformes de l\textquotesingle{}écran. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_ecran_8h}{Ecran.\+h}}\item 
+src/\mbox{\hyperlink{_ecran_8cpp}{Ecran.\+cpp}}\end{DoxyCompactItemize}
