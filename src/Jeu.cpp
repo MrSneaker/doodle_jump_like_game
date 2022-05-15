@@ -202,10 +202,6 @@ void Jeu::updateEcran(double dt)
 	}
 }
 
-void Jeu::RecommencerJeu()
-{
-}
-
 bool doOverlap(Vec2 l1, Vec2 r1, Vec2 l2, Vec2 r2) // fonction vérifiant si deux rectangles en paramètres se superposent.
 {
 

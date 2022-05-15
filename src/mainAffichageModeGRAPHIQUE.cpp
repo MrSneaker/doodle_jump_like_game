@@ -11,8 +11,10 @@ double dt = 1.0 / 60.0;
 
 using namespace std;
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
+    time_t t;
+    srand((unsigned)time(&t));
     Menu m;
     m.boucleMenu(dt);
     return 0;

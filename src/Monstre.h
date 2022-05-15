@@ -31,10 +31,10 @@ public:
     float getVitM() const;               /*! \brief renvoie la vitesse du monstre */
     void setVitM(float v);               /*! \brief met à jour la vitesse du monstre selon un parametre \param v*/
     Vec2 getTailleM() const;             /*! \brief renvoie la taille du pixel du monstre*/
-    void setTailleM(float tx, float ty); /*! \brief met a jour la taille du pixel du monstre*/
+    void setTailleM(float tx, float ty); /*! \brief met a jour la taille du monstre par rapport aux paramètres \param tx, \param ty.*/
     int getResistance();                 /*! \brief renvoie la resistance du monstree*/
-    void bougeAuto(double dt);           /*! \brief permet aux monstres de se déplacer tout seul*/
-    void setResistance(int r);           /*! \brief  met a jour la resistance du monstre(s'il s'est pris un projectile par exemple*/
+    void bougeAuto(double dt);           /*! \brief permet aux monstres de se déplacer tout seul selon la vitesse de raffraichissement \param dt.*/
+    void setResistance(int r);           /*! \brief  met a jour la resistance du monstre par rapport à l'entier en paramètre \param r.*/
     void testRegression();               /*! \brief test toutes les fonctions de la classe Personnage*/
     void descRes();                      /*! \brief décrémente la res de 1*/
 };

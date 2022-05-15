@@ -54,8 +54,6 @@ public:
     const vector<Plateforme> &getPlateforme() const;  /*! \brief Renvoie une référence au tableau dynamique de plateforme et ses caractéristiques pour l'affichage texte et SDL */
     void actionsAutomatiques(double dt);              /*! \brief Procédure gérant les déplacements automatiques des éléments du jeu (monstres et plateformes) en fonction de la vitesse de mise à jour \param dt*/
     bool actionClavier(const char touche, double dt); /*! \brief Gère les actions clavier du joueur en fonction d'un char \param touche et de la vitesse de mise à jour \param dt. Renvoie faux si on presse 'q', vrai sinon. */
-    void RecommencerJeu();                            /*! \brief */
-    void finJeu();                                    /*! \brief */
     void update(double dt);                           /*! \brief Met à jour tous les éléments par rapport au intéractions entre eux, en fonction de la vitesse de mise à jour \param dt.*/
     void InitPersonnage();                            /*! \brief Initialise la position du personnage au milieu de l'écran, sa vitesse à 1 et la position vertical logique de la caméra.*/
     void InitMonstre();                               /*! \brief Inialise de façon aléatoire la taille, la résistance, et si le monstre bouge ou non.*/

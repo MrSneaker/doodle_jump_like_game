@@ -8,11 +8,9 @@
 #include <iostream>
 #include <stdio.h>
 
-
-
 // ============= CLASS JEUMODEGRAPHIQUE =============== //
 
-JeuModeGRAPHIQUE::JeuModeGRAPHIQUE()
+JeuModeGRAPHIQUE::JeuModeGRAPHIQUE() // toutes les textures sont initialisées à NULL.
 {
     cam.x = 0;
     cam.y = 0;
@@ -47,22 +45,20 @@ JeuModeGRAPHIQUE::~JeuModeGRAPHIQUE()
 
 Vec2 JeuModeGRAPHIQUE::convertPos(Vec2 pos)
 {
-    Vec2 newPos;
-    newPos.x = (DIMY * pos.x) / 100;
-    newPos.y = (DIMX * pos.y) / 12;
-    return newPos;
+    Vec2 newPos;                     // on prend une position tampon..
+    newPos.x = (DIMY * pos.x) / 100; // DIMY pour x car les axes du jeu sont inversées par rapport à ceux de la SDL (dans Jeu, ils sont adaptés au mode texte avec X en ordonnée et Y en abscisse.)
+    newPos.y = (DIMX * pos.y) / 12;  // pour les même raison, DIMX pour y.
+    return newPos;                   // ..qu'on renvoie apres convertion.
 }
 
 void JeuModeGRAPHIQUE::InitCam()
 {
     cam.x = 0;
-    cam.y = convertPos(jeu.getConstPersonnage().getPos()).x - DIMX / 2;
+    cam.y = convertPos(jeu.getConstPersonnage().getPos()).x - DIMX / 2; // pour les même raisons qu'au dessus, cam.y = position logique du personnage en x.
 }
 
 void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE()
 {
-    Jeu jeu;
-
     // Initialisation de la SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -86,7 +82,7 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE()
         SDL_Quit();
         exit(1);
     }
-
+    // initialisation de SDL_image
     int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG | IMG_INIT_WEBP;
     if (!(IMG_Init(imgFlags) & imgFlags))
     {
@@ -94,12 +90,11 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE()
         SDL_Quit();
         exit(1);
     }
-
+    // Initialisation de SDL_Mix.
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
     {
         cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
         cout << "No sound !!!" << endl;
-        // SDL_Quit();exit(1);
         withSound = false;
     }
     else
@@ -115,7 +110,7 @@ void JeuModeGRAPHIQUE::affichageInitGRAPHIQUE()
     }
 }
 
-void JeuModeGRAPHIQUE::InitTexture()
+void JeuModeGRAPHIQUE::InitTexture() // chargement de toutes les textures depuis data/ .
 {
     textureBackground = IMG_LoadTexture(renderer, "data/background.png");
     texturePersG = IMG_LoadTexture(renderer, "data/persoGauche.png");
@@ -147,7 +142,7 @@ void JeuModeGRAPHIQUE::InitTexture()
     projTex = IMG_LoadTexture(renderer, "data/projectile.png");
 }
 
-void JeuModeGRAPHIQUE::initSon()
+void JeuModeGRAPHIQUE::initSon() // chargement de tous les sons depuis data/ .
 {
     saut = Mix_LoadMUS("data/jump.wav");
     helico = Mix_LoadMUS("data/helico.mp3");
@@ -158,73 +153,76 @@ void JeuModeGRAPHIQUE::initSon()
     Pmort = Mix_LoadMUS("data/pada.mp3");
 }
 
-void JeuModeGRAPHIQUE::initFont()
+void JeuModeGRAPHIQUE::initFont() // chargement de la police depuis data/ .
 {
     font = TTF_OpenFont("data/PIXEAB__.TTF", 15);
     font_color = {0, 0, 0};
 }
 
-void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
+void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt) // affichage et mise à jour du rendu graphique.
 {
-    float newcamY = convertPos(jeu.getConstPersonnage().getPos()).x;
+    float newcamY = convertPos(jeu.getConstPersonnage().getPos()).x; // mise à jour de la caméra.
     if (newcamY <= cam.y)
         cam.y = newcamY;
-    SDL_RenderCopy(renderer, textureBackground, NULL, NULL);
-    string tmp = to_string(jeu.score);
-    const char *scoreString = tmp.c_str();
-    scoreSurf = TTF_RenderText_Solid(font, scoreString, font_color);
-    SDL_Rect scoreRect;
+
+    SDL_RenderCopy(renderer, textureBackground, NULL, NULL);         // affichage de l'arrière plan.
+    string tmp = to_string(jeu.score);                               // conversion du score en string.
+    const char *scoreString = tmp.c_str();                           // conversion du string contenant le score en chaine de caractères.
+    scoreSurf = TTF_RenderText_Solid(font, scoreString, font_color); // création de la surface affichant le score en temps réel.
+    SDL_Rect scoreRect;                                              // rectangle d'affichage du score.
     scoreRect.x = 0;
     scoreRect.y = 0;
     scoreRect.w = 100;
     scoreRect.h = 100;
-    score = SDL_CreateTextureFromSurface(renderer, scoreSurf);
-    SDL_FreeSurface(scoreSurf);
-    const Personnage &perso = jeu.getConstPersonnage();
-    SDL_Rect rectPers;
+    score = SDL_CreateTextureFromSurface(renderer, scoreSurf); // création de la texture d'affichage du score.
+    SDL_FreeSurface(scoreSurf);                                // on libère la surface car elle est maintenant inutile.
 
+    // la méthode qui suit est la même pour l'intégralité de l'affichage sur tous les objets.
+
+    const Personnage &perso = jeu.getConstPersonnage(); // on récupère le personnage.
+    SDL_Rect rectPers;                                  // on lui crée son rectangle d'affichage..
     rectPers.x = convertPos(perso.getPos()).y;
-    rectPers.y = convertPos(perso.getPos()).x - cam.y + DIMY / 2;
+    rectPers.y = convertPos(perso.getPos()).x - cam.y + DIMY / 2; // on applique le décalage caméra sur l'axe des ordonnées.
     rectPers.h = perso.getTaille().x * TAILLE_SPRITE;
     rectPers.w = perso.getTaille().y * TAILLE_SPRITE;
-    if (jeu.Pdroite && !perso.aPrisB)
+    if (jeu.Pdroite && !perso.aPrisB) // si le personnage va à droite et n'a pas de bonus, on renvoie la texture correspondante.
     {
         SDL_RenderCopy(renderer, texturePersD, NULL, &rectPers);
     }
-    else if (jeu.Pgauche && !perso.aPrisB)
+    else if (jeu.Pgauche && !perso.aPrisB) // si le personnage va à gauche et n'a pas de bonus, on renvoie la texture correspondante.
     {
         SDL_RenderCopy(renderer, texturePersG, NULL, &rectPers);
     }
-    else if (jeu.Ptire && !perso.aPrisB)
+    else if (jeu.Ptire && !perso.aPrisB) // si le personnage tir et n'a pas de bonus, on renvoie la texture correspondante.
     {
         SDL_RenderCopy(renderer, texturePersS, NULL, &rectPers);
     }
-    else if (!perso.aPrisB)
+    else if (!perso.aPrisB) // si le personnage n'a pas de bonus et ne fait rien, on renvoie la texture correspondante.
         SDL_RenderCopy(renderer, texturePersF, NULL, &rectPers);
-    int nbPl = jeu.getPlateforme().size();
-    for (int i = 0; i < nbPl; i++)
+    int nbPl = jeu.getPlateforme().size(); // on prend le nombre de plateforme à afficher.
+    for (int i = 0; i < nbPl; i++)         // pour l'intégraliter des plateformes..
     {
-        SDL_Rect rectPlat;
+        SDL_Rect rectPlat; // même méthode que le personnage.
         const Plateforme &Pl = jeu.getPlateforme().at(i);
         rectPlat.x = convertPos(Pl.getPos()).y;
         rectPlat.y = convertPos(Pl.getPos()).x - cam.y + DIMY / 2;
         rectPlat.h = Pl.getTaille().x * TAILLE_SPRITE;
         rectPlat.w = Pl.getTaille().y * TAILLE_SPRITE;
-        if (Pl.estAfficheable())
+        if (Pl.estAfficheable()) // si la plateforme est affichable..
         {
-            if (Pl.getRes() == -1)
+            if (Pl.getRes() == -1) //.. et si elle a une resistance de -1, on affiche cette texture..
             {
                 SDL_RenderCopy(renderer, texturePlat[0], NULL, &rectPlat);
             }
-            else if (Pl.getRes() == 1)
+            else if (Pl.getRes() == 1) // .. sinon si c'est 1 on affiche la deuxième.
             {
                 SDL_RenderCopy(renderer, texturePlat[1], NULL, &rectPlat);
             }
         }
     }
-    for (int i = 0; i < NB_MONSTRE; i++)
+    for (int i = 0; i < NB_MONSTRE; i++) // pour tous les monstres..
     {
-        const Monstre &mon = jeu.getConstMonstre(i);
+        const Monstre &mon = jeu.getConstMonstre(i); // même méthode que le personnage.
         SDL_Rect rectM;
         float tailleY = mon.getTailleM().x;
         float tailleX = mon.getTailleM().y;
@@ -232,7 +230,7 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         rectM.y = convertPos(mon.getPos()).x - cam.y + DIMY / 2;
         rectM.h = tailleY * TAILLE_SPRITE;
         rectM.w = tailleX * TAILLE_SPRITE;
-        if (tailleX == 2 && tailleY == 1 && mon.enVie)
+        if (tailleX == 2 && tailleY == 1 && mon.enVie) // on affiche la texture correspondant à la bonne taille, c'est l'élément de différenciation.
         {
             SDL_RenderCopy(renderer, textureMonstre[0], NULL, &rectM);
         }
@@ -248,22 +246,22 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         {
             SDL_RenderCopy(renderer, textureMonstre[3], NULL, &rectM);
         }
-        if (jeu.Mtouche1 || jeu.Mtouche2)
+        if (jeu.Mtouche1 || jeu.Mtouche2) // si on touche/tue un monstre..
         {
-            Mix_PlayMusic(Mmeurt, 1);
-            jeu.Mtouche1 = false;
+            Mix_PlayMusic(Mmeurt, 1); // .. on joue le son correspondant.
+            jeu.Mtouche1 = false;     // on indique que le son à été joué.
             jeu.Mtouche2 = false;
         }
     }
-    for (int i = 0; i < NB_BONUS; i++)
+    for (int i = 0; i < NB_BONUS; i++) // pour tous les bonus..
     {
-        const bonus &bon = jeu.getConstBonus(i);
+        const bonus &bon = jeu.getConstBonus(i); // même méthode que le personnage.
         SDL_Rect rectB;
         rectB.x = convertPos(bon.getPosBonus()).y;
         rectB.y = convertPos(bon.getPosBonus()).x - cam.y + DIMY / 2;
         rectB.h = bon.getTailleB().x * TAILLE_SPRITE;
         rectB.w = bon.getTailleB().y * TAILLE_SPRITE;
-        if (bon.getNomB() == "h" && !bon.estPris)
+        if (bon.getNomB() == "h" && !bon.estPris) // si le bonus avec le nom indiqué n'est pas pris, on affiche le sprite de l'objet.
         {
             SDL_RenderCopy(renderer, textureBonus[0], NULL, &rectB);
         }
@@ -275,13 +273,13 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
         {
             SDL_RenderCopy(renderer, textureBonus[2], NULL, &rectB);
         }
-        else if (bon.getNomB() == "r")
+        else if (bon.getNomB() == "r") // pour le ressort, on affiche une texture quand il est pris et une quand il ne l'est pas, pour faire une petite animation.
         {
             if (bon.estPris)
             {
-                Mix_PlayMusic(ressort, 1);
+                Mix_PlayMusic(ressort, 1); // on joue le son du ressort quand il est pris.
                 SDL_RenderCopy(renderer, textureBonus[4], NULL, &rectB);
-                if (jeu.Pdroite)
+                if (jeu.Pdroite) // on indique la texture que le personnage doit avoir dans cet état.
                     SDL_RenderCopy(renderer, texturePersD, NULL, &rectPers);
                 else
                     SDL_RenderCopy(renderer, texturePersG, NULL, &rectPers);
@@ -289,19 +287,16 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
             else
                 SDL_RenderCopy(renderer, textureBonus[3], NULL, &rectB);
         }
-        else if (bon.getNomB() == "t")
+        else if (bon.getNomB() == "t") // le trou noir ne peut pas être pris, donc pas besoin de le prendre en compte.
         {
             SDL_RenderCopy(renderer, textureBonus[5], NULL, &rectB);
         }
-        else if (bon.getNomB() == "r" && bon.estPris) // pour jouer le son du ressort.
-        {
-        }
-        if (bon.getNomB() == "h" && bon.estPris)
+        if (bon.getNomB() == "h" && bon.estPris) // quand un bonus est pris, on prend en compte le temps pour lequel il l'est, et on joue le son du bonus.
         {
             Mix_PlayMusic(helico, 1);
             tpsH = bon.getDuree();
         }
-        else if (bon.getNomB() == "j" && bon.estPris)
+        else if (bon.getNomB() == "j" && bon.estPris) // MEME PRINCIPE POUR LES BONUS SI-DESSOUS.
         {
             Mix_PlayMusic(jetpack, 1);
             tpsJ = bon.getDuree();
@@ -311,15 +306,15 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
             Mix_PlayMusic(ressort, 1);
             tpsB = bon.getDuree();
         }
-        if (tpsH > 0)
+        if (tpsH > 0) // si ce temps d'activation est détecté comme étant initialisé, alors on renvoie les textures correspondantes..
         {
-            if (jeu.Pdroite)
+            if (jeu.Pdroite) //.. en prenant en compte la direction du personnage.
                 SDL_RenderCopy(renderer, texturePersH[0], NULL, &rectPers);
             else
                 SDL_RenderCopy(renderer, texturePersH[1], NULL, &rectPers);
-            tpsH -= dt;
+            tpsH -= dt; // on décrémente le temps d'activation.
         }
-        else if (tpsJ > 0)
+        else if (tpsJ > 0) // MEME PRINCIPE POUR TOUS LES BONUS SI-DESSOUS.
         {
             if (jeu.Pdroite)
                 SDL_RenderCopy(renderer, texturePersJ[0], NULL, &rectPers);
@@ -336,9 +331,9 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
             tpsB -= dt;
         }
     }
-    for (int i = 0; i < perso.getNombreProj(); i++)
+    for (int i = 0; i < perso.getNombreProj(); i++) // affichage des projectiles.
     {
-        const projectile &proj = perso.getProjectileAff(i);
+        const projectile &proj = perso.getProjectileAff(i); // toujours la même méthode.
         SDL_Rect rectProj;
         if (proj.existe)
         {
@@ -349,73 +344,73 @@ void JeuModeGRAPHIQUE::affichageGRAPHIQUE(Jeu &jeu, double dt)
             SDL_RenderCopy(renderer, projTex, NULL, &rectProj);
         }
     }
-    if (jeu.getConstPersonnage().enVie == false)
+    if (jeu.getConstPersonnage().enVie == false) // si le personnage est mort, on joue le son correspondant à la fin de partie.
     {
         if (tpsSonMort == 0)
             tpsSonMort = 0.01;
     }
-    SDL_RenderCopy(renderer, score, NULL, &scoreRect);
+    SDL_RenderCopy(renderer, score, NULL, &scoreRect); // on fait le render du score ici pour l'afficher devant l'intégraliter des éléments.
     SDL_RenderPresent(renderer);
 }
 
 void JeuModeGRAPHIQUE::boucleAffGRAPHIQUE(Jeu &jeu, double dt)
 {
-    SDL_Event events;
-    affichageInitGRAPHIQUE();
-    InitTexture();
-    initSon();
-    initFont();
-    std::chrono::high_resolution_clock timer;
-    bool quit = false;
+    SDL_Event events;                         // on déclare une structure Event pour gérer les évènements (clavier/souris..).
+    affichageInitGRAPHIQUE();                 // initialisation de la SDL.
+    InitTexture();                            // initialisation des textures.
+    initSon();                                // initialisation des sons.
+    initFont();                               // initialisation des polices.
+    std::chrono::high_resolution_clock timer; // on utilise une clock pour déterminer la vitesse de raffraichissements du jeu.
+    bool quit = false;                        // condition du while.
     while (!quit)
     {
-        auto start = timer.now();
-        SDL_Delay(30);
-        jeu.update(dt);
-        while (SDL_PollEvent(&events))
+        auto start = timer.now();      // on commence la mesure du temps de raffraichissements.
+        SDL_Delay(30);                 // on commence la boucle ici, et on met un délai de 30 milisecondes entre chaque affichage.
+        jeu.update(dt);                // on update le jeu.
+        while (SDL_PollEvent(&events)) // on prend en compte tous les évènements.
         {
-            if (events.type == SDL_QUIT)
-                quit = true;
-            else if (events.type == SDL_KEYDOWN)
+            if (events.type == SDL_QUIT)         // si on quitte la fenêtre..
+                quit = true;                     //.. on quitte le jeu.
+            else if (events.type == SDL_KEYDOWN) // si on appuies sur une touche..
             {
 
                 switch (events.key.keysym.scancode)
                 {
-                case SDL_SCANCODE_SPACE:
-                    jeu.actionClavier('r', dt); // lance un proj
+                case SDL_SCANCODE_SPACE:        // si c'est espace..
+                    jeu.actionClavier('r', dt); // lance un projectile.
                     Mix_PlayMusic(tir, 1);
                     break;
-                case SDL_SCANCODE_LEFT:
-                    jeu.actionClavier('g', dt); // se deplace a gauche
+                case SDL_SCANCODE_LEFT:         // si c'est flèche gauche..
+                    jeu.actionClavier('g', dt); // se déplace a gauche.
                     break;
-                case SDL_SCANCODE_RIGHT:
-                    jeu.actionClavier('d', dt); // se deplace a droite
+                case SDL_SCANCODE_RIGHT:        // si c'est flèche droite..
+                    jeu.actionClavier('d', dt); // se déplace a droite.
                     break;
-                case SDL_SCANCODE_A:
-                    quit = true;
+                case SDL_SCANCODE_A: // si c'est la touche Q (SCANCODE_A = Q car SDL fonctionne en QWERTY, si vous êtes en QWERTY ce sera A).
+                    quit = true;     // quitte le jeu
                     break;
                 default:
                     break;
                 }
             }
         }
-        if (jeu.PcollPl)
-            Mix_PlayMusic(saut, 1);
-        affichageGRAPHIQUE(jeu, dt);
-        auto stop = timer.now();
-        dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
-        if (tpsSonMort > 0)
+        if (jeu.PcollPl)                                                                      // si le personnage est en collision avec une plateforme..
+            Mix_PlayMusic(saut, 1);                                                           // .. on joue le son du saut.
+        affichageGRAPHIQUE(jeu, dt);                                                          // on affiche le jeu après l'update.
+        auto stop = timer.now();                                                              // fin de mesure du temps de raffraichissement.
+        dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count(); // dt = le temps mesuré.
+        if (tpsSonMort > 0)                                                                   // si le son de la mort doit être joué, on le joue.
         {
             Mix_PlayMusic(Pmort, 1);
             tpsSonMort -= dt;
         }
-        if (Mix_PlayingMusic() == 0 && jeu.getConstPersonnage().enVie == false)
+        if (Mix_PlayingMusic() == 0 && jeu.getConstPersonnage().enVie == false) // on attend que les sons se termine pour quitter (spécialement celui de la fin de partie).
             quit = true;
     }
-    affDetruireGRAPHIQUE();
+    affDetruireGRAPHIQUE(); // si on sort de la boucle alors on détruit tout.
 }
 
-void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE()
+void JeuModeGRAPHIQUE::affDetruireGRAPHIQUE() // on libère toute la mémoire, sans quitter la SDL qui sera encore utilisé pour le menu.
 {
     if (withSound)
         Mix_Quit();

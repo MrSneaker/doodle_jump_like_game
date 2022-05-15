@@ -8,9 +8,6 @@
 #include <iostream>
 #include <stdio.h>
 
-const int DIMX = 15;
-const int DIMY = 30;
-
 JeuModeTXT::JeuModeTXT()
 {
     cam.x = 0;
@@ -32,22 +29,22 @@ void termInit() // configure la saisie : ne pas afficher les caracteres tapes
     struct termios ttystate;
     bool state = true;
 
-    // get the terminal state
+    // donne l'état du terminal.
     tcgetattr(STDIN_FILENO, &ttystate);
 
     if (state)
     {
-        // turn off canonical mode
+        // mode canonique sur off.
         ttystate.c_lflag &= ~ICANON;
-        // minimum of number input read.
+        // minimum d'input lu.
         ttystate.c_cc[VMIN] = 1;
     }
     else
     {
-        // turn on canonical mode
+        // mode canonique sur on.
         ttystate.c_lflag |= ICANON;
     }
-    // set the terminal attributes.
+    // initialise les attributs du terminal.
     tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
 
     struct termios t;
@@ -58,7 +55,7 @@ void termInit() // configure la saisie : ne pas afficher les caracteres tapes
 
 Vec2 JeuModeTXT::convertPos(Vec2 pos)
 {
-    Vec2 newPos;
+    Vec2 newPos; // position tampon.
     newPos.x = (DIMX * pos.x) / 100;
     newPos.y = (DIMY * pos.y) / 12;
     return newPos;
@@ -72,23 +69,23 @@ void JeuModeTXT::InitCam()
 
 void JeuModeTXT::updatePlateau(Jeu &jeu)
 {
-    float newcamX = convertPos(jeu.getConstPersonnage().getPos()).x;
-    if (newcamX <= cam.x)
+    float newcamX = convertPos(jeu.getConstPersonnage().getPos()).x; // la caméra est mise à jour par rapport à la hauteur du personnage.
+    if (newcamX <= cam.x)                                            // si la nouvelle position de la caméra est au dessus de l'ancienne, newCamX est affecté à cam.x.
         cam.x = newcamX;
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < DIMX; i++) // sur toute la hauteur (dans le terminal X est l'ordonnée, c'est pour cela que la classe "Jeu" a été pensé avec X comme ordonnée).
     {
-        for (int j = 0; j < 30; j++)
+        for (int j = 0; j < DIMY; j++) // et sur toute la largeur..
         {
-            int persoX = int(convertPos(jeu.getConstPersonnage().getPos()).x - cam.x + DIMX / 2);
+            int persoX = int(convertPos(jeu.getConstPersonnage().getPos()).x - cam.x + DIMX / 2); // on prend la position du personnage (décalé de cam.x + DIMX/2 en ordonnée pour le défilement, comme tous les objets).
             int persoY = int(convertPos(jeu.getConstPersonnage().getPos()).y);
-            if ((persoX == i) && (persoY == j) && (jeu.getConstPersonnage().enVie == true))
+            if ((persoX == i) && (persoY == j) && (jeu.getConstPersonnage().enVie == true)) // si la position du personnage correspond à une position écran et qu'il est vivant, on l'affiche.
             {
                 cadre[i][j] = 'l';
                 cadre[i - 1][j] = 'o';
                 cadre[i - 1][j + 1] = 'o';
                 cadre[i][j + 1] = 'l';
             }
-            for (int m = 0; m < NB_MONSTRE; m++)
+            for (int m = 0; m < NB_MONSTRE; m++) // on boucle sur les monstres et on applique le même principe.
             {
                 int monstreX = int(convertPos(jeu.getConstMonstre(m).getPos()).x - cam.x + DIMX / 2);
                 int monstreY = int(convertPos(jeu.getConstMonstre(m).getPos()).y);
@@ -112,13 +109,13 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                     }
                 }
             }
-            for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++)
+            for (long unsigned int p = 0; p < jeu.getPlateforme().size(); p++) // même principe que le reste.
             {
                 int plX = int(convertPos(jeu.getPlateforme().at(p).getPos()).x - cam.x + DIMX / 2);
                 int plY = int(convertPos(jeu.getPlateforme().at(p).getPos()).y);
-                if ((plX == i) && (plY == j) && (jeu.getPlateforme().at(p).estAfficheable() == true))
+                if ((plX == i) && (plY == j) && (jeu.getPlateforme().at(p).estAfficheable() == true)) // on affiche si elle est affichable et que la position correspond.
                 {
-                    if (jeu.getPlateforme().at(p).getRes() == -1)
+                    if (jeu.getPlateforme().at(p).getRes() == -1) // on fait un affichage différent selon les propriétées (ici la resistance).
                     {
                         cadre[i][j] = '_';
                         cadre[i][j + 1] = '_';
@@ -134,7 +131,7 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                     }
                 }
             }
-            for (int pr = 0; pr < jeu.getConstPersonnage().getNombreProj(); pr++)
+            for (int pr = 0; pr < jeu.getConstPersonnage().getNombreProj(); pr++) // même chose pour les projectiles..
             {
                 Vec2 pospr = convertPos(jeu.getConstPersonnage().getProjectileAff(pr).getpos());
                 bool prExiste = jeu.getConstPersonnage().getProjectileAff(pr).existe;
@@ -143,13 +140,13 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
                     cadre[i][j] = '.';
                 }
             }
-            for (int b = 0; b < NB_BONUS; b++)
+            for (int b = 0; b < NB_BONUS; b++) //.. et même chose pour les bonus.
             {
                 int bonusX = int(convertPos(jeu.getConstBonus(b).getPosBonus()).x - cam.x + DIMX / 2);
                 int bonusY = int(convertPos(jeu.getConstBonus(b).getPosBonus()).y);
                 if ((bonusX == i) && (bonusY == j) && (jeu.getConstBonus(b).estPris == false))
                 {
-                    if (jeu.getConstBonus(b).getNomB() == "j")
+                    if (jeu.getConstBonus(b).getNomB() == "j") // on affiche une lettre différente par bonus.
                     {
                         cadre[i][j] = 'j';
                         cadre[i - 1][j] = 'j';
@@ -193,21 +190,21 @@ void JeuModeTXT::updatePlateau(Jeu &jeu)
     }
 }
 
-void JeuModeTXT::affDetruireTXT()
+void JeuModeTXT::affDetruireTXT() // la destruction est faite en faisant un blanc de tout l'écran.
 {
     for (int i = 0; i < 15; ++i)
         for (int j = 0; j < 30; ++j)
-            cadre[i][j] = cadreClear[i][j];
+            cadre[i][j] = cadreClear[i][j]; // on utilise cadreClear qui est exactement le cadre mais qu'on ne modifie jamais.
 }
 
-int kbhit()
+int kbhit() // fonction indiquant si une touche à été tapé. retourne 0 si aucune valeur lu, valeur non nulle sinon.
 {
     struct timeval tv;
     fd_set fds;
     tv.tv_sec = 0;
     tv.tv_usec = 0;
     FD_ZERO(&fds);
-    FD_SET(STDIN_FILENO, &fds); // STDIN_FILENO is 0
+    FD_SET(STDIN_FILENO, &fds);
     select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
     return FD_ISSET(STDIN_FILENO, &fds);
 }
@@ -225,8 +222,8 @@ char getCh()
 
 void JeuModeTXT::affichageTXT(Jeu &jeu)
 {
-    termClear();
-    for (int i = 0; i < 15; i++)
+    termClear();                 // on efface le terminal.
+    for (int i = 0; i < 15; i++) // on affiche le cadre de jeu.
     {
         for (int j = 0; j < 30; j++)
         {
@@ -238,35 +235,35 @@ void JeuModeTXT::affichageTXT(Jeu &jeu)
 
 void JeuModeTXT::boucleAffTXT(Jeu &jeu, double dt)
 {
-    jeu.update(dt);
-    updatePlateau(jeu);
-    bool ok = jeu.getConstPersonnage().enVie;
-    std::chrono::high_resolution_clock timer;
+    jeu.update(dt);                           // on update le jeu.
+    updatePlateau(jeu);                       // on update le cadre de jeu.
+    bool ok = jeu.getConstPersonnage().enVie; // tant que notre personnage est en vie on peut jouer.
+    std::chrono::high_resolution_clock timer; // on initialise une clock pour mesurer le delta dt, la vitesse de rafraichissement du jeu.
     do
     {
-        auto start = timer.now();
-        usleep(100000);
-        jeu.update(dt);
-        updatePlateau(jeu);
-        affichageTXT(jeu);
-        auto stop = timer.now();
-        dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
-        ok = jeu.getConstPersonnage().enVie;
-        int c = getCh();
+        auto start = timer.now();                                                             // point de départ de la mesure de dt.
+        usleep(100000);                                                                       // ici c'est la boucle d'affichage du jeu, on met un délai de 100000 microsecondes entre chaque boucle.
+        jeu.update(dt);                                                                       // update du jeu.
+        updatePlateau(jeu);                                                                   // update de l'affichage.
+        affichageTXT(jeu);                                                                    // affichage à l'écran.
+        auto stop = timer.now();                                                              // fin de la mesure de dt.
+        dt = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count(); // on assigne à dt sa nouvelle valeur.
+        ok = jeu.getConstPersonnage().enVie;                                                  // on regarde si le personnage est toujours en vie.
+        int c = getCh();                                                                      // on prend en compte les entrées clavier.
         switch (c)
         {
-        case 'g':
+        case 'g': // personnage va à gauche.
             jeu.actionClavier('d', dt);
             break;
-        case 'd':
+        case 'd': // personnage va à droite.
             jeu.actionClavier('g', dt);
             break;
-        case 'r':
+        case 'r': // personnage tir.
             jeu.actionClavier('r', dt);
             break;
-        case 'q':
+        case 'q': // quitter le jeu.
             ok = jeu.actionClavier('q', dt);
         }
-        affDetruireTXT();
+        affDetruireTXT(); // on détruit l'affichage pour raffraichir.
     } while (ok);
 }

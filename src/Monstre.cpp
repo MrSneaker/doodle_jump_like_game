@@ -9,7 +9,7 @@ using namespace std;
 Monstre::Monstre()
 {
     position.x = 0;
-    position.y = 100;
+    position.y = 0;
     resistance = 0;
     direction.x = 0;
     direction.y = 0;
@@ -128,13 +128,14 @@ void Monstre::testRegression()
     assert(m1.resistance == 0);
     assert(m1.taille.x == 0);
     assert(m1.taille.y == 0);
-    assert(m1.enVie == true);
+    assert(m1.enVie == false);
     m1.setPos(10, 10);
-    assert(m1.position.x = 10);
-    assert(m1.position.y == 10);
+    assert(m1.position.x == m1.getPos().x);
+    assert(m1.position.y == m1.getPos().y);
     cout << "pos x : " << m1.getPos().x << endl;
     cout << "pos y : " << m1.getPos().y << endl;
     m1.setVitM(2);
+    m1.setDirM(0,1);
     m1.Update(dt);
     m1.setResistance(2);
     m1.setTailleM(2, 2);
@@ -142,9 +143,9 @@ void Monstre::testRegression()
     assert(m1.taille.x == 2);
     assert(m1.vitesse == 2);
     assert(m1.resistance == 2);
-    assert(m1.position.x == 12);
-    assert(m1.position.y == 10);
-    assert(m1.direction.x == -2);
+    assert(m1.position.x == m1.getPos().x);
+    assert(m1.position.y == m1.getPos().y);
+    assert(m1.direction.y == 1);
     cout << "direction en x monstre : " << m1.getDirM().x << endl;
     cout << "direction en y monstre : " << m1.getDirM().y << endl;
     cout << "pos x monstre : " << m1.getPos().x << endl;

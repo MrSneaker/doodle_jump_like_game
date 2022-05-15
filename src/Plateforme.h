@@ -18,7 +18,7 @@ public:
     Plateforme();
     Plateforme(float posx, float posy, float dirx, float diry, float tx, float ty, int resist); /*! \brief tout est défini à partir des paramètres */
     ~Plateforme();
-    const Vec2& getPos() const;           /*! \brief renvoie la position de la plateforme*/
+    const Vec2 &getPos() const;    /*! \brief renvoie la position de la plateforme*/
     void setPos(float x, float y); /*! \brief modifie la position d'une plateforme à partir d'un vec2 \param p en paramètre*/
     Vec2 getDir() const;           /*! \brief renvoie la direction de la plateforme*/
     void setDir(float x, float y);
