@@ -1,8 +1,7 @@
 # Projet LIFAP4
 
 Projet lifap4 de Foodle jump, MUNOZ Matéo et RIGAUT Cyril.
-Numéro étudiant : 12002495 et 11911438.
-ID de projet GIT : 23419
+Note obtenu : 16.8/20 - 8ème sur 165 (note individuel, Matéo)
 
 ## Nom du projet
 Foodle jump
