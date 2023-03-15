@@ -1,6 +1,6 @@
 # Projet LIFAP4
 
-Projet lifap4 de Foodle jump, MUNOZ Matéo et RIGAUT Cyril.
+Projet de 2e année de lifap4 (Conception d'application) nommé Foodle jump, MUNOZ Matéo et RIGAUT Cyril.
 Note obtenu : 16.8/20 - 8ème sur 165 (note individuel, Matéo)
 
 ## Nom du projet
